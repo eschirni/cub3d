@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+         #
+#    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/06/10 17:43:50 by btenzlin         ###   ########.fr        #
+#    Updated: 2022/06/10 20:11:10 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ GNL_PATH = get_next_line/
 
 # SOURCES
 SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
+		$(SRC_PATH)ft_error.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
 
 # OBJECTS

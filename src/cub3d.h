@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/10 18:07:55 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/10 20:10:38 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <limits.h>
 # include <fcntl.h>
 # include <stdio.h>	//debug
+
+# define RED "\033[31m"
+# define RESET "\033[0m"
 # define WIDTH 512
 # define HEIGHT 512
 # define TILE_WIDTH 64
@@ -43,5 +46,8 @@ void	ft_error(char *msg, char *arg);
 
 /* map parsing */
 t_map	*init_map(char *mapfile);
+
+/* utils */
+void	ft_error(char *msg, char *arg);
 
 #endif
