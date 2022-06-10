@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/10 15:09:28 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:57:27 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-//TO COMPILE:
-//gcc main.c MLX42/libmlx42.a -lglfw -L /Users/btenzlin/.brew/Cellar/glfw/3.3.7/lib
 
 void	hook(mlx_key_data_t keydata, void *data) //add vertical movement
 {
@@ -32,7 +29,7 @@ void	hook(mlx_key_data_t keydata, void *data) //add vertical movement
 		tmp->img->instances[0].x += 5;
 }
 
-int32_t	main(void)
+int	main(void)
 {
 	t_data	*data;
 
