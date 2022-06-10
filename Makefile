@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
+#    By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/06/10 15:54:46 by eschirni         ###   ########.fr        #
+#    Updated: 2022/06/10 17:43:50 by btenzlin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,11 @@ NAME = ./cub3d
 # PATHS
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
+GNL_PATH = get_next_line/
 
 # SOURCES
-SRC =	$(SRC_PATH)main.c
+SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
+		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
 
 # OBJECTS
 OBJ = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
@@ -47,7 +49,7 @@ all: $(NAME)
 $(OBJ_PATH)%.o :$(SRC_PATH)%.c
 	@echo $(Y)Compiling [$@]...$(X)
 	@mkdir -p $(dir $@)
-	@gcc $(CFLAGS) $(MLX) -c -o $@ $<
+	@gcc $(CFLAGS) -c -o $@ $<
 	@echo $(G)Finished [$@]$(X)
 
 $(NAME): $(OBJ)
