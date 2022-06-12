@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/10 20:10:38 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/12 22:49:20 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,18 @@
 # define TILE_WIDTH 64
 # define TILE_HEIGHT 64
 
-typedef struct s_data
+typedef struct s_char
 {
-	mlx_t		*mlx;
 	mlx_image_t	*img;
-}				t_data;
+	int			hp;
+	int			speed; //just ideas
+}				t_char;
+
+typedef struct s_game
+{
+	t_char		**chars;
+	mlx_t		*mlx;
+}				t_game;
 
 typedef struct s_map
 {
