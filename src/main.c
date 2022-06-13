@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 19:15:03 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 20:03:36 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,21 @@ static void	free_exit(t_map *map, t_game *game)
 	int	i;
 
 	i = 0;
-	while (map->map_arr[i])
+	while (map->map_arr[i] != NULL)
 	{
 		free(map->map_arr[i]);
 		i++;
 	}
 	i = 0;
-	while (i < 3)
+	while (i < 1)
 	{
 		mlx_delete_image(game->mlx, game->chars[i]->img);
 		free(game->chars[i]);
 		i++;
 	}
 	free(game->chars);
+	mlx_delete_image(game->mlx, game->floor);
+	mlx_delete_image(game->mlx, game->wall);
 	mlx_terminate(game->mlx);
 	free(game);
 	free(map->map_arr);
@@ -53,40 +55,17 @@ static void	hook(void *game)
 		tmp->chars[0]->img->instances[0].x += 5;
 }
 
-static void	draw_textures(t_game *game) //also draw walls
-{
-	mlx_texture_t	*player;
-
-	player = mlx_load_png("./sprites/white_tile.png");
-	if (player == NULL)
-		ft_error("can't load image", NULL);
-	game->chars[0]->img = mlx_texture_to_image(game->mlx, player);
-	if (!mlx_resize_image(game->chars[0]->img, 10, 10))
-		ft_error("can't resize image", NULL);
-	if (game->chars[0]->img == NULL)
-		ft_error("char image allocation failed", NULL);
-	mlx_delete_texture(player);
-	mlx_image_to_window(game->mlx, game->chars[0]->img, 5, 5);
-}
-
 static t_game	*init_game(t_map *map)
 {
 	t_game			*game;
-	int				i;
 
 	game = malloc(sizeof(t_game));
-	game->chars = malloc(sizeof(t_char *) * 3); //let's count them and safe the count in game
-	i = 0;
-	while (i < 3)
-	{
-		game->chars[i] = malloc(sizeof(t_char));
-		i++;
-	}
+	if (game == NULL)
+		ft_error("allocation error", NULL);
 	game->mlx = mlx_init(map->x * TILE_WIDTH, map->y * TILE_HEIGHT, "CUB3D", true);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
 	draw_map(game, map);
-	draw_textures(game);
 	return (game);
 }
 

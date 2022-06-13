@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 17:17:13 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/13 20:02:04 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//todo: ft_error also frees stuff, safe in t_char in what direction he walks when pressed w, rename game struct to map or smth
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -39,6 +41,8 @@ typedef struct s_game
 {
 	t_char		**chars;
 	mlx_t		*mlx;
+	mlx_image_t	*floor;
+	mlx_image_t	*wall;
 }				t_game;
 
 typedef struct s_map

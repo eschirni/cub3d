@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:05:59 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 16:45:36 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/13 20:09:54 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// static void	print_2d_array(char **array)
-// {
-// 	int	i;
-
-// 	if (!array)
-// 		printf("Array empty.\n");
-// 	i = 0;
-// 	while (array[i])
-// 	{
-// 		printf("%s", array[i]);
-// 		i++;
-// 	}
-// 	printf("\n");
-// }
 
 static size_t	ft_strlen_sl(const char *str)
 {
