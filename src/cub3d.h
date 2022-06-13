@@ -6,11 +6,11 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 20:02:04 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 22:09:40 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//todo: ft_error also frees stuff, safe in t_char in what direction he walks when pressed w, rename game struct to map or smth
+//todo: ft_error also frees stuff, safe in t_char in what direction he walks when pressed w, use pixels to draw chars for rotation
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>	//debug
 
 # define RED "\033[31m"
@@ -33,8 +34,12 @@
 typedef struct s_char
 {
 	mlx_image_t	*img;
-	int			hp;
-	int			speed; //just ideas
+	int	w[2];
+	int	a[2];
+	int s[2];
+	int	d[2];
+	int	hp;
+	int	speed; //just ideas
 }				t_char;
 
 typedef struct s_game
@@ -43,6 +48,7 @@ typedef struct s_game
 	mlx_t		*mlx;
 	mlx_image_t	*floor;
 	mlx_image_t	*wall;
+	int			n_chars;
 }				t_game;
 
 typedef struct s_map
@@ -58,8 +64,10 @@ t_map	*init_map(char *mapfile);
 
 /* utils */
 void	ft_error(char *msg, char *arg);
+bool	is_char_obj(char c);
 
 /* draw functions */
 void	draw_map(t_game *game, t_map *map);
+
 
 #endif

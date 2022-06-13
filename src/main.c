@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 20:03:36 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 22:10:32 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	free_exit(t_map *map, t_game *game)
 	free(map);
 }
 
-static void	hook(void *game)
+static void	hook(void *game) //we need pixels for characters to rotate it, there is no rotation for images
 {
 	t_game	*tmp;
 
@@ -65,6 +65,7 @@ static t_game	*init_game(t_map *map)
 	game->mlx = mlx_init(map->x * TILE_WIDTH, map->y * TILE_HEIGHT, "CUB3D", true);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
+	game->n_chars = 0;
 	draw_map(game, map);
 	return (game);
 }

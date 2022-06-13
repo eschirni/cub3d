@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:05:59 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 20:09:54 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 22:04:39 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ t_map	*init_map(char *mapfile)
 	}
 	close (fd);
 	map->x = ft_strlen_sl(map->map_arr[0]);
-	map->mini_size = 10;
+	map->mini_size = 10; //what is this for?
 	return (map);
 }
