@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 22:09:40 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 22:56:04 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ typedef struct s_char
 	int	a[2];
 	int s[2];
 	int	d[2];
-	int	hp;
-	int	speed; //just ideas
 }				t_char;
 
 typedef struct s_game

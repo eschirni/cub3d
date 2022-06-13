@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 22:10:32 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 22:58:48 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	free_exit(t_map *map, t_game *game)
 		i++;
 	}
 	i = 0;
-	while (i < 1)
+	while (i < game->n_chars)
 	{
 		mlx_delete_image(game->mlx, game->chars[i]->img);
 		free(game->chars[i]);
@@ -46,13 +46,25 @@ static void	hook(void *game) //we need pixels for characters to rotate it, there
 	if (mlx_is_key_down(tmp->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(tmp->mlx);
 	if (mlx_is_key_down(tmp->mlx, MLX_KEY_W))
-		tmp->chars[0]->img->instances[0].y -= 5;
-	if (mlx_is_key_down(tmp->mlx, MLX_KEY_S))
-		tmp->chars[0]->img->instances[0].y += 5;
+	{
+		tmp->chars[0]->img->instances[0].x += tmp->chars[0]->w[0];
+		tmp->chars[0]->img->instances[0].y += tmp->chars[0]->w[1];
+	}
 	if (mlx_is_key_down(tmp->mlx, MLX_KEY_A))
-		tmp->chars[0]->img->instances[0].x -= 5;
+	{
+		tmp->chars[0]->img->instances[0].x += tmp->chars[0]->a[0];
+		tmp->chars[0]->img->instances[0].y += tmp->chars[0]->a[1];
+	}
+	if (mlx_is_key_down(tmp->mlx, MLX_KEY_S))
+	{
+		tmp->chars[0]->img->instances[0].x += tmp->chars[0]->s[0];
+		tmp->chars[0]->img->instances[0].y += tmp->chars[0]->s[1];
+	}
 	if (mlx_is_key_down(tmp->mlx, MLX_KEY_D))
-		tmp->chars[0]->img->instances[0].x += 5;
+	{
+		tmp->chars[0]->img->instances[0].x += tmp->chars[0]->d[0];
+		tmp->chars[0]->img->instances[0].y += tmp->chars[0]->d[1];
+	}
 }
 
 static t_game	*init_game(t_map *map)

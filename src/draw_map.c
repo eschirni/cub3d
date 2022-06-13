@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:17:02 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/13 22:29:50 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 23:00:10 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ static void	draw_char(t_game *game, int x, int y, int chr)
 {
 	mlx_texture_t	*player;
 
-	player = mlx_load_png("./sprites/tile_green.png");
+	if (chr != 0)
+		player = mlx_load_png("./sprites/tile_red.png");
+	else
+		player = mlx_load_png("./sprites/tile_green.png");
 	if (player == NULL)
 		ft_error("can't load image", NULL);
 	game->chars[chr]->img = mlx_texture_to_image(game->mlx, player);
@@ -28,7 +31,7 @@ static void	draw_char(t_game *game, int x, int y, int chr)
 	mlx_image_to_window(game->mlx, game->chars[chr]->img, x, y);
 }
 
-static int	count_alloc_chars(t_game *game)
+static int	count_init_chars(t_game *game)
 {
 	int	n;
 
@@ -41,6 +44,14 @@ static int	count_alloc_chars(t_game *game)
 		game->chars[n] = malloc(sizeof(t_char));
 		if (game->chars[n] == NULL)
 			ft_error("allocation error", NULL);
+		game->chars[n]->w[0] = 0;
+		game->chars[n]->w[1] = -5;
+		game->chars[n]->a[0] = -5;
+		game->chars[n]->a[1] = 0;
+		game->chars[n]->s[0] = 0;
+		game->chars[n]->s[1] = 5;
+		game->chars[n]->d[0] = 5;
+		game->chars[n]->d[1] = 0;
 		n++;
 	}
 	return (n);
@@ -53,7 +64,7 @@ static void	draw_chars(t_game *game, t_map *map)
 	int	chrs;
 
 	i = 0;
-	chrs = count_alloc_chars(game);
+	chrs = count_init_chars(game);
 	while (map->map_arr[i])
 	{
 		j = 0;
