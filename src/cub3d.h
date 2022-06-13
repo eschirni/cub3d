@@ -6,7 +6,7 @@
 /*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 05:29:49 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/13 17:17:13 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define RESET "\033[0m"
 # define WIDTH 512
 # define HEIGHT 512
-# define TILE_WIDTH 64
-# define TILE_HEIGHT 64
+# define TILE_WIDTH 32
+# define TILE_HEIGHT 32
 
 typedef struct s_char
 {
@@ -49,13 +49,13 @@ typedef struct s_map
 	int			y;
 }				t_map;
 
-/* main functions */
-void	ft_error(char *msg, char *arg);
-
 /* map parsing */
 t_map	*init_map(char *mapfile);
 
 /* utils */
 void	ft_error(char *msg, char *arg);
+
+/* draw functions */
+void	draw_map(t_game *game, t_map *map);
 
 #endif
