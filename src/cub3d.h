@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 22:56:04 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 23:42:49 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 typedef struct s_char
 {
 	mlx_image_t	*img;
-	int	w[2];
+	int	w[2]; //x, y
 	int	a[2];
 	int s[2];
 	int	d[2];
@@ -60,9 +60,12 @@ typedef struct s_map
 /* map parsing */
 t_map	*init_map(char *mapfile);
 
+/* char fuctions */
+void	set_direction(t_game *game, char direction, int n);
+
 /* utils */
-void	ft_error(char *msg, char *arg);
 bool	is_char_obj(char c);
+void	ft_error(char *msg, char *arg);
 
 /* draw functions */
 void	draw_map(t_game *game, t_map *map);

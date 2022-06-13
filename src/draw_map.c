@@ -6,36 +6,36 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:17:02 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/13 23:00:10 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 23:42:37 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	draw_char(t_game *game, int x, int y, int chr)
+static void	draw_char(t_game *game, int x, int y, int n)
 {
 	mlx_texture_t	*player;
 
-	if (chr != 0)
+	if (n != 0)
 		player = mlx_load_png("./sprites/tile_red.png");
 	else
 		player = mlx_load_png("./sprites/tile_green.png");
 	if (player == NULL)
 		ft_error("can't load image", NULL);
-	game->chars[chr]->img = mlx_texture_to_image(game->mlx, player);
-	if (!mlx_resize_image(game->chars[chr]->img, 10, 10))
+	game->chars[n]->img = mlx_texture_to_image(game->mlx, player);
+	if (!mlx_resize_image(game->chars[n]->img, 10, 10))
 		ft_error("can't resize image", NULL);
-	if (game->chars[chr]->img == NULL)
+	if (game->chars[n]->img == NULL)
 		ft_error("char image allocation failed", NULL);
 	mlx_delete_texture(player);
-	mlx_image_to_window(game->mlx, game->chars[chr]->img, x, y);
+	mlx_image_to_window(game->mlx, game->chars[n]->img, x, y);
 }
 
 static int	count_init_chars(t_game *game)
 {
 	int	n;
 
-	game->chars = malloc(sizeof(t_char *) * game->n_chars); //let's count them and safe the count in game
+	game->chars = malloc(sizeof(t_char *) * game->n_chars);
 	if (game->chars == NULL)
 		ft_error("no char could be allocated", NULL);
 	n = 0;
@@ -44,14 +44,6 @@ static int	count_init_chars(t_game *game)
 		game->chars[n] = malloc(sizeof(t_char));
 		if (game->chars[n] == NULL)
 			ft_error("allocation error", NULL);
-		game->chars[n]->w[0] = 0;
-		game->chars[n]->w[1] = -5;
-		game->chars[n]->a[0] = -5;
-		game->chars[n]->a[1] = 0;
-		game->chars[n]->s[0] = 0;
-		game->chars[n]->s[1] = 5;
-		game->chars[n]->d[0] = 5;
-		game->chars[n]->d[1] = 0;
 		n++;
 	}
 	return (n);
@@ -71,7 +63,10 @@ static void	draw_chars(t_game *game, t_map *map)
 		while (map->map_arr[i][j])
 		{
 			if (is_char_obj(map->map_arr[i][j]))
-				draw_char(game, j * 32, i * 32, --chrs);
+			{
+				draw_char(game, j * 32 + 12, i * 32 + 12, --chrs); //12 bec it's centered in a 32 grid
+				set_direction(game, map->map_arr[i][j], chrs);
+			}
 			j++;
 		}
 		i++;

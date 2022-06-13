@@ -6,11 +6,11 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 21:57:53 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/13 21:59:29 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 23:30:37 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+# include "../cub3d.h"
 
 bool	is_char_obj(char c)
 {

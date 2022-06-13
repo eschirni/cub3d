@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/06/13 22:05:14 by eschirni         ###   ########.fr        #
+#    Updated: 2022/06/13 23:43:27 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,12 @@ NAME = ./cub3d
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 GNL_PATH = get_next_line/
+UTILS_PATH = ./src/utils/
 
 # SOURCES
 SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
-		$(SRC_PATH)ft_error.c $(SRC_PATH)draw_map.c \
-		$(SRC_PATH)utils.c \
+		$(UTILS_PATH)ft_error.c $(UTILS_PATH)utils.c \
+		$(SRC_PATH)draw_map.c $(SRC_PATH)char_direction.c\
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
 
 # OBJECTS
