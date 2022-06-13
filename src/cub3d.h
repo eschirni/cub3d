@@ -6,11 +6,11 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 23:42:49 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 23:49:31 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//todo: ft_error also frees stuff, safe in t_char in what direction he walks when pressed w, use pixels to draw chars for rotation
+//todo: ft_error also frees stuff, use pixels to draw chars for rotation
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -34,10 +34,10 @@
 typedef struct s_char
 {
 	mlx_image_t	*img;
-	int	w[2]; //x, y
-	int	a[2];
-	int s[2];
-	int	d[2];
+	int			w[2]; //x, y
+	int			a[2];
+	int 		s[2];
+	int			d[2];
 }				t_char;
 
 typedef struct s_game
@@ -69,6 +69,5 @@ void	ft_error(char *msg, char *arg);
 
 /* draw functions */
 void	draw_map(t_game *game, t_map *map);
-
 
 #endif

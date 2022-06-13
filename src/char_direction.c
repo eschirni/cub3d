@@ -6,13 +6,13 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 23:43:04 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/13 23:45:08 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 23:47:48 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void init_north(t_game *game, int n)
+static void	init_north(t_game *game, int n)
 {
 	game->chars[n]->w[0] = 0;
 	game->chars[n]->w[1] = -5;
@@ -24,7 +24,7 @@ static void init_north(t_game *game, int n)
 	game->chars[n]->d[1] = 0;
 }
 
-static void init_east(t_game *game, int n)
+static void	init_east(t_game *game, int n)
 {
 	game->chars[n]->w[0] = 5;
 	game->chars[n]->w[1] = 0;
@@ -36,7 +36,7 @@ static void init_east(t_game *game, int n)
 	game->chars[n]->d[1] = 5;
 }
 
-static void init_south(t_game *game, int n)
+static void	init_south(t_game *game, int n)
 {
 	game->chars[n]->w[0] = 0;
 	game->chars[n]->w[1] = 5;
@@ -48,7 +48,7 @@ static void init_south(t_game *game, int n)
 	game->chars[n]->d[1] = 0;
 }
 
-static void init_west(t_game *game, int n)
+static void	init_west(t_game *game, int n)
 {
 	game->chars[n]->w[0] = -5;
 	game->chars[n]->w[1] = 0;
