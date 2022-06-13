@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 17:29:48 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/13 19:15:03 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ static void	free_exit(t_map *map, t_game *game)
 		i++;
 	}
 	i = 0;
-	while (game->chars[i])
+	while (i < 3)
 	{
-		mlx_delete_image(game->mlx, game->chars[i]->img); //iterate
+		mlx_delete_image(game->mlx, game->chars[i]->img);
 		free(game->chars[i]);
 		i++;
 	}
 	free(game->chars);
+	mlx_terminate(game->mlx);
 	free(game);
 	free(map->map_arr);
 	free(map);
@@ -74,14 +75,13 @@ static t_game	*init_game(t_map *map)
 	int				i;
 
 	game = malloc(sizeof(t_game));
-	game->chars = malloc(sizeof(t_char *) * 4);
+	game->chars = malloc(sizeof(t_char *) * 3); //let's count them and safe the count in game
 	i = 0;
 	while (i < 3)
 	{
 		game->chars[i] = malloc(sizeof(t_char));
 		i++;
 	}
-	game->chars[i] = NULL;
 	game->mlx = mlx_init(map->x * TILE_WIDTH, map->y * TILE_HEIGHT, "CUB3D", true);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
@@ -102,7 +102,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(game->mlx, &hook, game);
 	mlx_loop(game->mlx);
 	free_exit(map, game);
-	mlx_terminate(game->mlx);
 	system("leaks cub3d");
 	return (EXIT_SUCCESS);
 }
