@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:05:59 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/10 20:22:05 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/13 16:45:36 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ t_map	*init_map(char *mapfile)
 	fd = open(mapfile, O_RDONLY);
 	if (fd == -1)
 		ft_error("invalid map: ", mapfile);
-	map = malloc(sizeof(t_map *));
+	map = malloc(sizeof(t_map));
 	map->y = get_size(mapfile);
-	map->map_arr = malloc(sizeof(char *) * (map->y + 1));
+	map->map_arr = malloc(sizeof(char *) * map->y + 1);
 	if (!map->map_arr)
 		ft_error("malloc failed", NULL);
 	i = 0;
@@ -84,6 +84,6 @@ t_map	*init_map(char *mapfile)
 	}
 	close (fd);
 	map->x = ft_strlen_sl(map->map_arr[0]);
-	// print_2d_array(map->map_arr);
+	map->mini_size = 10;
 	return (map);
 }
