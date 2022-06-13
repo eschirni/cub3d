@@ -6,7 +6,7 @@
 /*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 16:47:26 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/13 17:29:48 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@ static void	free_exit(t_map *map, t_game *game)
 		free(map->map_arr[i]);
 		i++;
 	}
-	mlx_delete_image(game->mlx, game->chars[0]->img); //iterate
-	free(game->chars[0]);
+	i = 0;
+	while (game->chars[i])
+	{
+		mlx_delete_image(game->mlx, game->chars[i]->img); //iterate
+		free(game->chars[i]);
+		i++;
+	}
 	free(game->chars);
 	free(game);
 	free(map->map_arr);
@@ -66,14 +71,21 @@ static void	draw_textures(t_game *game) //also draw walls
 static t_game	*init_game(t_map *map)
 {
 	t_game			*game;
+	int				i;
 
 	game = malloc(sizeof(t_game));
-	game->chars = malloc(sizeof(t_char *) * 2);
-	game->chars[0] = malloc(sizeof(t_char)); //iterate and count chars
-	game->chars[1] = NULL;
-	game->mlx = mlx_init(map->mini_size * TILE_WIDTH, map->mini_size * TILE_HEIGHT, "CUB3D", true);
+	game->chars = malloc(sizeof(t_char *) * 4);
+	i = 0;
+	while (i < 3)
+	{
+		game->chars[i] = malloc(sizeof(t_char));
+		i++;
+	}
+	game->chars[i] = NULL;
+	game->mlx = mlx_init(map->x * TILE_WIDTH, map->y * TILE_HEIGHT, "CUB3D", true);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
+	draw_map(game, map);
 	draw_textures(game);
 	return (game);
 }
