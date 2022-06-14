@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:05:59 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/13 22:04:39 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/14 16:11:29 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_map	*init_map(char *mapfile)
 	int		i;
 
 	fd = open(mapfile, O_RDONLY);
-	if (fd == -1)
+	if (fd == -1 || !check_file(mapfile))
 		ft_error("invalid map: ", mapfile);
 	map = malloc(sizeof(t_map));
 	map->y = get_size(mapfile);
