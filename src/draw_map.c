@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 19:17:02 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/13 23:42:37 by eschirni         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
 static void	draw_char(t_game *game, int x, int y, int n)
@@ -23,7 +11,7 @@ static void	draw_char(t_game *game, int x, int y, int n)
 	if (player == NULL)
 		ft_error("can't load image", NULL);
 	game->chars[n]->img = mlx_texture_to_image(game->mlx, player);
-	if (!mlx_resize_image(game->chars[n]->img, 10, 10))
+	if (!mlx_resize_image(game->chars[n]->img, 16, 16))
 		ft_error("can't resize image", NULL);
 	if (game->chars[n]->img == NULL)
 		ft_error("char image allocation failed", NULL);
@@ -35,7 +23,7 @@ static int	count_init_chars(t_game *game)
 {
 	int	n;
 
-	game->chars = malloc(sizeof(t_char *) * game->n_chars);
+	game->chars = malloc(sizeof(t_char) * game->n_chars);
 	if (game->chars == NULL)
 		ft_error("no char could be allocated", NULL);
 	n = 0;
@@ -64,7 +52,7 @@ static void	draw_chars(t_game *game, t_map *map)
 		{
 			if (is_char_obj(map->map_arr[i][j]))
 			{
-				draw_char(game, j * 32 + 12, i * 32 + 12, --chrs); //12 bec it's centered in a 32 grid
+				draw_char(game, j * 32, i * 32, --chrs);
 				set_direction(game, map->map_arr[i][j], chrs);
 			}
 			j++;

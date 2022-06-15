@@ -6,7 +6,7 @@
 /*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/14 11:24:06 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/15 17:58:34 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,21 @@
 # define TILE_WIDTH 32
 # define TILE_HEIGHT 32
 
+typedef struct s_ray
+{
+	int			start[2];
+	int			end[2];
+	mlx_image_t	*img;
+}				t_ray;
+
 typedef struct s_char
 {
 	mlx_image_t	*img;
 	int			w[2]; //x, y
 	int			a[2];
-	int 		s[2];
+	int			s[2];
 	int			d[2];
+	float		pa;
 }				t_char;
 
 typedef struct s_game
@@ -46,6 +54,7 @@ typedef struct s_game
 	mlx_t		*mlx;
 	mlx_image_t	*floor;
 	mlx_image_t	*wall;
+	t_ray		*ray;
 	int			n_chars;
 }				t_game;
 
@@ -58,18 +67,23 @@ typedef struct s_map
 }				t_map;
 
 /* map parsing */
-t_map	*init_map(char *mapfile);
+t_map		*init_map(char *mapfile);
 
 /* char fuctions */
-void	set_direction(t_game *game, char direction, int n);
+void		set_direction(t_game *game, char direction, int n);
 
 /* utils */
-bool	is_char_obj(char c);
-void	ft_error(char *msg, char *arg);
-int		ft_strlen(char *s);
-int		check_file(char *file);
+bool		is_char_obj(char c);
+void		ft_error(char *msg, char *arg);
+int			ft_strlen(char *s);
+int			check_file(char *file);
 
 /* draw functions */
-void	draw_map(t_game *game, t_map *map);
+void		draw_map(t_game *game, t_map *map);
+mlx_image_t	*draw_line(t_game *game, t_ray *ray);
+
+/* hooks */
+void		calc_rotate(t_game *game, float rotation);
+void		hook(void *tmp);
 
 #endif

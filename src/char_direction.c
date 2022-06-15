@@ -3,71 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   char_direction.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 23:43:04 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/13 23:47:48 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/15 17:55:09 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init_north(t_game *game, int n)
+static void	init_dir(t_game *game, int n, float pi)
 {
-	game->chars[n]->w[0] = 0;
-	game->chars[n]->w[1] = -5;
-	game->chars[n]->a[0] = -5;
-	game->chars[n]->a[1] = 0;
-	game->chars[n]->s[0] = 0;
-	game->chars[n]->s[1] = 5;
-	game->chars[n]->d[0] = 5;
-	game->chars[n]->d[1] = 0;
-}
-
-static void	init_east(t_game *game, int n)
-{
-	game->chars[n]->w[0] = 5;
-	game->chars[n]->w[1] = 0;
-	game->chars[n]->a[0] = 0;
-	game->chars[n]->a[1] = -5;
-	game->chars[n]->s[0] = -5;
-	game->chars[n]->s[1] = 0;
-	game->chars[n]->d[0] = 0;
-	game->chars[n]->d[1] = 5;
-}
-
-static void	init_south(t_game *game, int n)
-{
-	game->chars[n]->w[0] = 0;
-	game->chars[n]->w[1] = 5;
-	game->chars[n]->a[0] = 5;
-	game->chars[n]->a[1] = 0;
-	game->chars[n]->s[0] = 0;
-	game->chars[n]->s[1] = -5;
-	game->chars[n]->d[0] = -5;
-	game->chars[n]->d[1] = 0;
-}
-
-static void	init_west(t_game *game, int n)
-{
-	game->chars[n]->w[0] = -5;
-	game->chars[n]->w[1] = 0;
-	game->chars[n]->a[0] = 0;
-	game->chars[n]->a[1] = 5;
-	game->chars[n]->s[0] = 5;
-	game->chars[n]->s[1] = 0;
-	game->chars[n]->d[0] = 0;
-	game->chars[n]->d[1] = -5;
+	if (n != 0) //for now
+		return ;
+	game->ray = malloc(sizeof(t_ray));
+	game->chars[n]->pa = pi;
+	calc_rotate(game, 0.0f);
 }
 
 void	set_direction(t_game *game, char direction, int n)
 {
 	if (direction == 'N')
-		init_north(game, n);
+		init_dir(game, n, (float)M_PI_2 + (float)M_PI);
 	else if (direction == 'E')
-		init_east(game, n);
+		init_dir(game, n, (float)M_PI * 2);
 	else if (direction == 'S')
-		init_south(game, n);
+		init_dir(game, n, (float)M_PI_2);
 	else if (direction == 'W')
-		init_west(game, n);
+		init_dir(game, n, (float)M_PI);
 }
