@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/15 17:58:34 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:53:39 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_ray
 
 typedef struct s_char
 {
+	t_ray		*ray;
 	mlx_image_t	*img;
 	int			w[2]; //x, y
 	int			a[2];
@@ -54,7 +55,6 @@ typedef struct s_game
 	mlx_t		*mlx;
 	mlx_image_t	*floor;
 	mlx_image_t	*wall;
-	t_ray		*ray;
 	int			n_chars;
 }				t_game;
 
@@ -83,7 +83,7 @@ void		draw_map(t_game *game, t_map *map);
 mlx_image_t	*draw_line(t_game *game, t_ray *ray);
 
 /* hooks */
-void		calc_rotate(t_game *game, float rotation);
+void	calc_rotate(t_game *game, float rotation, int n);
 void		hook(void *tmp);
 
 #endif

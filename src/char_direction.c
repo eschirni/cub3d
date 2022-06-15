@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   char_direction.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 23:43:04 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/15 17:55:09 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/15 19:00:18 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 static void	init_dir(t_game *game, int n, float pi)
 {
-	if (n != 0) //for now
-		return ;
-	game->ray = malloc(sizeof(t_ray));
+	game->chars[n]->ray = malloc(sizeof(t_ray));
 	game->chars[n]->pa = pi;
-	calc_rotate(game, 0.0f);
+	calc_rotate(game, 0.0f, n);
 }
 
 void	set_direction(t_game *game, char direction, int n)

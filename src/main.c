@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/15 17:49:14 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/15 19:00:08 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ static void	free_exit(t_map *map, t_game *game)
 	while (i < game->n_chars)
 	{
 		mlx_delete_image(game->mlx, game->chars[i]->img);
+		mlx_delete_image(game->mlx, game->chars[i]->ray->img);
+		free(game->chars[i]->ray);
 		free(game->chars[i]);
 		i++;
 	}
 	free(game->chars);
 	mlx_delete_image(game->mlx, game->floor);
 	mlx_delete_image(game->mlx, game->wall);
-	mlx_delete_image(game->mlx, game->ray->img);
 	mlx_terminate(game->mlx);
-	free(game->ray);
 	free(game);
 	free(map->map_arr);
 	free(map);
