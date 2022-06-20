@@ -48,8 +48,8 @@ static void	mark_player(t_map *map)
 		{
 			if (is_char_obj(map->map_arr[i][j]))
 			{
-				map->player[0] = i;
-				map->player[1] = j;
+				map->player[0] = j;
+				map->player[1] = i;
 				return ;
 			}
 			j--;

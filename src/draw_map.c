@@ -37,7 +37,7 @@ static int	count_init_chars(t_game *game)
 	return (n);
 }
 
-static void	draw_chars(t_game *game, t_map *map)
+static void	draw_chars(t_game *game, char **map)
 {
 	int	i;
 	int	j;
@@ -45,15 +45,15 @@ static void	draw_chars(t_game *game, t_map *map)
 
 	i = 0;
 	chrs = count_init_chars(game);
-	while (map->map_arr[i])
+	while (map[i])
 	{
 		j = 0;
-		while (map->map_arr[i][j])
+		while (map[i][j])
 		{
-			if (is_char_obj(map->map_arr[i][j]))
+			if (is_char_obj(map[i][j]))
 			{
 				draw_char(game, j * 32, i * 32, --chrs);
-				set_direction(game, map->map_arr[i][j], chrs);
+				set_direction(game, map[i][j], chrs);
 			}
 			j++;
 		}
@@ -63,45 +63,94 @@ static void	draw_chars(t_game *game, t_map *map)
 
 static void	get_map_textures(t_game *game)
 {
-	mlx_texture_t	*floor;
-	mlx_texture_t	*wall;
+	mlx_texture_t	*text;
 
-	floor = mlx_load_png("./sprites/tile_black.png");
-	game->floor = mlx_texture_to_image(game->mlx, floor);
-	mlx_delete_texture(floor);
+	text = mlx_load_png("./sprites/tile_black.png");
+	game->floor = mlx_texture_to_image(game->mlx, text);
+	mlx_delete_texture(text);
 	if (!mlx_resize_image(game->floor, 32, 32))
 		ft_error("can't resize image", NULL);
-	wall = mlx_load_png("./sprites/tile_blue.png");
-	game->wall = mlx_texture_to_image(game->mlx, wall);
-	mlx_delete_texture(wall);
+	text = mlx_load_png("./sprites/tile_blue.png");
+	game->wall = mlx_texture_to_image(game->mlx, text);
+	mlx_delete_texture(text);
 	if (!mlx_resize_image(game->wall, 32, 32))
 		ft_error("can't resize image", NULL);
+	text = mlx_load_png("./sprites/tile_out.png");
+	game->out = mlx_texture_to_image(game->mlx, text);
+	mlx_delete_texture(text);
+	if (!mlx_resize_image(game->out, 32, 32))
+		ft_error("can't resize image", NULL);
+}
+
+static char	**surroundings(t_map *map, int px, int py)
+{
+	int		i;
+	int		j;
+	int		x;
+	char	**ret;
+
+	ret = malloc(9 * sizeof(char *));
+	if (ret == NULL)
+		ft_error("malloc failed", NULL);
+	i = 0;
+	while (i < 9)
+	{
+		ret[i] = malloc(9 * sizeof(char));
+		if (ret[i] == NULL)
+			ft_error("malloc failed", NULL);
+		i++;
+	}
+	i = 0;
+	while (i < 9)
+	{
+		j = 0;
+		x = px;
+		while (j < 9)
+		{
+			ret[i][j] = '2';
+			if (x < map->x && py < map->y && map->map_arr[py][x] != ' ')
+				ret[i][j] = map->map_arr[py][x];
+			x++;
+			j++;
+		}
+		ret[i][j] = '\0';
+		py++;
+		i++;
+	}
+	ret[i] = NULL;
+	return (ret);
 }
 
 void	draw_map(t_game *game, t_map *map)
 {
-	int				i;
-	int				j;
+	int		i;
+	int		j;
+	char	**arr;
 
 	get_map_textures(game);
+	arr = surroundings(map, map->player[0] - 4, map->player[1] - 4);
 	i = 0;
-	while (map->map_arr[i]) //If we want to do smth with the tiles afterwards, safe them in array
+	while (arr[i] != NULL) //If we want to do smth with the tiles afterwards, safe them in array
 	{
 		j = 0;
-		while (map->map_arr[i][j])
+		while (arr[i][j])
 		{
-			if (map->map_arr[i][j] == '0')
+			if (arr[i][j] == '0')
 				mlx_image_to_window(game->mlx, game->floor, j * 32, i * 32);
-			else if (map->map_arr[i][j] == '1')
+			else if (arr[i][j] == '1')
 				mlx_image_to_window(game->mlx, game->wall, j * 32, i * 32);
-			else if (is_char_obj(map->map_arr[i][j]) == true)
+			else if (arr[i][j] == '2')
+				mlx_image_to_window(game->mlx, game->out, j * 32, i * 32);
+			else if (is_char_obj(arr[i][j]) == true)
 			{
 				game->n_chars++;
 				mlx_image_to_window(game->mlx, game->floor, j * 32, i * 32);
 			}
 			j++;
 		}
+		//free(arr[i]);
 		i++;
 	}
-	draw_chars(game, map);
+	//free(arr);
+	draw_chars(game, arr);
 }

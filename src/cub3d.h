@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/20 19:56:12 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/20 22:46:34 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@
 
 # define RED "\033[31m"
 # define RESET "\033[0m"
-# define WIDTH 512
-# define HEIGHT 512
-# define TILE_WIDTH 32
-# define TILE_HEIGHT 32
+# define WIDTH 288
+# define HEIGHT 288
 
 typedef struct s_ray
 {
@@ -54,6 +52,7 @@ typedef struct s_game
 	t_char		**chars;
 	mlx_t		*mlx;
 	mlx_image_t	*floor;
+	mlx_image_t	*out;
 	mlx_image_t	*wall;
 	int			n_chars;
 }				t_game;
