@@ -148,9 +148,14 @@ void	draw_map(t_game *game, t_map *map)
 			}
 			j++;
 		}
-		//free(arr[i]);
 		i++;
 	}
-	//free(arr);
 	draw_chars(game, arr);
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
