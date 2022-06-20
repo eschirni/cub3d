@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/15 19:00:08 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/20 19:37:58 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static t_game	*init_game(t_map *map)
 	game = malloc(sizeof(t_game));
 	if (game == NULL)
 		ft_error("allocation error", NULL);
-	game->mlx = mlx_init(map->x * TILE_WIDTH, map->y * TILE_HEIGHT, "CUB3D", true);
+	game->mlx = mlx_init(9 * TILE_WIDTH, 8 * TILE_HEIGHT, "CUB3D", true);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
 	game->n_chars = 0;

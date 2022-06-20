@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/15 18:53:39 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/20 19:56:12 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_game
 typedef struct s_map
 {
 	char		**map_arr;
-	int			mini_size;
+	int			player[2];
 	int			x;
 	int			y;
 }				t_map;
@@ -83,7 +83,7 @@ void		draw_map(t_game *game, t_map *map);
 mlx_image_t	*draw_line(t_game *game, t_ray *ray);
 
 /* hooks */
-void	calc_rotate(t_game *game, float rotation, int n);
+void		calc_rotate(t_game *game, float rotation, int n);
 void		hook(void *tmp);
 
 #endif

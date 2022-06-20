@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 16:05:59 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/14 16:11:29 by btenzlin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
 static size_t	ft_strlen_sl(const char *str)
@@ -47,6 +35,29 @@ static int	get_size(char *mapfile)
 	return (count);
 }
 
+static void	mark_player(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = map->y - 1;
+	while (i >= 0)
+	{
+		j = map->x - 1;
+		while (j >= 0)
+		{
+			if (is_char_obj(map->map_arr[i][j]))
+			{
+				map->player[0] = i;
+				map->player[1] = j;
+				return ;
+			}
+			j--;
+		}
+		i--;
+	}
+}
+
 t_map	*init_map(char *mapfile)
 {
 	t_map	*map;
@@ -69,6 +80,6 @@ t_map	*init_map(char *mapfile)
 	}
 	close (fd);
 	map->x = ft_strlen_sl(map->map_arr[0]);
-	map->mini_size = 10; //what is this for?
+	mark_player(map);
 	return (map);
 }
