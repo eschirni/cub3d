@@ -108,7 +108,7 @@ static char	**surroundings(t_map *map, int px, int py)
 		while (j < 9)
 		{
 			ret[i][j] = '2';
-			if (x < map->x && py < map->y && map->map_arr[py][x] != ' ')
+			if (x < map->x && py < map->y && x >= 0 && py >= 0 && map->map_arr[py][x] != ' ')
 				ret[i][j] = map->map_arr[py][x];
 			x++;
 			j++;
