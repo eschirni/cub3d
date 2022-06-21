@@ -27,7 +27,9 @@ void	calc_rotate(t_game *game, float rotation, int n)
 	mlx_delete_image(game->mlx, game->chars[n]->ray->img);
 	game->chars[n]->pa += rotation;
 	if (game->chars[n]->pa < 0)
-			game->chars[n]->pa += (float)(M_PI * 2);
+		game->chars[n]->pa = (float)(M_PI * 2);
+	else if (game->chars[n]->pa > (float)M_PI * 2)
+		game->chars[n]->pa = 0.1f;
 	game->chars[n]->w[0] = cos(game->chars[n]->pa) * 5; //make w to float (idea)
 	game->chars[n]->w[1] = sin(game->chars[n]->pa) * 5;
 	game->chars[n]->s[0] = game->chars[n]->w[0] * -1;
@@ -36,6 +38,7 @@ void	calc_rotate(t_game *game, float rotation, int n)
 	game->chars[n]->d[1] = sin(game->chars[n]->pa + M_PI_2) * 5;
 	game->chars[n]->a[0] = game->chars[n]->d[0] * -1;
 	game->chars[n]->a[1] = game->chars[n]->d[1] * -1;
+
 	game->chars[n]->ray->start[0] = x + 8;
 	game->chars[n]->ray->start[1] = y + 8;
 	game->chars[n]->ray->end[0] = x + (game->chars[n]->w[0] * 3) + 8;
