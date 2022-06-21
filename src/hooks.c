@@ -19,8 +19,8 @@ static void	set_coords(t_game *game, int addX, int addY)
 
 void	calc_rotate(t_game *game, float rotation, int n)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
 	x = game->chars[n]->img->instances[0].x;
 	y = game->chars[n]->img->instances[0].y;
@@ -41,8 +41,16 @@ void	calc_rotate(t_game *game, float rotation, int n)
 
 	game->chars[n]->ray->start[0] = x + 8;
 	game->chars[n]->ray->start[1] = y + 8;
-	game->chars[n]->ray->end[0] = x + (game->chars[n]->w[0] * 3) + 8;
-	game->chars[n]->ray->end[1] = y + (game->chars[n]->w[1] * 3) + 8;
+	if (game->chars[n]->pa < M_PI && game->chars[n]->pa > 0)
+	{
+		game->chars[n]->ray->end[1] = (y + 8) / 32 * 32 + 32;
+		game->chars[n]->ray->end[0] = ((y + 8) - game->chars[n]->ray->end[1]) * (-1 / tan(game->chars[n]->pa)) + (x + 8);
+	}
+	else if (game->chars[n]->pa > M_PI)
+	{
+		game->chars[n]->ray->end[1] = (y + 8) / 32 * 32;
+		game->chars[n]->ray->end[0] = ((y + 8) - game->chars[n]->ray->end[1]) * (-1 / tan(game->chars[n]->pa)) + (x + 8);
+	}
 	game->chars[n]->ray->img = draw_line(game, game->chars[n]->ray);
 }
 
