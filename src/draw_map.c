@@ -52,7 +52,7 @@ static void	draw_chars(t_game *game, char **map)
 		{
 			if (is_char_obj(map[i][j]))
 			{
-				draw_char(game, j * 32, i * 32, --chrs);
+				draw_char(game, j * 32 + 8, i * 32 + 8, --chrs);
 				set_direction(game, map[i][j], chrs);
 			}
 			j++;
@@ -68,17 +68,17 @@ static void	get_map_textures(t_game *game)
 	text = mlx_load_png("./sprites/tile_black.png");
 	game->floor = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->floor, 32, 32))
+	if (!mlx_resize_image(game->floor, 31, 31))
 		ft_error("can't resize image", NULL);
 	text = mlx_load_png("./sprites/tile_blue.png");
 	game->wall = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->wall, 32, 32))
+	if (!mlx_resize_image(game->wall, 31, 31))
 		ft_error("can't resize image", NULL);
 	text = mlx_load_png("./sprites/tile_out.png");
 	game->out = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->out, 32, 32))
+	if (!mlx_resize_image(game->out, 31, 31))
 		ft_error("can't resize image", NULL);
 }
 
