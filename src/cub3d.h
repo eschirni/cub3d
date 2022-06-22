@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/22 16:56:04 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/22 18:37:11 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 typedef struct s_ray
 {
 	int			start[2];
-	float		end[2];
+	int			end[2];
 	mlx_image_t	*img;
 }				t_ray;
 

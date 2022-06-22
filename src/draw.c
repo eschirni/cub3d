@@ -30,11 +30,11 @@ mlx_image_t	*draw_line(t_game *game, t_ray *ray)
 	float		steps[2];
 	mlx_image_t	*img;
 
-	direction = fabs(ray->end[0] - ray->start[0]);
-	if (fabs(ray->end[0] - ray->start[0]) < fabs(ray->end[1] - ray->start[1]))
-		direction = fabs(ray->end[1] - ray->start[1]);
-	steps[0] = fabs(ray->end[0] - ray->start[0]) / (float)direction;
-	steps[1] = fabs(ray->end[1] - ray->start[1]) / (float)direction;
+	direction = abs(ray->end[0] - ray->start[0]);
+	if (abs(ray->end[0] - ray->start[0]) < abs(ray->end[1] - ray->start[1]))
+		direction = abs(ray->end[1] - ray->start[1]);
+	steps[0] = abs(ray->end[0] - ray->start[0]) / (float)direction;
+	steps[1] = abs(ray->end[1] - ray->start[1]) / (float)direction;
 	img = mlx_new_image(game->mlx, game->mlx->width, game->mlx->height);
 	draw(ray, direction, steps, img);
 	mlx_image_to_window(game->mlx, img, 0, 0);

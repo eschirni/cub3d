@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/21 19:08:37 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/22 18:43:39 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,17 @@ static void	free_exit(t_map *map, t_game *game)
 		free(map->map_arr[i]);
 		i++;
 	}
-	i = 0;
+	i = 1;
 	while (i < game->n_chars)
 	{
 		mlx_delete_image(game->mlx, game->chars[i]->img);
-		mlx_delete_image(game->mlx, game->chars[i]->ray->img);
-		free(game->chars[i]->ray);
 		free(game->chars[i]);
 		i++;
 	}
+	mlx_delete_image(game->mlx, game->chars[0]->img);
+	mlx_delete_image(game->mlx, game->chars[0]->ray->img);
+	free(game->chars[0]->ray);
+	free(game->chars[0]);
 	free(game->chars);
 	mlx_delete_image(game->mlx, game->floor);
 	mlx_delete_image(game->mlx, game->wall);
