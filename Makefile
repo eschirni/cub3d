@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+         #
+#    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/06/15 16:23:56 by btenzlin         ###   ########.fr        #
+#    Updated: 2022/06/22 19:42:55 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(UTILS_PATH)ft_error.c $(UTILS_PATH)utils.c \
 		$(SRC_PATH)draw_map.c $(SRC_PATH)draw.c \
 		$(SRC_PATH)char_direction.c $(SRC_PATH)hooks.c \
+		$(SRC_PATH)ray.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
 
 # OBJECTS

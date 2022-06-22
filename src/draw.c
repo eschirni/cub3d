@@ -24,7 +24,7 @@ static void	draw(t_ray *ray, int direction, float steps[2], mlx_image_t	*img)
 	}
 }
 
-mlx_image_t	*draw_line(t_game *game, t_ray *ray)
+mlx_image_t	*draw_line(t_game *game, t_ray *ray) //idk if only allowing ray here makes sense
 {
 	int			direction;
 	float		steps[2];

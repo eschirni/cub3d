@@ -21,51 +21,7 @@ void	calc_rotate(t_game *game, float rotation, int n)
 	game->chars[n]->d[1] = sin(game->chars[n]->pa + M_PI_2) * 5;
 	game->chars[n]->a[0] = game->chars[n]->d[0] * -1;
 	game->chars[n]->a[1] = game->chars[n]->d[1] * -1;
-	game->chars[n]->ray->start[0] = x + 8;
-	game->chars[n]->ray->start[1] = y + 8;
-
-	float	distH;
-	float	distV;
-	// float	offX;
-	// float	offY;
-	int		endH[2];
-	if (game->chars[n]->pa < M_PI && game->chars[n]->pa > 0)
-	{
-		endH[1] = (y + 8) / 32 * 32 + 32;
-		endH[0] = ((y + 8) - endH[1]) * (-1 / tan(game->chars[n]->pa)) + (x + 8);
-	}
-	else if (game->chars[n]->pa > M_PI)
-	{
-		endH[1] = (y + 8) / 32 * 32;
-		endH[0] = ((y + 8) - endH[1]) * (-1 / tan(game->chars[n]->pa)) + (x + 8);
-	}
-	else
-	{
-		endH[0] = x + 8;
-		endH[1] = y + 8;
-	}
-	distH = sqrtf(powf((endH[0] - (x + 8)), 2) + powf((endH[1] - (y + 8)), 2));
-	if (game->chars[n]->pa < M_PI_2 || game->chars[n]->pa > (M_PI_2 * 3))
-	{
-		game->chars[n]->ray->end[0] = (x + 8) / 32 * 32 + 32;
-		game->chars[n]->ray->end[1] = ((x + 8) - game->chars[n]->ray->end[0]) * (-tan(game->chars[n]->pa)) + (y + 8);
-	}
-	else if (game->chars[n]->pa > M_PI_2 && game->chars[n]->pa < (M_PI_2 * 3))
-	{
-		game->chars[n]->ray->end[0] = (x + 8) / 32 * 32;
-		game->chars[n]->ray->end[1] = ((x + 8) - game->chars[n]->ray->end[0]) * (-tan(game->chars[n]->pa)) + (y + 8);
-	}
-	else
-	{
-		game->chars[n]->ray->end[0] = x + 8;
-		game->chars[n]->ray->end[1] = y + 8;
-	}
-	distV = sqrtf(powf((game->chars[n]->ray->end[0] - (x + 8)), 2) + powf((game->chars[n]->ray->end[1] - (y + 8)), 2));
-	if (distH < distV)
-	{
-		game->chars[n]->ray->end[0] = endH[0];
-		game->chars[n]->ray->end[1] = endH[1];
-	}
+	calc_rays(game->chars[n]->ray, game->chars[n]->pa, x + 8, y + 8);
 	game->chars[n]->ray->img = draw_line(game, game->chars[n]->ray);
 }
 

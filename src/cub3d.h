@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/22 18:37:11 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/22 19:42:03 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,8 @@ mlx_image_t	*draw_line(t_game *game, t_ray *ray);
 /* hooks */
 void		calc_rotate(t_game *game, float rotation, int n);
 void		hook(void *tmp);
+
+/* rays */
+void	calc_rays(t_ray *ray, float pa, int x, int y);
 
 #endif
