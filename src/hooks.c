@@ -1,22 +1,5 @@
 #include "cub3d.h"
 
-static void	set_coords(t_game *game, int addX, int addY)
-{
-	int	dir_x;
-	int	dir_y;
-
-	dir_x = game->chars[0]->w[0] * 3;
-	dir_y = game->chars[0]->w[1] * 3;
-	game->chars[0]->img->instances[0].x += addX;
-	game->chars[0]->img->instances[0].y += addY;
-	mlx_delete_image(game->mlx, game->chars[0]->ray->img);
-	game->chars[0]->ray->start[0] = game->chars[0]->img->instances[0].x + 8;
-	game->chars[0]->ray->start[1] = game->chars[0]->img->instances[0].y + 8;
-	game->chars[0]->ray->end[0] = game->chars[0]->img->instances[0].x + dir_x + 8;
-	game->chars[0]->ray->end[1] = game->chars[0]->img->instances[0].y + dir_y + 8;
-	game->chars[0]->ray->img = draw_line(game, game->chars[0]->ray);
-}
-
 void	calc_rotate(t_game *game, float rotation, int n)
 {
 	int		x;
@@ -43,6 +26,8 @@ void	calc_rotate(t_game *game, float rotation, int n)
 
 	float	distH;
 	float	distV;
+	// float	offX;
+	// float	offY;
 	int		endH[2];
 	if (game->chars[n]->pa < M_PI && game->chars[n]->pa > 0)
 	{
@@ -59,7 +44,6 @@ void	calc_rotate(t_game *game, float rotation, int n)
 		endH[0] = x + 8;
 		endH[1] = y + 8;
 	}
-	
 	distH = sqrtf(powf((endH[0] - (x + 8)), 2) + powf((endH[1] - (y + 8)), 2));
 	if (game->chars[n]->pa < M_PI_2 || game->chars[n]->pa > (M_PI_2 * 3))
 	{
@@ -83,6 +67,13 @@ void	calc_rotate(t_game *game, float rotation, int n)
 		game->chars[n]->ray->end[1] = endH[1];
 	}
 	game->chars[n]->ray->img = draw_line(game, game->chars[n]->ray);
+}
+
+static void	set_coords(t_game *game, int addX, int addY)
+{
+	game->chars[0]->img->instances[0].x += addX;
+	game->chars[0]->img->instances[0].y += addY;
+	calc_rotate(game, 0.0f, 0);
 }
 
 void	hook(void *tmp)
