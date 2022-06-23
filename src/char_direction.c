@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 23:43:04 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/21 19:36:52 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:15:20 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	set_direction(t_game *game, char direction, int n)
 	else if (direction == 'E')
 		init_dir(game, n, (float)M_PI * 2);
 	else if (direction == 'S')
-		init_dir(game, n, (float)M_PI_2);
+		init_dir(game, n, (float)M_PI_2 - 0.0001f);
 	else if (direction == 'W')
-		init_dir(game, n, (float)M_PI);
+		init_dir(game, n, (float)M_PI - 0.0001f);
 }

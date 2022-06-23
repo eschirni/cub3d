@@ -16,7 +16,7 @@ static void	draw(t_ray *ray, int direction, float steps[2], mlx_image_t	*img)
 		else
 			coords[0] -= steps[0];
 		if (ray->start[1] <= ray->end[1])
-			coords[1] += steps[1];
+			coords[1] += steps[1]; 
 		else
 			coords[1] -= steps[1];
 		i++;

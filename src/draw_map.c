@@ -68,17 +68,17 @@ static void	get_map_textures(t_game *game)
 	text = mlx_load_png("./sprites/tile_black.png");
 	game->floor = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->floor, 32, 32))
+	if (!mlx_resize_image(game->floor, 31, 31))
 		ft_error("can't resize image", NULL);
 	text = mlx_load_png("./sprites/tile_blue.png");
 	game->wall = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->wall, 32, 32))
+	if (!mlx_resize_image(game->wall, 31, 31))
 		ft_error("can't resize image", NULL);
 	text = mlx_load_png("./sprites/tile_out.png");
 	game->out = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->out, 32, 32))
+	if (!mlx_resize_image(game->out, 31, 31))
 		ft_error("can't resize image", NULL);
 }
 
@@ -128,7 +128,7 @@ void	draw_map(t_game *game, t_map *map)
 	char	**arr;
 
 	get_map_textures(game);
-	arr = surroundings(map, map->player[0] - 4, map->player[1] - 4);
+	arr = surroundings(map, (map->player[0] - 8) / 32 - 4, (map->player[1] - 8) / 32 - 4);
 	i = 0;
 	while (arr[i] != NULL) //If we want to do smth with the tiles afterwards, safe them in array
 	{
@@ -151,7 +151,7 @@ void	draw_map(t_game *game, t_map *map)
 		i++;
 	}
 	draw_chars(game, arr);
-	i = 0;
+	i = 0; 
 	while (arr[i] != NULL)
 	{
 		free(arr[i]);
