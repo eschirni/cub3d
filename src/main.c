@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/22 18:43:39 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:53:13 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static t_game	*init_game(t_map *map)
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
 	game->n_chars = 0;
+	game->map = map;
 	draw_map(game, map);
 	return (game);
 }

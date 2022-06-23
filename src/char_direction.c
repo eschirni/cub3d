@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 23:43:04 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/23 13:15:20 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/23 18:14:33 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	init_dir(t_game *game, int n, float pi)
 		return ;
 	game->chars[n]->ray = malloc(sizeof(t_ray));
 	game->chars[n]->pa = pi;
-	calc_rotate(game, 0.0f, n);
+	calc_rotate(game, game->map, 0.0f, n);
 }
 
 void	set_direction(t_game *game, char direction, int n)
@@ -28,7 +28,7 @@ void	set_direction(t_game *game, char direction, int n)
 	else if (direction == 'E')
 		init_dir(game, n, (float)M_PI * 2);
 	else if (direction == 'S')
-		init_dir(game, n, (float)M_PI_2 - 0.0001f);
+		init_dir(game, n, (float)M_PI_2);
 	else if (direction == 'W')
-		init_dir(game, n, (float)M_PI - 0.0001f);
+		init_dir(game, n, (float)M_PI);
 }

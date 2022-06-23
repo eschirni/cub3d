@@ -128,7 +128,7 @@ void	draw_map(t_game *game, t_map *map)
 	char	**arr;
 
 	get_map_textures(game);
-	arr = surroundings(map, (map->player[0] - 8) / 32 - 4, (map->player[1] - 8) / 32 - 4);
+	arr = surroundings(map, (int)map->player[0] / 32 - 4, (int)map->player[1] / 32 - 4);
 	i = 0;
 	while (arr[i] != NULL) //If we want to do smth with the tiles afterwards, safe them in array
 	{

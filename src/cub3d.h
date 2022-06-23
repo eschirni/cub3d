@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/23 13:52:47 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:52:22 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,6 @@ typedef struct s_char
 	float		pa;
 }				t_char;
 
-typedef struct s_game
-{
-	t_char		**chars;
-	mlx_t		*mlx;
-	mlx_image_t	*floor;
-	mlx_image_t	*out;
-	mlx_image_t	*wall;
-	int			n_chars;
-}				t_game;
-
 typedef struct s_map
 {
 	char		**map_arr;
@@ -64,6 +54,17 @@ typedef struct s_map
 	int			x;
 	int			y;
 }				t_map;
+
+typedef struct s_game
+{
+	t_char		**chars;
+	t_map		*map;
+	mlx_t		*mlx;
+	mlx_image_t	*floor;
+	mlx_image_t	*out;
+	mlx_image_t	*wall;
+	int			n_chars;
+}				t_game;
 
 /* map parsing */
 t_map		*init_map(char *mapfile);
@@ -82,10 +83,10 @@ void		draw_map(t_game *game, t_map *map);
 mlx_image_t	*draw_line(t_game *game, t_ray *ray);
 
 /* hooks */
-void		calc_rotate(t_game *game, float rotation, int n);
+void	calc_rotate(t_game *game, t_map *map, float rotation, int n);
 void		hook(void *tmp);
 
 /* rays */
-void	calc_rays(t_ray *ray, float pa, int x, int y);
+void	calc_rays(t_ray *ray, t_map *map, float pa, int x, int y);
 
 #endif
