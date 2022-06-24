@@ -15,7 +15,7 @@ static float	calc_horizontal(t_ray *ray, t_map *map, float pa, int x, int y, int
 	}
 	else if (pa > (float)M_PI && pa != (float)M_PI * 2)
 	{
-		ray->end[1] = y / 32 * 32 - 0.0002f;
+		ray->end[1] = y / 32 * 32 - 0.0001f;
 		ray->end[0] = (y - ray->end[1]) * tan_v + x;
 		ray_offset[1] = -32;
 	}
@@ -35,7 +35,6 @@ static float	calc_horizontal(t_ray *ray, t_map *map, float pa, int x, int y, int
 		ray->end[1] += ray_offset[1];
 		i++;
 	}
-	// printf("horiz: %d, %d\n", (int)ray->end[0] / 32, (int)ray->end[1] / 32);
 	return (sqrtf(powf((ray->end[0] - x), 2) + powf((ray->end[1] - y), 2)));
 }
 
@@ -48,7 +47,7 @@ static float	calc_vertical(t_ray *ray, t_map *map, float pa, int x, int y, int d
 	tan_v = -tan(pa);
 	if (pa > (float)M_PI_2 && pa < (3 * (float)M_PI_2))
 	{
-		ray->end[0] = x / 32 * 32 - 0.0002f;
+		ray->end[0] = x / 32 * 32 - 0.0001f;
 		ray->end[1] = (x - ray->end[0]) * tan_v + y;
 		ray_offset[0] = -32;
 	}
@@ -74,7 +73,6 @@ static float	calc_vertical(t_ray *ray, t_map *map, float pa, int x, int y, int d
 		ray->end[1] += ray_offset[1];
 		i++;
 	}
-	// printf("vert: %d, %d\n", (int)ray->end[0] / 32, (int)ray->end[1] / 32);
 	return (sqrtf(powf((ray->end[0] - x), 2) + powf((ray->end[1] - y), 2)));
 }
 
