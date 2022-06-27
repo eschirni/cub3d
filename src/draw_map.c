@@ -65,17 +65,17 @@ static void	get_map_textures(t_game *game)
 {
 	mlx_texture_t	*text;
 
-	text = mlx_load_png("./sprites/tile_black.png");
+	text = mlx_load_png("./sprites/tile_floor.png");
 	game->floor = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
 	if (!mlx_resize_image(game->floor, 32, 32))
 		ft_error("can't resize image", NULL);
-	text = mlx_load_png("./sprites/tile_blue.png");
+	text = mlx_load_png("./sprites/tile_wall.png");
 	game->wall = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
 	if (!mlx_resize_image(game->wall, 32, 32))
 		ft_error("can't resize image", NULL);
-	text = mlx_load_png("./sprites/tile_out.png");
+	text = mlx_load_png("./sprites/tile_water.png");
 	game->out = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
 	if (!mlx_resize_image(game->out, 32, 32))
