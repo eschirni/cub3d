@@ -87,9 +87,9 @@ static void	set_coords(t_game *game, int addX, int addY) //check for every point
 	pos_x = (game->chars[0]->img->instances[0].x + addX) / 32;
 	pos_y = (game->chars[0]->img->instances[0].y + addY) / 32;
 	if (addX > 0)
-		pos_x = (game->chars[0]->img->instances[0].x + addX + 15) / 32; //15 for accuracy (slightly less than half a tile to round it up if necessary)
+		pos_x = (game->chars[0]->img->instances[0].x + addX + 14) / 32; //14 for accuracy (slightly less than half a tile to round it up if necessary)
 	if (addY > 0)
-		pos_y = (game->chars[0]->img->instances[0].y + addY + 15) / 32;
+		pos_y = (game->chars[0]->img->instances[0].y + addY + 14) / 32;
 	if (game->map->map_arr[pos_y][pos_x] == '1')
 		return ;
 	game->chars[0]->img->instances[0].x += addX;
