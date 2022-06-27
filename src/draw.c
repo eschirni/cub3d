@@ -8,7 +8,7 @@ static void	draw(t_ray *ray, int direction, float steps[2], mlx_image_t	*img)
 	i = 0;
 	coords[0] = ray->start[0];
 	coords[1] = ray->start[1];
-	mlx_put_pixel(img, ray->start[0], ray->start[1], 0xFFFFFFFF);
+	mlx_put_pixel(img, ray->start[0], ray->start[1], 0xbad129);
 	while (i < direction)
 	{
 		if (ray->start[0] <= ray->end[0])
@@ -20,7 +20,7 @@ static void	draw(t_ray *ray, int direction, float steps[2], mlx_image_t	*img)
 		else
 			coords[1] -= steps[1];
 		i++;
-		mlx_put_pixel(img, coords[0], coords[1], 0xFFFFFFFF);
+		mlx_put_pixel(img, coords[0], coords[1], 0xbad129);
 	}
 }
 

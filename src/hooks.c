@@ -6,6 +6,7 @@ static void	draw_rays(t_ray *ray, t_game *game, int x, int y)
 	float	dist;
 	float	line_height;
 	float	line_width;
+	float	angle_distance;
 	int		i;
 	int		count_x;
 	int		line_x;
@@ -27,6 +28,12 @@ static void	draw_rays(t_ray *ray, t_game *game, int x, int y)
 		dist = calc_rays(ray, game->map, ra, x, y);
 		draw_line(game, ray, ray->img); //draw ray
 
+		angle_distance = game->chars[0]->pa - ra;
+		if (angle_distance < 0)
+			angle_distance += (float)M_PI * 2;
+		else if (angle_distance >= (float) M_PI * 2)
+			angle_distance -= (float)M_PI * 2;
+		dist *= cos(angle_distance);
 		line_height = 32 * HEIGHT / dist;
 		if (line_height > HEIGHT)
 			line_height = HEIGHT;
