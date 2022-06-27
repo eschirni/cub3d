@@ -89,11 +89,13 @@ float	calc_rays(t_ray *ray, t_map *map, float pa, int x, int y)
 	dist_h = calc_horizontal(ray, map, pa, x, y, dof);
 	end_h[0] = ray->end[0];
 	end_h[1] = ray->end[1];
+	ray->color = 0xbad129;
 	dist_v = calc_vertical(ray, map, pa, x, y, dof);
 	if (dist_h < dist_v)
 	{
 		ray->end[0] = end_h[0];
 		ray->end[1] = end_h[1];
+		ray->color = 0x9caf1f;
 		return (dist_h);
 	}
 	return (dist_v);

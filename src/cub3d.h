@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/27 16:42:35 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/27 18:50:02 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 
 typedef struct s_ray
 {
+	int			color;
 	int			start[2];
 	float		end[2];
 	mlx_image_t	*img;
@@ -81,7 +82,7 @@ int			check_file(char *file);
 
 /* draw functions */
 void		draw_map(t_game *game, t_map *map);
-void		draw_line(t_game *game, t_ray *ray, mlx_image_t *img);
+void		draw_line(t_game *game, t_ray *ray, mlx_image_t *img, int color);
 
 /* hooks */
 void		calc_rotate(t_game *game, t_map *map, float rotation, int n);

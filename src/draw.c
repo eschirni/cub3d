@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static void	draw(t_ray *ray, int direction, float steps[2], mlx_image_t	*img)
+static void	draw(t_ray *ray, int direction, float steps[2], mlx_image_t	*img, int color)
 {
 	int		i;
 	float	coords[2];
@@ -8,7 +8,7 @@ static void	draw(t_ray *ray, int direction, float steps[2], mlx_image_t	*img)
 	i = 0;
 	coords[0] = ray->start[0];
 	coords[1] = ray->start[1];
-	mlx_put_pixel(img, ray->start[0], ray->start[1], 0xbad129);
+	mlx_put_pixel(img, ray->start[0], ray->start[1], color);
 	while (i < direction)
 	{
 		if (ray->start[0] <= ray->end[0])
@@ -20,11 +20,11 @@ static void	draw(t_ray *ray, int direction, float steps[2], mlx_image_t	*img)
 		else
 			coords[1] -= steps[1];
 		i++;
-		mlx_put_pixel(img, coords[0], coords[1], 0xbad129);
+		mlx_put_pixel(img, coords[0], coords[1], color);
 	}
 }
 
-void	draw_line(t_game *game, t_ray *ray, mlx_image_t *img) //idk if only allowing ray here makes sense
+void	draw_line(t_game *game, t_ray *ray, mlx_image_t *img, int color) //idk if only allowing ray here makes sense
 {
 	int			direction;
 	float		steps[2];
@@ -34,5 +34,5 @@ void	draw_line(t_game *game, t_ray *ray, mlx_image_t *img) //idk if only allowin
 		direction = abs(ray->end[1] - ray->start[1]);
 	steps[0] = abs(ray->end[0] - ray->start[0]) / (float)direction;
 	steps[1] = abs(ray->end[1] - ray->start[1]) / (float)direction;
-	draw(ray, direction, steps, img);
+	draw(ray, direction, steps, img, color);
 }
