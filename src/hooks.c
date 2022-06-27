@@ -79,8 +79,19 @@ void	calc_rotate(t_game *game, t_map *map, float rotation, int n)
 	draw_rays(game->chars[n]->ray, game, x + 8, y + 8);
 }
 
-static void	set_coords(t_game *game, int addX, int addY)
+static void	set_coords(t_game *game, int addX, int addY) //check for every point in between, so you can't go through corners
 {
+	int	pos_x;
+	int	pos_y;
+
+	pos_x = (game->chars[0]->img->instances[0].x + addX) / 32;
+	pos_y = (game->chars[0]->img->instances[0].y + addY) / 32;
+	if (addX > 0)
+		pos_x = (game->chars[0]->img->instances[0].x + addX + 15) / 32; //15 for accuracy (slightly less than half a tile to round it up if necessary)
+	if (addY > 0)
+		pos_y = (game->chars[0]->img->instances[0].y + addY + 15) / 32;
+	if (game->map->map_arr[pos_y][pos_x] == '1')
+		return ;
 	game->chars[0]->img->instances[0].x += addX;
 	game->chars[0]->img->instances[0].y += addY;
 	calc_rotate(game, game->map, 0.0f, 0);
