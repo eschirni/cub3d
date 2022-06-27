@@ -3,22 +3,48 @@
 static void	draw_rays(t_ray *ray, t_game *game, int x, int y)
 {
 	float	ra;
+	float	dist;
+	float	line_height;
+	float	line_width;
 	int		i;
+	int		count_x;
+	int		line_x;
 
 	ra = game->chars[0]->pa - 30 * ((float)M_PI / 180);
 	if (ra < 0)
 		ra += (float)M_PI * 2;
 	ray->img = mlx_new_image(game->mlx, game->mlx->width, game->mlx->height);
+	if (game->game_img)
+		mlx_delete_image(game->mlx, game->game_img);
+	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	i = 0;
-	while (i < 61)
+	line_x = 0;
+	while (i < 60)
 	{
 		ra += (float)M_PI / 180;
 		if (ra >= (float)M_PI * 2)
 			ra -= (float)M_PI * 2;
-		calc_rays(ray, game->map, ra, x, y);
-		draw_line(game, ray, ray->img);
+		dist = calc_rays(ray, game->map, ra, x, y);
+		draw_line(game, ray, ray->img); //draw ray
+
+		line_height = 32 * HEIGHT / dist;
+		if (line_height > HEIGHT)
+			line_height = HEIGHT;
+		line_width = WIDTH / 60;
+		count_x = 0;
+		while (count_x < line_width)
+		{
+			ray->start[0] = line_x;
+			ray->start[1] = HEIGHT / 2 - line_height / 2;
+			ray->end[0] = line_x;
+			ray->end[1] = ray->start[1] + line_height;
+			draw_line(game, ray, game->game_img);
+			line_x++;
+			count_x++;
+		}
 		i++;
 	}
+	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
 	mlx_image_to_window(game->mlx, ray->img, 0, 0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/27 15:44:28 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:42:35 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 # define RED "\033[31m"
 # define RESET "\033[0m"
-# define WIDTH 288
-# define HEIGHT 288
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct s_ray
 {
@@ -60,6 +60,7 @@ typedef struct s_game
 	t_char		**chars;
 	t_map		*map;
 	mlx_t		*mlx;
+	mlx_image_t	*game_img;
 	mlx_image_t	*floor;
 	mlx_image_t	*out;
 	mlx_image_t	*wall;
@@ -87,6 +88,6 @@ void		calc_rotate(t_game *game, t_map *map, float rotation, int n);
 void		hook(void *tmp);
 
 /* rays */
-void		calc_rays(t_ray *ray, t_map *map, float pa, int x, int y);
+float		calc_rays(t_ray *ray, t_map *map, float pa, int x, int y);
 
 #endif

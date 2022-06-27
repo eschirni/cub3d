@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/23 14:53:13 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:49:55 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	free_exit(t_map *map, t_game *game)
 	mlx_delete_image(game->mlx, game->floor);
 	mlx_delete_image(game->mlx, game->wall);
 	mlx_delete_image(game->mlx, game->out);
+	mlx_delete_image(game->mlx, game->game_img);
 	mlx_terminate(game->mlx);
 	free(game);
 	free(map->map_arr);
@@ -50,7 +51,7 @@ static t_game	*init_game(t_map *map)
 	game = malloc(sizeof(t_game));
 	if (game == NULL)
 		ft_error("allocation error", NULL);
-	game->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", true);
+	game->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", false);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
 	game->n_chars = 0;

@@ -76,7 +76,7 @@ static float	calc_vertical(t_ray *ray, t_map *map, float pa, int x, int y, int d
 	return (sqrtf(powf((ray->end[0] - x), 2) + powf((ray->end[1] - y), 2)));
 }
 
-void	calc_rays(t_ray *ray, t_map *map, float pa, int x, int y)
+float	calc_rays(t_ray *ray, t_map *map, float pa, int x, int y)
 {
 	float	dist_h;
 	float	dist_v;
@@ -94,5 +94,7 @@ void	calc_rays(t_ray *ray, t_map *map, float pa, int x, int y)
 	{
 		ray->end[0] = end_h[0];
 		ray->end[1] = end_h[1];
+		return (dist_h);
 	}
+	return (dist_v);
 }
