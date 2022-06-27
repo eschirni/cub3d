@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/27 18:50:02 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:29:38 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ int			check_file(char *file);
 
 /* draw functions */
 void		draw_map(t_game *game, t_map *map);
-void		draw_line(t_game *game, t_ray *ray, mlx_image_t *img, int color);
+void		draw_line(t_ray *ray, mlx_image_t *img, int color);
 
 /* hooks */
-void		calc_rotate(t_game *game, t_map *map, float rotation, int n);
+void		calc_rotate(t_game *game, float rotation, int n);
 void		hook(void *tmp);
 
 /* rays */

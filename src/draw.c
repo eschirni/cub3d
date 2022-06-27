@@ -24,15 +24,15 @@ static void	draw(t_ray *ray, int direction, float steps[2], mlx_image_t	*img, in
 	}
 }
 
-void	draw_line(t_game *game, t_ray *ray, mlx_image_t *img, int color) //idk if only allowing ray here makes sense
+void	draw_line(t_ray *ray, mlx_image_t *img, int color) //idk if only allowing ray here makes sense
 {
 	int			direction;
 	float		steps[2];
 
-	direction = abs(ray->end[0] - ray->start[0]);
-	if (abs(ray->end[0] - ray->start[0]) < abs(ray->end[1] - ray->start[1]))
-		direction = abs(ray->end[1] - ray->start[1]);
-	steps[0] = abs(ray->end[0] - ray->start[0]) / (float)direction;
-	steps[1] = abs(ray->end[1] - ray->start[1]) / (float)direction;
+	direction = fabs(ray->end[0] - ray->start[0]);
+	if (fabs(ray->end[0] - ray->start[0]) < fabs(ray->end[1] - ray->start[1]))
+		direction = fabs(ray->end[1] - ray->start[1]);
+	steps[0] = fabs(ray->end[0] - ray->start[0]) / (float)direction;
+	steps[1] = fabs(ray->end[1] - ray->start[1]) / (float)direction;
 	draw(ray, direction, steps, img, color);
 }

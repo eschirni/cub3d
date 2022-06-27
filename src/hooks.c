@@ -26,7 +26,7 @@ static void	draw_rays(t_ray *ray, t_game *game, int x, int y)
 		if (ra >= (float)M_PI * 2)
 			ra -= (float)M_PI * 2;
 		dist = calc_rays(ray, game->map, ra, x, y);
-		draw_line(game, ray, ray->img, 0xbad129); //draw ray
+		draw_line(ray, ray->img, 0xbad129); //draw ray
 
 		angle_distance = game->chars[0]->pa - ra;
 		if (angle_distance < 0)
@@ -45,7 +45,7 @@ static void	draw_rays(t_ray *ray, t_game *game, int x, int y)
 			ray->start[1] = HEIGHT / 2 - line_height / 2;
 			ray->end[0] = line_x;
 			ray->end[1] = ray->start[1] + line_height;
-			draw_line(game, ray, game->game_img, ray->color);
+			draw_line(ray, game->game_img, ray->color);
 			line_x++;
 			count_x++;
 		}
@@ -55,7 +55,7 @@ static void	draw_rays(t_ray *ray, t_game *game, int x, int y)
 	mlx_image_to_window(game->mlx, ray->img, 0, 0);
 }
 
-void	calc_rotate(t_game *game, t_map *map, float rotation, int n)
+void	calc_rotate(t_game *game, float rotation, int n)
 {
 	int		x;
 	int		y;
@@ -87,14 +87,14 @@ static void	set_coords(t_game *game, int addX, int addY) //check for every point
 	pos_x = (game->chars[0]->img->instances[0].x + addX) / 32;
 	pos_y = (game->chars[0]->img->instances[0].y + addY) / 32;
 	if (addX > 0)
-		pos_x = (game->chars[0]->img->instances[0].x + addX + 14) / 32; //14 for accuracy (slightly less than half a tile to round it up if necessary)
+		pos_x = (game->chars[0]->img->instances[0].x + addX + 15) / 32; //15 for accuracy (slightly less than half a tile to round it up if necessary)
 	if (addY > 0)
-		pos_y = (game->chars[0]->img->instances[0].y + addY + 14) / 32;
+		pos_y = (game->chars[0]->img->instances[0].y + addY + 15) / 32;
 	if (game->map->map_arr[pos_y][pos_x] == '1')
 		return ;
 	game->chars[0]->img->instances[0].x += addX;
 	game->chars[0]->img->instances[0].y += addY;
-	calc_rotate(game, game->map, 0.0f, 0);
+	calc_rotate(game, 0.0f, 0);
 }
 
 void	hook(void *tmp)
@@ -113,7 +113,7 @@ void	hook(void *tmp)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 		set_coords(game, game->chars[0]->d[0], game->chars[0]->d[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		calc_rotate(game, game->map, -0.06f, 0);
+		calc_rotate(game, -0.06f, 0);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		calc_rotate(game, game->map, 0.06f, 0);
+		calc_rotate(game, 0.06f, 0);
 }
