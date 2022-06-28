@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/28 14:53:05 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:03:15 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int			check_file(char *file);
 /* draw functions */
 void		draw_map(t_game *game, t_map *map);
 void		draw_line(t_ray *ray, mlx_image_t *img, int color);
+void		draw_cross(mlx_t *mlx, int color);
 
 /* hooks */
 void		calc_rotate(t_game *game, float rotation, int n);

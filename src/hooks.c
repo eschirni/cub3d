@@ -13,9 +13,9 @@ static void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 		angle_distance -= (float)M_PI * 2;
 	ray->dist *= cos(angle_distance);
 	line_height = 32 * HEIGHT / ray->dist;
-	if (line_height > HEIGHT)
-		line_height = HEIGHT;
-	line_width = WIDTH / 60;
+	if (line_height >= HEIGHT)
+		line_height = HEIGHT - 1;
+	line_width = WIDTH / 960;
 	while (count_x < line_width)
 	{
 		ray->start[0] = *line_x;
@@ -43,9 +43,9 @@ static void	draw_rays(t_ray *ray, t_game *game, int x, int y)
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	i = 0;
 	line_x = 0;
-	while (i < 60)
+	while (i < 960)
 	{
-		ray->ra += (float)M_PI / 180;
+		ray->ra += (float)M_PI / 180 / 16;
 		if (ray->ra >= (float)M_PI * 2)
 			ray->ra -= (float)M_PI * 2;
 		ray->dist = calc_rays(ray, game->map, ray->ra, x, y);
@@ -84,17 +84,23 @@ void	calc_rotate(t_game *game, float rotation, int n)
 
 static void	set_coords(t_game *game, int addX, int addY) //check for every point in between, so you can't go through corners
 {
-	int	pos_x;
-	int	pos_y;
+	int		pos_x;
+	int		pos_y;
+	int		circle_x;
+	int		circle_y;
+	float	angle;
 
-	pos_x = (game->chars[0]->img->instances[0].x + addX) / 32;
-	pos_y = (game->chars[0]->img->instances[0].y + addY) / 32;
-	if (addX > 0)
-		pos_x = (game->chars[0]->img->instances[0].x + addX + 15) / 32; //15 for accuracy (slightly less than half a tile to round it up if necessary)
-	if (addY > 0)
-		pos_y = (game->chars[0]->img->instances[0].y + addY + 15) / 32;
-	if (game->map->map_arr[pos_y][pos_x] == '1')
-		return ;
+	pos_x = game->chars[0]->img->instances[0].x + 8 + addX;
+	pos_y = game->chars[0]->img->instances[0].y + 8 + addY;
+	angle = 0;
+	while (angle <= (float)M_PI * 2)
+	{
+		circle_x = (pos_x + 4 * cos(angle));
+		circle_y = (pos_y + 4 * sin(angle));
+		if (game->map->map_arr[circle_y / 32][circle_x / 32] == '1')
+			return ;
+		angle += (float)M_PI / 18;
+	}
 	game->chars[0]->img->instances[0].x += addX;
 	game->chars[0]->img->instances[0].y += addY;
 	calc_rotate(game, 0.0f, 0);

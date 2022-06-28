@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/27 16:49:55 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:33:02 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	main(int argc, char **argv)
 		ft_error("bad arguments", NULL);
 	map = init_map(argv[1]);
 	game = init_game(map);
+	draw_cross(game->mlx, 0xFFFFFFAA);
 	mlx_loop_hook(game->mlx, &hook, game);
 	mlx_loop(game->mlx);
 	free_exit(map, game);
