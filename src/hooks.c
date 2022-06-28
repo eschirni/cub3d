@@ -13,12 +13,12 @@ void	calc_rotate(t_game *game, float rotation, int n)
 		game->chars[n]->pa = (float)(M_PI * 2);
 	else if (game->chars[n]->pa > (float)M_PI * 2)
 		game->chars[n]->pa = 0.1f;
-	game->chars[n]->w[0] = cos(game->chars[n]->pa) * 5; //make w to float (idea)
-	game->chars[n]->w[1] = sin(game->chars[n]->pa) * 5;
+	game->chars[n]->w[0] = cos(game->chars[n]->pa) * 3;
+	game->chars[n]->w[1] = sin(game->chars[n]->pa) * 3;
 	game->chars[n]->s[0] = game->chars[n]->w[0] * -1;
 	game->chars[n]->s[1] = game->chars[n]->w[1] * -1;
-	game->chars[n]->d[0] = cos(game->chars[n]->pa + (float)M_PI_2) * 5;
-	game->chars[n]->d[1] = sin(game->chars[n]->pa + (float)M_PI_2) * 5;
+	game->chars[n]->d[0] = cos(game->chars[n]->pa + (float)M_PI_2) * 3;
+	game->chars[n]->d[1] = sin(game->chars[n]->pa + (float)M_PI_2) * 3;
 	game->chars[n]->a[0] = game->chars[n]->d[0] * -1;
 	game->chars[n]->a[1] = game->chars[n]->d[1] * -1;
 	draw_game(game->chars[n]->ray, game, x + 8, y + 8);
@@ -64,7 +64,7 @@ void	hook(void *tmp)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 		set_coords(game, game->chars[0]->d[0], game->chars[0]->d[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		calc_rotate(game, -0.06f, 0);
+		calc_rotate(game, -0.03f, 0);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		calc_rotate(game, 0.06f, 0);
+		calc_rotate(game, 0.03f, 0);
 }

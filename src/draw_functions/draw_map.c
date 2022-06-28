@@ -98,14 +98,13 @@ static void	draw_tiles(t_game *game, char **arr)
 	}
 }
 
-void	draw_map(t_game *game, t_map *map)
+void	draw_map(t_game *game, t_map *map, float player[2])
 {
 	int		i;
 	char	**arr;
 
 	get_map_textures(game);
-	i = (int)map->player[0] / 32 - 4;
-	arr = surroundings(map, i, (int)map->player[1] / 32 - 4);
+	arr = surroundings(map, player[0] / 32 - 4, player[1] / 32 - 4);
 	draw_tiles(game, arr);
 	draw_chars(game, arr);
 	i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/28 19:14:35 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/28 20:34:19 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_game	*init_game(t_map *map)
 		ft_error("mlx allocation failed", NULL);
 	game->n_chars = 0;
 	game->map = map;
-	draw_map(game, map);
+	draw_map(game, map, map->player);
 	return (game);
 }
 
