@@ -37,6 +37,7 @@ static char	**create_array(void)
 			ft_error("malloc failed", NULL);
 		i++;
 	}
+	ret[i] = NULL;
 	return (ret);
 }
 
@@ -56,7 +57,8 @@ static char	**surroundings(t_map *map, int px, int py)
 		while (j < 9)
 		{
 			ret[i][j] = '2';
-			if (x < map->x && py < map->y && x >= 0 && py >= 0 && map->map_arr[py][x] != ' ')
+			if (x < map->x && py < map->y && x >= 0 && py >= 0
+				&& map->map_arr[py][x] != ' ')
 				ret[i][j] = map->map_arr[py][x];
 			x++;
 			j++;
@@ -65,18 +67,14 @@ static char	**surroundings(t_map *map, int px, int py)
 		py++;
 		i++;
 	}
-	ret[i] = NULL;
 	return (ret);
 }
 
-void	draw_map(t_game *game, t_map *map)
+static void	draw_tiles(t_game *game, char **arr)
 {
 	int		i;
 	int		j;
-	char	**arr;
 
-	get_map_textures(game);
-	arr = surroundings(map, (int)map->player[0] / 32 - 4, (int)map->player[1] / 32 - 4);
 	i = 0;
 	while (arr[i] != NULL) //If we want to do smth with the tiles afterwards, safe them in array
 	{
@@ -98,8 +96,19 @@ void	draw_map(t_game *game, t_map *map)
 		}
 		i++;
 	}
+}
+
+void	draw_map(t_game *game, t_map *map)
+{
+	int		i;
+	char	**arr;
+
+	get_map_textures(game);
+	i = (int)map->player[0] / 32 - 4;
+	arr = surroundings(map, i, (int)map->player[1] / 32 - 4);
+	draw_tiles(game, arr);
 	draw_chars(game, arr);
-	i = 0; 
+	i = 0;
 	while (arr[i] != NULL)
 	{
 		free(arr[i]);
