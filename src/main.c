@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/28 19:05:16 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:14:35 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 		ft_error("bad arguments", NULL);
 	map = init_map(argv[1]);
 	game = init_game(map);
-	draw_cross(game->mlx, 0xFFFFFFAA);
+	draw_crosshair(game->mlx, 0xFFFFFFAA);
 	mlx_loop_hook(game->mlx, &hook, game);
 	mlx_loop(game->mlx);
 	free_exit(map, game);
