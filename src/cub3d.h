@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/28 16:03:15 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:06:48 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void		set_direction(t_game *game, char direction, int n);
 
 /* utils */
 bool		is_char_obj(char c);
+void		free_exit(t_map *map, t_game *game);
 void		ft_error(char *msg, char *arg);
 int			ft_strlen(char *s);
 int			check_file(char *file);

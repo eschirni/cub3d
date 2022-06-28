@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/06/27 20:30:41 by eschirni         ###   ########.fr        #
+#    Updated: 2022/06/28 19:08:58 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ UTILS_PATH = ./src/utils/
 # SOURCES
 SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(UTILS_PATH)ft_error.c $(UTILS_PATH)utils.c \
+		$(UTILS_PATH)free_exit.c \
 		$(SRC_PATH)draw_map.c $(SRC_PATH)draw.c \
 		$(SRC_PATH)char_direction.c $(SRC_PATH)hooks.c \
 		$(SRC_PATH)ray.c \
