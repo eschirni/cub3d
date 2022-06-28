@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/28 19:45:42 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:55:19 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ void		calc_rotate(t_game *game, float rotation, int n);
 void		hook(void *tmp);
 
 /* rays */
-float		calc_rays(t_ray *ray, t_map *map, float pa, int x, int y);
+float		calc_rays(t_ray *ray, t_map *map, int x, int y);
 
 #endif

@@ -47,7 +47,7 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 		ray->ra += (float)M_PI / 180 / 16;
 		if (ray->ra >= (float)M_PI * 2)
 			ray->ra -= (float)M_PI * 2;
-		ray->dist = calc_rays(ray, game->map, ray->ra, x, y);
+		ray->dist = calc_rays(ray, game->map, x, y);
 		draw_line(ray, ray->img, 0xbad129); //draw ray
 		draw_3d(game, ray, 0, &line_x);
 		i++;
