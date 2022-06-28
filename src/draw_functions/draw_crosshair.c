@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void	draw_cross(mlx_image_t *img, int color, int x, int y)
 {

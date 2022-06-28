@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void	draw(t_ray *ray, int direction, float steps[2], mlx_image_t *img, int color)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/28 19:14:29 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:30:53 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int			ft_strlen(char *s);
 int			check_file(char *file);
 
 /* draw functions */
+void		draw_game(t_ray *ray, t_game *game, int x, int y);
 void		draw_map(t_game *game, t_map *map);
 void		draw_line(t_ray *ray, mlx_image_t *img, int color);
 void		draw_crosshair(mlx_t *mlx, int color);

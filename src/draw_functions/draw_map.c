@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void	draw_char(t_game *game, int x, int y, int n)
 {
