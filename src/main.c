@@ -6,40 +6,11 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/21 19:08:37 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/28 20:34:19 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	free_exit(t_map *map, t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (map->map_arr[i] != NULL)
-	{
-		free(map->map_arr[i]);
-		i++;
-	}
-	i = 0;
-	while (i < game->n_chars)
-	{
-		mlx_delete_image(game->mlx, game->chars[i]->img);
-		mlx_delete_image(game->mlx, game->chars[i]->ray->img);
-		free(game->chars[i]->ray);
-		free(game->chars[i]);
-		i++;
-	}
-	free(game->chars);
-	mlx_delete_image(game->mlx, game->floor);
-	mlx_delete_image(game->mlx, game->wall);
-	mlx_delete_image(game->mlx, game->out);
-	mlx_terminate(game->mlx);
-	free(game);
-	free(map->map_arr);
-	free(map);
-}
 
 static t_game	*init_game(t_map *map)
 {
@@ -48,11 +19,12 @@ static t_game	*init_game(t_map *map)
 	game = malloc(sizeof(t_game));
 	if (game == NULL)
 		ft_error("allocation error", NULL);
-	game->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", true);
+	game->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", false);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
 	game->n_chars = 0;
-	draw_map(game, map);
+	game->map = map;
+	draw_map(game, map, map->player);
 	return (game);
 }
 
@@ -65,6 +37,7 @@ int	main(int argc, char **argv)
 		ft_error("bad arguments", NULL);
 	map = init_map(argv[1]);
 	game = init_game(map);
+	draw_crosshair(game->mlx, 0xFFFFFFAA);
 	mlx_loop_hook(game->mlx, &hook, game);
 	mlx_loop(game->mlx);
 	free_exit(map, game);

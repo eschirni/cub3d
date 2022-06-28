@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+         #
+#    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/06/15 16:23:56 by btenzlin         ###   ########.fr        #
+#    Updated: 2022/06/28 19:47:05 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,17 @@ SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 GNL_PATH = get_next_line/
 UTILS_PATH = ./src/utils/
+DRAW_PATH = ./src/draw_functions/
 
 # SOURCES
 SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(UTILS_PATH)ft_error.c $(UTILS_PATH)utils.c \
-		$(SRC_PATH)draw_map.c $(SRC_PATH)draw.c \
+		$(UTILS_PATH)free_exit.c \
 		$(SRC_PATH)char_direction.c $(SRC_PATH)hooks.c \
+		$(SRC_PATH)ray.c \
+		$(DRAW_PATH)draw_game.c $(DRAW_PATH)draw_crosshair.c \
+		$(DRAW_PATH)draw_map.c $(DRAW_PATH)draw.c \
+		$(DRAW_PATH)draw_chars.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
 
 # OBJECTS

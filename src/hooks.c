@@ -1,22 +1,5 @@
 #include "cub3d.h"
 
-static void	set_coords(t_game *game, int addX, int addY)
-{
-	int	dir_x;
-	int	dir_y;
-
-	dir_x = game->chars[0]->w[0] * 3;
-	dir_y = game->chars[0]->w[1] * 3;
-	game->chars[0]->img->instances[0].x += addX;
-	game->chars[0]->img->instances[0].y += addY;
-	mlx_delete_image(game->mlx, game->chars[0]->ray->img);
-	game->chars[0]->ray->start[0] = game->chars[0]->img->instances[0].x + 8;
-	game->chars[0]->ray->start[1] = game->chars[0]->img->instances[0].y + 8;
-	game->chars[0]->ray->end[0] = game->chars[0]->img->instances[0].x + dir_x + 8;
-	game->chars[0]->ray->end[1] = game->chars[0]->img->instances[0].y + dir_y + 8;
-	game->chars[0]->ray->img = draw_line(game, game->chars[0]->ray);
-}
-
 void	calc_rotate(t_game *game, float rotation, int n)
 {
 	int		x;
@@ -30,28 +13,39 @@ void	calc_rotate(t_game *game, float rotation, int n)
 		game->chars[n]->pa = (float)(M_PI * 2);
 	else if (game->chars[n]->pa > (float)M_PI * 2)
 		game->chars[n]->pa = 0.1f;
-	game->chars[n]->w[0] = cos(game->chars[n]->pa) * 5; //make w to float (idea)
-	game->chars[n]->w[1] = sin(game->chars[n]->pa) * 5;
+	game->chars[n]->w[0] = cos(game->chars[n]->pa) * 3;
+	game->chars[n]->w[1] = sin(game->chars[n]->pa) * 3;
 	game->chars[n]->s[0] = game->chars[n]->w[0] * -1;
 	game->chars[n]->s[1] = game->chars[n]->w[1] * -1;
-	game->chars[n]->d[0] = cos(game->chars[n]->pa + M_PI_2) * 5;
-	game->chars[n]->d[1] = sin(game->chars[n]->pa + M_PI_2) * 5;
+	game->chars[n]->d[0] = cos(game->chars[n]->pa + (float)M_PI_2) * 3;
+	game->chars[n]->d[1] = sin(game->chars[n]->pa + (float)M_PI_2) * 3;
 	game->chars[n]->a[0] = game->chars[n]->d[0] * -1;
 	game->chars[n]->a[1] = game->chars[n]->d[1] * -1;
+	draw_game(game->chars[n]->ray, game, x + 8, y + 8);
+}
 
-	game->chars[n]->ray->start[0] = x + 8;
-	game->chars[n]->ray->start[1] = y + 8;
-	if (game->chars[n]->pa < M_PI && game->chars[n]->pa > 0)
+static void	set_coords(t_game *game, int addX, int addY) //check for every point in between, so you can't go through corners
+{
+	int		pos_x;
+	int		pos_y;
+	int		circle_x;
+	int		circle_y;
+	float	angle;
+
+	pos_x = game->chars[0]->img->instances[0].x + 8 + addX;
+	pos_y = game->chars[0]->img->instances[0].y + 8 + addY;
+	angle = 0;
+	while (angle <= (float)M_PI * 2)
 	{
-		game->chars[n]->ray->end[1] = (y + 8) / 32 * 32 + 32;
-		game->chars[n]->ray->end[0] = ((y + 8) - game->chars[n]->ray->end[1]) * (-1 / tan(game->chars[n]->pa)) + (x + 8);
+		circle_x = (pos_x + 4 * cos(angle));
+		circle_y = (pos_y + 4 * sin(angle));
+		if (game->map->map_arr[circle_y / 32][circle_x / 32] == '1')
+			return ;
+		angle += (float)M_PI / 18;
 	}
-	else if (game->chars[n]->pa > M_PI)
-	{
-		game->chars[n]->ray->end[1] = (y + 8) / 32 * 32;
-		game->chars[n]->ray->end[0] = ((y + 8) - game->chars[n]->ray->end[1]) * (-1 / tan(game->chars[n]->pa)) + (x + 8);
-	}
-	game->chars[n]->ray->img = draw_line(game, game->chars[n]->ray);
+	game->chars[0]->img->instances[0].x += addX;
+	game->chars[0]->img->instances[0].y += addY;
+	calc_rotate(game, 0.0f, 0);
 }
 
 void	hook(void *tmp)
@@ -70,7 +64,7 @@ void	hook(void *tmp)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 		set_coords(game, game->chars[0]->d[0], game->chars[0]->d[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		calc_rotate(game, -0.1f, 0);
+		calc_rotate(game, -0.03f, 0);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		calc_rotate(game, 0.1f, 0);
+		calc_rotate(game, 0.03f, 0);
 }
