@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/28 20:34:19 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/29 20:30:59 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ static t_game	*init_game(t_map *map)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", false);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
-	game->n_chars = 0;
-	game->map = map;
-	draw_map(game, map, map->player);
+	main_menu(game->mlx);
+	// game->n_chars = 0;
+	// game->map = map;
+	// draw_map(game, map, map->player);
 	return (game);
 }
 
@@ -37,8 +38,8 @@ int	main(int argc, char **argv)
 		ft_error("bad arguments", NULL);
 	map = init_map(argv[1]);
 	game = init_game(map);
-	draw_crosshair(game->mlx, 0xFFFFFFAA);
-	mlx_loop_hook(game->mlx, &hook, game);
+	//draw_crosshair(game->mlx, 0xFFFFFFAA);
+	//mlx_loop_hook(game->mlx, &hook, game);
 	mlx_loop(game->mlx);
 	free_exit(map, game);
 	system("leaks cub3d");
