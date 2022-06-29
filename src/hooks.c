@@ -10,15 +10,15 @@ void	calc_rotate(t_game *game, float rotation, int n)
 	mlx_delete_image(game->mlx, game->chars[n]->ray->img);
 	game->chars[n]->pa += rotation;
 	if (game->chars[n]->pa < 0)
-		game->chars[n]->pa = (float)(M_PI * 2);
-	else if (game->chars[n]->pa > (float)M_PI * 2)
-		game->chars[n]->pa = 0.1f;
-	game->chars[n]->w[0] = cos(game->chars[n]->pa) * 3;
-	game->chars[n]->w[1] = sin(game->chars[n]->pa) * 3;
+		game->chars[n]->pa += (float)M_PI * 2;
+	else if (game->chars[n]->pa >= (float)M_PI * 2)
+		game->chars[n]->pa -= (float)M_PI * 2;
+	game->chars[n]->w[0] = roundf(cos(game->chars[n]->pa) * 3);
+	game->chars[n]->w[1] = roundf(sin(game->chars[n]->pa) * 3);
 	game->chars[n]->s[0] = game->chars[n]->w[0] * -1;
 	game->chars[n]->s[1] = game->chars[n]->w[1] * -1;
-	game->chars[n]->d[0] = cos(game->chars[n]->pa + (float)M_PI_2) * 3;
-	game->chars[n]->d[1] = sin(game->chars[n]->pa + (float)M_PI_2) * 3;
+	game->chars[n]->d[0] = roundf(cos(game->chars[n]->pa + (float)M_PI_2) * 3);
+	game->chars[n]->d[1] = roundf(sin(game->chars[n]->pa + (float)M_PI_2) * 3);
 	game->chars[n]->a[0] = game->chars[n]->d[0] * -1;
 	game->chars[n]->a[1] = game->chars[n]->d[1] * -1;
 	draw_game(game->chars[n]->ray, game, x + 8, y + 8);
