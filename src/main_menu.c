@@ -1,53 +1,127 @@
 #include "cub3d.h"
 
-static void	loop(void *tmp)
+static void	start_game(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	game->menu->in_menu = false;
+	while (i < 9)
+	{
+		game->menu->imgs[i]->enabled = false;
+		i++;
+	}
+	draw_map(game, game->map, game->map->player);
+	draw_crosshair(game->mlx, 0xFFFFFFAA);
+}
+
+static void	animate_menu(void *tmp)
 {
 	t_menu	*menu;
 	int		i;
 
 	menu = tmp;
+	if (menu->in_menu == false)
+		return ;
+	usleep(150000); //need to find another way, this also slows down everything else
 	i = 0;
-	usleep(150000);
 	while (i < 6)
 	{
 		menu->imgs[i]->enabled = false;
 		i++;
 	}
-	menu->imgs[menu->i]->enabled = true;
-	menu->i++;
-	if (menu->i > 5)
-		menu->i = 0;
+	menu->imgs[menu->frame]->enabled = true;
+	menu->frame++;
+	if (menu->frame > 5)
+		menu->frame = 0;
 }
 
-void	main_menu(mlx_t	*mlx)
+static void	menu_buttons(mouse_key_t key, action_t act, modifier_key_t mod, void *tmp)
+{
+	t_game	*game;
+	int		x;
+	int		y;
+
+	game = tmp;
+	mlx_get_mouse_pos(game->mlx, &x, &y);
+	if (mlx_is_mouse_down(game->mlx, MLX_MOUSE_BUTTON_LEFT))
+	{
+		if (x >= 120 && x <= 460 && y >= 250 && y <= 315)
+			start_game(game);
+	}
+}
+
+static void	hover_buttons(double x, double y, void *tmp)
+{
+	t_game	*game;
+
+	game = tmp;
+	if (game->menu->in_menu == false)
+		return ;
+	if (x >= 120 && x <= 460 && y >= 250 && y <= 315)
+	{
+		game->menu->imgs[8]->enabled = true;
+		game->menu->imgs[7]->enabled = false;
+	}
+	else
+	{
+		game->menu->imgs[7]->enabled = true;
+		game->menu->imgs[8]->enabled = false;
+	}
+
+}
+
+void	main_menu(t_game *game)
 {
 	int				i;
 	int				pid;
 	mlx_texture_t	*txt;
-	t_menu			*menu;
 
-	menu = malloc(sizeof(t_menu));
-	menu->mlx = mlx;
+	game->menu = malloc(sizeof(t_menu));
 	txt = mlx_load_png("./sprites/background.png");
-	menu->imgs[0] = mlx_texture_to_image(mlx, txt);
+	game->menu->imgs[0] = mlx_texture_to_image(game->mlx, txt);
+	mlx_delete_texture(txt);
 	txt = mlx_load_png("./sprites/background1.png");
-	menu->imgs[1] = mlx_texture_to_image(mlx, txt);
+	game->menu->imgs[1] = mlx_texture_to_image(game->mlx, txt);
+	mlx_delete_texture(txt);
 	txt = mlx_load_png("./sprites/background2.png");
-	menu->imgs[2] = mlx_texture_to_image(mlx, txt);
+	game->menu->imgs[2] = mlx_texture_to_image(game->mlx, txt);
+	mlx_delete_texture(txt);
 	txt = mlx_load_png("./sprites/background3.png");
-	menu->imgs[3] = mlx_texture_to_image(mlx, txt);
+	game->menu->imgs[3] = mlx_texture_to_image(game->mlx, txt);
+	mlx_delete_texture(txt);
 	txt = mlx_load_png("./sprites/background4.png");
-	menu->imgs[4] = mlx_texture_to_image(mlx, txt);
+	game->menu->imgs[4] = mlx_texture_to_image(game->mlx, txt);
+	mlx_delete_texture(txt);
 	txt = mlx_load_png("./sprites/background5.png");
-	menu->imgs[5] = mlx_texture_to_image(mlx, txt);
+	game->menu->imgs[5] = mlx_texture_to_image(game->mlx, txt);
+	mlx_delete_texture(txt);
+
+	/* title */
+	txt = mlx_load_png("./sprites/title.png");
+	game->menu->imgs[6] = mlx_texture_to_image(game->mlx, txt);
+	mlx_delete_texture(txt);
+	/* start */
+	txt = mlx_load_png("./sprites/start_game.png");
+	game->menu->imgs[7] = mlx_texture_to_image(game->mlx, txt);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/start_game_hover.png");
+	game->menu->imgs[8] = mlx_texture_to_image(game->mlx, txt);
+	game->menu->imgs[8]->enabled = false;
+	mlx_delete_texture(txt);
 	i = 0;
 	while (i < 6)
 	{
-		mlx_image_to_window(mlx, menu->imgs[i], 0, 0);
-		menu->imgs[i]->enabled = false;
+		mlx_image_to_window(game->mlx, game->menu->imgs[i], 0, 0);
+		game->menu->imgs[i]->enabled = false;
 		i++;
 	}
-	menu->i = 0;
-	mlx_loop_hook(menu->mlx, &loop, menu);
-	mlx_loop(menu->mlx);
+	mlx_image_to_window(game->mlx, game->menu->imgs[6], 100, 40);
+	mlx_image_to_window(game->mlx, game->menu->imgs[7], 120, 250);
+	mlx_image_to_window(game->mlx, game->menu->imgs[8], 120, 250);
+	game->menu->frame = 0;
+	game->menu->in_menu = true;
+	mlx_loop_hook(game->mlx, &animate_menu, game->menu);
+	mlx_mouse_hook(game->mlx, &menu_buttons, game);
+	mlx_cursor_hook(game->mlx, &hover_buttons, game);
 }

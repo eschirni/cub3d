@@ -55,16 +55,19 @@ void	hook(void *tmp)
 	game = tmp;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+	if (game->menu->in_menu == false)
+	{
+		if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		set_coords(game, game->chars[0]->w[0], game->chars[0]->w[1]);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-		set_coords(game, game->chars[0]->a[0], game->chars[0]->a[1]);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-		set_coords(game, game->chars[0]->s[0], game->chars[0]->s[1]);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-		set_coords(game, game->chars[0]->d[0], game->chars[0]->d[1]);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		calc_rotate(game, -0.03f, 0);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		calc_rotate(game, 0.03f, 0);
+		if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+			set_coords(game, game->chars[0]->a[0], game->chars[0]->a[1]);
+		if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+			set_coords(game, game->chars[0]->s[0], game->chars[0]->s[1]);
+		if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+			set_coords(game, game->chars[0]->d[0], game->chars[0]->d[1]);
+		if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+			calc_rotate(game, -0.03f, 0);
+		if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+			calc_rotate(game, 0.03f, 0);
+	}
 }

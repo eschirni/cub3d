@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 12:05:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/29 20:30:59 by eschirni         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
 static t_game	*init_game(t_map *map)
@@ -22,10 +10,8 @@ static t_game	*init_game(t_map *map)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", false);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
-	main_menu(game->mlx);
-	// game->n_chars = 0;
-	// game->map = map;
-	// draw_map(game, map, map->player);
+	game->n_chars = 0;
+	game->map = map;
 	return (game);
 }
 
@@ -38,8 +24,8 @@ int	main(int argc, char **argv)
 		ft_error("bad arguments", NULL);
 	map = init_map(argv[1]);
 	game = init_game(map);
-	//draw_crosshair(game->mlx, 0xFFFFFFAA);
-	//mlx_loop_hook(game->mlx, &hook, game);
+	main_menu(game);
+	mlx_loop_hook(game->mlx, &hook, game);
 	mlx_loop(game->mlx);
 	free_exit(map, game);
 	system("leaks cub3d");
