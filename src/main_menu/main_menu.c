@@ -51,22 +51,22 @@ static void	create_buttons(t_game *game, mlx_texture_t *txt)
 
 static void	create_background(t_game *game, mlx_texture_t *txt, int frame)
 {
-	txt = mlx_load_png("./sprites/background.png");
+	txt = mlx_load_png("./sprites/back/background.png");
 	game->menu->imgs[0] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/background1.png");
+	txt = mlx_load_png("./sprites/back/background1.png");
 	game->menu->imgs[1] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/background2.png");
+	txt = mlx_load_png("./sprites/back/background2.png");
 	game->menu->imgs[2] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/background3.png");
+	txt = mlx_load_png("./sprites/back/background3.png");
 	game->menu->imgs[3] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/background4.png");
+	txt = mlx_load_png("./sprites/back/background4.png");
 	game->menu->imgs[4] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/background5.png");
+	txt = mlx_load_png("./sprites/back/background5.png");
 	game->menu->imgs[5] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
 	while (frame < 6)
