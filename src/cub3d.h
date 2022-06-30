@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/30 15:44:02 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:54:02 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define RESET "\033[0m"
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MINIMAP 288
 
 typedef struct s_ray
 {

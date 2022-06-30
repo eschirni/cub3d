@@ -36,7 +36,7 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 	ray->ra = game->chars[0]->pa - 30 * ((float)M_PI / 180);
 	if (ray->ra < 0)
 		ray->ra += (float)M_PI * 2;
-	ray->img = mlx_new_image(game->mlx, game->mlx->width, game->mlx->height);
+	ray->img = mlx_new_image(game->mlx, MINIMAP, MINIMAP);
 	if (game->game_img)
 		mlx_delete_image(game->mlx, game->game_img);
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
