@@ -20,10 +20,10 @@ static void	free_arrs(t_game *game)
 		return ;
 	i = 0;
 	mlx_delete_image(game->mlx, game->chars[0]->ray->img);
+	free(game->chars[0]->ray);
 	while (i < game->n_chars)
 	{
 		mlx_delete_image(game->mlx, game->chars[i]->img);
-		free(game->chars[i]->ray);
 		free(game->chars[i]);
 		i++;
 	}
@@ -33,6 +33,7 @@ static void	free_arrs(t_game *game)
 void	free_exit(t_map *map, t_game *game)
 {
 	free_arrs(game);
+	printf("test\n");
 	if (game->menu->in_menu == false)
 	{
 		mlx_delete_image(game->mlx, game->floor);
