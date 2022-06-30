@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mlx_error.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/28 02:51:54 by W2Wizard          #+#    #+#             */
-/*   Updated: 2022/06/30 10:24:04 by btenzlin         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   mlx_error.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/12/28 02:51:54 by W2Wizard      #+#    #+#                 */
+/*   Updated: 2022/06/27 20:29:44 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <err.h>
 #include "MLX42/MLX42_Int.h"
 
 //= Private =//
@@ -41,6 +42,9 @@ static const char* mlx_errors[] = {
 bool mlx_error(mlx_errno_t val)
 {
 	mlx_errno = val;
+#ifndef NDEBUG
+	warnx("MLX42: %s", mlx_strerror(mlx_errno));
+#endif
 	return (false);
 }
 

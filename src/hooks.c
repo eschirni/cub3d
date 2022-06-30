@@ -7,7 +7,6 @@ void	calc_rotate(t_game *game, float rotation, int n)
 
 	x = game->chars[n]->img->instances[0].x;
 	y = game->chars[n]->img->instances[0].y;
-	mlx_delete_image(game->mlx, game->chars[n]->ray->img); //don't create a new image every time
 	game->chars[n]->pa += rotation;
 	if (game->chars[n]->pa < 0)
 		game->chars[n]->pa += (float)M_PI * 2;

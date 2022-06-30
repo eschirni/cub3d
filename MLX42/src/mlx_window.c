@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mlx_window.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 01:14:59 by W2wizard          #+#    #+#             */
-/*   Updated: 2022/06/30 11:38:56 by btenzlin         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   mlx_window.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: W2wizard <w2wizzard@gmail.com>               +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/08 01:14:59 by W2wizard      #+#    #+#                 */
+/*   Updated: 2022/06/29 15:34:25 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,15 @@
  */
 void mlx_update_matrix(const mlx_t* mlx, int32_t width, int32_t height)
 {
-	const float depth = 10000.f;
-	// const mlx_ctx_t* mlxctx = mlx->context;
-	// const float depth = mlxctx->zdepth;
+	const mlx_ctx_t* mlxctx = mlx->context;
+	const float depth = mlxctx->zdepth;
 
-	// /**
-	//  * Incase of this setting we just don't update the widht and height but allow the Z
-	//  * to keep updating.
-	//  */
-	// width = mlx_settings[MLX_STRETCH_IMAGE] ? mlxctx->initialWidth : mlx->width;
-	// height = mlx_settings[MLX_STRETCH_IMAGE] ? mlxctx->initialHeight : mlx->height;
+	/**
+	 * Incase of this setting we just don't update the widht and height but allow the Z
+	 * to keep updating.
+	 */
+	width = mlx_settings[MLX_STRETCH_IMAGE] ? mlxctx->initialWidth : mlx->width;
+	height = mlx_settings[MLX_STRETCH_IMAGE] ? mlxctx->initialHeight : mlx->height;
 
 	const float matrix[16] = {
 		2.f / width, 0, 0, 0,
@@ -39,8 +38,7 @@ void mlx_update_matrix(const mlx_t* mlx, int32_t width, int32_t height)
 		-((depth + -depth) / (depth - -depth)), 1
 	};
 
-	glUniformMatrix4fv(glGetUniformLocation(((mlx_ctx_t*)mlx->context)->shaderprogram, "ProjMatrix"), 1, GL_FALSE, matrix);
-	// glUniformMatrix4fv(glGetUniformLocation(mlxctx->shaderprogram, "ProjMatrix"), 1, GL_FALSE, matrix);
+	glUniformMatrix4fv(glGetUniformLocation(mlxctx->shaderprogram, "ProjMatrix"), 1, GL_FALSE, matrix);
 }
 
 static void mlx_resize_callback(GLFWwindow* window, int32_t width, int32_t height)
