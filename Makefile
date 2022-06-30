@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/06/29 20:31:10 by eschirni         ###   ########.fr        #
+#    Updated: 2022/06/30 14:01:45 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,17 +30,19 @@ OBJ_PATH = ./obj/
 GNL_PATH = get_next_line/
 UTILS_PATH = ./src/utils/
 DRAW_PATH = ./src/draw_functions/
+MAIN_MENU_PATH = ./src/main_menu/
 
 # SOURCES
 SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(UTILS_PATH)ft_error.c $(UTILS_PATH)utils.c \
 		$(UTILS_PATH)free_exit.c \
 		$(SRC_PATH)char_direction.c $(SRC_PATH)hooks.c \
-		$(SRC_PATH)ray.c $(SRC_PATH)main_menu.c \
+		$(SRC_PATH)ray.c \
 		$(DRAW_PATH)draw_game.c $(DRAW_PATH)draw_crosshair.c \
 		$(DRAW_PATH)draw_map.c $(DRAW_PATH)draw.c \
 		$(DRAW_PATH)draw_chars.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
+		$(MAIN_MENU_PATH)main_menu.c $(MAIN_MENU_PATH)hooks.c \
 
 # OBJECTS
 OBJ = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
