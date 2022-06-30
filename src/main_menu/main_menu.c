@@ -84,13 +84,17 @@ static void	create_background(t_game *game, mlx_texture_t *txt, int frame)
 void	main_menu(t_game *game)
 {
 	mlx_texture_t	*txt;
+	struct timeval	time;
 
+	if (gettimeofday(&time, NULL) == -1)
+		ft_error("Error while reading the time", NULL);
 	game->menu = malloc(sizeof(t_menu));
 	if (game->menu == NULL)
 		ft_error("Malloc error!", NULL);
 	txt = NULL;
 	create_background(game, txt, 0);
 	create_buttons(game, txt);
+	game->menu->seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
 	game->menu->frame = 0;
 	game->menu->in_menu = true;
 	mlx_loop_hook(game->mlx, &animate_menu, game->menu);

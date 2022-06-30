@@ -2,23 +2,31 @@
 
 void	animate_menu(void *tmp)
 {
-	t_menu	*menu;
-	int		i;
+	t_menu			*menu;
+	struct timeval	time;
+	long			now;
+	int				i;
 
+	if (gettimeofday(&time, NULL) == -1)
+		ft_error("Error while reading the time", NULL);
+	now = time.tv_sec * 1000 + time.tv_usec / 1000;
 	menu = tmp;
 	if (menu->in_menu == false)
 		return ;
-	usleep(150000); //use timesteps
-	i = 0;
-	while (i < 6)
+	if (now > menu->seconds + 150)
 	{
-		menu->imgs[i]->enabled = false;
-		i++;
-	}
-	menu->imgs[menu->frame]->enabled = true;
-	menu->frame++;
-	if (menu->frame > 5)
-		menu->frame = 0;
+		menu->seconds = now;
+		i = 0;
+		while (i < 6)
+		{
+			menu->imgs[i]->enabled = false;
+			i++;
+		}
+		menu->imgs[menu->frame]->enabled = true;
+		menu->frame++;
+		if (menu->frame > 5)
+			menu->frame = 0;
+		}
 }
 
 void	hover_buttons(double x, double y, void *tmp)

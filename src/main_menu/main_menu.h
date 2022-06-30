@@ -2,6 +2,7 @@
 # define MAIN_MENU_H
 
 # include "../cub3d.h"
+# include <sys/time.h>
 
 /* hooks */
 void	animate_menu(void *tmp);
