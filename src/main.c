@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	void *cursor = mlx_create_cursor(curs_tex);
 	mlx_set_cursor(game->mlx, cursor);
 	mlx_loop_hook(game->mlx, &hook, game);
+	mlx_cursor_hook(game->mlx, &mouse_rotate, game);
 	mlx_loop(game->mlx);
 	free_exit(map, game);
 	system("leaks cub3d");

@@ -48,6 +48,21 @@ static void	set_coords(t_game *game, int addX, int addY) //check for every point
 	calc_rotate(game, 0.0f, 0);
 }
 
+void	mouse_rotate(double x, double y, void *tmp)
+{
+	t_game *game;
+
+	game = tmp;
+	if (game->menu->in_menu == true)
+	{
+		hover_buttons(x, y, game);
+		return ;
+	}
+	// x -= WIDTH / 2;
+	// x /= 36000;
+	// calc_rotate(game, x, 0);
+}
+
 void	hook(void *tmp)
 {
 	t_game	*game;

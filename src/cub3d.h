@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/30 11:29:57 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:44:02 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_menu
 {
 	bool		in_menu;
 	int			frame;
-	mlx_image_t	*imgs[11];
+	mlx_image_t	*imgs[13];
 }				t_menu;
 
 typedef struct s_game
@@ -101,11 +101,13 @@ void		draw_crosshair(mlx_t *mlx, int color);
 /* hooks */
 void		calc_rotate(t_game *game, float rotation, int n);
 void		hook(void *tmp);
+void		mouse_rotate(double x, double y, void *tmp);
 
 /* rays */
 float		calc_rays(t_ray *ray, t_map *map, int x, int y);
 
-/* menus */
+/* main menu */
+void		hover_buttons(double x, double y, t_game *game);
 void		main_menu(t_game *game);
 
 #endif

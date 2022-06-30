@@ -5,7 +5,6 @@
 
 /* hooks */
 void	animate_menu(void *tmp);
-void	hover_buttons(double x, double y, void *tmp);
 void	menu_buttons(mouse_key_t k, action_t act, modifier_key_t mod, void *ag);
 
 /* actions */

@@ -14,6 +14,7 @@ void	start_game(t_game *game)
 	}
 	draw_map(game, game->map, game->map->player);
 	draw_crosshair(game->mlx, 0xFFFFFFAA);
+	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 }
 
 static void	create_buttons(t_game *game, mlx_texture_t *txt)
@@ -35,6 +36,12 @@ static void	create_buttons(t_game *game, mlx_texture_t *txt)
 	game->menu->imgs[10] = mlx_texture_to_image(game->mlx, txt);
 	game->menu->imgs[10]->enabled = false;
 	mlx_delete_texture(txt);
+	// game->menu->imgs[11] = mlx_texture_to_image(game->mlx, txt);
+	// mlx_delete_texture(txt);
+	// txt = mlx_load_png("./sprites/exit_hover.png");
+	// game->menu->imgs[10] = mlx_texture_to_image(game->mlx, txt);
+	// game->menu->imgs[10]->enabled = false;
+	// mlx_delete_texture(txt);
 	mlx_image_to_window(game->mlx, game->menu->imgs[6], 100, 40);
 	mlx_image_to_window(game->mlx, game->menu->imgs[7], 120, 250);
 	mlx_image_to_window(game->mlx, game->menu->imgs[8], 120, 250);
@@ -84,5 +91,4 @@ void	main_menu(t_game *game)
 	game->menu->in_menu = true;
 	mlx_loop_hook(game->mlx, &animate_menu, game->menu);
 	mlx_mouse_hook(game->mlx, &menu_buttons, game);
-	mlx_cursor_hook(game->mlx, &hover_buttons, game);
 }
