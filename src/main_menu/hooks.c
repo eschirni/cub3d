@@ -29,15 +29,22 @@ void	hover_buttons(double x, double y, t_game *game)
 	game->menu->imgs[8]->enabled = false;
 	game->menu->imgs[9]->enabled = true;
 	game->menu->imgs[10]->enabled = false;
+	game->menu->imgs[11]->enabled = true;
+	game->menu->imgs[12]->enabled = false;
 	if (x >= 120 && x <= 461 && y >= 250 && y <= 315)
 	{
 		game->menu->imgs[7]->enabled = false;
 		game->menu->imgs[8]->enabled = true;
 	}
-	else if (x >= 120 && x <= 238 && y >= 350 && y <= 406)
+	else if (x >= 120 && x <= 374 && y >= 350 && y <= 415)
 	{
 		game->menu->imgs[9]->enabled = false;
 		game->menu->imgs[10]->enabled = true;
+	}
+	else if (x >= 120 && x <= 238 && y >= 450 && y <= 506)
+	{
+		game->menu->imgs[11]->enabled = false;
+		game->menu->imgs[12]->enabled = true;
 	}
 }
 
@@ -56,7 +63,9 @@ void	menu_buttons(mouse_key_t k, action_t act, modifier_key_t mod, void *tmp)
 	{
 		if (x >= 120 && x <= 461 && y >= 250 && y <= 315)
 			start_game(game);
-		else if (x >= 120 && x <= 238 && y >= 350 && y <= 406)
+		else if (x >= 120 && x <= 374 && y >= 350 && y <= 415)
+			printf("settings\n");
+		else if (x >= 120 && x <= 238 && y >= 450 && y <= 506)
 			mlx_close_window(game->mlx);
 	}
 }

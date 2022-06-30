@@ -7,7 +7,7 @@ void	start_game(t_game *game)
 	i = 0;
 	game->menu->in_menu = false;
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
-	while (i < 11)
+	while (i < 13)
 	{
 		game->menu->imgs[i]->enabled = false;
 		i++;
@@ -19,54 +19,57 @@ void	start_game(t_game *game)
 
 static void	create_buttons(t_game *game, mlx_texture_t *txt)
 {
-	txt = mlx_load_png("./sprites/title.png");
+	txt = mlx_load_png("./sprites/main/title.png");
 	game->menu->imgs[6] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/start_game.png");
+	txt = mlx_load_png("./sprites/main/button/start_game.png");
 	game->menu->imgs[7] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/start_game_hover.png");
+	txt = mlx_load_png("./sprites/main/button/start_game_hover.png");
 	game->menu->imgs[8] = mlx_texture_to_image(game->mlx, txt);
 	game->menu->imgs[8]->enabled = false;
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/exit.png");
+	txt = mlx_load_png("./sprites/main/button/settings.png");
 	game->menu->imgs[9] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/exit_hover.png");
+	txt = mlx_load_png("./sprites/main/button/settings_hover.png");
 	game->menu->imgs[10] = mlx_texture_to_image(game->mlx, txt);
 	game->menu->imgs[10]->enabled = false;
 	mlx_delete_texture(txt);
-	// game->menu->imgs[11] = mlx_texture_to_image(game->mlx, txt);
-	// mlx_delete_texture(txt);
-	// txt = mlx_load_png("./sprites/exit_hover.png");
-	// game->menu->imgs[10] = mlx_texture_to_image(game->mlx, txt);
-	// game->menu->imgs[10]->enabled = false;
-	// mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/main/button/exit.png");
+	game->menu->imgs[11] = mlx_texture_to_image(game->mlx, txt);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/main/button/exit_hover.png");
+	game->menu->imgs[12] = mlx_texture_to_image(game->mlx, txt);
+	game->menu->imgs[12]->enabled = false;
+	mlx_delete_texture(txt);
 	mlx_image_to_window(game->mlx, game->menu->imgs[6], 100, 40);
 	mlx_image_to_window(game->mlx, game->menu->imgs[7], 120, 250);
 	mlx_image_to_window(game->mlx, game->menu->imgs[8], 120, 250);
 	mlx_image_to_window(game->mlx, game->menu->imgs[9], 120, 350);
 	mlx_image_to_window(game->mlx, game->menu->imgs[10], 120, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[11], 120, 450);
+	mlx_image_to_window(game->mlx, game->menu->imgs[12], 120, 450);
 }
 
 static void	create_background(t_game *game, mlx_texture_t *txt, int frame)
 {
-	txt = mlx_load_png("./sprites/back/background.png");
+	txt = mlx_load_png("./sprites/main/back/background.png");
 	game->menu->imgs[0] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/back/background1.png");
+	txt = mlx_load_png("./sprites/main/back/background1.png");
 	game->menu->imgs[1] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/back/background2.png");
+	txt = mlx_load_png("./sprites/main/back/background2.png");
 	game->menu->imgs[2] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/back/background3.png");
+	txt = mlx_load_png("./sprites/main/back/background3.png");
 	game->menu->imgs[3] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/back/background4.png");
+	txt = mlx_load_png("./sprites/main/back/background4.png");
 	game->menu->imgs[4] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/back/background5.png");
+	txt = mlx_load_png("./sprites/main/back/background5.png");
 	game->menu->imgs[5] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
 	while (frame < 6)
