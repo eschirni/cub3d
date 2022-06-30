@@ -47,19 +47,14 @@ static void	set_coords(t_game *game, int addX, int addY) //check for every point
 	calc_rotate(game, 0.0f, 0);
 }
 
-void	mouse_rotate(double x, double y, void *tmp)
+static void	mouse_rotate(t_game *game)
 {
-	t_game *game;
+	int	x;
+	int	y;
 
-	game = tmp;
-	if (game->menu->in_menu == true)
-	{
-		hover_buttons(x, y, game);
-		return ;
-	}
+	mlx_get_mouse_pos(game->mlx, &x, &y);
 	x -= WIDTH / 2;
-	x /= 4000;
-	calc_rotate(game, x, 0);
+	game->chars[0]->pa += (float)x / 4000;
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 }
 
@@ -70,19 +65,18 @@ void	hook(void *tmp)
 	game = tmp;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	if (game->menu->in_menu == false)
-	{
-		if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-		set_coords(game, game->chars[0]->w[0], game->chars[0]->w[1]);
-		if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-			set_coords(game, game->chars[0]->a[0], game->chars[0]->a[1]);
-		if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-			set_coords(game, game->chars[0]->s[0], game->chars[0]->s[1]);
-		if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-			set_coords(game, game->chars[0]->d[0], game->chars[0]->d[1]);
-		if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-			calc_rotate(game, -0.03f, 0);
-		if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-			calc_rotate(game, 0.03f, 0);
-	}
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+	set_coords(game, game->chars[0]->w[0], game->chars[0]->w[1]);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+		set_coords(game, game->chars[0]->a[0], game->chars[0]->a[1]);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+		set_coords(game, game->chars[0]->s[0], game->chars[0]->s[1]);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+		set_coords(game, game->chars[0]->d[0], game->chars[0]->d[1]);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+		calc_rotate(game, -0.03f, 0);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+		calc_rotate(game, 0.03f, 0);
+	mouse_rotate(game);
+	calc_rotate(game, 0.0f, 0); //if I destroy and create a new image it will only display the last one!
 }

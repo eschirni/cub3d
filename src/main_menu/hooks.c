@@ -21,8 +21,11 @@ void	animate_menu(void *tmp)
 		menu->frame = 0;
 }
 
-void	hover_buttons(double x, double y, t_game *game)
+void	hover_buttons(double x, double y, void *tmp)
 {
+	t_game	*game;
+
+	game = tmp;
 	if (game->menu->in_menu == false)
 		return ;
 	game->menu->imgs[7]->enabled = true;

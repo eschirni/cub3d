@@ -6,11 +6,11 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/30 22:37:51 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/01 01:21:28 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//todo: ft_error also frees stuff, use pixels to draw chars for rotation
+//todo: one mlx_loop only, draw live instead of creating a new image every second, do animation with timestamps
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -102,13 +102,12 @@ void		draw_crosshair(mlx_t *mlx, int color);
 /* hooks */
 void		calc_rotate(t_game *game, float rotation, int n);
 void		hook(void *tmp);
-void		mouse_rotate(double x, double y, void *tmp);
 
 /* rays */
 float		calc_rays(t_ray *ray, t_map *map, int x, int y);
 
 /* main menu */
-void		hover_buttons(double x, double y, t_game *game);
+void	hover_buttons(double x, double y, void *tmp);
 void		main_menu(t_game *game);
 
 #endif
