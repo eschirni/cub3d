@@ -8,7 +8,7 @@ void	animate_menu(void *tmp)
 	menu = tmp;
 	if (menu->in_menu == false)
 		return ;
-	usleep(150000); //need to find another way, this also slows down everything else
+	usleep(150000); //use timesteps
 	i = 0;
 	while (i < 6)
 	{
