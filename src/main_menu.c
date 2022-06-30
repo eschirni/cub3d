@@ -6,7 +6,7 @@ static void	start_game(t_game *game)
 
 	i = 0;
 	game->menu->in_menu = false;
-	while (i < 9)
+	while (i < 11)
 	{
 		game->menu->imgs[i]->enabled = false;
 		i++;
@@ -46,8 +46,10 @@ static void	menu_buttons(mouse_key_t key, action_t act, modifier_key_t mod, void
 	mlx_get_mouse_pos(game->mlx, &x, &y);
 	if (mlx_is_mouse_down(game->mlx, MLX_MOUSE_BUTTON_LEFT))
 	{
-		if (x >= 120 && x <= 460 && y >= 250 && y <= 315)
+		if (x >= 120 && x <= 461 && y >= 250 && y <= 315)
 			start_game(game);
+		else if (x >= 120 && x <= 238 && y >= 350 && y <= 406)
+			mlx_close_window(game->mlx);
 	}
 }
 
@@ -58,17 +60,20 @@ static void	hover_buttons(double x, double y, void *tmp)
 	game = tmp;
 	if (game->menu->in_menu == false)
 		return ;
-	if (x >= 120 && x <= 460 && y >= 250 && y <= 315)
+	game->menu->imgs[7]->enabled = true;
+	game->menu->imgs[8]->enabled = false;
+	game->menu->imgs[9]->enabled = true;
+	game->menu->imgs[10]->enabled = false;
+	if (x >= 120 && x <= 461 && y >= 250 && y <= 315)
 	{
-		game->menu->imgs[8]->enabled = true;
 		game->menu->imgs[7]->enabled = false;
+		game->menu->imgs[8]->enabled = true;
 	}
-	else
+	else if (x >= 120 && x <= 238 && y >= 350 && y <= 406)
 	{
-		game->menu->imgs[7]->enabled = true;
-		game->menu->imgs[8]->enabled = false;
+		game->menu->imgs[9]->enabled = false;
+		game->menu->imgs[10]->enabled = true;
 	}
-
 }
 
 void	main_menu(t_game *game)
@@ -109,6 +114,14 @@ void	main_menu(t_game *game)
 	game->menu->imgs[8] = mlx_texture_to_image(game->mlx, txt);
 	game->menu->imgs[8]->enabled = false;
 	mlx_delete_texture(txt);
+	/* exit */
+	txt = mlx_load_png("./sprites/exit.png");
+	game->menu->imgs[9] = mlx_texture_to_image(game->mlx, txt);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/exit_hover.png");
+	game->menu->imgs[10] = mlx_texture_to_image(game->mlx, txt);
+	game->menu->imgs[10]->enabled = false;
+	mlx_delete_texture(txt);
 	i = 0;
 	while (i < 6)
 	{
@@ -119,6 +132,8 @@ void	main_menu(t_game *game)
 	mlx_image_to_window(game->mlx, game->menu->imgs[6], 100, 40);
 	mlx_image_to_window(game->mlx, game->menu->imgs[7], 120, 250);
 	mlx_image_to_window(game->mlx, game->menu->imgs[8], 120, 250);
+	mlx_image_to_window(game->mlx, game->menu->imgs[9], 120, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[10], 120, 350);
 	game->menu->frame = 0;
 	game->menu->in_menu = true;
 	mlx_loop_hook(game->mlx, &animate_menu, game->menu);
