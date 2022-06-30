@@ -47,7 +47,10 @@ static void	menu_buttons(mouse_key_t key, action_t act, modifier_key_t mod, void
 	if (mlx_is_mouse_down(game->mlx, MLX_MOUSE_BUTTON_LEFT))
 	{
 		if (x >= 120 && x <= 461 && y >= 250 && y <= 315)
+		{
+			mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 			start_game(game);
+		}
 		else if (x >= 120 && x <= 238 && y >= 350 && y <= 406)
 			mlx_close_window(game->mlx);
 	}

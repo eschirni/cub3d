@@ -25,6 +25,9 @@ int	main(int argc, char **argv)
 	map = init_map(argv[1]);
 	game = init_game(map);
 	main_menu(game);
+	mlx_texture_t *curs_tex = mlx_load_png("./sprites/cursor.png");
+	void *cursor = mlx_create_cursor(curs_tex);
+	mlx_set_cursor(game->mlx, cursor);
 	mlx_loop_hook(game->mlx, &hook, game);
 	mlx_loop(game->mlx);
 	free_exit(map, game);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   MLX42_Int.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/27 23:55:34 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/05/10 10:24:39 by lde-la-h      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   MLX42_Int.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 23:55:34 by W2Wizard          #+#    #+#             */
+/*   Updated: 2022/06/30 10:49:12 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@
 #  define MLX_BATCH_SIZE 12000
 # endif
 # define BPP sizeof(int32_t) /* Only support RGBA */
-# define MLX_ASSERT(cond) assert(!(cond));
 # define GETLINE_BUFF 1280
 # define MLX_MAX_STRING 512 /* Arbitrary string limit */
+# define MLX_ASSERT(cond, msg) assert(cond && msg);
+# define MLX_NONNULL(var) MLX_ASSERT(var, "Value can't be null"); /* Assert instead of attribute */
 
 /**
  * The shader code is extracted from the shader files
@@ -178,6 +179,9 @@ typedef struct mlx_ctx
 	GLuint			vbo;
 	GLuint			shaderprogram;
 
+	uint32_t		initialWidth;
+	uint32_t		initialHeight;
+
 	mlx_list_t*		hooks;
 	mlx_list_t*		images;
 	mlx_list_t*		render_queue;
@@ -238,7 +242,6 @@ bool mlx_freen(int32_t count, ...);
 
 //= OpenGL Functions =//
 
-void mlx_on_resize(GLFWwindow* window, int32_t width, int32_t height);
 void mlx_update_matrix(const mlx_t* mlx, int32_t width, int32_t height);
 void mlx_draw_instance(mlx_ctx_t* mlx, mlx_image_t* img, mlx_instance_t* instance);
 void mlx_flush_batch(mlx_ctx_t* mlx);

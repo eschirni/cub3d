@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_font.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/22 12:01:37 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/05/01 21:02:24 by W2Wizard      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_font.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 12:01:37 by W2Wizard          #+#    #+#             */
+/*   Updated: 2022/06/30 10:10:53 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int32_t mlx_get_texoffset(char c)
 
 mlx_image_t* mlx_put_string(mlx_t* mlx, const char* str, int32_t x, int32_t y)
 {
-	MLX_ASSERT(!mlx);
-	MLX_ASSERT(!str);
+	MLX_NONNULL(mlx);
+	MLX_NONNULL(str);
 
 	mlx_image_t* strimage;
 	const size_t len = strlen(str);
