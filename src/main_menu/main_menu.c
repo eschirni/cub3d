@@ -72,13 +72,12 @@ static void	create_background(t_game *game, mlx_texture_t *txt, int frame)
 
 void	main_menu(t_game *game)
 {
-	int				i;
-	int				pid;
 	mlx_texture_t	*txt;
 
 	game->menu = malloc(sizeof(t_menu));
 	if (game->menu == NULL)
 		ft_error("Malloc error!", NULL);
+	txt = NULL;
 	create_background(game, txt, 0);
 	create_buttons(game, txt);
 	game->menu->frame = 0;
