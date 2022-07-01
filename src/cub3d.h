@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/01 16:45:35 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/01 19:54:16 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//todo: one mlx_loop only, draw live instead of creating a new image every second
+//todo: one mlx_loop only, draw live instead of creating a new image every second,  back to main menu
 
 #ifndef CUB3D_H
 # define CUB3D_H
