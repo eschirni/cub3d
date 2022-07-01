@@ -6,7 +6,7 @@
 #    By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/01 12:58:12 by btenzlin         ###   ########.fr        #
+#    Updated: 2022/07/01 13:02:11 by btenzlin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(DRAW_PATH)draw_chars.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
 		$(MAIN_MENU_PATH)main_menu.c $(MAIN_MENU_PATH)hooks.c \
-		$(MAIN_MENU_PATH)settings.c \
+		$(MAIN_MENU_PATH)settings.c $(SRC_PATH)generate_map.c \
 
 # OBJECTS
 OBJ = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
