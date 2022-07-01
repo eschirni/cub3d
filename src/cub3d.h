@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/06/30 01:54:05 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/01 16:45:35 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//todo: ft_error also frees stuff, use pixels to draw chars for rotation
+//todo: one mlx_loop only, draw live instead of creating a new image every second
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -28,6 +28,7 @@
 # define RESET "\033[0m"
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MINIMAP 288
 
 typedef struct s_ray
 {
@@ -61,8 +62,12 @@ typedef struct s_map
 typedef struct s_menu
 {
 	bool		in_menu;
-	int			frame;
-	mlx_image_t	*imgs[11];
+	bool		in_settings;
+	int			back_frame;
+	int			scroll_frame;
+	mlx_image_t	*imgs[33];
+	long		back_seconds;
+	long		scroll_seconds;
 }				t_menu;
 
 typedef struct s_game
@@ -77,6 +82,14 @@ typedef struct s_game
 	mlx_image_t	*wall;
 	int			n_chars;
 }				t_game;
+
+typedef struct s_mapgen
+{
+	int			dirs[4][2];
+	int			rand_dir[2];
+	int			last_dir[2];
+	int			start[2];
+}				t_mapgen;
 
 /* map parsing */
 t_map		*init_map(char *mapfile);
@@ -105,7 +118,11 @@ void		hook(void *tmp);
 /* rays */
 float		calc_rays(t_ray *ray, t_map *map, int x, int y);
 
-/* menus */
+/* main menu */
+void	hover_buttons(double x, double y, void *tmp);
 void		main_menu(t_game *game);
+
+/* map gen */
+char	**create_map(int size, int tunnels, int tunnel_len);
 
 #endif

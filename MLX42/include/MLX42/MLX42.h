@@ -6,7 +6,7 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/28 00:33:01 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/05/10 10:23:50 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2022/06/29 15:34:58 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ extern "C" {
  * 
  * @param width The width of the texture.
  * @param height The height of the texture.
- * @param bytes_per_pixel The amounst of bytes in a pixel, always 4.
  * @param pixels The literal pixel data.
+ * @param bytes_per_pixel The amounst of bytes in a pixel, always 4.
  */
 typedef struct mlx_texture
 {
 	uint32_t	width;
 	uint32_t	height;
-	uint8_t		bytes_per_pixel;
 	uint8_t*	pixels;
+	uint8_t		bytes_per_pixel;
 }	mlx_texture_t;
 
 /**
@@ -74,12 +74,14 @@ typedef struct xpm
  * @param x The x location.
  * @param y The y location.
  * @param z The z depth, controls if the image is on the fore or background.
+ * @param enabled If true, the instance is drawn else its not.
  */
 typedef struct mlx_instance
 {
 	int32_t	x;
 	int32_t	y;
 	int32_t	z;
+	bool	enabled;
 }	mlx_instance_t;
 
 /**
@@ -364,13 +366,14 @@ void mlx_get_window_pos(mlx_t* mlx, int32_t* xpos, int32_t* ypos);
 void mlx_set_window_size(mlx_t* mlx, int32_t new_width, int32_t new_height);
 
 /**
- * Sets a desired min and max window width and height.
+ * Sets the size limits of the specified window.
  * Will force the window to not be resizable past or below the given values.
- * Due to norme constraints this is a bit ugly, sorry.
  * 
  * @param mlx The MLX instance handle.
- * @param min_wh The min width and height values.
- * @param max_wh The max width and height values.
+ * @param min_w The min width of the window.
+ * @param max_w The max width of the window.
+ * @param min_h The min height of the window.
+ * @param max_h The max height of the window.
  */
 void mlx_set_window_limit(mlx_t* mlx, int32_t min_w, int32_t min_h, int32_t max_w, int32_t max_h);
 
@@ -426,23 +429,21 @@ void mlx_set_mouse_pos(mlx_t* mlx, int32_t x, int32_t y);
 void mlx_set_cursor_mode(mlx_t* mlx, mouse_mode_t mode);
 
 /**
- * Allows for the creation of custom cursors with a given
- * XPM image.
+ * Allows for the creation of custom cursors with a given texture.
  * 
  * Use mlx_set_cursor to select the specific cursor.
  * Cursors are destroyed at mlx_terminate().
  * 
- * @param[in] mlx The MLX instance handle.
- * @param[in] image The XPM image to use as cursor.
- * @returns The cursor pointer.
+ * @param[in] texture The texture to use as cursor.
+ * @returns The cursor object.
  */
-void* mlx_create_cursor(mlx_t* mlx, mlx_texture_t* image);
+void* mlx_create_cursor(mlx_texture_t* texture);
 
 /**
  * Sets the current cursor to the given custom cursor.
  * 
  * @param[in] mlx The MLX instance handle.
- * @param[in] cursor The cursor to display.
+ * @param[in] cursor The cursor object to display.
  */
 void mlx_set_cursor(mlx_t* mlx, void* cursor);
 
@@ -522,7 +523,7 @@ bool mlx_loop_hook(mlx_t* mlx, void (*f)(void*), void* param);
 //= Texture Functions =//
 
 /**
- * Decode/load a PNG file onto a buffer. BPP will always be 4.
+ * Decode/load a PNG file onto a buffer.
  * 
  * @param[in] path Path to the PNG file.
  * @return If successful the texture data is returned, else NULL.

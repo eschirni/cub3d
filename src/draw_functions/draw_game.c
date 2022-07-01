@@ -28,6 +28,24 @@ static void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 	}
 }
 
+static void	reset_img(mlx_image_t *img, int width, int height)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < width)
+	{
+		y = 0;
+		while (y < height)
+		{
+			mlx_put_pixel(img, x, y, 0x000000);
+			y++;
+		}
+		x++;
+	}
+}
+
 void	draw_game(t_ray *ray, t_game *game, int x, int y)
 {
 	int		i;
@@ -36,12 +54,12 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 	ray->ra = game->chars[0]->pa - 30 * ((float)M_PI / 180);
 	if (ray->ra < 0)
 		ray->ra += (float)M_PI * 2;
-	ray->img = mlx_new_image(game->mlx, game->mlx->width, game->mlx->height);
 	if (game->game_img)
 		mlx_delete_image(game->mlx, game->game_img);
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	i = 0;
 	line_x = 0;
+	reset_img(ray->img, MINIMAP - 1, MINIMAP - 1);
 	while (i < 960)
 	{
 		ray->ra += (float)M_PI / 180 / 16;
@@ -53,5 +71,4 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 		i++;
 	}
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
-	mlx_image_to_window(game->mlx, ray->img, 0, 0);
 }

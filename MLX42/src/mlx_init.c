@@ -6,7 +6,7 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/28 00:24:30 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/05/10 10:23:55 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2022/06/28 10:10:26 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,6 @@ static bool mlx_create_buffers(mlx_t* mlx)
 	glUniform1i(glGetUniformLocation(mlxctx->shaderprogram, "Texture14"), 14);
 	glUniform1i(glGetUniformLocation(mlxctx->shaderprogram, "Texture15"), 15);
 
-	// NOTE: Call manually once to calculate View Projection Matrix
-	glfwSetWindowSizeCallback(mlx->window, &mlx_on_resize);
-	mlx_update_matrix(mlx, mlx->width, mlx->height);
 	return (true);
 }
 
@@ -155,9 +152,9 @@ int32_t mlx_settings[MLX_SETTINGS_MAX] = {false, false, false, true};
 
 mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize)
 {
-	MLX_ASSERT(width <= 0);
-	MLX_ASSERT(height <= 0);
-	MLX_ASSERT(!title);
+	MLX_ASSERT(width > 0, "Window width must be positive");
+	MLX_ASSERT(height > 0, "Window height must be positive");
+	MLX_ASSERT(title, "Window title can't be null");
 
 	bool init;
 	mlx_t* mlx;
@@ -168,8 +165,12 @@ mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize)
 	if (!(mlx->context = calloc(1, sizeof(mlx_ctx_t))))
 		return (free(mlx), (void*)mlx_error(MLX_MEMFAIL));
 
+	mlx_ctx_t* const mlxctx = mlx->context;
 	mlx->width = width;
 	mlx->height = height;
+	mlxctx->initialWidth = width;
+	mlxctx->initialHeight = height;
+
 	glfwWindowHint(GLFW_MAXIMIZED, mlx_settings[MLX_MAXIMIZED]);
 	glfwWindowHint(GLFW_DECORATED, mlx_settings[MLX_DECORATED]);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -188,7 +189,6 @@ mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize)
 
 void mlx_set_setting(mlx_settings_t setting, int32_t value)
 {
-	MLX_ASSERT(setting >= MLX_SETTINGS_MAX);
-	MLX_ASSERT(setting < 0);
+	MLX_ASSERT(setting > 0 && setting < MLX_SETTINGS_MAX, "Invalid settings value");
 	mlx_settings[setting] = value;
 }
