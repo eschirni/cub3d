@@ -1,17 +1,29 @@
 #include "main_menu.h"
 
-void	animate_scroll(t_game *game)
+void	animate_scroll(t_game *game) //put in mlx loop for animation
 {
 	int	i;
+	struct timeval	time;
+	long			start;
+	long			now;
 
+	if (gettimeofday(&time, NULL) == -1)
+		ft_error("Error while reading the time", NULL);
+	start = time.tv_sec * 1000 + time.tv_usec / 1000;
 	i = 13;
 	while (i < 33)
 	{
-		usleep(150000);
-		if (i > 13)
-			game->menu->imgs[i - 1]->enabled = false;
-		game->menu->imgs[i]->enabled = true;
-		i++;
+		if (gettimeofday(&time, NULL) == -1)
+			ft_error("Error while reading the time", NULL);
+		now = time.tv_sec * 1000 + time.tv_usec / 1000;
+		if (now > start + 150)
+		{
+			start = now;
+			if (i > 13)
+				game->menu->imgs[i - 1]->enabled = false;
+			game->menu->imgs[i]->enabled = true;
+			i++;
+		}
 	}
 }
 

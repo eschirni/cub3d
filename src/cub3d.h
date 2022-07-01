@@ -6,11 +6,11 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/01 03:22:26 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/01 03:44:34 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//todo: one mlx_loop only, draw live instead of creating a new image every second, do animation with timestamps
+//todo: one mlx_loop only, draw live instead of creating a new image every second
 
 #ifndef CUB3D_H
 # define CUB3D_H
