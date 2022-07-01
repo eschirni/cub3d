@@ -18,7 +18,7 @@ void	start_game(t_game *game)
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 }
 
-void	load_png(t_game *game,int pos, char *name, bool enabled)
+void	load_png(t_game *game, int pos, char *name, bool enabled)
 {
 	mlx_texture_t	*txt;
 
