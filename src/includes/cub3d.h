@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/01 19:54:16 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/01 20:07:21 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../MLX42/include/MLX42/MLX42.h"
-# include "../get_next_line/get_next_line.h"
+# include "../../MLX42/include/MLX42/MLX42.h"
+# include "../../get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>

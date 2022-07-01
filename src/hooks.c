@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "includes/cub3d.h"
 
 void	calc_rotate(t_game *game, float rotation, int n)
 {

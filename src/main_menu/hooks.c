@@ -1,4 +1,4 @@
-#include "main_menu.h"
+#include "../includes/main_menu.h"
 
 void	animate_menu(void *tmp)
 {

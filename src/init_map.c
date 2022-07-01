@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "includes/cub3d.h"
 
 static size_t	ft_strlen_sl(const char *str)
 {

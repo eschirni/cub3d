@@ -6,11 +6,11 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 20:06:03 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/13 23:30:13 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/01 20:05:44 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
 void	ft_error(char *msg, char *arg)
 {

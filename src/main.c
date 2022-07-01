@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "includes/cub3d.h"
 
 static t_game	*init_game(t_map *map)
 {

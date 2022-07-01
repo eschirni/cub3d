@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "includes/cub3d.h"
 
 static void	add_until_wall(t_ray *ray, t_map *map, float ray_offset[2])
 {

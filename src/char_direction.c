@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "includes/cub3d.h"
 
 static void	init_dir(t_game *game, int n, float pi)
 {
