@@ -13,20 +13,26 @@ void	animate_menu(void *tmp)
 	menu = tmp;
 	if (menu->in_menu == false)
 		return ;
-	if (now > menu->seconds + 150)
+	if (now > menu->back_seconds + 150)
 	{
-		menu->seconds = now;
+		menu->back_seconds = now;
 		i = 0;
 		while (i < 6)
 		{
 			menu->imgs[i]->enabled = false;
 			i++;
 		}
-		menu->imgs[menu->frame]->enabled = true;
-		menu->frame++;
-		if (menu->frame > 5)
-			menu->frame = 0;
-		}
+		menu->imgs[menu->back_frame]->enabled = true;
+		menu->back_frame++;
+		if (menu->back_frame > 5)
+			menu->back_frame = 0;
+	}
+	if (now > menu->scroll_seconds + 15 && menu->in_settings == true)
+	{
+		menu->scroll_seconds = now;
+		if (menu->scroll_frame < 33)
+			animate_scroll(menu);
+	}
 }
 
 void	hover_buttons(double x, double y, void *tmp)
@@ -75,7 +81,7 @@ void	menu_buttons(mouse_key_t k, action_t act, modifier_key_t mod, void *tmp)
 		if (x >= 120 && x <= 461 && y >= 250 && y <= 315)
 			start_game(game);
 		else if (x >= 120 && x <= 374 && y >= 350 && y <= 415)
-			animate_scroll(game);
+			game->menu->in_settings = true;
 		else if (x >= 120 && x <= 238 && y >= 450 && y <= 506)
 			mlx_close_window(game->mlx);
 	}

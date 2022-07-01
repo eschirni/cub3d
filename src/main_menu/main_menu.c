@@ -76,9 +76,12 @@ void	main_menu(t_game *game)
 	create_background(game);
 	create_buttons(game);
 	init_settings(game);
-	game->menu->seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
-	game->menu->frame = 0;
+	game->menu->back_seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
+	game->menu->scroll_seconds = game->menu->back_seconds;
+	game->menu->back_frame = 0;
+	game->menu->scroll_frame = 13;
 	game->menu->in_menu = true;
+	game->menu->in_settings = false;
 	mlx_loop_hook(game->mlx, &animate_menu, game->menu);
 	mlx_cursor_hook(game->mlx, &hover_buttons, game);
 	mlx_mouse_hook(game->mlx, &menu_buttons, game);

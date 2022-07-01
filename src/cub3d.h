@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/01 03:44:34 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/01 04:38:51 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,12 @@ typedef struct s_map
 typedef struct s_menu
 {
 	bool		in_menu;
-	int			frame;
+	bool		in_settings;
+	int			back_frame;
+	int			scroll_frame;
 	mlx_image_t	*imgs[33];
-	long		seconds;
+	long		back_seconds;
+	long		scroll_seconds;
 }				t_menu;
 
 typedef struct s_game

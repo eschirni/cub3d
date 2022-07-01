@@ -1,54 +1,23 @@
 #include "main_menu.h"
 
-void	animate_scroll(t_game *game) //put in mlx loop for animation
+void	animate_scroll(t_menu *menu) //put in mlx loop for animation
 {
-	int	i;
-	struct timeval	time;
-	long			start;
-	long			now;
-
-	if (gettimeofday(&time, NULL) == -1)
-		ft_error("Error while reading the time", NULL);
-	start = time.tv_sec * 1000 + time.tv_usec / 1000;
-	i = 13;
-	while (i < 33)
-	{
-		if (gettimeofday(&time, NULL) == -1)
-			ft_error("Error while reading the time", NULL);
-		now = time.tv_sec * 1000 + time.tv_usec / 1000;
-		if (now > start + 150)
-		{
-			start = now;
-			if (i > 13)
-				game->menu->imgs[i - 1]->enabled = false;
-			game->menu->imgs[i]->enabled = true;
-			i++;
-		}
-	}
+	if (menu->scroll_frame > 13)
+		menu->imgs[menu->scroll_frame - 1]->enabled = false;
+	menu->imgs[menu->scroll_frame]->enabled = true;
+	menu->scroll_frame++;
 }
 
 static void	put_to_win(t_game *game)
 {
-	mlx_image_to_window(game->mlx, game->menu->imgs[13], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[14], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[15], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[16], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[17], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[18], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[19], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[20], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[21], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[22], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[23], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[24], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[25], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[26], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[27], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[28], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[29], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[30], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[31], WIDTH / 2, 40);
-	mlx_image_to_window(game->mlx, game->menu->imgs[32], WIDTH / 2, 40);
+	int	i;
+
+	i = 13;
+	while (i < 33)
+	{
+		mlx_image_to_window(game->mlx, game->menu->imgs[i], WIDTH - 850, 60);
+		i++;
+	}
 }
 
 void	init_settings(t_game *game)

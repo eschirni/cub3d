@@ -14,6 +14,6 @@ void	load_png(t_game *game,int pos, char *name, bool enabled);
 
 /* settings */
 void	init_settings(t_game *game);
-void	animate_scroll(t_game *game);
+void	animate_scroll(t_menu *menu);
 
 #endif
