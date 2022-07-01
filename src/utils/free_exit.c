@@ -33,7 +33,6 @@ static void	free_arrs(t_game *game)
 void	free_exit(t_map *map, t_game *game)
 {
 	free_arrs(game);
-	printf("test\n");
 	if (game->menu->in_menu == false)
 	{
 		mlx_delete_image(game->mlx, game->floor);
