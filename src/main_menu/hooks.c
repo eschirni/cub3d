@@ -44,7 +44,7 @@ void	menu_buttons(mouse_key_t k, action_t act, modifier_key_t mod, void *tmp)
 	if (mlx_is_mouse_down(game->mlx, MLX_MOUSE_BUTTON_LEFT))
 	{
 		if (x >= 120 && x <= 461 && y >= 250 && y <= 315)
-			start_game(game);
+			to_game(game);
 		else if (x >= 120 && x <= 374 && y >= 350 && y <= 415)
 			game->menu->in_settings = true;
 		else if (x >= 120 && x <= 238 && y >= 450 && y <= 506)

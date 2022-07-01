@@ -1,23 +1,5 @@
 #include "../includes/main_menu.h"
 
-void	start_game(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	game->menu->in_menu = false;
-	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
-	while (i < 33)
-	{
-		game->menu->imgs[i]->enabled = false;
-		i++;
-	}
-	draw_map(game, game->map, game->map->player);
-	draw_crosshair(game, 0xFFFFFFAA);
-	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
-	printf("test\n");
-}
-
 void	load_png(t_game *game, int pos, char *name, bool enabled)
 {
 	mlx_texture_t	*txt;
@@ -64,7 +46,8 @@ static void	create_background(t_game *game)
 	}
 }
 
-void	main_menu(t_game *game)
+//continue button when already started the game
+void	main_menu(t_game *game) //only allow to start the game when the settings are closed
 {
 	struct timeval	time;
 
@@ -78,10 +61,7 @@ void	main_menu(t_game *game)
 	init_settings(game);
 	game->menu->back_seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
 	game->menu->scroll_seconds = game->menu->back_seconds;
-	game->menu->back_frame = 0;
-	game->menu->scroll_frame = 13;
-	game->menu->in_menu = true;
-	game->menu->in_settings = false;
+	to_menu(game);
 	mlx_loop_hook(game->mlx, &fps, game);
 	mlx_cursor_hook(game->mlx, &hover_buttons, game);
 	mlx_mouse_hook(game->mlx, &menu_buttons, game);

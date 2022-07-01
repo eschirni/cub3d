@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/01 21:33:33 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/02 00:50:25 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ float		calc_rays(t_ray *ray, t_map *map, int x, int y);
 void	animate_menu(t_menu *menu);
 void	hover_buttons(double x, double y, void *tmp);
 void	main_menu(t_game *game);
+void	to_game(t_game *game);
+void	to_menu(t_game *game);
 
 /* map gen */
 char	**create_map(int size, int tunnels, int tunnel_len);
