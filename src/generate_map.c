@@ -1,37 +1,6 @@
 #include "cub3d.h"
 #include <sys/time.h>
 
-// static void	free_2d_array(char **arr)
-// {
-// 	int	i;
-
-// 	if (arr)
-// 	{
-// 		i = 0;
-// 		while (arr[i])
-// 		{
-// 			free(arr[i]);
-// 			i++;
-// 		}
-// 		free(arr);
-// 	}
-// }
-
-static void	print_2d_array(char **array)
-{
-	int	i;
-
-	if (!array)
-		printf("Array empty.\n");
-	i = 0;
-	while (array[i])
-	{
-		printf("%s\n", array[i]);
-		i++;
-	}
-	printf("\n");
-}
-
 static char	**create_array(int size)
 {
 	char	**map;
@@ -78,10 +47,9 @@ static void	init_directions(t_mapgen *mapg)
 	mapg->dirs[3][1] = 1;
 }
 
-char	**create_map(int size, int tunnels, int tunnel_len)
+t_mapgen	*create_map(int size, int tunnels, int tunnel_len)
 {
 	t_mapgen	*mapg;
-	char		**map;
 	int			rand;
 	int			i;
 	int			len;
@@ -90,14 +58,13 @@ char	**create_map(int size, int tunnels, int tunnel_len)
 	mapg = malloc(sizeof(t_mapgen));
 	if (!mapg)
 		ft_error("allocation failed", NULL);
-	map = create_array(size);
+	mapg->map = create_array(size);
 	mapg->start[0] = get_random_num(0, size);
 	mapg->start[1] = get_random_num(0, size);
 	init_directions(mapg);
 	rand = get_random_num(0, 3);
 	mapg->rand_dir[0] = mapg->dirs[rand][0];
 	mapg->rand_dir[1] = mapg->dirs[rand][1];
-	map[mapg->start[0]][mapg->start[1]] = 'N';
 	while (tunnels)
 	{
 		i = 0;
@@ -107,7 +74,7 @@ char	**create_map(int size, int tunnels, int tunnel_len)
 			if ((mapg->start[0] + mapg->rand_dir[0]) >= 0 && (mapg->start[1] + mapg->rand_dir[1]) >= 0
 				&& (mapg->start[0] + mapg->rand_dir[0]) < size && (mapg->start[1] + mapg->rand_dir[1]) < size)
 			{
-				map[mapg->start[0]][mapg->start[1]] = '0';
+				mapg->map[mapg->start[0]][mapg->start[1]] = '0';
 				mapg->start[0] += mapg->rand_dir[0];
 				mapg->start[1] += mapg->rand_dir[1];
 				i++;
@@ -133,7 +100,5 @@ char	**create_map(int size, int tunnels, int tunnel_len)
 		if (i)
 			tunnels--;
 	}
-	free(mapg);
-	print_2d_array(map);
-	return (map);
+	return (mapg);
 }
