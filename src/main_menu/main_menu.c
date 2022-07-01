@@ -12,7 +12,6 @@ void	start_game(t_game *game)
 		game->menu->imgs[i]->enabled = false;
 		i++;
 	}
-	mlx_loop_hook(game->mlx, &hook, game);
 	draw_map(game, game->map, game->map->player);
 	draw_crosshair(game->mlx, 0xFFFFFFAA);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
@@ -82,7 +81,7 @@ void	main_menu(t_game *game)
 	game->menu->scroll_frame = 13;
 	game->menu->in_menu = true;
 	game->menu->in_settings = false;
-	mlx_loop_hook(game->mlx, &animate_menu, game->menu);
+	mlx_loop_hook(game->mlx, &fps, game);
 	mlx_cursor_hook(game->mlx, &hover_buttons, game);
 	mlx_mouse_hook(game->mlx, &menu_buttons, game);
 }

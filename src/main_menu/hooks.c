@@ -1,40 +1,5 @@
 #include "../includes/main_menu.h"
 
-void	animate_menu(void *tmp)
-{
-	t_menu			*menu;
-	struct timeval	time;
-	long			now;
-	int				i;
-
-	if (gettimeofday(&time, NULL) == -1)
-		ft_error("Error while reading the time", NULL);
-	now = time.tv_sec * 1000 + time.tv_usec / 1000;
-	menu = tmp;
-	if (menu->in_menu == false)
-		return ;
-	if (now > menu->back_seconds + 150)
-	{
-		menu->back_seconds = now;
-		i = 0;
-		while (i < 6)
-		{
-			menu->imgs[i]->enabled = false;
-			i++;
-		}
-		menu->imgs[menu->back_frame]->enabled = true;
-		menu->back_frame++;
-		if (menu->back_frame > 5)
-			menu->back_frame = 0;
-	}
-	if (now > menu->scroll_seconds + 15 && menu->in_settings == true)
-	{
-		menu->scroll_seconds = now;
-		if (menu->scroll_frame < 33)
-			animate_scroll(menu);
-	}
-}
-
 void	hover_buttons(double x, double y, void *tmp)
 {
 	t_game	*game;

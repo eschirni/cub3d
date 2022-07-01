@@ -1,6 +1,6 @@
 #include "includes/cub3d.h"
 
-void	calc_rotate(t_game *game, float rotation, int n)
+void	calc_rotate(t_game *game, float rotation, int n) // only draw the tiles max around the player for the minimap, that way we can use the same calculations, but draw the minimap and 3d the same way
 {
 	int		x;
 	int		y;
@@ -22,7 +22,7 @@ void	calc_rotate(t_game *game, float rotation, int n)
 	game->chars[n]->a[1] = game->chars[n]->d[1] * -1;
 }
 
-static void	set_coords(t_game *game, int addX, int addY) //check for every point in between, so you can't go through corners
+static void	set_coords(t_game *game, int addX, int addY)
 {
 	int		pos_x;
 	int		pos_y;
@@ -57,11 +57,8 @@ static void	mouse_rotate(t_game *game)
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 }
 
-void	hook(void *tmp)
+static void	check_keys(t_game *game)
 {
-	t_game	*game;
-
-	game = tmp;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
@@ -73,10 +70,24 @@ void	hook(void *tmp)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 		set_coords(game, game->chars[0]->d[0], game->chars[0]->d[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		calc_rotate(game, -0.03f, 0);
+		game->chars[0]->pa -= 0.03f;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		calc_rotate(game, 0.03f, 0);
-	mouse_rotate(game);
-	calc_rotate(game, 0.0f, 0); //if I destroy and create a new image it will only display the last one!
-	draw_game(game->chars[0]->ray, game, game->chars[0]->img->instances[0].x + 8, game->chars[0]->img->instances[0].y + 8);
+		game->chars[0]->pa += 0.03f;
+}
+
+void	fps(void *tmp)
+{
+	t_game	*game;
+
+	game = tmp;
+
+	if (game->menu->in_menu == true)
+		animate_menu(game->menu);
+	else
+	{
+		mouse_rotate(game);
+		check_keys(game);
+		calc_rotate(game, 0.0f, 0);
+		draw_game(game->chars[0]->ray, game, game->chars[0]->img->instances[0].x + 8, game->chars[0]->img->instances[0].y + 8);
+	}
 }
