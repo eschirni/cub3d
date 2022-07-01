@@ -5,19 +5,19 @@ static void	get_map_textures(t_game *game)
 	mlx_texture_t	*text;
 
 	text = mlx_load_png("./sprites/tile_floor.png");
-	game->floor = mlx_texture_to_image(game->mlx, text);
+	game->map->floor = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->floor, 32, 32))
+	if (!mlx_resize_image(game->map->floor, 32, 32))
 		ft_error("can't resize image", NULL);
 	text = mlx_load_png("./sprites/tile_wall.png");
-	game->wall = mlx_texture_to_image(game->mlx, text);
+	game->map->wall = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->wall, 32, 32))
+	if (!mlx_resize_image(game->map->wall, 32, 32))
 		ft_error("can't resize image", NULL);
 	text = mlx_load_png("./sprites/tile_water.png");
-	game->out = mlx_texture_to_image(game->mlx, text);
+	game->map->out = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->out, 32, 32))
+	if (!mlx_resize_image(game->map->out, 32, 32))
 		ft_error("can't resize image", NULL);
 }
 
@@ -82,15 +82,15 @@ static void	draw_tiles(t_game *game, char **arr)
 		while (arr[i][j])
 		{
 			if (arr[i][j] == '0')
-				mlx_image_to_window(game->mlx, game->floor, j * 32, i * 32);
+				mlx_image_to_window(game->mlx, game->map->floor, j * 32, i * 32);
 			else if (arr[i][j] == '1')
-				mlx_image_to_window(game->mlx, game->wall, j * 32, i * 32);
+				mlx_image_to_window(game->mlx, game->map->wall, j * 32, i * 32);
 			else if (arr[i][j] == '2')
-				mlx_image_to_window(game->mlx, game->out, j * 32, i * 32);
+				mlx_image_to_window(game->mlx, game->map->out, j * 32, i * 32);
 			else if (is_char_obj(arr[i][j]) == true)
 			{
 				game->n_chars++;
-				mlx_image_to_window(game->mlx, game->floor, j * 32, i * 32);
+				mlx_image_to_window(game->mlx, game->map->floor, j * 32, i * 32);
 			}
 			j++;
 		}

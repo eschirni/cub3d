@@ -13,8 +13,9 @@ void	start_game(t_game *game)
 		i++;
 	}
 	draw_map(game, game->map, game->map->player);
-	draw_crosshair(game->mlx, 0xFFFFFFAA);
+	draw_crosshair(game, 0xFFFFFFAA);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
+	printf("test\n");
 }
 
 void	load_png(t_game *game, int pos, char *name, bool enabled)

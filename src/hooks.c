@@ -46,6 +46,32 @@ static void	set_coords(t_game *game, int addX, int addY)
 	calc_rotate(game, 0.0f, 0);
 }
 
+static void	back_to_menu(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	game->crosshair->enabled = false;
+	game->map->floor->enabled = false;
+	game->map->out->enabled = false;
+	game->map->wall->enabled = false;
+	game->chars[0]->ray->img->enabled = false;
+	game->menu->imgs[6]->enabled = true;
+	game->menu->imgs[7]->enabled = true;
+	game->menu->imgs[9]->enabled = true;
+	game->menu->imgs[11]->enabled = true;
+	while (i < game->n_chars)
+	{
+		game->chars[i]->img->enabled = false;
+		i++;
+	}
+	game->menu->back_frame = 0;
+	game->menu->scroll_frame = 13;
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
+	game->menu->in_menu = true;
+	game->game_img->enabled = false;
+}
+
 static void	mouse_rotate(t_game *game)
 {
 	int	x;
@@ -60,7 +86,7 @@ static void	mouse_rotate(t_game *game)
 static void	check_keys(t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(game->mlx);
+		back_to_menu(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		set_coords(game, game->chars[0]->w[0], game->chars[0]->w[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))

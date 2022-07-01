@@ -6,11 +6,11 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/01 20:51:49 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/01 21:33:33 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//todo: one mlx_loop only, draw live instead of creating a new image every second,  back to main menu
+//todo: draw live instead of creating a new image every second,  back to main menu
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -57,6 +57,9 @@ typedef struct s_map
 	float		player[2];
 	int			x;
 	int			y;
+	mlx_image_t	*floor;
+	mlx_image_t	*out;
+	mlx_image_t	*wall;
 }				t_map;
 
 typedef struct s_menu
@@ -65,9 +68,9 @@ typedef struct s_menu
 	bool		in_settings;
 	int			back_frame;
 	int			scroll_frame;
-	mlx_image_t	*imgs[33];
 	long		back_seconds;
 	long		scroll_seconds;
+	mlx_image_t	*imgs[33];
 }				t_menu;
 
 typedef struct s_game
@@ -77,9 +80,7 @@ typedef struct s_game
 	t_menu		*menu;
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
-	mlx_image_t	*floor;
-	mlx_image_t	*out;
-	mlx_image_t	*wall;
+	mlx_image_t	*crosshair;
 	int			n_chars;
 }				t_game;
 
@@ -109,7 +110,7 @@ void		draw_chars(t_game *game, char **map);
 void		draw_game(t_ray *ray, t_game *game, int x, int y);
 void		draw_map(t_game *game, t_map *map, float player[2]);
 void		draw_line(t_ray *ray, mlx_image_t *img, int color);
-void		draw_crosshair(mlx_t *mlx, int color);
+void		draw_crosshair(t_game *game, int color);
 
 /* hooks */
 void		calc_rotate(t_game *game, float rotation, int n);

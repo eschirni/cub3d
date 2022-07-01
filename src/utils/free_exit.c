@@ -35,10 +35,11 @@ void	free_exit(t_map *map, t_game *game)
 	free_arrs(game);
 	if (game->menu->in_menu == false)
 	{
-		mlx_delete_image(game->mlx, game->floor);
-		mlx_delete_image(game->mlx, game->wall);
-		mlx_delete_image(game->mlx, game->out);
+		mlx_delete_image(game->mlx, game->map->floor);
+		mlx_delete_image(game->mlx, game->map->wall);
+		mlx_delete_image(game->mlx, game->map->out);
 		mlx_delete_image(game->mlx, game->game_img);
+		mlx_delete_image(game->mlx, game->crosshair);
 	}
 	mlx_terminate(game->mlx);
 	free(game->menu);

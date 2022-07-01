@@ -44,15 +44,14 @@ static int	check_angle(float angle)
 	return (1);
 }
 
-void	draw_crosshair(mlx_t *mlx, int color)
+void	draw_crosshair(t_game *game, int color)
 {
 	int			x;
 	int			y;
 	float		angle;
-	mlx_image_t	*img;
 
 	angle = (float)M_PI / 180 * -1;
-	img = mlx_new_image(mlx, 30, 30);
+	game->crosshair = mlx_new_image(game->mlx, 30, 30);
 	while (angle <= (float)M_PI * 2)
 	{
 		angle += (float)M_PI / 180;
@@ -60,11 +59,11 @@ void	draw_crosshair(mlx_t *mlx, int color)
 			continue ;
 		x = 15 + 15 * cos(angle);
 		y = 15 + 15 * sin(angle);
-		mlx_put_pixel(img, x, y, color);
+		mlx_put_pixel(game->crosshair, x, y, color);
 		x = 15 + 9 * cos(angle);
 		y = 15 + 9 * sin(angle);
-		mlx_put_pixel(img, x, y, color);
+		mlx_put_pixel(game->crosshair, x, y, color);
 	}
-	draw_cross(img, color, 0, 0);
-	mlx_image_to_window(mlx, img, WIDTH / 2 - 15, HEIGHT / 2 - 15); //free img
+	draw_cross(game->crosshair, color, 0, 0);
+	mlx_image_to_window(game->mlx, game->crosshair, WIDTH / 2 - 15, HEIGHT / 2 - 15); //free img
 }
