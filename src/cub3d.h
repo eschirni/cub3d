@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/01 01:45:46 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/01 03:22:26 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_menu
 {
 	bool		in_menu;
 	int			frame;
-	mlx_image_t	*imgs[13];
+	mlx_image_t	*imgs[33];
 	long		seconds;
 }				t_menu;
 

@@ -7,7 +7,7 @@ void	start_game(t_game *game)
 	i = 0;
 	game->menu->in_menu = false;
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
-	while (i < 13)
+	while (i < 33)
 	{
 		game->menu->imgs[i]->enabled = false;
 		i++;
@@ -50,7 +50,7 @@ static void	create_background(t_game *game)
 {
 	int	i;
 
-	load_png(game, 0, "./sprites/main/back/background.png", false);
+	load_png(game, 0, "./sprites/main/back/background.png", true);
 	load_png(game, 1, "./sprites/main/back/background1.png", false);
 	load_png(game, 2, "./sprites/main/back/background2.png", false);
 	load_png(game, 3, "./sprites/main/back/background3.png", false);
@@ -75,6 +75,7 @@ void	main_menu(t_game *game)
 		ft_error("Malloc error!", NULL);
 	create_background(game);
 	create_buttons(game);
+	init_settings(game);
 	game->menu->seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
 	game->menu->frame = 0;
 	game->menu->in_menu = true;

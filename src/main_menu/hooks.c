@@ -75,7 +75,7 @@ void	menu_buttons(mouse_key_t k, action_t act, modifier_key_t mod, void *tmp)
 		if (x >= 120 && x <= 461 && y >= 250 && y <= 315)
 			start_game(game);
 		else if (x >= 120 && x <= 374 && y >= 350 && y <= 415)
-			printf("settings\n");
+			animate_scroll(game);
 		else if (x >= 120 && x <= 238 && y >= 450 && y <= 506)
 			mlx_close_window(game->mlx);
 	}
