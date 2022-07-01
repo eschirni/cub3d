@@ -67,9 +67,9 @@ static void	back_to_menu(t_game *game)
 	}
 	game->menu->back_frame = 0;
 	game->menu->scroll_frame = 13;
+	game->menu->in_settings = false;
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
 	game->menu->in_menu = true;
-	game->game_img->enabled = false;
 }
 
 static void	mouse_rotate(t_game *game)
@@ -108,7 +108,10 @@ void	fps(void *tmp)
 	game = tmp;
 
 	if (game->menu->in_menu == true)
+	{
 		animate_menu(game->menu);
+		game->game_img->enabled = false;
+	}
 	else
 	{
 		mouse_rotate(game);

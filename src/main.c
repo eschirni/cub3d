@@ -18,6 +18,7 @@ static t_game	*init_game(t_map *map)
 	cursor = mlx_create_cursor(curs_tex);
 	mlx_delete_texture(curs_tex);
 	mlx_set_cursor(game->mlx, cursor);
+	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	return (game);
 }
 
