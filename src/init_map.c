@@ -46,7 +46,7 @@ static void	mark_player(t_map *map)
 		j = map->x - 1;
 		while (j >= 0)
 		{
-			if (is_char_obj(map->map_arr[i][j]))
+			if (is_char_obj(map->big_map[i][j]))
 			{
 				map->player[0] = j * 32 + 8;
 				map->player[1] = i * 32 + 8;
@@ -69,17 +69,17 @@ t_map	*init_map(char *mapfile)
 		ft_error("invalid map: ", mapfile);
 	map = malloc(sizeof(t_map));
 	map->y = get_size(mapfile);
-	map->map_arr = malloc(sizeof(char *) * map->y + 1);
-	if (!map->map_arr)
+	map->big_map = malloc(sizeof(char *) * map->y + 1);
+	if (!map->big_map)
 		ft_error("malloc failed", NULL);
 	i = 0;
 	while (i <= map->y)
 	{
-		map->map_arr[i] = get_next_line(fd);
+		map->big_map[i] = get_next_line(fd);
 		i++;
 	}
 	close (fd);
-	map->x = ft_strlen_sl(map->map_arr[0]);
+	map->x = ft_strlen_sl(map->big_map[0]);
 	mark_player(map);
 	return (map);
 }

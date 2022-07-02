@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/02 02:00:56 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/02 04:47:47 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ typedef struct s_char
 
 typedef struct s_map
 {
-	char		**map_arr;
+	char		**big_map;
+	char		**minimap;
 	float		player[2];
 	int			x;
 	int			y;

@@ -5,9 +5,15 @@ static void	free_arrs(t_game *game)
 	int	i;
 
 	i = 0;
-	while (game->map->map_arr[i] != NULL)
+	while (game->map->big_map[i] != NULL)
 	{
-		free(game->map->map_arr[i]);
+		free(game->map->big_map[i]);
+		i++;
+	}
+	i = 0;
+	while (game->map->minimap[i] != NULL)
+	{
+		free(game->map->minimap[i]);
 		i++;
 	}
 	i = 0;
@@ -39,6 +45,7 @@ void	free_exit(t_map *map, t_game *game)
 	mlx_terminate(game->mlx);
 	free(game->menu);
 	free(game);
-	free(map->map_arr);
+	free(map->big_map);
+	free(map->minimap);
 	free(map);
 }

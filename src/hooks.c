@@ -37,7 +37,7 @@ static void	set_coords(t_game *game, int addX, int addY)
 	{
 		circle_x = (pos_x + 4 * cos(angle));
 		circle_y = (pos_y + 4 * sin(angle));
-		if (game->map->map_arr[circle_y / 32][circle_x / 32] == '1')
+		if (game->map->big_map[circle_y / 32][circle_x / 32] == '1')
 			return ;
 		angle += (float)M_PI / 18;
 	}

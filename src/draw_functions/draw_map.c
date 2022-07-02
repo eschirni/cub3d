@@ -58,8 +58,8 @@ static char	**surroundings(t_map *map, int px, int py)
 		{
 			ret[i][j] = '2';
 			if (x < map->x && py < map->y && x >= 0 && py >= 0
-				&& map->map_arr[py][x] != ' ')
-				ret[i][j] = map->map_arr[py][x];
+				&& map->big_map[py][x] != ' ')
+				ret[i][j] = map->big_map[py][x];
 			x++;
 			j++;
 		}
@@ -76,7 +76,7 @@ static void	draw_tiles(t_game *game, char **arr)
 	int		j;
 
 	i = 0;
-	while (arr[i] != NULL) //If we want to do smth with the tiles afterwards, safe them in array
+	while (arr[i] != NULL)
 	{
 		j = 0;
 		while (arr[i][j])
@@ -101,17 +101,9 @@ static void	draw_tiles(t_game *game, char **arr)
 void	draw_map(t_game *game, t_map *map, float player[2])
 {
 	int		i;
-	char	**arr;
 
 	get_map_textures(game);
-	arr = surroundings(map, player[0] / 32 - 4, player[1] / 32 - 4);
-	draw_tiles(game, arr);
-	draw_chars(game, arr);
-	i = 0;
-	while (arr[i] != NULL)
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
+	map->minimap = surroundings(map, player[0] / 32 - 4, player[1] / 32 - 4);
+	draw_tiles(game, map->minimap);
+	draw_chars(game, map->minimap);
 }
