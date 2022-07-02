@@ -2,11 +2,11 @@
 
 void	calc_rotate(t_game *game, float rotation, int n) // only draw the tiles max around the player for the minimap, that way we can use the same calculations, but draw the minimap and 3d the same way
 {
-	int		x;
-	int		y;
+	float		x;
+	float		y;
 
-	x = game->chars[n]->img->instances[0].x;
-	y = game->chars[n]->img->instances[0].y;
+	x = game->map->player[0];
+	y = game->map->player[1];
 	game->chars[n]->pa += rotation;
 	if (game->chars[n]->pa < 0)
 		game->chars[n]->pa += (float)M_PI * 2;
@@ -30,8 +30,8 @@ static void	set_coords(t_game *game, int addX, int addY)
 	int		circle_y;
 	float	angle;
 
-	pos_x = game->chars[0]->img->instances[0].x + 8 + addX;
-	pos_y = game->chars[0]->img->instances[0].y + 8 + addY;
+	pos_x = game->map->player[0] + addX;
+	pos_y = game->map->player[1] + addY;
 	angle = 0;
 	while (angle <= (float)M_PI * 2)
 	{
@@ -41,9 +41,8 @@ static void	set_coords(t_game *game, int addX, int addY)
 			return ;
 		angle += (float)M_PI / 18;
 	}
-	game->chars[0]->img->instances[0].x += addX;
-	game->chars[0]->img->instances[0].y += addY;
-	calc_rotate(game, 0.0f, 0);
+	game->map->player[0] += addX;
+	game->map->player[1] += addY;
 }
 
 static void	mouse_rotate(t_game *game)
@@ -95,6 +94,6 @@ void	fps(void *tmp)
 		mouse_rotate(game);
 		check_keys(game);
 		calc_rotate(game, 0.0f, 0);
-		draw_game(game->chars[0]->ray, game, game->chars[0]->img->instances[0].x + 8, game->chars[0]->img->instances[0].y + 8);
+		draw_game(game->chars[0]->ray, game, game->map->player[0], game->map->player[1]);
 	}
 }
