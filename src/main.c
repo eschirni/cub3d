@@ -27,6 +27,7 @@ static t_game	*init_game(t_map *map)
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	draw_map(game, game->map, game->map->player);
 	draw_crosshair(game, 0xFFFFFFAA);
+	game->crosshair->instances[0].z = 20;
 	return (game);
 }
 

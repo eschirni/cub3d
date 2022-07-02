@@ -22,7 +22,9 @@ static void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 		ray->start[1] = HEIGHT / 2 - line_height / 2;
 		ray->end[0] = *line_x;
 		ray->end[1] = ray->start[1] + line_height;
-		draw_line(ray, game->game_img, ray->color);
+		if (ray->start[0] < MINIMAP && ray->start[1] < MINIMAP)
+			ray->start[1] = MINIMAP;
+		draw_line(ray, game->game_img, 0x1a2229FF);
 		*line_x += 1;
 		count_x++;
 	}
@@ -59,7 +61,7 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	i = 0;
 	line_x = 0;
-	reset_img(ray->img, MINIMAP - 1, MINIMAP - 1);
+	reset_img(ray->img, MINIMAP, MINIMAP);
 	while (i < game->settings->fov)
 	{
 		ray->ra += (float)M_PI / 180 / game->settings->graphics;
@@ -68,11 +70,16 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 		ray->dist = calc_rays(ray, game->map, x, y);
 		ray->start[0] = 144;
 		ray->start[1] = 144;
-		draw_line(ray, ray->img, 0xbad129); //draw ray
+		if (ray->end[0] > MINIMAP)
+			ray->end[0] = MINIMAP;
+		if (ray->end[1] > MINIMAP)
+			ray->end[1] = MINIMAP;
+		draw_line(ray, ray->img, ray->color); //draw ray
 		draw_3d(game, ray, 0, &line_x);
 		i++;
 	}
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
+	game->game_img->instances[0].z = 2;
 }
 
 // void	draw_game(t_ray *ray, t_game *game, int x, int y)

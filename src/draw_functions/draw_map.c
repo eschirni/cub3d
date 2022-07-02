@@ -72,38 +72,42 @@ static char	**surroundings(t_map *map, int px, int py)
 
 static void	draw_tiles(t_game *game, char **arr)
 {
-	int		i;
-	int		j;
+	// int		i;
+	// int		j;
 
-	i = 0;
-	while (arr[i] != NULL)
-	{
-		j = 0;
-		while (arr[i][j])
-		{
-			if (arr[i][j] == '0')
-				mlx_image_to_window(game->mlx, game->map->floor, j * 32, i * 32);
-			else if (arr[i][j] == '1')
-				mlx_image_to_window(game->mlx, game->map->wall, j * 32, i * 32);
-			else if (arr[i][j] == '2')
-				mlx_image_to_window(game->mlx, game->map->out, j * 32, i * 32);
-			else if (is_char_obj(arr[i][j]) == true)
-			{
-				game->n_chars++;
-				mlx_image_to_window(game->mlx, game->map->floor, j * 32, i * 32);
-			}
-			j++;
-		}
-		i++;
-	}
+	// i = 0;
+	// while (arr[i] != NULL)
+	// {
+	// 	j = 0;
+	// 	while (arr[i][j])
+	// 	{
+	// 		if (arr[i][j] == '0')
+	// 			mlx_image_to_window(game->mlx, game->map->floor, j * 32, i * 32);
+	// 		else if (arr[i][j] == '1')
+	// 			mlx_image_to_window(game->mlx, game->map->wall, j * 32, i * 32);
+	// 		else if (arr[i][j] == '2')
+	// 			mlx_image_to_window(game->mlx, game->map->out, j * 32, i * 32);
+	// 		else if (is_char_obj(arr[i][j]) == true)
+	// 		{
+	// 			game->n_chars++;
+	// 			mlx_image_to_window(game->mlx, game->map->floor, j * 32, i * 32);
+	// 		}
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	mlx_image_to_window(game->mlx, game->map->out, -100, -100);
+	mlx_image_to_window(game->mlx, game->map->floor, -1000, -1000);
+	mlx_image_to_window(game->mlx, game->map->wall, 100, 100);
+	mlx_image_to_window(game->mlx, game->map->out, 1000, 1000);
+	game->n_chars = 4;
+	arr[0][0] = '1';
 }
 
 void	draw_map(t_game *game, t_map *map, float player[2])
 {
-	int		i;
-
 	get_map_textures(game);
 	map->minimap = surroundings(map, (int)player[0] / 32 * 32 / 32 - 4, (int)player[1] / 32 * 32 / 32 - 4);
-	draw_tiles(game, map->minimap);
-	draw_chars(game, map->minimap);
+	draw_tiles(game, map->big_map);
+	draw_chars(game, map->big_map);
 }

@@ -13,6 +13,7 @@ void	to_menu(t_game *game)
 	game->menu->imgs[7]->enabled = true;
 	game->menu->imgs[9]->enabled = true;
 	game->menu->imgs[11]->enabled = true;
+	i = 0;
 	while (i < game->n_chars)
 	{
 		game->chars[i]->img->enabled = false;
