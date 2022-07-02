@@ -59,6 +59,7 @@ void	main_menu(t_game *game)
 	create_background(game);
 	create_buttons(game);
 	init_settings(game);
+	game->menu->scroll_mode = 'N';
 	game->menu->back_seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
 	game->menu->scroll_seconds = game->menu->back_seconds;
 	to_menu(game);

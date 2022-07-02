@@ -6,11 +6,11 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/02 01:54:07 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/02 02:00:56 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//todo: draw live instead of creating a new image every second,  back to main menu
+//todo: draw live instead of creating a new image every second
 
 #ifndef CUB3D_H
 # define CUB3D_H
