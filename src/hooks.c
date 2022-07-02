@@ -12,12 +12,12 @@ void	calc_rotate(t_game *game, float rotation, int n) // only draw the tiles max
 		game->chars[n]->pa += (float)M_PI * 2;
 	else if (game->chars[n]->pa >= (float)M_PI * 2)
 		game->chars[n]->pa -= (float)M_PI * 2;
-	game->chars[n]->w[0] = roundf(cos(game->chars[n]->pa) * 3);
-	game->chars[n]->w[1] = roundf(sin(game->chars[n]->pa) * 3);
+	game->chars[n]->w[0] = roundf(cos(game->chars[n]->pa) * game->ps);
+	game->chars[n]->w[1] = roundf(sin(game->chars[n]->pa) * game->ps);
 	game->chars[n]->s[0] = game->chars[n]->w[0] * -1;
 	game->chars[n]->s[1] = game->chars[n]->w[1] * -1;
-	game->chars[n]->d[0] = roundf(cos(game->chars[n]->pa + (float)M_PI_2) * 3);
-	game->chars[n]->d[1] = roundf(sin(game->chars[n]->pa + (float)M_PI_2) * 3);
+	game->chars[n]->d[0] = roundf(cos(game->chars[n]->pa + (float)M_PI_2) * game->ps);
+	game->chars[n]->d[1] = roundf(sin(game->chars[n]->pa + (float)M_PI_2) * game->ps);
 	game->chars[n]->a[0] = game->chars[n]->d[0] * -1;
 	game->chars[n]->a[1] = game->chars[n]->d[1] * -1;
 }
@@ -73,6 +73,10 @@ static void	check_keys(t_game *game)
 		game->chars[0]->pa -= 0.03f;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		game->chars[0]->pa += 0.03f;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
+		game->ps = 4;
+	else
+		game->ps = 2;
 }
 
 void	fps(void *tmp)

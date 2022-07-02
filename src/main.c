@@ -12,6 +12,12 @@ static t_game	*init_game(t_map *map)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", false);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
+	game->settings = malloc(sizeof(t_settings));
+	if (game == NULL)
+		ft_error("allocation error", NULL);
+	game->settings->rs = 1.0f;
+	game->settings->fov = 1.0f;
+	game->settings->graphics = 1.0f;
 	game->n_chars = 0;
 	game->map = map;
 	curs_tex = mlx_load_png("./sprites/cursor.png");

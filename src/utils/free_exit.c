@@ -44,6 +44,7 @@ void	free_exit(t_map *map, t_game *game)
 	mlx_delete_image(game->mlx, game->crosshair);
 	mlx_terminate(game->mlx);
 	free(game->menu);
+	free(game->settings);
 	free(game);
 	free(map->big_map);
 	free(map->minimap);
