@@ -15,7 +15,7 @@ static void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 	line_height = 32 * HEIGHT / ray->dist;
 	if (line_height >= HEIGHT)
 		line_height = HEIGHT - 1;
-	line_width = WIDTH / 960;
+	line_width = WIDTH / game->settings->fov;
 	while (count_x < line_width)
 	{
 		ray->start[0] = *line_x;
@@ -60,9 +60,9 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 	i = 0;
 	line_x = 0;
 	reset_img(ray->img, MINIMAP - 1, MINIMAP - 1);
-	while (i < 960)
+	while (i < game->settings->fov)
 	{
-		ray->ra += (float)M_PI / 180 / 16;
+		ray->ra += (float)M_PI / 180 / game->settings->graphics;
 		if (ray->ra >= (float)M_PI * 2)
 			ray->ra -= (float)M_PI * 2;
 		ray->dist = calc_rays(ray, game->map, x, y);

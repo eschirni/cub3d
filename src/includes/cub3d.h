@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/02 19:10:43 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/02 19:48:54 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ typedef struct s_menu
 
 typedef struct s_settings
 {
+	int			fov;
+	int			graphics;
 	float		rs;
-	float		fov;
-	float		graphics;
 }				t_settings;
 
 typedef struct s_game
