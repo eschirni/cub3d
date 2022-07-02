@@ -47,7 +47,7 @@ static void	create_background(t_game *game)
 }
 
 //continue button when already started the game
-void	main_menu(t_game *game) //only allow to start the game when the settings are closed
+void	main_menu(t_game *game)
 {
 	struct timeval	time;
 

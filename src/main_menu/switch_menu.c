@@ -20,7 +20,6 @@ void	to_menu(t_game *game)
 	}
 	game->menu->back_frame = 0;
 	game->menu->scroll_frame = 13;
-	game->menu->in_settings = false;
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
 	game->menu->in_menu = true;
 }
@@ -29,6 +28,11 @@ void	to_game(t_game *game)
 {
 	int	i;
 
+	if (game->menu->scroll_mode != 'N')
+	{
+		game->menu->scroll_mode = 'C';
+		return ;
+	}
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
 	game->crosshair->enabled = true;
 	game->map->floor->enabled = true;

@@ -46,7 +46,12 @@ void	menu_buttons(mouse_key_t k, action_t act, modifier_key_t mod, void *tmp)
 		if (x >= 120 && x <= 461 && y >= 250 && y <= 315)
 			to_game(game);
 		else if (x >= 120 && x <= 374 && y >= 350 && y <= 415)
-			game->menu->in_settings = true;
+		{
+			if (game->menu->scroll_mode == 'O')
+				game->menu->scroll_mode = 'C';
+			else
+				game->menu->scroll_mode = 'O';
+		}
 		else if (x >= 120 && x <= 238 && y >= 450 && y <= 506)
 			mlx_close_window(game->mlx);
 	}

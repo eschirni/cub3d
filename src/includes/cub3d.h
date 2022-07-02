@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/02 00:50:25 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/02 01:54:07 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_map
 typedef struct s_menu
 {
 	bool		in_menu;
-	bool		in_settings;
+	char		scroll_mode;
 	int			back_frame;
 	int			scroll_frame;
 	long		back_seconds;
