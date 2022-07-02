@@ -103,7 +103,7 @@ void	draw_map(t_game *game, t_map *map, float player[2])
 	int		i;
 
 	get_map_textures(game);
-	map->minimap = surroundings(map, player[0] / 32 - 4, player[1] / 32 - 4);
+	map->minimap = surroundings(map, (int)player[0] / 32 * 32 / 32 - 4, (int)player[1] / 32 * 32 / 32 - 4);
 	draw_tiles(game, map->minimap);
 	draw_chars(game, map->minimap);
 }

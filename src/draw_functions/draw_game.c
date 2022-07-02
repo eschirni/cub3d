@@ -50,6 +50,7 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 {
 	int		i;
 	int		line_x;
+	int		tmp_start[2]; //dunno if neccesary
 
 	ray->ra = game->chars[0]->pa - 30 * ((float)M_PI / 180);
 	if (ray->ra < 0)
@@ -66,7 +67,13 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 		if (ray->ra >= (float)M_PI * 2)
 			ray->ra -= (float)M_PI * 2;
 		ray->dist = calc_rays(ray, game->map, x, y);
+		tmp_start[0] = ray->start[0];
+		tmp_start[1] = ray->start[1];
+		ray->start[0] = 144;
+		ray->start[1] = 144;
 		draw_line(ray, ray->img, 0xbad129); //draw ray
+		ray->start[0] = tmp_start[0];
+		ray->start[1] = tmp_start[1];
 		draw_3d(game, ray, 0, &line_x);
 		i++;
 	}

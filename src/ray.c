@@ -79,11 +79,9 @@ float	calc_rays(t_ray *ray, t_map *map, int x, int y)
 	float	dist_h;
 	float	dist_v;
 	int		end_h[2];
-	int		dof;
 
 	ray->start[0] = x;
 	ray->start[1] = y;
-	dof = 20;
 	dist_h = calc_horizontal(ray, map, x, y);
 	end_h[0] = ray->end[0];
 	end_h[1] = ray->end[1];
