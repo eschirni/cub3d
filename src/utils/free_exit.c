@@ -11,12 +11,6 @@ static void	free_arrs(t_game *game)
 		i++;
 	}
 	i = 0;
-	while (game->map->minimap[i] != NULL)
-	{
-		free(game->map->minimap[i]);
-		i++;
-	}
-	i = 0;
 	while (i < 33)
 	{
 		mlx_delete_image(game->mlx, game->menu->imgs[i]);
@@ -47,6 +41,5 @@ void	free_exit(t_map *map, t_game *game)
 	free(game->settings);
 	free(game);
 	free(map->big_map);
-	free(map->minimap);
 	free(map);
 }

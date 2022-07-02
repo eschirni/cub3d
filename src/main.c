@@ -25,9 +25,9 @@ static t_game	*init_game(t_map *map)
 	mlx_delete_texture(curs_tex);
 	mlx_set_cursor(game->mlx, cursor);
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	draw_map(game, game->map, game->map->player);
-	draw_crosshair(game, 0xFFFFFFAA);
-	game->crosshair->instances[0].z = 20;
+	get_map_textures(game);
+	draw_map(game, game->map);
+	draw_crosshair(game, 0xFFFFFFAA); //behind game :c
 	return (game);
 }
 

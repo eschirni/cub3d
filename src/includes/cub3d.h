@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/02 21:05:21 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/03 00:20:22 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_char
 typedef struct s_map
 {
 	char		**big_map;
-	char		**minimap;
 	float		player[2];
 	int			x;
 	int			y;
@@ -118,9 +117,10 @@ int			check_file(char *file);
 /* draw functions */
 void		draw_chars(t_game *game, char **map);
 void		draw_game(t_ray *ray, t_game *game, int x, int y);
-void		draw_map(t_game *game, t_map *map, float player[2]);
+void		draw_map(t_game *game, t_map *map);
 void		draw_line(t_ray *ray, mlx_image_t *img, int color);
 void		draw_crosshair(t_game *game, int color);
+void		get_map_textures(t_game *game);
 
 /* hooks */
 void		calc_rotate(t_game *game, float rotation, int n);

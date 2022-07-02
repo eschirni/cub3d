@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-static void	get_map_textures(t_game *game)
+void	get_map_textures(t_game *game)
 {
 	mlx_texture_t	*text;
 
@@ -21,93 +21,42 @@ static void	get_map_textures(t_game *game)
 		ft_error("can't resize image", NULL);
 }
 
-static char	**create_array(void)
-{
-	int		i;
-	char	**ret;
-
-	ret = malloc(9 * sizeof(char *));
-	if (ret == NULL)
-		ft_error("malloc failed", NULL);
-	i = 0;
-	while (i < 9)
-	{
-		ret[i] = malloc(9 * sizeof(char));
-		if (ret[i] == NULL)
-			ft_error("malloc failed", NULL);
-		i++;
-	}
-	ret[i] = NULL;
-	return (ret);
-}
-
-static char	**surroundings(t_map *map, int px, int py)
-{
-	int		i;
-	int		j;
-	int		x;
-	char	**ret;
-
-	i = 0;
-	ret = create_array();
-	while (i < 9)
-	{
-		j = 0;
-		x = px;
-		while (j < 9)
-		{
-			ret[i][j] = '2';
-			if (x < map->x && py < map->y && x >= 0 && py >= 0
-				&& map->big_map[py][x] != ' ')
-				ret[i][j] = map->big_map[py][x];
-			x++;
-			j++;
-		}
-		ret[i][j] = '\0';
-		py++;
-		i++;
-	}
-	return (ret);
-}
-
 static void	draw_tiles(t_game *game, char **arr)
 {
-	// int		i;
-	// int		j;
+	int	i;
+	int	j;
+	int	x;
+	int	y;
 
-	// i = 0;
-	// while (arr[i] != NULL)
-	// {
-	// 	j = 0;
-	// 	while (arr[i][j])
-	// 	{
-	// 		if (arr[i][j] == '0')
-	// 			mlx_image_to_window(game->mlx, game->map->floor, j * 32, i * 32);
-	// 		else if (arr[i][j] == '1')
-	// 			mlx_image_to_window(game->mlx, game->map->wall, j * 32, i * 32);
-	// 		else if (arr[i][j] == '2')
-	// 			mlx_image_to_window(game->mlx, game->map->out, j * 32, i * 32);
-	// 		else if (is_char_obj(arr[i][j]) == true)
-	// 		{
-	// 			game->n_chars++;
-	// 			mlx_image_to_window(game->mlx, game->map->floor, j * 32, i * 32);
-	// 		}
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	mlx_image_to_window(game->mlx, game->map->out, -100, -100);
-	mlx_image_to_window(game->mlx, game->map->floor, -1000, -1000);
-	mlx_image_to_window(game->mlx, game->map->wall, 100, 100);
-	mlx_image_to_window(game->mlx, game->map->out, 1000, 1000);
-	game->n_chars = 4;
-	arr[0][0] = '1';
+	i = -4;
+	y = -128;
+	while (i < game->map->y + 4)
+	{
+		j = -4;
+		x = -128;
+		while (j < game->map->x + 4)
+		{
+			if (i < 0 || j < 0 || i >= game->map->y || j >= game->map->x)
+				mlx_image_to_window(game->mlx, game->map->out, x, y);
+			else if (arr[i][j] == '0')
+				mlx_image_to_window(game->mlx, game->map->floor, x, y);
+			else if (arr[i][j] == '1')
+				mlx_image_to_window(game->mlx, game->map->wall, x, y);
+			else if (is_char_obj(arr[i][j]) == true)
+			{
+				game->n_chars++;
+				mlx_image_to_window(game->mlx, game->map->floor, x, y);
+			}
+			j++;
+			x += 32;
+		}
+		i++;
+		y += 32;
+	}
 }
 
-void	draw_map(t_game *game, t_map *map, float player[2])
+void	draw_map(t_game *game, t_map *map) //draw the map with lower z value than the 3d instead of every frame
 {
-	get_map_textures(game);
-	map->minimap = surroundings(map, (int)player[0] / 32 * 32 / 32 - 4, (int)player[1] / 32 * 32 / 32 - 4);
 	draw_tiles(game, map->big_map);
 	draw_chars(game, map->big_map);
 }

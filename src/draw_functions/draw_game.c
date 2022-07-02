@@ -79,7 +79,6 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 		i++;
 	}
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
-	game->game_img->instances[0].z = 2;
 }
 
 // void	draw_game(t_ray *ray, t_game *game, int x, int y)
