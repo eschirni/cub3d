@@ -26,7 +26,6 @@ static t_game	*init_game(t_map *map)
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	get_map_textures(game);
 	draw_map(game, game->map);
-	draw_crosshair(game, 0xFFFFFFAA); //behind game :c
 	return (game);
 }
 

@@ -1,61 +1,5 @@
 #include "includes/cub3d.h"
 
-void	calc_rotate(t_game *game, float rotation, int n) // only draw the tiles max around the player for the minimap, that way we can use the same calculations, but draw the minimap and 3d the same way
-{
-	float		x;
-	float		y;
-
-	x = game->map->player[0];
-	y = game->map->player[1];
-	game->chars[n]->pa += rotation;
-	if (game->chars[n]->pa < 0)
-		game->chars[n]->pa += (float)M_PI * 2;
-	else if (game->chars[n]->pa >= (float)M_PI * 2)
-		game->chars[n]->pa -= (float)M_PI * 2;
-	game->chars[n]->w[0] = roundf(cos(game->chars[n]->pa) * game->ps);
-	game->chars[n]->w[1] = roundf(sin(game->chars[n]->pa) * game->ps);
-	game->chars[n]->s[0] = game->chars[n]->w[0] * -1;
-	game->chars[n]->s[1] = game->chars[n]->w[1] * -1;
-	game->chars[n]->d[0] = roundf(cos(game->chars[n]->pa + (float)M_PI_2) * game->ps);
-	game->chars[n]->d[1] = roundf(sin(game->chars[n]->pa + (float)M_PI_2) * game->ps);
-	game->chars[n]->a[0] = game->chars[n]->d[0] * -1;
-	game->chars[n]->a[1] = game->chars[n]->d[1] * -1;
-}
-
-static void	move_map(t_game *game, int addX, int addY)
-{
-	int	tmp;
-
-	tmp = 0;
-	while (tmp < game->map->floor->count)
-	{
-		game->map->floor->instances[tmp].x -= addX;
-		game->map->floor->instances[tmp].y -= addY;
-		tmp++;
-	}
-	tmp = 0;
-	while (tmp < game->map->wall->count)
-	{
-		game->map->wall->instances[tmp].x -= addX;
-		game->map->wall->instances[tmp].y -= addY;
-		tmp++;
-	}
-	tmp = 0;
-	while (tmp < game->map->out->count)
-	{
-		game->map->out->instances[tmp].x -= addX;
-		game->map->out->instances[tmp].y -= addY;
-		tmp++;
-	}
-	tmp = 1;
-	while (tmp < game->map->n_chars)
-	{
-		game->chars[tmp]->img->instances[0].x -= addX;
-		game->chars[tmp]->img->instances[0].y -= addY;
-		tmp++;
-	}
-}
-
 static void	set_coords(t_game *game, int addX, int addY)
 {
 	int		pos_x;
@@ -120,7 +64,6 @@ void	fps(void *tmp)
 	t_game	*game;
 
 	game = tmp;
-
 	if (game->menu->in_menu == true)
 	{
 		animate_menu(game->menu);
@@ -131,7 +74,7 @@ void	fps(void *tmp)
 		mouse_rotate(game);
 		check_keys(game);
 		calc_rotate(game, 0.0f, 0);
-		draw_game(game->chars[0]->ray, game, game->map->player[0], game->map->player[1]);
+		draw_game(game->chars[0]->ray, game, game->map->player);
 		draw_crosshair(game, 0xFFFFFF55);
 	}
 }

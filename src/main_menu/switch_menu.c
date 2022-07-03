@@ -24,20 +24,10 @@ void	to_menu(t_game *game)
 	game->menu->in_menu = true;
 }
 
-void	to_game(t_game *game)
+static void	disable_animation(t_game *game)
 {
 	int	i;
 
-	if (game->menu->scroll_mode != 'N')
-	{
-		game->menu->scroll_mode = 'C';
-		return ;
-	}
-	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
-	game->map->floor->enabled = true;
-	game->map->out->enabled = true;
-	game->map->wall->enabled = true;
-	game->chars[0]->ray->img->enabled = true;
 	i = 0;
 	while (i < 12)
 	{
@@ -50,6 +40,21 @@ void	to_game(t_game *game)
 		game->chars[i]->img->enabled = true;
 		i++;
 	}
+}
+
+void	to_game(t_game *game)
+{
+	if (game->menu->scroll_mode != 'N')
+	{
+		game->menu->scroll_mode = 'C';
+		return ;
+	}
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
+	game->map->floor->enabled = true;
+	game->map->out->enabled = true;
+	game->map->wall->enabled = true;
+	game->chars[0]->ray->img->enabled = true;
+	disable_animation(game);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 	game->menu->in_menu = false;
 }

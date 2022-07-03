@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/03 11:49:31 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/03 13:57:27 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,32 +103,34 @@ typedef struct s_mapgen
 }				t_mapgen;
 
 /* map parsing */
-t_map		*init_map(char *mapfile);
+t_map	*init_map(char *mapfile);
 
 /* char fuctions */
-void		set_direction(t_game *game, char direction, int n);
+void	set_direction(t_game *game, char direction, int n);
 
 /* utils */
-bool		is_char_obj(char c);
-void		free_exit(t_map *map, t_game *game);
-void		ft_error(char *msg, char *arg);
-int			ft_strlen(char *s);
-int			check_file(char *file);
+bool	is_char_obj(char c);
+void	free_exit(t_map *map, t_game *game);
+void	ft_error(char *msg, char *arg);
+int		ft_strlen(char *s);
+int		check_file(char *file);
 
 /* draw functions */
-void		draw_chars(t_game *game, char **map);
-void		draw_game(t_ray *ray, t_game *game, int x, int y);
-void		draw_map(t_game *game, t_map *map);
-void		draw_line(t_ray *ray, mlx_image_t *img, int color);
-void		draw_crosshair(t_game *game, int color);
-void		get_map_textures(t_game *game);
+void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);
+void	draw_chars(t_game *game, char **map);
+void	draw_game(t_ray *ray, t_game *game, float coords[2]);
+void	draw_map(t_game *game, t_map *map);
+void	draw_line(t_ray *ray, mlx_image_t *img, int color);
+void	draw_crosshair(t_game *game, int color);
+void	get_map_textures(t_game *game);
 
 /* hooks */
-void		calc_rotate(t_game *game, float rotation, int n);
-void		fps(void *tmp);
+void	calc_rotate(t_game *game, float rotation, int n);
+void	fps(void *tmp);
+void	move_map(t_game *game, int addX, int addY);
 
 /* rays */
-float		calc_rays(t_ray *ray, t_map *map, int x, int y);
+float	calc_rays(t_ray *ray, t_map *map, int x, int y);
 
 /* main menu */
 void	animate_menu(t_menu *menu);

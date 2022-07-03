@@ -1,56 +1,5 @@
 #include "../includes/cub3d.h"
 
-static void	draw_ground_sky(t_ray *ray, mlx_image_t *game_img)
-{
-	int	y;
-
-	y = 0;
-	if (ray->start[0] < MINIMAP)
-		y = MINIMAP;
-	while (y < ray->start[1])
-	{
-		mlx_put_pixel(game_img, ray->start[0], y, 0x1a6629FF);
-		y++;
-	}
-	y = ray->end[1] + 1;
-	while (y < HEIGHT)
-	{
-		mlx_put_pixel(game_img, ray->start[0], y, 0x1a0029FF);
-		y++;
-	}
-}
-
-static void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
-{
-	float	line_height;
-	float	line_width;
-	float	angle_distance;
-
-	angle_distance = game->chars[0]->pa - ray->ra;
-	if (angle_distance < 0)
-		angle_distance += (float)M_PI * 2;
-	else if (angle_distance >= (float) M_PI * 2)
-		angle_distance -= (float)M_PI * 2;
-	ray->dist *= cos(angle_distance);
-	line_height = 32 * HEIGHT / ray->dist;
-	if (line_height >= HEIGHT)
-		line_height = HEIGHT - 1;
-	line_width = WIDTH / game->settings->fov;
-	while (count_x < line_width)
-	{
-		ray->start[0] = *line_x;
-		ray->start[1] = HEIGHT / 2 - line_height / 2;
-		ray->end[0] = *line_x;
-		ray->end[1] = ray->start[1] + line_height;
-		if (ray->start[0] < MINIMAP && ray->start[1] < MINIMAP)
-			ray->start[1] = MINIMAP;
-		draw_line(ray, game->game_img, 0x1a2229FF);
-		draw_ground_sky(ray, game->game_img);
-		*line_x += 1;
-		count_x++;
-	}
-}
-
 static void	reset_img(mlx_image_t *img, int width, int height)
 {
 	int	x;
@@ -69,26 +18,17 @@ static void	reset_img(mlx_image_t *img, int width, int height)
 	}
 }
 
-void	draw_game(t_ray *ray, t_game *game, int x, int y)
+static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 {
-	int		i;
-	int		line_x;
+	int	line_x;
 
-	ray->ra = game->chars[0]->pa - 30 * ((float)M_PI / 180);
-	if (ray->ra < 0)
-		ray->ra += (float)M_PI * 2;
-	if (game->game_img)
-		mlx_delete_image(game->mlx, game->game_img);
-	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	i = 0;
 	line_x = 0;
-	reset_img(ray->img, MINIMAP, MINIMAP);
 	while (i < game->settings->fov)
 	{
 		ray->ra += (float)M_PI / 180 / game->settings->graphics;
 		if (ray->ra >= (float)M_PI * 2)
 			ray->ra -= (float)M_PI * 2;
-		ray->dist = calc_rays(ray, game->map, x, y);
+		ray->dist = calc_rays(ray, game->map, coords[0], coords[1]);
 		ray->start[0] -= game->map->player[0] - 144;
 		ray->start[1] -= game->map->player[1] - 144;
 		ray->end[0] -= game->map->player[0] - 144;
@@ -105,5 +45,25 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 		draw_3d(game, ray, 0, &line_x);
 		i++;
 	}
+}
+
+void	draw_game(t_ray *ray, t_game *game, float coords[2])
+{
+	int	i;
+	int	line_x;
+	int	rounded[2];
+
+	ray->ra = game->chars[0]->pa - 30 * ((float)M_PI / 180);
+	if (ray->ra < 0)
+		ray->ra += (float)M_PI * 2;
+	if (game->game_img)
+		mlx_delete_image(game->mlx, game->game_img);
+	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	i = 0;
+	line_x = 0;
+	rounded[0] = (int)coords[0];
+	rounded[1] = (int)coords[1];
+	reset_img(ray->img, MINIMAP, MINIMAP);
+	iterate_game(game, ray, 0, rounded);
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
 }

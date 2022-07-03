@@ -1,19 +1,22 @@
 #include "../includes/main_menu.h"
 
+static void	open_scroll(t_menu *menu, long now)
+{
+	menu->scroll_seconds = now;
+	if (menu->scroll_frame < 33)
+	{
+		if (menu->scroll_frame > 13)
+			menu->imgs[menu->scroll_frame - 1]->enabled = false;
+		if (menu->scroll_frame > 12)
+			menu->imgs[menu->scroll_frame]->enabled = true;
+		menu->scroll_frame++;
+	}
+}
+
 void	animate_scroll(t_menu *menu, long now)
 {
 	if (now > menu->scroll_seconds + 15 && menu->scroll_mode == 'O')
-	{
-		menu->scroll_seconds = now;
-		if (menu->scroll_frame < 33)
-		{
-			if (menu->scroll_frame > 13)
-				menu->imgs[menu->scroll_frame - 1]->enabled = false;
-			if (menu->scroll_frame > 12)
-				menu->imgs[menu->scroll_frame]->enabled = true;
-			menu->scroll_frame++;
-		}
-	}
+		open_scroll(menu, now);
 	else if (now > menu->scroll_seconds + 15 && menu->scroll_mode == 'C')
 	{
 		menu->scroll_seconds = now;
