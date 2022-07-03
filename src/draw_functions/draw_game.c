@@ -89,6 +89,18 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 		if (ray->ra >= (float)M_PI * 2)
 			ray->ra -= (float)M_PI * 2;
 		ray->dist = calc_rays(ray, game->map, x, y);
+		ray->start[0] -= game->map->player[0] - 144;
+		ray->start[1] -= game->map->player[1] - 144;
+		ray->end[0] -= game->map->player[0] - 144;
+		ray->end[1] -= game->map->player[1] - 144;
+		if (ray->end[0] > MINIMAP)
+			ray->end[0] = MINIMAP;
+		if (ray->end[1] > MINIMAP)
+			ray->end[1] = MINIMAP;
+		if (ray->end[0] < 0)
+			ray->end[0] = 0;
+		if (ray->end[1] < 0)
+			ray->end[1] = 0;
 		draw_line(ray, ray->img, ray->color); //draw ray
 		draw_3d(game, ray, 0, &line_x);
 		i++;

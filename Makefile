@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/03 07:32:50 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/03 07:57:38 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,12 +57,12 @@ all: $(NAME)
 	@echo " _|         _|    _|   _|    _|     _|_|     _|    _|"
 	@echo " _|         _|    _|   _|    _|         _|   _|    _|"
 	@echo "   _|_|_|     _|_|_|   _|_|_|     _|_|_|     _|_|_|  "
-	@osascript -e "set volume 3" && say "cub3d. ooooooooooh- yeah" -r 120 -a "iMac Speakers" &
-	@osascript -e "set volume 3" && say "cub3d. ooooooooooh- yeah" -r 120 -a "iMac Speakers" &
-	@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a "iMac Speakers" &
-	@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a "iMac Speakers" &
-	@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a "iMac Speakers" &
-	@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a "iMac Speakers" &
+	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh- yeah" -r 120 -a "iMac Speakers" &
+	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh- yeah" -r 120 -a "iMac Speakers" &
+	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a "iMac Speakers" &
+	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a "iMac Speakers" &
+	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a "iMac Speakers" &
+	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a "iMac Speakers" &
 	@echo $(X)
 
 $(OBJ_PATH)%.o :$(SRC_PATH)%.c
