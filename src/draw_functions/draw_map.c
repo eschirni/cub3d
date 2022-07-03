@@ -27,9 +27,14 @@ static void	draw_tiles(t_game *game, char **arr)
 	int	j;
 	int	x;
 	int	y;
+	int	chrs;
 
+	game->chars = malloc(sizeof(t_char) * game->map->n_chars);
+	if (game->chars == NULL)
+		ft_error("no char could be allocated", NULL);
+	chrs = game->map->n_chars - 1;
 	i = -4;
-	y = abs((int)game->map->player[1] / 32 * 32) * -1;
+	y = abs((int)game->map->player[1] / 32 * 32) * -1; //it works without calculating offset bec the mapsize centers at 5 so 4 and 4 = 0. -1 because always start drawing up left
 	while (i < game->map->y + 4)
 	{
 		j = -4;
@@ -45,7 +50,12 @@ static void	draw_tiles(t_game *game, char **arr)
 			else if (is_char_obj(arr[i][j]) == true)
 			{
 				mlx_image_to_window(game->mlx, game->map->floor, x, y);
-				game->n_chars++;
+				game->chars[chrs] = malloc(sizeof(t_char));
+				if (game->chars[chrs] == NULL)
+					ft_error("allocation error", NULL);
+				game->chars[chrs]->x = x + 8;
+				game->chars[chrs]->y = y + 8;
+				chrs--;
 			}
 			j++;
 			x += 32;

@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/03 08:44:13 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/03 11:49:31 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_char
 	float		s[2];
 	float		d[2];
 	float		pa;
+	float		x;
+	float		y;
 }				t_char;
 
 typedef struct s_map
@@ -57,6 +59,7 @@ typedef struct s_map
 	float		player[2];
 	int			x;
 	int			y;
+	int			n_chars;
 	mlx_image_t	*floor;
 	mlx_image_t	*out;
 	mlx_image_t	*wall;
@@ -88,7 +91,6 @@ typedef struct s_game
 	t_settings	*settings;
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
-	int			n_chars;
 	int			ps;
 }				t_game;
 

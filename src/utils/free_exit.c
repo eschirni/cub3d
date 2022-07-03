@@ -19,7 +19,7 @@ static void	free_arrs(t_game *game)
 	i = 0;
 	mlx_delete_image(game->mlx, game->chars[0]->ray->img);
 	free(game->chars[0]->ray);
-	while (i < game->n_chars)
+	while (i < game->map->n_chars)
 	{
 		mlx_delete_image(game->mlx, game->chars[i]->img);
 		free(game->chars[i]);

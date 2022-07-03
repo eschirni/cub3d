@@ -18,7 +18,6 @@ static t_game	*init_game(t_map *map)
 	game->settings->rs = 1.0f;
 	game->settings->graphics = 16; //only * 2^x
 	game->settings->fov = game->settings->graphics * 60 / 1; //only / 2^x
-	game->n_chars = 0;
 	game->map = map;
 	curs_tex = mlx_load_png("./sprites/cursor.png");
 	cursor = mlx_create_cursor(curs_tex);

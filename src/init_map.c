@@ -41,6 +41,7 @@ static void	mark_player(t_map *map)
 	int	j;
 
 	i = map->y - 1;
+	map->player[0] = -1;
 	while (i >= 0)
 	{
 		j = map->x - 1;
@@ -48,9 +49,12 @@ static void	mark_player(t_map *map)
 		{
 			if (is_char_obj(map->big_map[i][j]))
 			{
-				map->player[0] = j * 32 + 16;
-				map->player[1] = i * 32 + 16;
-				return ;
+				if (map->player[0] == -1)
+				{
+					map->player[0] = j * 32 + 16;
+					map->player[1] = i * 32 + 16;
+				}
+				map->n_chars++;
 			}
 			j--;
 		}
@@ -80,6 +84,7 @@ t_map	*init_map(char *mapfile)
 	}
 	close (fd);
 	map->x = ft_strlen_sl(map->big_map[0]);
+	map->n_chars = 0;
 	mark_player(map);
 	return (map);
 }

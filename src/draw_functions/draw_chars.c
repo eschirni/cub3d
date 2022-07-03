@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-static void	draw_char(t_game *game, int x, int y, int n)
+static void	draw_char(t_game *game, int n)
 {
 	mlx_texture_t	*player;
 
@@ -16,25 +16,7 @@ static void	draw_char(t_game *game, int x, int y, int n)
 	if (game->chars[n]->img == NULL)
 		ft_error("char image allocation failed", NULL);
 	mlx_delete_texture(player);
-	mlx_image_to_window(game->mlx, game->chars[n]->img, x, y);
-}
-
-static int	count_init_chars(t_game *game)
-{
-	int	n;
-
-	game->chars = malloc(sizeof(t_char) * game->n_chars);
-	if (game->chars == NULL)
-		ft_error("no char could be allocated", NULL);
-	n = 0;
-	while (n < game->n_chars)
-	{
-		game->chars[n] = malloc(sizeof(t_char));
-		if (game->chars[n] == NULL)
-			ft_error("allocation error", NULL);
-		n++;
-	}
-	return (n);
+	mlx_image_to_window(game->mlx, game->chars[n]->img, game->chars[n]->x, game->chars[n]->y);
 }
 
 void	draw_chars(t_game *game, char **map)
@@ -44,7 +26,7 @@ void	draw_chars(t_game *game, char **map)
 	int	chrs;
 
 	i = 0;
-	chrs = count_init_chars(game);
+	chrs = game->map->n_chars;
 	while (map[i])
 	{
 		j = 0;
@@ -52,7 +34,7 @@ void	draw_chars(t_game *game, char **map)
 		{
 			if (is_char_obj(map[i][j]))
 			{
-				draw_char(game, j * 32 + 8, i * 32 + 8, --chrs);
+				draw_char(game, --chrs);
 				set_direction(game, map[i][j], chrs);
 			}
 			j++;

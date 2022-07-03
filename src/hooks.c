@@ -47,6 +47,13 @@ static void	move_map(t_game *game, int addX, int addY)
 		game->map->out->instances[tmp].y -= addY;
 		tmp++;
 	}
+	tmp = 1;
+	while (tmp < game->map->n_chars)
+	{
+		game->chars[tmp]->img->instances[0].x -= addX;
+		game->chars[tmp]->img->instances[0].y -= addY;
+		tmp++;
+	}
 }
 
 static void	set_coords(t_game *game, int addX, int addY)
