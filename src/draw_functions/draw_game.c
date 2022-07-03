@@ -1,5 +1,25 @@
 #include "../includes/cub3d.h"
 
+static void	draw_ground_sky(t_ray *ray, mlx_image_t *game_img)
+{
+	int	y;
+
+	y = 0;
+	if (ray->start[0] < MINIMAP)
+		y = MINIMAP;
+	while (y < ray->start[1])
+	{
+		mlx_put_pixel(game_img, ray->start[0], y, 0x1a6629FF);
+		y++;
+	}
+	y = ray->end[1] + 1;
+	while (y < HEIGHT)
+	{
+		mlx_put_pixel(game_img, ray->start[0], y, 0x1a0029FF);
+		y++;
+	}
+}
+
 static void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 {
 	float	line_height;
@@ -25,6 +45,7 @@ static void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 		if (ray->start[0] < MINIMAP && ray->start[1] < MINIMAP)
 			ray->start[1] = MINIMAP;
 		draw_line(ray, game->game_img, 0x1a2229FF);
+		draw_ground_sky(ray, game->game_img);
 		*line_x += 1;
 		count_x++;
 	}
