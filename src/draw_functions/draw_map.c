@@ -29,14 +29,14 @@ static void	draw_tiles(t_game *game, char **arr)
 	int	y;
 
 	i = -4;
-	y = -128;
+	y = (game->map->y / 2 - ((int)game->map->player[1] >> 5)) * 32 - 128;
 	while (i < game->map->y + 4)
 	{
 		j = -4;
-		x = -128;
+		x = (game->map->x / 2 - ((int)game->map->player[0] >> 5)) * 32 - 192; //tbh no idea why this works
 		while (j < game->map->x + 4)
 		{
-			if (i < 0 || j < 0 || i >= game->map->y || j >= game->map->x)
+			if (i < 0 || j < 0 || i >= game->map->y || j >= game->map->x || arr[i][j] == ' ')
 				mlx_image_to_window(game->mlx, game->map->out, x, y);
 			else if (arr[i][j] == '0')
 				mlx_image_to_window(game->mlx, game->map->floor, x, y);
@@ -44,8 +44,8 @@ static void	draw_tiles(t_game *game, char **arr)
 				mlx_image_to_window(game->mlx, game->map->wall, x, y);
 			else if (is_char_obj(arr[i][j]) == true)
 			{
-				game->n_chars++;
 				mlx_image_to_window(game->mlx, game->map->floor, x, y);
+				game->n_chars++;
 			}
 			j++;
 			x += 32;
