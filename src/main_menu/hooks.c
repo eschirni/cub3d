@@ -15,19 +15,16 @@ void	hover_buttons(double x, double y, void *tmp)
 	game->menu->imgs[12]->enabled = false;
 	if (x >= 120 && x <= 461 && y >= 250 && y <= 315)
 	{
-		system("say Start game &");
 		game->menu->imgs[7]->enabled = false;
 		game->menu->imgs[8]->enabled = true;
 	}
 	else if (x >= 120 && x <= 374 && y >= 350 && y <= 415)
 	{
-		system("say Settings &");
 		game->menu->imgs[9]->enabled = false;
 		game->menu->imgs[10]->enabled = true;
 	}
 	else if (x >= 120 && x <= 238 && y >= 450 && y <= 506)
 	{
-		system("say Exit &");
 		game->menu->imgs[11]->enabled = false;
 		game->menu->imgs[12]->enabled = true;
 	}
