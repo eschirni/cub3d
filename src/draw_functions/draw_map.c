@@ -29,11 +29,11 @@ static void	draw_tiles(t_game *game, char **arr)
 	int	y;
 
 	i = -4;
-	y = (int)roundf(game->map->y / 2) * 32 - 128 - 128; //128 for the 4 tile offset & 128 for the tiles to the center of the screen
+	y = abs((int)game->map->player[1] / 32 * 32) * -1;
 	while (i < game->map->y + 4)
 	{
 		j = -4;
-		x = (int)roundf((game->map->x + 2) / 2) * 32 - 128 - 128; // I think my equasion is wrong, idk
+		x = abs((int)game->map->player[0] / 32 * 32) * -1;
 		while (j < game->map->x + 4)
 		{
 			if (i < 0 || j < 0 || i >= game->map->y || j >= game->map->x || arr[i][j] == ' ')
