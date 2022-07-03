@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "includes/cub3d.h"
 
 static t_game	*init_game(t_map *map)
 {
@@ -12,12 +12,20 @@ static t_game	*init_game(t_map *map)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", false);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
-	game->n_chars = 0;
+	game->settings = malloc(sizeof(t_settings));
+	if (game == NULL)
+		ft_error("allocation error", NULL);
+	game->settings->rs = 1.0f;
+	game->settings->graphics = 16; //only * 2^x
+	game->settings->fov = game->settings->graphics * 60 / 1; //only / 2^x
 	game->map = map;
 	curs_tex = mlx_load_png("./sprites/cursor.png");
 	cursor = mlx_create_cursor(curs_tex);
 	mlx_delete_texture(curs_tex);
 	mlx_set_cursor(game->mlx, cursor);
+	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	get_map_textures(game);
+	draw_map(game, game->map);
 	return (game);
 }
 

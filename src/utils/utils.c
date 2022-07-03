@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 21:57:53 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/14 11:29:32 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/01 20:05:49 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
 static int	ft_strncmp(const char *str1, const char *str2, size_t size)
 {

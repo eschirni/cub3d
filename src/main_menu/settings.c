@@ -1,12 +1,4 @@
-#include "main_menu.h"
-
-void	animate_scroll(t_menu *menu) //put in mlx loop for animation
-{
-	if (menu->scroll_frame > 13)
-		menu->imgs[menu->scroll_frame - 1]->enabled = false;
-	menu->imgs[menu->scroll_frame]->enabled = true;
-	menu->scroll_frame++;
-}
+#include "../includes/main_menu.h"
 
 static void	put_to_win(t_game *game)
 {

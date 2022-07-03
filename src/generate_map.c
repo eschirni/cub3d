@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "includes/cub3d.h"
 #include <sys/time.h>
 
 // static void	free_2d_array(char **arr)

@@ -1,22 +1,4 @@
-#include "main_menu.h"
-
-void	start_game(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	game->menu->in_menu = false;
-	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
-	while (i < 33)
-	{
-		game->menu->imgs[i]->enabled = false;
-		i++;
-	}
-	mlx_loop_hook(game->mlx, &hook, game);
-	draw_map(game, game->map, game->map->player);
-	draw_crosshair(game->mlx, 0xFFFFFFAA);
-	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
-}
+#include "../includes/main_menu.h"
 
 void	load_png(t_game *game, int pos, char *name, bool enabled)
 {
@@ -64,6 +46,7 @@ static void	create_background(t_game *game)
 	}
 }
 
+//continue button when already started the game
 void	main_menu(t_game *game)
 {
 	struct timeval	time;
@@ -76,13 +59,11 @@ void	main_menu(t_game *game)
 	create_background(game);
 	create_buttons(game);
 	init_settings(game);
+	game->menu->scroll_mode = 'N';
 	game->menu->back_seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
 	game->menu->scroll_seconds = game->menu->back_seconds;
-	game->menu->back_frame = 0;
-	game->menu->scroll_frame = 13;
-	game->menu->in_menu = true;
-	game->menu->in_settings = false;
-	mlx_loop_hook(game->mlx, &animate_menu, game->menu);
+	to_menu(game);
+	mlx_loop_hook(game->mlx, &fps, game);
 	mlx_cursor_hook(game->mlx, &hover_buttons, game);
 	mlx_mouse_hook(game->mlx, &menu_buttons, game);
 }

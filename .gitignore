@@ -1,4 +1,6 @@
-*.o
-obj/
-cub3d
 .DS_Store
+.vscode
+cub3d
+*.o
+cub3d.dSYM/
+obj/

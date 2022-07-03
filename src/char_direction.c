@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "includes/cub3d.h"
 
 static void	init_dir(t_game *game, int n, float pi)
 {
@@ -8,7 +8,6 @@ static void	init_dir(t_game *game, int n, float pi)
 	game->chars[n]->ray->img = mlx_new_image(game->mlx, MINIMAP, MINIMAP);
 	mlx_image_to_window(game->mlx, game->chars[n]->ray->img, 0, 0);
 	game->chars[n]->pa = pi;
-	calc_rotate(game, 0.0f, n);
 }
 
 void	set_direction(t_game *game, char direction, int n)

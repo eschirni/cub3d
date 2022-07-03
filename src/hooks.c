@@ -1,28 +1,6 @@
-#include "cub3d.h"
+#include "includes/cub3d.h"
 
-void	calc_rotate(t_game *game, float rotation, int n)
-{
-	int		x;
-	int		y;
-
-	x = game->chars[n]->img->instances[0].x;
-	y = game->chars[n]->img->instances[0].y;
-	game->chars[n]->pa += rotation;
-	if (game->chars[n]->pa < 0)
-		game->chars[n]->pa += (float)M_PI * 2;
-	else if (game->chars[n]->pa >= (float)M_PI * 2)
-		game->chars[n]->pa -= (float)M_PI * 2;
-	game->chars[n]->w[0] = roundf(cos(game->chars[n]->pa) * 3);
-	game->chars[n]->w[1] = roundf(sin(game->chars[n]->pa) * 3);
-	game->chars[n]->s[0] = game->chars[n]->w[0] * -1;
-	game->chars[n]->s[1] = game->chars[n]->w[1] * -1;
-	game->chars[n]->d[0] = roundf(cos(game->chars[n]->pa + (float)M_PI_2) * 3);
-	game->chars[n]->d[1] = roundf(sin(game->chars[n]->pa + (float)M_PI_2) * 3);
-	game->chars[n]->a[0] = game->chars[n]->d[0] * -1;
-	game->chars[n]->a[1] = game->chars[n]->d[1] * -1;
-}
-
-static void	set_coords(t_game *game, int addX, int addY) //check for every point in between, so you can't go through corners
+static void	set_coords(t_game *game, int addX, int addY)
 {
 	int		pos_x;
 	int		pos_y;
@@ -30,20 +8,20 @@ static void	set_coords(t_game *game, int addX, int addY) //check for every point
 	int		circle_y;
 	float	angle;
 
-	pos_x = game->chars[0]->img->instances[0].x + 8 + addX;
-	pos_y = game->chars[0]->img->instances[0].y + 8 + addY;
+	pos_x = game->map->player[0] + addX;
+	pos_y = game->map->player[1] + addY;
 	angle = 0;
 	while (angle <= (float)M_PI * 2)
 	{
 		circle_x = (pos_x + 4 * cos(angle));
 		circle_y = (pos_y + 4 * sin(angle));
-		if (game->map->map_arr[circle_y / 32][circle_x / 32] == '1')
+		if (game->map->big_map[circle_y / 32][circle_x / 32] == '1')
 			return ;
 		angle += (float)M_PI / 18;
 	}
-	game->chars[0]->img->instances[0].x += addX;
-	game->chars[0]->img->instances[0].y += addY;
-	calc_rotate(game, 0.0f, 0);
+	move_map(game, addX, addY);
+	game->map->player[0] += addX;
+	game->map->player[1] += addY;
 }
 
 static void	mouse_rotate(t_game *game)
@@ -57,13 +35,12 @@ static void	mouse_rotate(t_game *game)
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 }
 
-void	hook(void *tmp)
+static void	check_keys(t_game *game)
 {
-	t_game	*game;
-
-	game = tmp;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(game->mlx);
+		to_menu(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
+		system("say -v Fred I think I should go to the gym more often... &");
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		set_coords(game, game->chars[0]->w[0], game->chars[0]->w[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
@@ -73,10 +50,31 @@ void	hook(void *tmp)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 		set_coords(game, game->chars[0]->d[0], game->chars[0]->d[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		calc_rotate(game, -0.03f, 0);
+		game->chars[0]->pa -= 0.03f;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		calc_rotate(game, 0.03f, 0);
-	mouse_rotate(game);
-	calc_rotate(game, 0.0f, 0); //if I destroy and create a new image it will only display the last one!
-	draw_game(game->chars[0]->ray, game, game->chars[0]->img->instances[0].x + 8, game->chars[0]->img->instances[0].y + 8);
+		game->chars[0]->pa += 0.03f;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
+		game->ps = 4;
+	else
+		game->ps = 2;
+}
+
+void	fps(void *tmp)
+{
+	t_game	*game;
+
+	game = tmp;
+	if (game->menu->in_menu == true)
+	{
+		animate_menu(game->menu);
+		game->game_img->enabled = false;
+	}
+	else
+	{
+		mouse_rotate(game);
+		check_keys(game);
+		calc_rotate(game, 0.0f, 0);
+		draw_game(game->chars[0]->ray, game, game->map->player);
+		draw_crosshair(game, 0xFFFFFF55);
+	}
 }

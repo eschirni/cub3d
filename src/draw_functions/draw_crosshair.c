@@ -1,30 +1,4 @@
-#include "../cub3d.h"
-
-static void	draw_cross(mlx_image_t *img, int color, int x, int y)
-{
-	while (x < 7)
-	{
-		mlx_put_pixel(img, x, 15, color);
-		x++;
-	}
-	x = 24;
-	while (x < 30)
-	{
-		mlx_put_pixel(img, x, 15, color);
-		x++;
-	}
-	while (y < 7)
-	{
-		mlx_put_pixel(img, 15, y, color);
-		y++;
-	}
-	y = 24;
-	while (y < 30)
-	{
-		mlx_put_pixel(img, 15, y, color);
-		y++;
-	}
-}
+#include "../includes/cub3d.h"
 
 static int	check_angle(float angle)
 {
@@ -44,27 +18,23 @@ static int	check_angle(float angle)
 	return (1);
 }
 
-void	draw_crosshair(mlx_t *mlx, int color)
+void	draw_crosshair(t_game *game, int color)
 {
 	int			x;
 	int			y;
 	float		angle;
-	mlx_image_t	*img;
 
 	angle = (float)M_PI / 180 * -1;
-	img = mlx_new_image(mlx, 30, 30);
 	while (angle <= (float)M_PI * 2)
 	{
 		angle += (float)M_PI / 180;
 		if (!check_angle(angle))
 			continue ;
-		x = 15 + 15 * cos(angle);
-		y = 15 + 15 * sin(angle);
-		mlx_put_pixel(img, x, y, color);
-		x = 15 + 9 * cos(angle);
-		y = 15 + 9 * sin(angle);
-		mlx_put_pixel(img, x, y, color);
+		x = WIDTH / 2 + 15 * cos(angle);
+		y = HEIGHT / 2 + 15 * sin(angle);
+		mlx_put_pixel(game->game_img, x, y, color);
+		x = WIDTH / 2 + 9 * cos(angle);
+		y = HEIGHT / 2 + 9 * sin(angle);
+		mlx_put_pixel(game->game_img, x, y, color);
 	}
-	draw_cross(img, color, 0, 0);
-	mlx_image_to_window(mlx, img, WIDTH / 2 - 15, HEIGHT / 2 - 15); //free img
 }
