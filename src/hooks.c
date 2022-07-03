@@ -88,6 +88,8 @@ static void	check_keys(t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		to_menu(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
+		system("say -v Kyoko no you jump &");
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		set_coords(game, game->chars[0]->w[0], game->chars[0]->w[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
