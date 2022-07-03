@@ -22,6 +22,33 @@ void	calc_rotate(t_game *game, float rotation, int n) // only draw the tiles max
 	game->chars[n]->a[1] = game->chars[n]->d[1] * -1;
 }
 
+static void	move_map(t_game *game, int addX, int addY)
+{
+	int	tmp;
+
+	tmp = 0;
+	while (tmp < game->map->floor->count)
+	{
+		game->map->floor->instances[tmp].x -= addX;
+		game->map->floor->instances[tmp].y -= addY;
+		tmp++;
+	}
+	tmp = 0;
+	while (tmp < game->map->wall->count)
+	{
+		game->map->wall->instances[tmp].x -= addX;
+		game->map->wall->instances[tmp].y -= addY;
+		tmp++;
+	}
+	tmp = 0;
+	while (tmp < game->map->out->count)
+	{
+		game->map->out->instances[tmp].x -= addX;
+		game->map->out->instances[tmp].y -= addY;
+		tmp++;
+	}
+}
+
 static void	set_coords(t_game *game, int addX, int addY)
 {
 	int		pos_x;
@@ -41,6 +68,7 @@ static void	set_coords(t_game *game, int addX, int addY)
 			return ;
 		angle += (float)M_PI / 18;
 	}
+	move_map(game, addX, addY);
 	game->map->player[0] += addX;
 	game->map->player[1] += addY;
 }
