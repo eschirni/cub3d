@@ -1,31 +1,5 @@
 #include "../includes/cub3d.h"
 
-static void	draw_cross(mlx_image_t *img, int color, int x, int y)
-{
-	while (x < 7)
-	{
-		mlx_put_pixel(img, x, 15, color);
-		x++;
-	}
-	x = 24;
-	while (x < 30)
-	{
-		mlx_put_pixel(img, x, 15, color);
-		x++;
-	}
-	while (y < 7)
-	{
-		mlx_put_pixel(img, 15, y, color);
-		y++;
-	}
-	y = 24;
-	while (y < 30)
-	{
-		mlx_put_pixel(img, 15, y, color);
-		y++;
-	}
-}
-
 static int	check_angle(float angle)
 {
 	float	c_space;
@@ -63,5 +37,4 @@ void	draw_crosshair(t_game *game, int color)
 		y = HEIGHT / 2 + 9 * sin(angle);
 		mlx_put_pixel(game->game_img, x, y, color);
 	}
-	draw_cross(game->game_img, color, 0, 0);
 }
