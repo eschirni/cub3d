@@ -107,38 +107,3 @@ void	draw_game(t_ray *ray, t_game *game, int x, int y)
 	}
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
 }
-
-// void	draw_game(t_ray *ray, t_game *game, int x, int y)
-// {
-// 	int		i;
-// 	int		line_x;
-
-// 	ray->ra = game->chars[0]->pa - 30 * ((float)M_PI / 180);
-// 	if (ray->ra < 0)
-// 		ray->ra += (float)M_PI * 2;
-// 	if (game->game_img)
-// 		mlx_delete_image(game->mlx, game->game_img);
-// 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-// 	i = 0;
-// 	line_x = 0;
-// 	reset_img(ray->img, MINIMAP - 1, MINIMAP - 1);
-// 	while (i < game->settings->fov)
-// 	{
-// 		ray->ra += (float)M_PI / 180 / game->settings->graphics;
-// 		if (ray->ra >= (float)M_PI * 2)
-// 			ray->ra -= (float)M_PI * 2;
-// 		ray->dist = calc_rays(ray, game->map, x, y);
-// 		ray->start[0] = 144;
-// 		ray->start[1] = 144;
-// 		ray->end[0] += game->map->player[0];
-// 		ray->end[1] += game->map->player[1];
-// 		if (ray->end[0] > game->map->player[0])
-// 			ray->end[0] -= game->map->player[0];
-// 		if (ray->end[1] > game->map->player[1])
-// 			ray->end[1] -= game->map->player[1];
-// 		draw_line(ray, ray->img, 0xbad129); //draw ray
-// 		draw_3d(game, ray, 0, &line_x);
-// 		i++;
-// 	}
-// 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
-// }

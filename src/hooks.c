@@ -125,5 +125,6 @@ void	fps(void *tmp)
 		check_keys(game);
 		calc_rotate(game, 0.0f, 0);
 		draw_game(game->chars[0]->ray, game, game->map->player[0], game->map->player[1]);
+		draw_crosshair(game, 0xFFFFFF55);
 	}
 }

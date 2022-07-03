@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/03 05:01:50 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/03 08:44:13 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct s_game
 	t_settings	*settings;
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
-	mlx_image_t	*crosshair;
 	int			n_chars;
 	int			ps;
 }				t_game;

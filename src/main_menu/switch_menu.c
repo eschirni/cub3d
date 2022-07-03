@@ -4,7 +4,6 @@ void	to_menu(t_game *game)
 {
 	int	i;
 
-	game->crosshair->enabled = false;
 	game->map->floor->enabled = false;
 	game->map->out->enabled = false;
 	game->map->wall->enabled = false;
@@ -35,7 +34,6 @@ void	to_game(t_game *game)
 		return ;
 	}
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
-	game->crosshair->enabled = true;
 	game->map->floor->enabled = true;
 	game->map->out->enabled = true;
 	game->map->wall->enabled = true;
