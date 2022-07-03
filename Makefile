@@ -6,12 +6,12 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/03 13:57:48 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/03 14:11:16 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # FLAGS
-CFLAGS = #-Wall -Wextra -Werror -O3
+CFLAGS = -Wall -Wextra -Werror -O3
 MLX = -lglfw -L $$HOME/.brew/Cellar/glfw/3.3.7/lib MLX42/libmlx42.a
 
 # COLORS

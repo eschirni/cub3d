@@ -21,47 +21,56 @@ void	get_map_textures(t_game *game)
 		ft_error("can't resize image", NULL);
 }
 
+static void	create_char(t_game *game, int x, int y)
+{
+	static int	chrs;
+
+	chrs--;
+	if (chrs == -1)
+		chrs = game->map->n_chars - 1;
+	mlx_image_to_window(game->mlx, game->map->floor, x, y);
+	game->chars[chrs] = malloc(sizeof(t_char));
+	if (game->chars[chrs] == NULL)
+		ft_error("allocation error", NULL);
+	game->chars[chrs]->x = x + 8;
+	game->chars[chrs]->y = y + 8;
+}
+
+static void	draw_tile(t_game *game, char **arr, int iterator[2], int coords[2])
+{
+	if (iterator[0] < 0 || iterator[1] < 0 || iterator[0] >= game->map->y
+		|| iterator[1] >= game->map->x || arr[iterator[0]][iterator[1]] == ' ')
+		mlx_image_to_window(game->mlx, game->map->out, coords[0], coords[1]);
+	else if (arr[iterator[0]][iterator[1]] == '0')
+		mlx_image_to_window(game->mlx, game->map->floor, coords[0], coords[1]);
+	else if (arr[iterator[0]][iterator[1]] == '1')
+		mlx_image_to_window(game->mlx, game->map->wall, coords[0], coords[1]);
+	else if (is_char_obj(arr[iterator[0]][iterator[1]]) == true)
+		create_char(game, coords[0], coords[1]);
+}
+
 static void	draw_tiles(t_game *game, char **arr)
 {
-	int	i;
-	int	j;
-	int	x;
-	int	y;
-	int	chrs;
+	int	iterator[2];
+	int	coords[2];
 
 	game->chars = malloc(sizeof(t_char) * game->map->n_chars);
 	if (game->chars == NULL)
 		ft_error("no char could be allocated", NULL);
-	chrs = game->map->n_chars - 1;
-	i = -4;
-	y = abs((int)game->map->player[1] / 32 * 32) * -1; //it works without calculating offset bec the mapsize centers at 5 so 4 and 4 = 0. -1 because always start drawing up left
-	while (i < game->map->y + 4)
+	iterator[0] = -4;
+	coords[1] = abs((int)game->map->player[1] / 32 * 32) * -1; //it works without calculating offset bec the mapsize centers at 5 so 4 and 4 = 0. -1 because always start drawing up left
+	while (iterator[0] < game->map->y + 4)
 	{
-		j = -4;
-		x = abs((int)game->map->player[0] / 32 * 32) * -1;
-		while (j < game->map->x + 4)
+		iterator[1] = -4;
+		coords[0] = abs((int)game->map->player[0] / 32 * 32) * -1;
+		while (iterator[1] < game->map->x + 4)
 		{
-			if (i < 0 || j < 0 || i >= game->map->y || j >= game->map->x || arr[i][j] == ' ')
-				mlx_image_to_window(game->mlx, game->map->out, x, y);
-			else if (arr[i][j] == '0')
-				mlx_image_to_window(game->mlx, game->map->floor, x, y);
-			else if (arr[i][j] == '1')
-				mlx_image_to_window(game->mlx, game->map->wall, x, y);
-			else if (is_char_obj(arr[i][j]) == true)
-			{
-				mlx_image_to_window(game->mlx, game->map->floor, x, y);
-				game->chars[chrs] = malloc(sizeof(t_char));
-				if (game->chars[chrs] == NULL)
-					ft_error("allocation error", NULL);
-				game->chars[chrs]->x = x + 8;
-				game->chars[chrs]->y = y + 8;
-				chrs--;
-			}
-			j++;
-			x += 32;
+			draw_tile(game, arr, iterator, coords);
+			iterator[1]++;
+			coords[0] += 32;
 		}
-		i++;
-		y += 32;
+		iterator[0]++;
+		coords[1] += 32;
 	}
 }
 
