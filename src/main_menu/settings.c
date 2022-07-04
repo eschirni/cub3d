@@ -14,12 +14,12 @@ static void	put_to_win(t_game *game)
 	mlx_image_to_window(game->mlx, game->menu->imgs[34], 1372, 405);
 	mlx_image_to_window(game->mlx, game->menu->imgs[35], 1418, 519);
 	mlx_image_to_window(game->mlx, game->menu->imgs[36], 1408, 633);
-	mlx_image_to_window(game->mlx, game->menu->imgs[37], 1400, 666);
-	mlx_image_to_window(game->mlx, game->menu->imgs[38], 1400, 700);
-	mlx_image_to_window(game->mlx, game->menu->imgs[39], 1500, 700);
-	mlx_image_to_window(game->mlx, game->menu->imgs[40], 1500, 700);
-	mlx_image_to_window(game->mlx, game->menu->imgs[41], 1600, 700);
-	mlx_image_to_window(game->mlx, game->menu->imgs[42], 1600, 700);
+	mlx_image_to_window(game->mlx, game->menu->imgs[37], 1425, 666);
+	mlx_image_to_window(game->mlx, game->menu->imgs[38], 1425, 666);
+	mlx_image_to_window(game->mlx, game->menu->imgs[39], 1475, 666);
+	mlx_image_to_window(game->mlx, game->menu->imgs[40], 1475, 666);
+	mlx_image_to_window(game->mlx, game->menu->imgs[41], 1525, 666);
+	mlx_image_to_window(game->mlx, game->menu->imgs[42], 1525, 666);
 }
 
 static void	init_scroll(t_game *game)
