@@ -18,6 +18,28 @@ static void	animate_text(t_menu *menu, bool enable)
 		menu->imgs[42]->enabled = enable;
 	else
 		menu->imgs[41]->enabled = enable;
+	menu->imgs[43]->enabled = false;
+	menu->imgs[44]->enabled = false;
+	menu->imgs[45]->enabled = false;
+	menu->imgs[46]->enabled = false;
+	menu->imgs[47]->enabled = false;
+	menu->imgs[48]->enabled = false;
+	if (menu->settings->rs == 0.25f && menu->scroll_mode == 'O')
+		menu->imgs[43]->enabled = true;
+	else if (menu->settings->rs == 0.5f && menu->scroll_mode == 'O')
+		menu->imgs[44]->enabled = true;
+	else if (menu->settings->rs == 0.75f && menu->scroll_mode == 'O')
+		menu->imgs[45]->enabled = true;
+	else if (menu->settings->rs == 1 && menu->scroll_mode == 'O')
+		menu->imgs[46]->enabled = true;
+	else if (menu->settings->rs == 1.25f && menu->scroll_mode == 'O')
+		menu->imgs[47]->enabled = true;
+	else if (menu->settings->rs == 1.5f && menu->scroll_mode == 'O')
+		menu->imgs[48]->enabled = true;
+	else if (menu->settings->rs == 1.75f && menu->scroll_mode == 'O')
+		menu->imgs[48]->enabled = true;
+	else if (menu->settings->rs == 2 && menu->scroll_mode == 'O')
+		menu->imgs[48]->enabled = true;
 }
 
 static void	open_scroll(t_menu *menu, long now)

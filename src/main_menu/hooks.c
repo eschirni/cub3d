@@ -63,6 +63,26 @@ static void	settings_buttons(t_game *game, int x, int y)
 	}
 }
 
+static void	menu_sliders(t_game *game, int x, int y)
+{
+	if (x >= 1410 && x <= 1420 && y >= 350 && y <= 367)
+		game->menu->settings->rs = 0.25f;
+	else if (x >= 1421 && x <= 1430 && y >= 350 && y <= 367)
+		game->menu->settings->rs = 0.5f;
+	else if (x >= 1431 && x <= 1440 && y >= 350 && y <= 367)
+		game->menu->settings->rs = 0.75f;
+	else if (x >= 1441 && x <= 1450 && y >= 350 && y <= 367)
+		game->menu->settings->rs = 1;
+	else if (x >= 1451 && x <= 1460 && y >= 350 && y <= 367)
+		game->menu->settings->rs = 1.25f;
+	else if (x >= 1461 && x <= 1470 && y >= 350 && y <= 367)
+		game->menu->settings->rs = 1.5f;
+	else if (x >= 1471 && x <= 1480 && y >= 350 && y <= 367)
+		game->menu->settings->rs = 1.75f;
+	else if (x >= 1481 && x <= 1490 && y >= 350 && y <= 367)
+		game->menu->settings->rs = 2;
+}
+
 void	menu_buttons(mouse_key_t k, action_t act, modifier_key_t mod, void *tmp)
 {
 	t_game	*game;
@@ -88,6 +108,9 @@ void	menu_buttons(mouse_key_t k, action_t act, modifier_key_t mod, void *tmp)
 		else if (x >= 120 && x <= 238 && y >= 450 && y <= 506)
 			mlx_close_window(game->mlx);
 		else if (game->menu->scroll_mode == 'O')
+		{
 			settings_buttons(game, x, y);
+			menu_sliders(game, x, y);
+		}
 	}
 }

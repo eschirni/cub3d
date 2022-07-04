@@ -20,6 +20,12 @@ static void	put_to_win(t_game *game)
 	mlx_image_to_window(game->mlx, game->menu->imgs[40], 1475, 666);
 	mlx_image_to_window(game->mlx, game->menu->imgs[41], 1525, 666);
 	mlx_image_to_window(game->mlx, game->menu->imgs[42], 1525, 666);
+	mlx_image_to_window(game->mlx, game->menu->imgs[43], 1410, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[44], 1410, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[45], 1410, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[46], 1410, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[47], 1410, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[48], 1410, 350);
 }
 
 static void	init_scroll(t_game *game)
@@ -46,6 +52,20 @@ static void	init_scroll(t_game *game)
 	load_png(game, 32, "./sprites/main/scroll/scroll19.png", false);
 }
 
+static void	init_arrows(t_game *game)
+{
+	//rs
+	load_png(game, 43, "./sprites/main/settings/spear.png", false);
+	load_png(game, 44, "./sprites/main/settings/spear1.png", false);
+	load_png(game, 45, "./sprites/main/settings/spear1.png", false);
+	load_png(game, 46, "./sprites/main/settings/spear2.png", false);
+	load_png(game, 47, "./sprites/main/settings/spear3.png", false);
+	load_png(game, 48, "./sprites/main/settings/spear4.png", false);
+	load_png(game, 49, "./sprites/main/settings/spear5.png", false);
+	load_png(game, 50, "./sprites/main/settings/spear6.png", false);
+	//fov
+}
+
 static void	init_text(t_game *game)
 {
 	load_png(game, 33, "./sprites/main/settings/sens.png", false);
@@ -64,5 +84,6 @@ void	init_settings(t_game *game)
 {
 	init_scroll(game);
 	init_text(game);
+	init_arrows(game);
 	put_to_win(game);
 }
