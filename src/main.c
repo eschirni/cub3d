@@ -17,7 +17,7 @@ static t_game	*alloc_game(t_map *map)
 		ft_error("allocation error", NULL);
 	game->settings->cross_type = 'E';
 	game->settings->rs = 1.0f;
-	game->settings->graphics = 16; //only * 2^x
+	game->settings->graphics = 32 / 1; //only / 2^x
 	game->settings->fov = game->settings->graphics * 60 / 1; //only / 2^x
 	game->map = map;
 	curs_tex = mlx_load_png("./sprites/cursor.png");

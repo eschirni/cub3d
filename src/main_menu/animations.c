@@ -1,5 +1,19 @@
 #include "../includes/main_menu.h"
 
+static void	animate_text(t_menu *menu, bool enable)
+{
+	menu->imgs[33]->enabled = enable;
+	menu->imgs[34]->enabled = enable;
+	menu->imgs[35]->enabled = enable;
+	menu->imgs[36]->enabled = enable;
+	menu->imgs[37]->enabled = enable;
+	//menu->imgs[38]->enabled = enable;
+	menu->imgs[39]->enabled = enable;
+	//menu->imgs[40]->enabled = enable;
+	menu->imgs[41]->enabled = enable;
+	//menu->imgs[42]->enabled = enable;
+}
+
 static void	open_scroll(t_menu *menu, long now)
 {
 	menu->scroll_seconds = now;
@@ -11,6 +25,8 @@ static void	open_scroll(t_menu *menu, long now)
 			menu->imgs[menu->scroll_frame]->enabled = true;
 		menu->scroll_frame++;
 	}
+	else
+		animate_text(menu, true);
 }
 
 void	animate_scroll(t_menu *menu, long now)
@@ -20,6 +36,8 @@ void	animate_scroll(t_menu *menu, long now)
 	else if (now > menu->scroll_seconds + 15 && menu->scroll_mode == 'C')
 	{
 		menu->scroll_seconds = now;
+		if (menu->scroll_frame == 33)
+			animate_text(menu, false);
 		if (menu->scroll_frame > 12)
 		{
 			if (menu->scroll_frame < 33)

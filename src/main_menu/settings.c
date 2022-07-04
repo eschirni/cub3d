@@ -10,9 +10,19 @@ static void	put_to_win(t_game *game)
 		mlx_image_to_window(game->mlx, game->menu->imgs[i], WIDTH - 850, 60);
 		i++;
 	}
+	mlx_image_to_window(game->mlx, game->menu->imgs[33], 1334, 288);
+	mlx_image_to_window(game->mlx, game->menu->imgs[34], 1372, 405);
+	mlx_image_to_window(game->mlx, game->menu->imgs[35], 1418, 519);
+	mlx_image_to_window(game->mlx, game->menu->imgs[36], 1408, 633);
+	mlx_image_to_window(game->mlx, game->menu->imgs[37], 1400, 666);
+	mlx_image_to_window(game->mlx, game->menu->imgs[38], 1400, 700);
+	mlx_image_to_window(game->mlx, game->menu->imgs[39], 1500, 700);
+	mlx_image_to_window(game->mlx, game->menu->imgs[40], 1500, 700);
+	mlx_image_to_window(game->mlx, game->menu->imgs[41], 1600, 700);
+	mlx_image_to_window(game->mlx, game->menu->imgs[42], 1600, 700);
 }
 
-void	init_settings(t_game *game)
+static void	init_scroll(t_game *game)
 {
 	load_png(game, 13, "./sprites/main/scroll/scroll.png", false);
 	load_png(game, 14, "./sprites/main/scroll/scroll1.png", false);
@@ -34,5 +44,25 @@ void	init_settings(t_game *game)
 	load_png(game, 30, "./sprites/main/scroll/scroll17.png", false);
 	load_png(game, 31, "./sprites/main/scroll/scroll18.png", false);
 	load_png(game, 32, "./sprites/main/scroll/scroll19.png", false);
+}
+
+static void	init_text(t_game *game)
+{
+	load_png(game, 33, "./sprites/main/settings/sens.png", false);
+	load_png(game, 34, "./sprites/main/settings/fov.png", false);
+	load_png(game, 35, "./sprites/main/settings/graphics.png", false);
+	load_png(game, 36, "./sprites/main/settings/crosshair.png", false);
+	load_png(game, 37, "./sprites/main/settings/circle.png", false);
+	load_png(game, 38, "./sprites/main/settings/circle_s.png", false);
+	load_png(game, 39, "./sprites/main/settings/cross.png", false);
+	load_png(game, 40, "./sprites/main/settings/cross_s.png", false);
+	load_png(game, 41, "./sprites/main/settings/dot.png", false);
+	load_png(game, 42, "./sprites/main/settings/dot_s.png", false);
+}
+
+void	init_settings(t_game *game)
+{
+	init_scroll(game);
+	init_text(game);
 	put_to_win(game);
 }
