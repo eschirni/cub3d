@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/04 06:31:00 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:49:02 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>	//debug
+# include <sys/time.h>
 
 # define RED "\033[31m"
 # define RESET "\033[0m"
@@ -101,6 +102,10 @@ typedef struct s_mapgen
 	int			rand_dir[2];
 	int			last_dir[2];
 	int			start[2];
+	int			player_start[2];
+	int			rand;
+	int			size;
+	char		**map;
 }				t_mapgen;
 
 /* map parsing */
@@ -111,10 +116,11 @@ void	set_direction(t_game *game, char direction, int n);
 
 /* utils */
 bool	is_char_obj(char c);
-void	free_exit(t_map *map, t_game *game);
+void	free_exit(t_map *map, t_game *game, t_mapgen *mapg);
 void	ft_error(char *msg, char *arg);
 int		ft_strlen(char *s);
 int		check_file(char *file);
+void	free_2d_array(char **arr);
 
 /* draw functions */
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);
@@ -141,6 +147,8 @@ void	to_game(t_game *game);
 void	to_menu(t_game *game);
 
 /* map gen */
-char	**create_map(int size, int tunnels, int tunnel_len);
+t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len);
+int		get_random_num(int from, int to);
+void	refactor_map(t_mapgen *mapg);
 
 #endif

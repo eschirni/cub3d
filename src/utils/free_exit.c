@@ -28,7 +28,7 @@ static void	free_arrs(t_game *game)
 	free(game->chars);
 }
 
-void	free_exit(t_map *map, t_game *game)
+void	free_exit(t_map *map, t_game *game, t_mapgen *mapg)
 {
 	free_arrs(game);
 	mlx_delete_image(game->mlx, game->map->floor);
@@ -41,4 +41,7 @@ void	free_exit(t_map *map, t_game *game)
 	free(game);
 	free(map->big_map);
 	free(map);
+	mapg = NULL;
+	// free_2d_array(mapg->map);
+	// free(mapg);
 }
