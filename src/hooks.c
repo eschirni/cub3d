@@ -75,6 +75,6 @@ void	fps(void *tmp)
 		check_keys(game);
 		calc_rotate(game, 0.0f, 0);
 		draw_game(game->chars[0]->ray, game, game->map->player);
-		draw_crosshair(game, 0xFFFFFF55, game->settings->cross_type);
+		draw_crosshair(game, 0xFFFFFF55, game->menu->settings->cross_type);
 	}
 }

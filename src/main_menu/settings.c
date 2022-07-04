@@ -54,10 +54,10 @@ static void	init_text(t_game *game)
 	load_png(game, 36, "./sprites/main/settings/crosshair.png", false);
 	load_png(game, 37, "./sprites/main/settings/circle.png", false);
 	load_png(game, 38, "./sprites/main/settings/circle_s.png", false);
-	load_png(game, 39, "./sprites/main/settings/cross.png", false);
-	load_png(game, 40, "./sprites/main/settings/cross_s.png", false);
-	load_png(game, 41, "./sprites/main/settings/dot.png", false);
-	load_png(game, 42, "./sprites/main/settings/dot_s.png", false);
+	load_png(game, 39, "./sprites/main/settings/dot.png", false);
+	load_png(game, 40, "./sprites/main/settings/dot_s.png", false);
+	load_png(game, 41, "./sprites/main/settings/cross.png", false);
+	load_png(game, 42, "./sprites/main/settings/cross_s.png", false);
 }
 
 void	init_settings(t_game *game)

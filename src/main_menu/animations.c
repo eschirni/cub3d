@@ -6,12 +6,18 @@ static void	animate_text(t_menu *menu, bool enable)
 	menu->imgs[34]->enabled = enable;
 	menu->imgs[35]->enabled = enable;
 	menu->imgs[36]->enabled = enable;
-	menu->imgs[37]->enabled = enable;
-	//menu->imgs[38]->enabled = enable;
-	menu->imgs[39]->enabled = enable;
-	//menu->imgs[40]->enabled = enable;
-	menu->imgs[41]->enabled = enable;
-	//menu->imgs[42]->enabled = enable;
+	if (menu->settings->cross_type == 'C')
+		menu->imgs[38]->enabled = enable;
+	else
+		menu->imgs[37]->enabled = enable;
+	if (menu->settings->cross_type == 'D')
+		menu->imgs[40]->enabled = enable;
+	else
+		menu->imgs[39]->enabled = enable;
+	if (menu->settings->cross_type == 'E')
+		menu->imgs[42]->enabled = enable;
+	else
+		menu->imgs[41]->enabled = enable;
 }
 
 static void	open_scroll(t_menu *menu, long now)

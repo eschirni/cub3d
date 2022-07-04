@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/04 15:45:16 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:49:14 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,17 @@ typedef struct s_map
 	mlx_image_t	*wall;
 }				t_map;
 
+typedef struct s_settings
+{
+	char		cross_type;
+	int			fov;
+	int			graphics;
+	float		rs;
+}				t_settings;
+
 typedef struct s_menu
 {
+	t_settings	*settings;
 	bool		in_menu;
 	char		scroll_mode;
 	int			back_frame;
@@ -76,20 +85,11 @@ typedef struct s_menu
 	mlx_image_t	*imgs[43];
 }				t_menu;
 
-typedef struct s_settings
-{
-	char		cross_type;
-	int			fov;
-	int			graphics;
-	float		rs;
-}				t_settings;
-
 typedef struct s_game
 {
 	t_char		**chars;
 	t_map		*map;
 	t_menu		*menu;
-	t_settings	*settings;
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
 	int			ps;
