@@ -1,6 +1,6 @@
 #include "includes/cub3d.h"
 
-static t_game	*init_game(t_map *map)
+static t_game	*alloc_game(t_map *map)
 {
 	t_game			*game;
 	mlx_texture_t	*curs_tex;
@@ -15,6 +15,7 @@ static t_game	*init_game(t_map *map)
 	game->settings = malloc(sizeof(t_settings));
 	if (game == NULL)
 		ft_error("allocation error", NULL);
+	game->settings->cross_type = 'E';
 	game->settings->rs = 1.0f;
 	game->settings->graphics = 16; //only * 2^x
 	game->settings->fov = game->settings->graphics * 60 / 1; //only / 2^x
@@ -24,6 +25,14 @@ static t_game	*init_game(t_map *map)
 	mlx_delete_texture(curs_tex);
 	mlx_set_cursor(game->mlx, cursor);
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	return (game);
+}
+
+static t_game	*init_game(t_map *map)
+{
+	t_game	*game;
+
+	game = alloc_game(map);
 	get_map_textures(game);
 	draw_map(game, game->map);
 	return (game);

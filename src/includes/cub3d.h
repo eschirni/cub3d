@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/03 13:57:27 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/04 06:31:00 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_menu
 
 typedef struct s_settings
 {
+	char		cross_type;
 	int			fov;
 	int			graphics;
 	float		rs;
@@ -121,7 +122,7 @@ void	draw_chars(t_game *game, char **map);
 void	draw_game(t_ray *ray, t_game *game, float coords[2]);
 void	draw_map(t_game *game, t_map *map);
 void	draw_line(t_ray *ray, mlx_image_t *img, int color);
-void	draw_crosshair(t_game *game, int color);
+void	draw_crosshair(t_game *game, int color, char type);
 void	get_map_textures(t_game *game);
 
 /* hooks */
