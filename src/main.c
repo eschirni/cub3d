@@ -42,16 +42,17 @@ int	main(int argc, char **argv)
 {
 	t_map		*map;
 	t_game		*game;
-	// t_mapgen	*mapg;
+	t_mapgen	*mapg;
 
 	if (argc != 2)
 		ft_error("bad arguments", NULL);
-	// mapg = create_map(20, 50, 8, 0);
-	map = init_map(argv[1]);
+	argv = NULL;
+	mapg = create_map(20, 50, 8, 0);
+	map = init_map(mapg);
 	game = init_game(map);
 	main_menu(game);
 	mlx_loop(game->mlx);
-	free_exit(map, game, NULL);
+	free_exit(map, game);
 	system("leaks cub3d");
 	return (EXIT_SUCCESS);
 }
