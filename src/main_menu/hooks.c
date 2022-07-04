@@ -65,22 +65,53 @@ static void	settings_buttons(t_game *game, int x, int y)
 
 static void	menu_sliders(t_game *game, int x, int y)
 {
-	if (x >= 1410 && x <= 1420 && y >= 350 && y <= 367)
+	//ps
+	if (x >= 1400 && x <= 1427 && y >= 350 && y <= 367)
 		game->menu->settings->rs = 0.25f;
-	else if (x >= 1421 && x <= 1430 && y >= 350 && y <= 367)
+	else if (x >= 1428 && x <= 1445 && y >= 350 && y <= 367)
 		game->menu->settings->rs = 0.5f;
-	else if (x >= 1431 && x <= 1440 && y >= 350 && y <= 367)
+	else if (x >= 1446 && x <= 1473 && y >= 350 && y <= 367)
 		game->menu->settings->rs = 0.75f;
-	else if (x >= 1441 && x <= 1450 && y >= 350 && y <= 367)
+	else if (x >= 1472 && x <= 1501 && y >= 350 && y <= 367)
 		game->menu->settings->rs = 1;
-	else if (x >= 1451 && x <= 1460 && y >= 350 && y <= 367)
+	else if (x >= 1502 && x <= 1529 && y >= 350 && y <= 367)
 		game->menu->settings->rs = 1.25f;
-	else if (x >= 1461 && x <= 1470 && y >= 350 && y <= 367)
+	else if (x >= 1530 && x <= 1557 && y >= 350 && y <= 367)
 		game->menu->settings->rs = 1.5f;
-	else if (x >= 1471 && x <= 1480 && y >= 350 && y <= 367)
+	else if (x >= 1558 && x <= 1585 && y >= 350 && y <= 367)
 		game->menu->settings->rs = 1.75f;
-	else if (x >= 1481 && x <= 1490 && y >= 350 && y <= 367)
+	else if (x >= 1586 && x <= 1602 && y >= 350 && y <= 367)
 		game->menu->settings->rs = 2;
+	//fov
+	if (x >= 1400 && x <= 1427 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 1920;
+	else if (x >= 1428 && x <= 1445 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 960;
+	else if (x >= 1446 && x <= 1473 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 480;
+	else if (x >= 1472 && x <= 1501 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 240;
+	else if (x >= 1502 && x <= 1529 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 120;
+	else if (x >= 1530 && x <= 1557 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 60;
+	else if (x >= 1558 && x <= 1585 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 30;
+	else if (x >= 1586 && x <= 1602 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 15;
+	//graphics
+	if (x >= 1400 && x <= 1440 && y >= 575 && y <= 593)
+		game->menu->settings->graphics = 1;
+	else if (x >= 1441 && x <= 1473 && y >= 575 && y <= 593)
+		game->menu->settings->graphics = 2;
+	else if (x >= 1472 && x <= 1501 && y >= 575 && y <= 593)
+		game->menu->settings->graphics = 4;
+	else if (x >= 1502 && x <= 1529 && y >= 575 && y <= 593)
+		game->menu->settings->graphics = 8;
+	else if (x >= 1530 && x <= 1570 && y >= 575 && y <= 593)
+		game->menu->settings->graphics = 16;
+	else if (x >= 1571 && x <= 1602 && y >= 575 && y <= 593)
+		game->menu->settings->graphics = 32;
 }
 
 void	menu_buttons(mouse_key_t k, action_t act, modifier_key_t mod, void *tmp)

@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/04 20:25:20 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:56:50 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_menu
 	int			scroll_frame;
 	long		back_seconds;
 	long		scroll_seconds;
-	mlx_image_t	*imgs[51];
+	mlx_image_t	*imgs[65];
 }				t_menu;
 
 typedef struct s_game

@@ -20,12 +20,28 @@ static void	put_to_win(t_game *game)
 	mlx_image_to_window(game->mlx, game->menu->imgs[40], 1475, 666);
 	mlx_image_to_window(game->mlx, game->menu->imgs[41], 1525, 666);
 	mlx_image_to_window(game->mlx, game->menu->imgs[42], 1525, 666);
-	mlx_image_to_window(game->mlx, game->menu->imgs[43], 1410, 350);
-	mlx_image_to_window(game->mlx, game->menu->imgs[44], 1410, 350);
-	mlx_image_to_window(game->mlx, game->menu->imgs[45], 1410, 350);
-	mlx_image_to_window(game->mlx, game->menu->imgs[46], 1410, 350);
-	mlx_image_to_window(game->mlx, game->menu->imgs[47], 1410, 350);
-	mlx_image_to_window(game->mlx, game->menu->imgs[48], 1410, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[43], 1400, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[44], 1400, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[45], 1400, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[46], 1400, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[47], 1400, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[48], 1400, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[49], 1400, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[50], 1400, 350);
+	mlx_image_to_window(game->mlx, game->menu->imgs[51], 1400, 470);
+	mlx_image_to_window(game->mlx, game->menu->imgs[52], 1400, 470);
+	mlx_image_to_window(game->mlx, game->menu->imgs[53], 1400, 470);
+	mlx_image_to_window(game->mlx, game->menu->imgs[54], 1400, 470);
+	mlx_image_to_window(game->mlx, game->menu->imgs[55], 1400, 470);
+	mlx_image_to_window(game->mlx, game->menu->imgs[56], 1400, 470);
+	mlx_image_to_window(game->mlx, game->menu->imgs[57], 1400, 470);
+	mlx_image_to_window(game->mlx, game->menu->imgs[58], 1400, 470);
+	mlx_image_to_window(game->mlx, game->menu->imgs[59], 1400, 575);
+	mlx_image_to_window(game->mlx, game->menu->imgs[60], 1400, 575);
+	mlx_image_to_window(game->mlx, game->menu->imgs[61], 1400, 575);
+	mlx_image_to_window(game->mlx, game->menu->imgs[62], 1400, 575);
+	mlx_image_to_window(game->mlx, game->menu->imgs[63], 1400, 575);
+	mlx_image_to_window(game->mlx, game->menu->imgs[64], 1400, 575);
 }
 
 static void	init_scroll(t_game *game)
@@ -55,15 +71,30 @@ static void	init_scroll(t_game *game)
 static void	init_arrows(t_game *game)
 {
 	//rs
-	load_png(game, 43, "./sprites/main/settings/spear.png", false);
-	load_png(game, 44, "./sprites/main/settings/spear1.png", false);
-	load_png(game, 45, "./sprites/main/settings/spear1.png", false);
-	load_png(game, 46, "./sprites/main/settings/spear2.png", false);
-	load_png(game, 47, "./sprites/main/settings/spear3.png", false);
-	load_png(game, 48, "./sprites/main/settings/spear4.png", false);
-	load_png(game, 49, "./sprites/main/settings/spear5.png", false);
-	load_png(game, 50, "./sprites/main/settings/spear6.png", false);
+	load_png(game, 43, "./sprites/main/settings/slider.png", false);
+	load_png(game, 44, "./sprites/main/settings/slider1.png", false);
+	load_png(game, 45, "./sprites/main/settings/slider2.png", false);
+	load_png(game, 46, "./sprites/main/settings/slider3.png", false);
+	load_png(game, 47, "./sprites/main/settings/slider4.png", false);
+	load_png(game, 48, "./sprites/main/settings/slider5.png", false);
+	load_png(game, 49, "./sprites/main/settings/slider6.png", false);
+	load_png(game, 50, "./sprites/main/settings/slider7.png", false);
 	//fov
+	load_png(game, 51, "./sprites/main/settings/slider.png", false);
+	load_png(game, 52, "./sprites/main/settings/slider1.png", false);
+	load_png(game, 53, "./sprites/main/settings/slider2.png", false);
+	load_png(game, 54, "./sprites/main/settings/slider3.png", false);
+	load_png(game, 55, "./sprites/main/settings/slider4.png", false);
+	load_png(game, 56, "./sprites/main/settings/slider5.png", false);
+	load_png(game, 57, "./sprites/main/settings/slider6.png", false);
+	load_png(game, 58, "./sprites/main/settings/slider7.png", false);
+	//graphics
+	load_png(game, 59, "./sprites/main/settings/slider7.png", false);
+	load_png(game, 60, "./sprites/main/settings/slider5.png", false);
+	load_png(game, 61, "./sprites/main/settings/slider4.png", false);
+	load_png(game, 62, "./sprites/main/settings/slider3.png", false);
+	load_png(game, 63, "./sprites/main/settings/slider2.png", false);
+	load_png(game, 64, "./sprites/main/settings/slider.png", false);
 }
 
 static void	init_text(t_game *game)
@@ -80,7 +111,7 @@ static void	init_text(t_game *game)
 	load_png(game, 42, "./sprites/main/settings/cross_s.png", false);
 }
 
-void	init_settings(t_game *game)
+void	init_settings(t_game *game) //grafics option sucks
 {
 	init_scroll(game);
 	init_text(game);

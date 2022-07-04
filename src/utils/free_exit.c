@@ -11,7 +11,7 @@ static void	free_arrs(t_game *game)
 		i++;
 	}
 	i = 0;
-	while (i < 51)
+	while (i < 65)
 	{
 		mlx_delete_image(game->mlx, game->menu->imgs[i]);
 		i++;
