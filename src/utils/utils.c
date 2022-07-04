@@ -6,7 +6,7 @@
 /*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 21:57:53 by eschirni          #+#    #+#             */
-/*   Updated: 2022/06/14 11:29:32 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:22:02 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,20 @@ int	check_file(char *file)
 	if (ft_strncmp(tmp, ".cub", 5))
 		return (0);
 	return (1);
+}
+
+void	free_2d_array(char **arr)
+{
+	int	i;
+
+	if (arr)
+	{
+		i = 0;
+		while (arr[i])
+		{
+			free(arr[i]);
+			i++;
+		}
+		free(arr);
+	}
 }

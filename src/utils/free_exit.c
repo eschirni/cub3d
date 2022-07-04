@@ -30,7 +30,7 @@ static void	free_arrs(t_game *game)
 	free(game->chars);
 }
 
-void	free_exit(t_map *map, t_game *game)
+void	free_exit(t_map *map, t_game *game, t_mapgen *mapg)
 {
 	free_arrs(game);
 	if (game->menu->in_menu == false)
@@ -45,4 +45,6 @@ void	free_exit(t_map *map, t_game *game)
 	free(game);
 	free(map->map_arr);
 	free(map);
+	free_2d_array(mapg->map);
+	free(mapg);
 }
