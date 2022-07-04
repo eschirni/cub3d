@@ -50,7 +50,7 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 		ray->end[1] = ray->start[1] + line_height;
 		if (ray->start[0] < MINIMAP && ray->start[1] < MINIMAP)
 			ray->start[1] = MINIMAP;
-		draw_line(ray, game->game_img, 0x1a2229FF);
+		draw_line(ray, game->game_img, ray->color);
 		draw_ground_sky(ray, game->game_img);
 		*line_x += 1;
 		count_x++;

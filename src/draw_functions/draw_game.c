@@ -41,7 +41,7 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 			ray->end[0] = 0;
 		if (ray->end[1] < 0)
 			ray->end[1] = 0;
-		draw_line(ray, ray->img, ray->color); //draw ray
+		draw_line(ray, ray->img, 0xbad129); //draw ray
 		draw_3d(game, ray, 0, &line_x);
 		i++;
 	}
