@@ -5,6 +5,8 @@
 # include <sys/time.h>
 
 /* hooks */
+void	animate_scroll_text(t_menu *menu);
+void	disable_all(t_menu *menu, int start, int end);
 void	menu_buttons(mouse_key_t k, action_t act, modifier_key_t mod, void *ag);
 void	menu_sliders(t_game *game, int x, int y);
 

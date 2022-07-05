@@ -1,94 +1,5 @@
 #include "../includes/main_menu.h"
 
-static void	animate_text(t_menu *menu, bool enable)
-{
-	menu->imgs[33]->enabled = enable;
-	menu->imgs[34]->enabled = enable;
-	menu->imgs[35]->enabled = enable;
-	menu->imgs[36]->enabled = enable;
-	if (menu->settings->cross_type == 'C')
-		menu->imgs[38]->enabled = enable;
-	else
-		menu->imgs[37]->enabled = enable;
-	if (menu->settings->cross_type == 'D')
-		menu->imgs[40]->enabled = enable;
-	else
-		menu->imgs[39]->enabled = enable;
-	if (menu->settings->cross_type == 'E')
-		menu->imgs[42]->enabled = enable;
-	else
-		menu->imgs[41]->enabled = enable;
-	menu->imgs[43]->enabled = false;
-	menu->imgs[44]->enabled = false;
-	menu->imgs[45]->enabled = false;
-	menu->imgs[46]->enabled = false;
-	menu->imgs[47]->enabled = false;
-	menu->imgs[48]->enabled = false;
-	menu->imgs[49]->enabled = false;
-	menu->imgs[50]->enabled = false;
-	menu->imgs[51]->enabled = false;
-	menu->imgs[52]->enabled = false;
-	menu->imgs[53]->enabled = false;
-	menu->imgs[54]->enabled = false;
-	menu->imgs[55]->enabled = false;
-	menu->imgs[56]->enabled = false;
-	menu->imgs[57]->enabled = false;
-	menu->imgs[58]->enabled = false;
-	menu->imgs[59]->enabled = false;
-	menu->imgs[60]->enabled = false;
-	menu->imgs[61]->enabled = false;
-	menu->imgs[62]->enabled = false;
-	menu->imgs[63]->enabled = false;
-	menu->imgs[64]->enabled = false;
-	//rs
-	if (menu->settings->rs == 0.25f && menu->scroll_mode == 'O')
-		menu->imgs[43]->enabled = true;
-	else if (menu->settings->rs == 0.5f && menu->scroll_mode == 'O')
-		menu->imgs[44]->enabled = true;
-	else if (menu->settings->rs == 0.75f && menu->scroll_mode == 'O')
-		menu->imgs[45]->enabled = true;
-	else if (menu->settings->rs == 1 && menu->scroll_mode == 'O')
-		menu->imgs[46]->enabled = true;
-	else if (menu->settings->rs == 1.25f && menu->scroll_mode == 'O')
-		menu->imgs[47]->enabled = true;
-	else if (menu->settings->rs == 1.5f && menu->scroll_mode == 'O')
-		menu->imgs[48]->enabled = true;
-	else if (menu->settings->rs == 1.75f && menu->scroll_mode == 'O')
-		menu->imgs[49]->enabled = true;
-	else if (menu->settings->rs == 2 && menu->scroll_mode == 'O')
-		menu->imgs[50]->enabled = true;
-	//fov
-	if (menu->settings->fov == 1920 && menu->scroll_mode == 'O')
-		menu->imgs[51]->enabled = true;
-	else if (menu->settings->fov == 960 && menu->scroll_mode == 'O')
-		menu->imgs[52]->enabled = true;
-	else if (menu->settings->fov == 480 && menu->scroll_mode == 'O')
-		menu->imgs[53]->enabled = true;
-	else if (menu->settings->fov == 240 && menu->scroll_mode == 'O')
-		menu->imgs[54]->enabled = true;
-	else if (menu->settings->fov == 120 && menu->scroll_mode == 'O')
-		menu->imgs[55]->enabled = true;
-	else if (menu->settings->fov == 60 && menu->scroll_mode == 'O')
-		menu->imgs[56]->enabled = true;
-	else if (menu->settings->fov == 30 && menu->scroll_mode == 'O')
-		menu->imgs[57]->enabled = true;
-	else if (menu->settings->fov == 15 && menu->scroll_mode == 'O')
-		menu->imgs[58]->enabled = true;
-	//graphics
-	if (menu->settings->graphics == 32 && menu->scroll_mode == 'O')
-		menu->imgs[59]->enabled = true;
-	else if (menu->settings->graphics == 16 && menu->scroll_mode == 'O')
-		menu->imgs[60]->enabled = true;
-	else if (menu->settings->graphics == 8 && menu->scroll_mode == 'O')
-		menu->imgs[61]->enabled = true;
-	else if (menu->settings->graphics == 4 && menu->scroll_mode == 'O')
-		menu->imgs[62]->enabled = true;
-	else if (menu->settings->graphics == 2 && menu->scroll_mode == 'O')
-		menu->imgs[63]->enabled = true;
-	else if (menu->settings->graphics == 1 && menu->scroll_mode == 'O')
-		menu->imgs[64]->enabled = true;
-}
-
 static void	open_scroll(t_menu *menu, long now)
 {
 	menu->scroll_seconds = now;
@@ -101,7 +12,7 @@ static void	open_scroll(t_menu *menu, long now)
 		menu->scroll_frame++;
 	}
 	else
-		animate_text(menu, true);
+		animate_scroll_text(menu);
 }
 
 void	animate_scroll(t_menu *menu, long now)
@@ -112,7 +23,7 @@ void	animate_scroll(t_menu *menu, long now)
 	{
 		menu->scroll_seconds = now;
 		if (menu->scroll_frame == 33)
-			animate_text(menu, false);
+			disable_all(menu, 33, 65);
 		if (menu->scroll_frame > 12)
 		{
 			if (menu->scroll_frame < 33)

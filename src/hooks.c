@@ -31,7 +31,7 @@ static void	mouse_rotate(t_game *game)
 
 	mlx_get_mouse_pos(game->mlx, &x, &y);
 	x -= WIDTH / 2;
-	game->chars[0]->pa += (float)x / 4000  * game->menu->settings->rs;
+	game->chars[0]->pa += (float)x / 4000 * game->menu->settings->rs;
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 }
 
