@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 21:57:53 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/01 20:05:49 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:44:25 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,20 @@ int	check_file(char *file)
 	if (ft_strncmp(tmp, ".cub", 5))
 		return (0);
 	return (1);
+}
+
+void	free_2d_array(char **arr)
+{
+	int	i;
+
+	if (arr)
+	{
+		i = 0;
+		while (arr[i])
+		{
+			free(arr[i]);
+			i++;
+		}
+		free(arr);
+	}
 }
