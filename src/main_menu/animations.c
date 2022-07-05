@@ -11,6 +11,8 @@ static void	open_scroll(t_menu *menu, long now)
 			menu->imgs[menu->scroll_frame]->enabled = true;
 		menu->scroll_frame++;
 	}
+	else
+		animate_scroll_text(menu);
 }
 
 void	animate_scroll(t_menu *menu, long now)
@@ -20,6 +22,8 @@ void	animate_scroll(t_menu *menu, long now)
 	else if (now > menu->scroll_seconds + 15 && menu->scroll_mode == 'C')
 	{
 		menu->scroll_seconds = now;
+		if (menu->scroll_frame == 33)
+			disable_all(menu, 33, 65);
 		if (menu->scroll_frame > 12)
 		{
 			if (menu->scroll_frame < 33)

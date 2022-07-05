@@ -56,6 +56,13 @@ void	main_menu(t_game *game)
 	game->menu = malloc(sizeof(t_menu));
 	if (game->menu == NULL)
 		ft_error("Malloc error!", NULL);
+	game->menu->settings = malloc(sizeof(t_settings));
+	if (game == NULL)
+		ft_error("allocation error", NULL);
+	game->menu->settings->cross_type = 'E';
+	game->menu->settings->rs = 1;
+	game->menu->settings->graphics = 32;
+	game->menu->settings->fov = 1920;
 	create_background(game);
 	create_buttons(game);
 	init_settings(game);
