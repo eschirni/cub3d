@@ -95,9 +95,9 @@ t_map	*init_map(t_mapgen *mapg)
 
 	map = malloc(sizeof(t_map));
 	if (!map)
-		ft_error("allocation failed.", NULL);
-	map->x = mapg->size;
-	map->y = mapg->size;
+		ft_error("allocation failed", NULL);
+	map->x = mapg->size + 2;
+	map->y = mapg->size + 2;
 	map->big_map = mapg->map;
 	free(mapg);
 	map->n_chars = 0;

@@ -110,6 +110,6 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 		if (end_len)
 			tunnels--;
 	}
-	refactor_map(mapg);
+	refactor_map(mapg, 0, 0);
 	return (mapg);
 }

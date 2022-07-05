@@ -6,7 +6,7 @@
 /*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/04 19:17:30 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/05 10:18:08 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,6 @@ void	to_menu(t_game *game);
 /* map gen */
 t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len);
 int		get_random_num(int from, int to);
-void	refactor_map(t_mapgen *mapg);
+void	refactor_map(t_mapgen *mapg, int i, int j);
 
 #endif

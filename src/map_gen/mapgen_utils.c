@@ -1,23 +1,32 @@
 #include "../includes/cub3d.h"
 
-void	refactor_map(t_mapgen *mapg)
+void	refactor_map(t_mapgen *mapg, int i, int j)
 {
-	int	i;
-	int	j;
+	char	**new;
 
-	i = 0;
-	while (mapg->map[i])
+	mapg->map[mapg->player_start[1]][mapg->player_start[0]] = 'N';
+	new = malloc(sizeof(char *) * (mapg->size + 3));
+	if (!new)
+		ft_error("allocation failed", NULL);
+	new[mapg->size + 2] = NULL;
+	while (i < mapg->size + 2)
 	{
 		j = 0;
-		while (mapg->map[i][j])
+		new[i] = malloc(mapg->size + 3);
+		if (!new[i])
+			ft_error("allocation failed", NULL);
+		while (j < mapg->size + 2)
 		{
-			if (i == 0 || i == mapg->size - 1 || j == 0 || !mapg->map[j + 1])
-				mapg->map[i][j] = '1';
+			if (i == 0 || i == mapg->size + 1 || j == 0 || j == mapg->size + 1)
+				new[i][j] = '1';
+			else
+				new[i][j] = mapg->map[i - 1][j - 1];
 			j++;
 		}
-		i++;
+		new[i++][mapg->size + 2] = 0;
 	}
-	mapg->map[mapg->player_start[1]][mapg->player_start[0]] = 'N';
+	free_2d_array(mapg->map);
+	mapg->map = new;
 }
 
 int	get_random_num(int from, int to)
