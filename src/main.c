@@ -44,7 +44,7 @@ int	main(void)
 	t_game		*game;
 	t_mapgen	*mapg;
 
-	mapg = create_map(20, 50, 8, 0);
+	mapg = create_map(26, 75, 10, 0); //1. mapsize, 2. amount of tunnels, 3. max length of tunnels, 4. do not change >:(
 	map = init_map(mapg);
 	game = init_game(map);
 	main_menu(game);

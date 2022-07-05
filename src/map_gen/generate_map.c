@@ -46,8 +46,8 @@ static t_mapgen	*init_mapg(int size)
 	if (!mapg)
 		ft_error("allocation failed", NULL);
 	mapg->map = create_array(size);
-	mapg->start[0] = get_random_num(0, size);
-	mapg->start[1] = get_random_num(0, size);
+	mapg->start[0] = get_random_num(1, size - 1);
+	mapg->start[1] = get_random_num(1, size - 1);
 	mapg->player_start[0] = mapg->start[0];
 	mapg->player_start[1] = mapg->start[1];
 	init_directions(mapg);
@@ -72,7 +72,7 @@ static int	carve_tunnel(t_mapgen *mapg, int size, int tunnel_len)
 			&& (mapg->start[0] + mapg->rand_dir[0]) < size
 			&& (mapg->start[1] + mapg->rand_dir[1]) < size)
 		{
-			mapg->map[mapg->start[0]][mapg->start[1]] = '0';
+			mapg->map[mapg->start[1]][mapg->start[0]] = '0';
 			mapg->start[0] += mapg->rand_dir[0];
 			mapg->start[1] += mapg->rand_dir[1];
 			i++;
