@@ -36,8 +36,8 @@ void	free_exit(t_map *map, t_game *game)
 	mlx_delete_image(game->mlx, game->map->out);
 	mlx_delete_image(game->mlx, game->game_img);
 	mlx_terminate(game->mlx);
-	free(game->menu);
 	free(game->menu->settings);
+	free(game->menu);
 	free(game);
 	free(map->big_map);
 	free(map);
