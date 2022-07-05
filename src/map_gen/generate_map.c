@@ -46,8 +46,8 @@ static t_mapgen	*init_mapg(int size)
 	if (!mapg)
 		ft_error("allocation failed", NULL);
 	mapg->map = create_array(size);
-	mapg->start[0] = get_random_num(1, size - 1);
-	mapg->start[1] = get_random_num(1, size - 1);
+	mapg->start[0] = get_random_num(0, size - 1);
+	mapg->start[1] = get_random_num(0, size - 1);
 	mapg->player_start[0] = mapg->start[0];
 	mapg->player_start[1] = mapg->start[1];
 	init_directions(mapg);
