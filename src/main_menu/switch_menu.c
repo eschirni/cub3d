@@ -9,7 +9,10 @@ void	to_menu(t_game *game)
 	game->map->wall->enabled = false;
 	game->chars[0]->ray->img->enabled = false;
 	game->menu->imgs[6]->enabled = true;
-	game->menu->imgs[7]->enabled = true;
+	if (game->menu->started_game == true)
+		game->menu->imgs[65]->enabled = true;
+	else
+		game->menu->imgs[7]->enabled = true;
 	game->menu->imgs[9]->enabled = true;
 	game->menu->imgs[11]->enabled = true;
 	i = 0;
@@ -40,6 +43,8 @@ static void	disable_animation(t_game *game)
 		game->chars[i]->img->enabled = true;
 		i++;
 	}
+	game->menu->imgs[65]->enabled = false;
+	game->menu->imgs[66]->enabled = false;
 }
 
 void	to_game(t_game *game)
@@ -56,5 +61,6 @@ void	to_game(t_game *game)
 	game->chars[0]->ray->img->enabled = true;
 	disable_animation(game);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
+	game->menu->started_game = true;
 	game->menu->in_menu = false;
 }

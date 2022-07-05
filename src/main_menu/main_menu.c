@@ -19,9 +19,13 @@ static void	create_buttons(t_game *game)
 	load_png(game, 10, "./sprites/main/button/settings_hover.png", false);
 	load_png(game, 11, "./sprites/main/button/exit.png", true);
 	load_png(game, 12, "./sprites/main/button/exit_hover.png", false);
+	load_png(game, 65, "./sprites/main/button/continue.png", false);
+	load_png(game, 66, "./sprites/main/button/continue_hover.png", false);
 	mlx_image_to_window(game->mlx, game->menu->imgs[6], 100, 40);
 	mlx_image_to_window(game->mlx, game->menu->imgs[7], 120, 250);
 	mlx_image_to_window(game->mlx, game->menu->imgs[8], 120, 250);
+	mlx_image_to_window(game->mlx, game->menu->imgs[65], 120, 250);
+	mlx_image_to_window(game->mlx, game->menu->imgs[66], 120, 250);
 	mlx_image_to_window(game->mlx, game->menu->imgs[9], 120, 350);
 	mlx_image_to_window(game->mlx, game->menu->imgs[10], 120, 350);
 	mlx_image_to_window(game->mlx, game->menu->imgs[11], 120, 450);
@@ -59,6 +63,7 @@ void	main_menu(t_game *game)
 	game->menu->settings = malloc(sizeof(t_settings));
 	if (game == NULL)
 		ft_error("allocation error", NULL);
+	game->menu->started_game = false;
 	game->menu->settings->cross_type = 'E';
 	game->menu->settings->rs = 1;
 	game->menu->settings->graphics = 32;

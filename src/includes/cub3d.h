@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/05 10:18:08 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:46:26 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,13 @@ typedef struct s_menu
 {
 	t_settings	*settings;
 	bool		in_menu;
+	bool		started_game;
 	char		scroll_mode;
 	int			back_frame;
 	int			scroll_frame;
 	long		back_seconds;
 	long		scroll_seconds;
-	mlx_image_t	*imgs[65];
+	mlx_image_t	*imgs[67];
 }				t_menu;
 
 typedef struct s_game

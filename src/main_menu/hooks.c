@@ -2,7 +2,11 @@
 
 static void	reset_hover(t_game *game)
 {
-	game->menu->imgs[7]->enabled = true;
+	if (game->menu->started_game == true)
+		game->menu->imgs[65]->enabled = true;
+	else
+		game->menu->imgs[7]->enabled = true;
+	game->menu->imgs[66]->enabled = false;
 	game->menu->imgs[8]->enabled = false;
 	game->menu->imgs[9]->enabled = true;
 	game->menu->imgs[10]->enabled = false;
@@ -20,6 +24,12 @@ void	hover_buttons(double x, double y, void *tmp)
 	reset_hover(game);
 	if (x >= 120 && x <= 461 && y >= 250 && y <= 315)
 	{
+		if (game->menu->started_game == true)
+		{
+			game->menu->imgs[65]->enabled = false;
+			game->menu->imgs[66]->enabled = true;
+			return ;
+		}
 		game->menu->imgs[7]->enabled = false;
 		game->menu->imgs[8]->enabled = true;
 	}
