@@ -33,15 +33,7 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 		ray->start[1] -= game->map->player[1] - 144;
 		ray->end[0] -= game->map->player[0] - 144;
 		ray->end[1] -= game->map->player[1] - 144;
-		if (ray->end[0] > MINIMAP)
-			ray->end[0] = MINIMAP;
-		if (ray->end[1] > MINIMAP)
-			ray->end[1] = MINIMAP;
-		if (ray->end[0] < 0)
-			ray->end[0] = 0;
-		if (ray->end[1] < 0)
-			ray->end[1] = 0;
-		draw_line(ray, ray->img, 0xbad129); //draw ray
+		draw_line(ray, ray->img, 0xbad129, true); //draw ray
 		draw_3d(game, ray, 0, &line_x);
 		i++;
 	}
