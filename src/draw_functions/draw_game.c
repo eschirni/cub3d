@@ -23,9 +23,9 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 	int	line_x;
 
 	line_x = 0;
-	while (i < game->settings->fov)
+	while (i < game->menu->settings->fov)
 	{
-		ray->ra += (float)M_PI / 180 / game->settings->graphics;
+		ray->ra += (float)M_PI / 180 / game->menu->settings->graphics;
 		if (ray->ra >= (float)M_PI * 2)
 			ray->ra -= (float)M_PI * 2;
 		ray->dist = calc_rays(ray, game->map, coords[0], coords[1]);

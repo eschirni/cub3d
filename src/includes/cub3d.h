@@ -66,17 +66,6 @@ typedef struct s_map
 	mlx_image_t	*wall;
 }				t_map;
 
-typedef struct s_menu
-{
-	bool		in_menu;
-	char		scroll_mode;
-	int			back_frame;
-	int			scroll_frame;
-	long		back_seconds;
-	long		scroll_seconds;
-	mlx_image_t	*imgs[33];
-}				t_menu;
-
 typedef struct s_settings
 {
 	char		cross_type;
@@ -85,12 +74,23 @@ typedef struct s_settings
 	float		rs;
 }				t_settings;
 
+typedef struct s_menu
+{
+	t_settings	*settings;
+	bool		in_menu;
+	char		scroll_mode;
+	int			back_frame;
+	int			scroll_frame;
+	long		back_seconds;
+	long		scroll_seconds;
+	mlx_image_t	*imgs[65];
+}				t_menu;
+
 typedef struct s_game
 {
 	t_char		**chars;
 	t_map		*map;
 	t_menu		*menu;
-	t_settings	*settings;
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
 	int			ps;

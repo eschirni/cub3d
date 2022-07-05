@@ -33,7 +33,7 @@ static void	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
 	*lh = 32 * HEIGHT / ray->dist;
 	if (*lh >= HEIGHT)
 		*lh = HEIGHT - 1;
-	*lw = WIDTH / game->settings->fov;
+	*lw = WIDTH / game->menu->settings->fov;
 }
 
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)

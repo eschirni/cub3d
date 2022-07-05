@@ -11,7 +11,7 @@ static void	free_arrs(t_game *game)
 		i++;
 	}
 	i = 0;
-	while (i < 33)
+	while (i < 65)
 	{
 		mlx_delete_image(game->mlx, game->menu->imgs[i]);
 		i++;
@@ -37,7 +37,7 @@ void	free_exit(t_map *map, t_game *game)
 	mlx_delete_image(game->mlx, game->game_img);
 	mlx_terminate(game->mlx);
 	free(game->menu);
-	free(game->settings);
+	free(game->menu->settings);
 	free(game);
 	free(map->big_map);
 	free(map);
