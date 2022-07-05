@@ -69,14 +69,14 @@ static void	init_sliders(t_game *game)
 	load_png(game, 48, "./sprites/main/settings/slider5.png", false);
 	load_png(game, 49, "./sprites/main/settings/slider6.png", false);
 	load_png(game, 50, "./sprites/main/settings/slider7.png", false);
-	load_png(game, 51, "./sprites/main/settings/slider.png", false);
-	load_png(game, 52, "./sprites/main/settings/slider1.png", false);
-	load_png(game, 53, "./sprites/main/settings/slider2.png", false);
-	load_png(game, 54, "./sprites/main/settings/slider3.png", false);
-	load_png(game, 55, "./sprites/main/settings/slider4.png", false);
-	load_png(game, 56, "./sprites/main/settings/slider5.png", false);
-	load_png(game, 57, "./sprites/main/settings/slider6.png", false);
-	load_png(game, 58, "./sprites/main/settings/slider7.png", false);
+	load_png(game, 51, "./sprites/main/settings/slider7.png", false);
+	load_png(game, 52, "./sprites/main/settings/slider6.png", false);
+	load_png(game, 53, "./sprites/main/settings/slider5.png", false);
+	load_png(game, 54, "./sprites/main/settings/slider4.png", false);
+	load_png(game, 55, "./sprites/main/settings/slider3.png", false);
+	load_png(game, 56, "./sprites/main/settings/slider2.png", false);
+	load_png(game, 57, "./sprites/main/settings/slider1.png", false);
+	load_png(game, 58, "./sprites/main/settings/slider.png", false);
 	load_png(game, 59, "./sprites/main/settings/slider7.png", false);
 	load_png(game, 60, "./sprites/main/settings/slider5.png", false);
 	load_png(game, 61, "./sprites/main/settings/slider4.png", false);
@@ -91,7 +91,6 @@ void	init_settings(t_game *game)
 	init_text(game);
 	init_sliders(game);
 	put_to_win(game, 51, 1400, 350);
-	put_to_win(game, 59, 1400, 470);
 	put_to_win(game, 59, 1400, 470);
 	put_to_win(game, 65, 1400, 575);
 }
