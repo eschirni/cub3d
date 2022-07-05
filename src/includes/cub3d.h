@@ -6,7 +6,7 @@
 /*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/04 21:56:50 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/05 10:18:08 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,14 @@ typedef struct s_mapgen
 }				t_mapgen;
 
 /* map parsing */
-t_map	*init_map(char *mapfile);
+t_map	*init_map(t_mapgen *mapg);
 
 /* char fuctions */
 void	set_direction(t_game *game, char direction, int n);
 
 /* utils */
 bool	is_char_obj(char c);
-void	free_exit(t_map *map, t_game *game, t_mapgen *mapg);
+void	free_exit(t_map *map, t_game *game);
 void	ft_error(char *msg, char *arg);
 int		ft_strlen(char *s);
 int		check_file(char *file);
@@ -149,6 +149,6 @@ void	to_menu(t_game *game);
 /* map gen */
 t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len);
 int		get_random_num(int from, int to);
-void	refactor_map(t_mapgen *mapg);
+void	refactor_map(t_mapgen *mapg, int i, int j);
 
 #endif

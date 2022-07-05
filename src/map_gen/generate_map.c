@@ -38,16 +38,20 @@ static void	init_directions(t_mapgen *mapg)
 	mapg->dirs[3][1] = 1;
 }
 
-static t_mapgen	*init_mapg(int size)
+static t_mapgen	*init_mapg(int size, int tunnel_len)
 {
 	t_mapgen	*mapg;
 
+	if (size <= 4)
+		ft_error("map too small", NULL);
+	else if (tunnel_len == 0)
+		ft_error("tunnel length should never be 0", NULL);
 	mapg = malloc(sizeof(t_mapgen));
 	if (!mapg)
 		ft_error("allocation failed", NULL);
 	mapg->map = create_array(size);
-	mapg->start[0] = get_random_num(0, size);
-	mapg->start[1] = get_random_num(0, size);
+	mapg->start[0] = get_random_num(0, size - 1);
+	mapg->start[1] = get_random_num(0, size - 1);
 	mapg->player_start[0] = mapg->start[0];
 	mapg->player_start[1] = mapg->start[1];
 	init_directions(mapg);
@@ -72,7 +76,7 @@ static int	carve_tunnel(t_mapgen *mapg, int size, int tunnel_len)
 			&& (mapg->start[0] + mapg->rand_dir[0]) < size
 			&& (mapg->start[1] + mapg->rand_dir[1]) < size)
 		{
-			mapg->map[mapg->start[0]][mapg->start[1]] = '0';
+			mapg->map[mapg->start[1]][mapg->start[0]] = '0';
 			mapg->start[0] += mapg->rand_dir[0];
 			mapg->start[1] += mapg->rand_dir[1];
 			i++;
@@ -89,7 +93,7 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 {
 	t_mapgen	*mapg;
 
-	mapg = init_mapg(size);
+	mapg = init_mapg(size, tunnel_len);
 	while (tunnels)
 	{
 		end_len = carve_tunnel(mapg, size, tunnel_len);
@@ -110,6 +114,6 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 		if (end_len)
 			tunnels--;
 	}
-	refactor_map(mapg);
+	refactor_map(mapg, 0, 0);
 	return (mapg);
 }
