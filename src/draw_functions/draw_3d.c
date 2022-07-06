@@ -90,15 +90,14 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 		ray->start[1] = HEIGHT / 2 - line_height / 2;
 		ray->end[0] = *line_x;
 		ray->end[1] = ray->start[1] + line_height;
-		if (ray->start[0] < MINIMAP && ray->start[1] < MINIMAP)
-			ray->start[1] = MINIMAP;
 		offset = 32 / line_height;
 		pixel_pos = 0;
 		ray_start = ray->start[1];
 		while (ray->start[1] <= ray->end[1])
 		{
 			ray->color = textures[(int)pixel_pos];
-			mlx_put_pixel(game->game_img, *line_x, ray->start[1], ray->color);
+			if (!(ray->start[0] < MINIMAP && ray->start[1] < MINIMAP))
+				mlx_put_pixel(game->game_img, *line_x, ray->start[1], ray->color);
 			ray->start[1] += 1;
 			pixel_pos += offset;
 		}
