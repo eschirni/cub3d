@@ -48,13 +48,13 @@ static void	draw_ground_sky(t_ray *ray, mlx_image_t *game_img)
 		y = MINIMAP;
 	while (y < ray->start[1])
 	{
-		mlx_put_pixel(game_img, ray->start[0], y, 0x880000FF);
+		mlx_put_pixel(game_img, ray->start[0], y, 0x883300FF);
 		y++;
 	}
 	y = ray->end[1] + 1;
 	while (y < HEIGHT)
 	{
-		mlx_put_pixel(game_img, ray->start[0], y, 0x880000FF);
+		mlx_put_pixel(game_img, ray->start[0], y, 0x883300FF);
 		y++;
 	}
 }
@@ -96,13 +96,12 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 	{
 		ray->start[0] = *line_x;
 		ray->start[1] = HEIGHT / 2 - line_height / 2;
-		ray->end[0] = *line_x;
 		ray->end[1] = ray->start[1] + line_height;
 		pixel_pos = out_of_bounds * offset;
 		ray_start = ray->start[1];
 		while (ray->start[1] <= ray->end[1])
 		{
-			ray->color = textures[(int)pixel_pos * 32];
+			ray->color = textures[((int)(pixel_pos) * 32) + ((((int)ray->end[0])) % 32)];
 			if (!(ray->start[0] < MINIMAP && ray->start[1] < MINIMAP))
 				mlx_put_pixel(game->game_img, *line_x, ray->start[1], ray->color);
 			ray->start[1] += 1;

@@ -29,11 +29,11 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 		if (ray->ra >= (float)M_PI * 2)
 			ray->ra -= (float)M_PI * 2;
 		ray->dist = calc_rays(ray, game->map, coords[0], coords[1]);
-		ray->start[0] -= game->map->player[0] - 144;
-		ray->start[1] -= game->map->player[1] - 144;
-		ray->end[0] -= game->map->player[0] - 144;
-		ray->end[1] -= game->map->player[1] - 144;
-		draw_line(ray, ray->img, 0xbad129, true); //draw ray
+		// ray->start[0] -= game->map->player[0] - 144;
+		// ray->start[1] -= game->map->player[1] - 144;
+		// ray->end[0] -= game->map->player[0] - 144;
+		// ray->end[1] -= game->map->player[1] - 144;
+		// draw_line(ray, ray->img, 0xbad129, true); //draw ray
 		draw_3d(game, ray, 0, &line_x);
 		i++;
 	}
