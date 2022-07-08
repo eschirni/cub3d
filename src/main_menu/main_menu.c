@@ -50,6 +50,33 @@ static void	create_background(t_game *game)
 	}
 }
 
+uint32_t	*get_color(mlx_texture_t *texture)
+{
+	int			i;
+	int			pos;
+	int			bpp;
+	uint8_t		rgba[4];
+	uint32_t	*colors;
+
+	i = 0;
+	colors = malloc(sizeof(uint32_t) * texture->width * texture->height);
+	if (colors == NULL)
+		ft_error("Allocation error!\n", NULL);
+	bpp = texture->bytes_per_pixel;
+	pos = 0;
+	while (pos < texture->width * texture->height * bpp)
+	{
+		rgba[0] = texture->pixels[pos];
+		rgba[1] = texture->pixels[pos + 1];
+		rgba[2] = texture->pixels[pos + 2];
+		rgba[3] = texture->pixels[pos + 3];
+		colors[i] = (rgba[0] << 24) + (rgba[1] << 16) + (rgba[2] << 8) + rgba[3];
+		pos += bpp;
+		i++;
+	}
+	return (colors);
+}
+
 //continue button when already started the game
 void	main_menu(t_game *game)
 {
@@ -71,6 +98,9 @@ void	main_menu(t_game *game)
 	create_background(game);
 	create_buttons(game);
 	init_settings(game);
+	mlx_texture_t *txt = mlx_load_png("./sprites/tile_wall64.png");
+	mlx_delete_texture(txt);
+	game->wall = get_color(txt);
 	game->menu->scroll_mode = 'N';
 	game->menu->back_seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
 	game->menu->scroll_seconds = game->menu->back_seconds;
