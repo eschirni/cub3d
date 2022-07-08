@@ -89,6 +89,48 @@ static int	carve_tunnel(t_mapgen *mapg, int size, int tunnel_len)
 	return (i);
 }
 
+static int	is_corridor(char **map, int i, int j)
+{
+	int	len;
+
+	len = 0;
+	while (map[i][j] && map[i][j] == '0' && map[i + 1][j] == '1' && map[i - 1][j] == '1')
+	{
+		len++;
+		j++;
+	}
+	if (len > 1)
+		return (1);
+	len = 0;
+	while (map[i][j] && map[i][j] == '0' && map[i][j + 1] == '1' && map[i][j - 1] == '1')
+	{
+		len++;
+		i++;
+	}
+	if (len > 1)
+		return (2);
+	return (0);
+}
+
+static void	check_floors(t_mapgen *mapg)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while(mapg->map[i])
+	{
+		j = 0;
+		while(mapg->map[i][j])
+		{
+			if (is_corridor(mapg->map, i, j));
+				mapg->map[i][j] = ' ';
+			j++;
+		}
+		i++;
+	}
+}
+
 t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 {
 	t_mapgen	*mapg;
@@ -115,5 +157,6 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 			tunnels--;
 	}
 	refactor_map(mapg, 0, 0);
+	check_floors(mapg);
 	return (mapg);
 }
