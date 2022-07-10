@@ -98,9 +98,12 @@ void	main_menu(t_game *game)
 	create_background(game);
 	create_buttons(game);
 	init_settings(game);
+	game->textures = malloc(sizeof(t_textures));
 	mlx_texture_t *txt = mlx_load_png("./sprites/tile_wall64.png");
+	game->textures->wall = get_color(txt);
+	game->textures->wall_size[0] = txt->width;
+	game->textures->wall_size[1] = txt->height;
 	mlx_delete_texture(txt);
-	game->wall = get_color(txt);
 	game->menu->scroll_mode = 'N';
 	game->menu->back_seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
 	game->menu->scroll_seconds = game->menu->back_seconds;

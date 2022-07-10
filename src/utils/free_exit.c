@@ -38,7 +38,8 @@ void	free_exit(t_map *map, t_game *game)
 	mlx_terminate(game->mlx);
 	free(game->menu->settings);
 	free(game->menu);
-	free(game->wall);
+	free(game->textures->wall);
+	free(game->textures);
 	free(game);
 	free(map->big_map);
 	free(map);

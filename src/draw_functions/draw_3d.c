@@ -32,7 +32,7 @@ static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw, float *of
 		angle_distance -= (float)M_PI * 2;
 	ray->dist *= cos(angle_distance);
 	*lh = 32 * HEIGHT / ray->dist;
-	*offset = 32 / *lh;
+	*offset = game->textures->wall_size[1] / *lh;
 	out_of_bounds = 0;
 	if (*lh >= HEIGHT)
 	{
@@ -43,7 +43,7 @@ static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw, float *of
 	return (out_of_bounds);
 }
 
-void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
+void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults with bigger pics
 {
 	float	line_height;
 	float	line_width;
@@ -52,6 +52,7 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 	float	out_of_bounds;
 	int		ray_start;
 
+	ray->end[0] = ray->end[0] / 32 * game->textures->wall_size[0];
 	out_of_bounds = init_vars(game, ray, &line_height, &line_width, &offset);
 	while (count_x < line_width)
 	{
@@ -62,7 +63,7 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 		ray_start = ray->start[1];
 		while (ray->start[1] <= ray->end[1])
 		{
-			ray->color = game->wall[((int)(pixel_pos) * 128) + ((((int)ray->end[0])) % 128)]; //why 128?? It's a 64 x 64 pic
+			ray->color = game->textures->wall[((int)(pixel_pos) * game->textures->wall_size[1]) + ((((long)ray->end[0])) % game->textures->wall_size[0])]; //numbers besides 32 in with won't scale bec our tile size is 32
 			if (!(ray->start[0] < MINIMAP && ray->start[1] < MINIMAP))
 				mlx_put_pixel(game->game_img, *line_x, ray->start[1], ray->color);
 			ray->start[1] += 1;

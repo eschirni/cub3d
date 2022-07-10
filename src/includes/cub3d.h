@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/08 12:43:20 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/10 04:25:18 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,20 @@ typedef struct s_menu
 	mlx_image_t	*imgs[67];
 }				t_menu;
 
+typedef struct s_textures
+{
+	u_int32_t	*wall;
+	int			wall_size[2];
+}				t_textures;
+
 typedef struct s_game
 {
 	t_char		**chars;
 	t_map		*map;
 	t_menu		*menu;
+	t_textures	*textures;
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
-	u_int32_t	*wall;
 	int			ps;
 }				t_game;
 
