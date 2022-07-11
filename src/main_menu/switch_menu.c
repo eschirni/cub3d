@@ -2,7 +2,8 @@
 
 void	to_menu(t_game *game)
 {
-	int	i;
+	int				i;
+	struct timeval	time;
 
 	game->map->floor->enabled = false;
 	game->map->out->enabled = false;
@@ -23,7 +24,14 @@ void	to_menu(t_game *game)
 	}
 	game->menu->back_frame = 0;
 	game->menu->scroll_frame = 13;
+	game->menu->scroll_mode = 'N';
+	if (gettimeofday(&time, NULL) == -1)
+		ft_error("Error while reading the time", NULL);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
+	game->menu->back_seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
+	game->menu->scroll_seconds = game->menu->back_seconds;
+	game->menu->music_start = time.tv_sec;
+	system("afplay ./music/main_menu.mp3 &");
 	game->menu->in_menu = true;
 }
 
@@ -62,5 +70,6 @@ void	to_game(t_game *game)
 	disable_animation(game);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 	game->menu->started_game = true;
+	system("pkill afplay &");
 	game->menu->in_menu = false;
 }

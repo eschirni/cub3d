@@ -57,6 +57,15 @@ static void	animate_bg(t_menu *menu, long now)
 	}
 }
 
+void	play_music(t_menu *menu, long now)
+{
+	if (now > menu->music_start + 94)
+	{
+		menu->music_start = now;
+		system("afplay ./music/main_menu.mp3 &");
+	}
+}
+
 void	animate_menu(t_menu *menu)
 {
 	struct timeval	time;
@@ -65,6 +74,7 @@ void	animate_menu(t_menu *menu)
 	if (gettimeofday(&time, NULL) == -1)
 		ft_error("Error while reading the time", NULL);
 	now = time.tv_sec * 1000 + time.tv_usec / 1000;
+	play_music(menu, time.tv_sec);
 	animate_bg(menu, now);
 	animate_scroll(menu, now);
 }

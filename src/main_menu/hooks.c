@@ -85,7 +85,10 @@ static void	on_mouse_click(t_game *game, int x, int y)
 			game->menu->scroll_mode = 'O';
 	}
 	else if (x >= 120 && x <= 238 && y >= 450 && y <= 506)
+	{
+		system("pkill afplay");
 		mlx_close_window(game->mlx);
+	}
 	else if (game->menu->scroll_mode == 'O')
 	{
 		settings_buttons(game, x, y);

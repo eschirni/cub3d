@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/10 04:25:18 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/11 21:40:48 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_menu
 	int			back_frame;
 	int			scroll_frame;
 	long		back_seconds;
+	long		music_start;
 	long		scroll_seconds;
 	mlx_image_t	*imgs[67];
 }				t_menu;
