@@ -34,7 +34,7 @@ static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw, float *of
 	*lh = 32 * HEIGHT / ray->dist;
 	*offset = game->textures->wall_size[1] / *lh;
 	out_of_bounds = 0;
-	if (*lh >= HEIGHT)
+	if (*lh > HEIGHT + 1)
 	{
 		out_of_bounds = (*lh - HEIGHT - 1) / 2;
 		*lh = HEIGHT - 1;
@@ -51,12 +51,14 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults wit
 	float	pixel_pos;
 	float	out_of_bounds;
 	int		ray_start;
-	int		ray_end;
+	long		ray_end;
+	int		texture_x;
+	int		texture_y;
 
 	out_of_bounds = init_vars(game, ray, &line_height, &line_width, &offset);
-	ray_end = ray->end[1];
+	ray_end = ray->end[1] / 32 * game->textures->wall_size[1];
 	if (ray->dir == 'E')
-		ray_end = ray->end[0];
+		ray_end = ray->end[0] / 32 * game->textures->wall_size[0];
 	while (count_x < line_width)
 	{
 		ray->start[0] = *line_x;
@@ -66,7 +68,9 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults wit
 		ray_start = ray->start[1];
 		while (ray->start[1] <= ray->end[1])
 		{
-			ray->color = game->textures->wall[((int)(pixel_pos) * game->textures->wall_size[1]) + ((ray_end) % game->textures->wall_size[0])]; //numbers besides 32 in with won't scale bec our tile size is 32
+			texture_x = (int)(pixel_pos) * game->textures->wall_size[1];
+			texture_y = ray_end % game->textures->wall_size[0];
+				ray->color = game->textures->wall[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
 			if (!(ray->start[0] < MINIMAP && ray->start[1] < MINIMAP))
 				mlx_put_pixel(game->game_img, *line_x, ray->start[1], ray->color);
 			ray->start[1] += 1;

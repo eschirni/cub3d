@@ -95,7 +95,7 @@ void	main_menu(t_game *game)
 	create_buttons(game);
 	init_settings(game);
 	game->textures = malloc(sizeof(t_textures));
-	mlx_texture_t *txt = mlx_load_png("./sprites/tile_wall64.png");
+	mlx_texture_t *txt = mlx_load_png("./sprites/big.png");
 	game->textures->wall = get_color(txt);
 	game->textures->wall_size[0] = txt->width;
 	game->textures->wall_size[1] = txt->height;
