@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+         #
+#    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/05 21:31:01 by btenzlin         ###   ########.fr        #
+#    Updated: 2022/07/12 06:31:43 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # FLAGS
-CFLAGS = #-Wall -Wextra -Werror -O3
+CFLAGS = -Wall -Wextra -Werror -O3
 MLX = -lglfw -L $$HOME/.brew/Cellar/glfw/3.3.7/lib MLX42/libmlx42.a
 
 # COLORS
@@ -60,7 +60,7 @@ all: $(NAME)
 	@echo " _|         _|    _|   _|    _|     _|_|     _|    _|"
 	@echo " _|         _|    _|   _|    _|         _|   _|    _|"
 	@echo "   _|_|_|     _|_|_|   _|_|_|     _|_|_|     _|_|_|  "
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh- yeah" -r 120  &
+	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh- yeah" -r 120 -a 0 &
 	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh- yeah" -r 120 -a 0 &
 	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a 0 &
 	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a 0 &

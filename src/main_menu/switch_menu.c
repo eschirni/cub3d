@@ -5,6 +5,13 @@ void	to_menu(t_game *game)
 	int				i;
 	struct timeval	time;
 
+	if (gettimeofday(&time, NULL) == -1)
+		ft_error("Error while reading the time", NULL);
+	game->menu->back_seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
+	game->menu->scroll_seconds = game->menu->back_seconds;
+	game->menu->music_start = time.tv_sec;
+	system("afplay ./music/main_menu.mp3 &");
+	game->menu->imgs[0]->enabled = true;
 	game->map->floor->enabled = false;
 	game->map->out->enabled = false;
 	game->map->wall->enabled = false;
@@ -22,16 +29,10 @@ void	to_menu(t_game *game)
 		game->chars[i]->img->enabled = false;
 		i++;
 	}
-	game->menu->back_frame = 0;
+	game->menu->back_frame = 1;
 	game->menu->scroll_frame = 13;
 	game->menu->scroll_mode = 'N';
-	if (gettimeofday(&time, NULL) == -1)
-		ft_error("Error while reading the time", NULL);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
-	game->menu->back_seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
-	game->menu->scroll_seconds = game->menu->back_seconds;
-	game->menu->music_start = time.tv_sec;
-	system("afplay ./music/main_menu.mp3 &");
 	game->menu->in_menu = true;
 }
 

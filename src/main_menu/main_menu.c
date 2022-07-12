@@ -52,11 +52,11 @@ static void	create_background(t_game *game)
 
 uint32_t	*get_color(mlx_texture_t *texture)
 {
-	int			i;
-	int			pos;
-	int			bpp;
-	uint8_t		rgba[4];
-	uint32_t	*colors;
+	int				i;
+	unsigned int	pos;
+	int				bpp;
+	uint8_t			rgba[4];
+	uint32_t		*colors;
 
 	i = 0;
 	colors = malloc(sizeof(uint32_t) * texture->width * texture->height);
