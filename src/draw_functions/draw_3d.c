@@ -1,11 +1,14 @@
 #include "../includes/cub3d.h"
 
-static void	get_color(t_game *game, t_ray *ray, int tex[2], u_int32_t *col, int y, float dy)
+static void	get_color(t_game *game, t_ray *ray, u_int32_t *col, float dy)
 {
 	float	angle;
 	float	tx;
 	float	ty;
+	int		tex[2];
 
+	tex[0] = game->textures->floor_size[0];
+	tex[1] = game->textures->floor_size[1];
 	angle = game->chars[0]->pa - ray->ra;
 	if (angle >= (float)M_PI * 2)
 		angle -= (float)M_PI * 2;
@@ -21,34 +24,27 @@ static void	get_color(t_game *game, t_ray *ray, int tex[2], u_int32_t *col, int 
 		ray->color -= 0x0F0F0F00;
 	if (dy * angle < 120)
 		ray->color = 0x000000FF;
-	mlx_put_pixel(game->game_img, ray->start[0], y, ray->color);
-}
-
-static void	draw_ground(t_game *game, t_ray *ray, int tex[2])
-{
-	int		y;
-
-	y = ray->end[1] + 1;
-	while (y < HEIGHT)
-	{
-		
-		get_color(game, ray, tex, game->textures->floor, y, y - (HEIGHT / 2));
-		get_color(game, ray, tex, game->textures->top, HEIGHT - y, y - (HEIGHT / 2));
-		y++;
-	}
 }
 
 static void	draw_env(t_game *game, t_ray *ray)
 {
 	int	y;
-	int	tex[2];
+	int	y_top;
 
-	y = 0;
-	if (ray->start[0] < MINIMAP)
-		y = MINIMAP;
-	tex[0] = game->textures->floor_size[0];
-	tex[1] = game->textures->floor_size[1];
-	draw_ground(game, ray, tex);
+	y = ray->end[1] + 1;
+	while (y < HEIGHT)
+	{
+		get_color(game, ray, game->textures->floor, y - (HEIGHT / 2));
+		if (!(ray->start[0] < MINIMAP && y < MINIMAP))
+			mlx_put_pixel(game->game_img, ray->start[0], y, ray->color);
+		get_color(game, ray, game->textures->top, y - (HEIGHT / 2));
+		if (!(ray->start[0] < MINIMAP && (HEIGHT - y) < MINIMAP))
+		{
+			y_top = HEIGHT - y;
+			mlx_put_pixel(game->game_img, ray->start[0], y_top, ray->color);
+		}
+		y++;
+	}
 }
 
 static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
