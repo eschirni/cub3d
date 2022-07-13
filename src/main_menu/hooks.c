@@ -26,23 +26,15 @@ void	hover_buttons(double x, double y, void *tmp)
 	{
 		if (game->menu->started_game == true)
 		{
-			game->menu->imgs[65]->enabled = false;
 			game->menu->imgs[66]->enabled = true;
 			return ;
 		}
-		game->menu->imgs[7]->enabled = false;
 		game->menu->imgs[8]->enabled = true;
 	}
 	else if (x >= 120 && x <= 374 && y >= 350 && y <= 415)
-	{
-		game->menu->imgs[9]->enabled = false;
 		game->menu->imgs[10]->enabled = true;
-	}
 	else if (x >= 120 && x <= 238 && y >= 450 && y <= 506)
-	{
-		game->menu->imgs[11]->enabled = false;
 		game->menu->imgs[12]->enabled = true;
-	}
 }
 
 static void	settings_buttons(t_game *game, int x, int y)
@@ -85,7 +77,10 @@ static void	on_mouse_click(t_game *game, int x, int y)
 			game->menu->scroll_mode = 'O';
 	}
 	else if (x >= 120 && x <= 238 && y >= 450 && y <= 506)
+	{
+		system("pkill afplay");
 		mlx_close_window(game->mlx);
+	}
 	else if (game->menu->scroll_mode == 'O')
 	{
 		settings_buttons(game, x, y);

@@ -53,10 +53,6 @@ static void	create_background(t_game *game)
 //continue button when already started the game
 void	main_menu(t_game *game)
 {
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
-		ft_error("Error while reading the time", NULL);
 	game->menu = malloc(sizeof(t_menu));
 	if (game->menu == NULL)
 		ft_error("Malloc error!", NULL);
@@ -71,9 +67,7 @@ void	main_menu(t_game *game)
 	create_background(game);
 	create_buttons(game);
 	init_settings(game);
-	game->menu->scroll_mode = 'N';
-	game->menu->back_seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
-	game->menu->scroll_seconds = game->menu->back_seconds;
+	init_textures(game);
 	to_menu(game);
 	mlx_loop_hook(game->mlx, &fps, game);
 	mlx_cursor_hook(game->mlx, &hover_buttons, game);
