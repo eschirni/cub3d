@@ -95,6 +95,7 @@ typedef struct s_textures
 	u_int32_t	*floor;
 	int			wall_size[2];
 	int			floor_size[2];
+	float		offset;
 }				t_textures;
 
 typedef struct s_game

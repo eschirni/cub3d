@@ -1,37 +1,51 @@
 #include "../includes/cub3d.h"
 
-static void	draw_ground_sky(t_game *game, t_ray *ray, mlx_image_t *game_img)
+static void	draw_ground(t_game *game, t_ray *ray, float player[2], int tex[2])
 {
-	int		y;
 	float	angle;
+	float	dy;
+	float	tx;
+	float	ty;
+	int		y;
 
-	y = 0;
-	if (ray->start[0] < MINIMAP)
-		y = MINIMAP;
-	while (y < ray->start[1])
-	{
-		mlx_put_pixel(game_img, ray->start[0], y, 0x001100FF);
-		y++;
-	}
 	y = ray->end[1] + 1;
 	while (y < HEIGHT)
 	{
-		float dy = y - (HEIGHT/2);
+		dy = y - (HEIGHT / 2);
 		angle = game->chars[0]->pa - ray->ra;
 		if (angle >= (float)M_PI * 2)
 			angle -= (float)M_PI * 2;
 		else if (angle < 0)
 			angle += (float)M_PI * 2;
 		angle = cos(angle);
-		float tx = game->map->player[0] + cos(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
-		float ty = game->map->player[1] + sin(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
-		int c = game->textures->floor[((int)ty % game->textures->floor_size[1]) * game->textures->floor_size[1] + ((int)(tx) % game->textures->floor_size[0])];
-		mlx_put_pixel(game->game_img, ray->start[0], y, c);
+		tx = player[0] + cos(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
+		ty = player[1] + sin(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
+		ray->color = game->textures->floor[((int)ty % tex[1]) * tex[1]
+			+ ((int)tx % tex[0])];
+		mlx_put_pixel(game->game_img, ray->start[0], y, ray->color);
 		y++;
 	}
 }
 
-static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw, float *offset)
+static void	draw_env(t_game *game, t_ray *ray)
+{
+	int	y;
+	int	tex[2];
+
+	y = 0;
+	if (ray->start[0] < MINIMAP)
+		y = MINIMAP;
+	while (y < ray->start[1])
+	{
+		mlx_put_pixel(game->game_img, ray->start[0], y, 0x001100FF);
+		y++;
+	}
+	tex[0] = game->textures->floor_size[0];
+	tex[1] = game->textures->floor_size[1];
+	draw_ground(game, ray, game->map->player, tex);
+}
+
+static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
 {
 	float	angle_distance;
 	float	out_of_bounds;
@@ -43,7 +57,7 @@ static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw, float *of
 		angle_distance -= (float)M_PI * 2;
 	ray->dist *= cos(angle_distance);
 	*lh = 32 * HEIGHT / ray->dist;
-	*offset = game->textures->wall_size[1] / *lh;
+	game->textures->offset = game->textures->wall_size[1] / *lh;
 	out_of_bounds = 0;
 	if (*lh > HEIGHT + 1)
 	{
@@ -54,19 +68,34 @@ static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw, float *of
 	return (out_of_bounds);
 }
 
+static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
+{
+	int		texture_x;
+	int		texture_y;
+	int		ray_start;
+
+	ray_start = ray->start[1];
+	while (ray_start <= ray->end[1])
+	{
+		texture_x = (int)pos * game->textures->wall_size[1];
+		texture_y = ray_end % game->textures->wall_size[0];
+		ray->color = game->textures->wall[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
+		if (!(ray->start[0] < MINIMAP && ray_start < MINIMAP))
+			mlx_put_pixel(game->game_img, ray->start[0], ray_start, ray->color);
+		ray_start += 1;
+		pos += game->textures->offset;
+	}
+}
+
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults with bigger pics, need to calculate with actual image with in player pos over minimap, to avoid image spreading over multiple tiles in 3d
 {
 	float	line_height;
 	float	line_width;
-	float	offset;
 	float	pixel_pos;
 	float	out_of_bounds;
-	int		ray_start;
-	long		ray_end;
-	int		texture_x;
-	int		texture_y;
+	long	ray_end;
 
-	out_of_bounds = init_vars(game, ray, &line_height, &line_width, &offset);
+	out_of_bounds = init_vars(game, ray, &line_height, &line_width);
 	ray_end = ray->end[1] / 32 * game->textures->wall_size[1];
 	if (ray->dir == 'E')
 		ray_end = ray->end[0] / 32 * game->textures->wall_size[0];
@@ -75,20 +104,9 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults wit
 		ray->start[0] = *line_x;
 		ray->start[1] = HEIGHT / 2 - line_height / 2;
 		ray->end[1] = ray->start[1] + line_height;
-		pixel_pos = out_of_bounds * offset;
-		ray_start = ray->start[1];
-		while (ray->start[1] <= ray->end[1])
-		{
-			texture_x = (int)(pixel_pos) * game->textures->wall_size[1];
-			texture_y = ray_end % game->textures->wall_size[0];
-				ray->color = game->textures->wall[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
-			if (!(ray->start[0] < MINIMAP && ray->start[1] < MINIMAP))
-				mlx_put_pixel(game->game_img, *line_x, ray->start[1], ray->color);
-			ray->start[1] += 1;
-			pixel_pos += offset;
-		}
-		ray->start[1] = ray_start;
-		draw_ground_sky(game, ray, game->game_img);
+		pixel_pos = out_of_bounds * game->textures->offset;
+		draw_tex_line(game, ray, pixel_pos, ray_end);
+		draw_env(game, ray);
 		*line_x += 1;
 		count_x++;
 	}
