@@ -123,7 +123,7 @@ static void	check_floors(t_mapgen *mapg)
 		j = 0;
 		while(mapg->map[i][j])
 		{
-			if (is_corridor(mapg->map, i, j));
+			if (is_corridor(mapg->map, i, j))
 				mapg->map[i][j] = ' ';
 			j++;
 		}
