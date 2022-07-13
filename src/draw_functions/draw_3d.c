@@ -70,7 +70,7 @@ static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
 	return (out_of_bounds);
 }
 
-static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
+static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end, u_int32_t *tex)
 {
 	int		texture_x;
 	int		texture_y;
@@ -81,7 +81,7 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 	{
 		texture_x = (int)pos * game->textures->wall_size[1];
 		texture_y = ray_end % game->textures->wall_size[0];
-		ray->color = game->textures->wall[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
+		ray->color = tex[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
 		if (!(ray->start[0] < MINIMAP && ray_start < MINIMAP))
 		{
 			if (ray->dist > 70 && ray->color >= 0x0F0F0FFF)
@@ -97,7 +97,7 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 	}
 }
 
-void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults with bigger pics, need to calculate with actual image with in player pos over minimap, to avoid image spreading over multiple tiles in 3d
+static void	draw_3d_2(t_game *game, t_ray *ray, int count_x, int *line_x, u_int32_t *tex) //segfaults with bigger pics, need to calculate with actual image with in player pos over minimap, to avoid image spreading over multiple tiles in 3d
 {
 	float	line_height;
 	float	line_width;
@@ -115,9 +115,17 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults wit
 		ray->start[1] = HEIGHT / 2 - line_height / 2;
 		ray->end[1] = ray->start[1] + line_height;
 		pixel_pos = out_of_bounds * game->textures->offset;
-		draw_tex_line(game, ray, pixel_pos, ray_end);
+		draw_tex_line(game, ray, pixel_pos, ray_end, tex);
 		draw_env(game, ray);
 		*line_x += 1;
 		count_x++;
 	}
+}
+
+void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
+{
+	if (game->map->big_map[(int)ray->end[1] / 32][(int)ray->end[0] / 32] == '1')
+		draw_3d_2(game, ray, count_x, line_x, game->textures->wall);
+	else
+		draw_3d_2(game, ray, count_x, line_x, game->textures->door);
 }
