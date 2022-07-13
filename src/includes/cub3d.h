@@ -6,7 +6,7 @@
 /*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/12 13:14:15 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/13 09:21:17 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,9 @@ typedef struct s_menu
 typedef struct s_textures
 {
 	u_int32_t	*wall;
+	u_int32_t	*floor;
 	int			wall_size[2];
+	int			floor_size[2];
 }				t_textures;
 
 typedef struct s_game

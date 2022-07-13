@@ -95,10 +95,15 @@ void	main_menu(t_game *game)
 	create_buttons(game);
 	init_settings(game);
 	game->textures = malloc(sizeof(t_textures));
-	mlx_texture_t *txt = mlx_load_png("./sprites/big.png");
+	mlx_texture_t *txt = mlx_load_png("./sprites/tile_wall64.png");
 	game->textures->wall = get_color(txt);
 	game->textures->wall_size[0] = txt->width;
 	game->textures->wall_size[1] = txt->height;
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/tile_floor.png");
+	game->textures->floor = get_color(txt);
+	game->textures->floor_size[0] = txt->width;
+	game->textures->floor_size[1] = txt->height;
 	mlx_delete_texture(txt);
 	to_menu(game);
 	mlx_loop_hook(game->mlx, &fps, game);

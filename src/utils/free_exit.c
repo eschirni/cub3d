@@ -39,6 +39,7 @@ void	free_exit(t_map *map, t_game *game)
 	free(game->menu->settings);
 	free(game->menu);
 	free(game->textures->wall);
+	free(game->textures->floor);
 	free(game->textures);
 	free(game);
 	free(map->big_map);
