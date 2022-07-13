@@ -89,6 +89,26 @@ static int	carve_tunnel(t_mapgen *mapg, int size, int tunnel_len)
 	return (i);
 }
 
+// static int	surroundings(char **map, int i, int j, char c)
+// {
+// 	int	x;
+// 	int	y;
+
+// 	y = i - 1;
+// 	while (y <= i + 1)
+// 	{
+// 		x = j - 1;
+// 		while (x <= j + 1)
+// 		{
+// 			if (map[y][x] != '0' && map[y][x] != c)
+// 				return (0);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	return (1);
+// }
+
 t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 {
 	t_mapgen	*mapg;

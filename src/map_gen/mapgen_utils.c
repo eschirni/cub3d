@@ -11,22 +11,42 @@ void	refactor_map(t_mapgen *mapg, int i, int j)
 	new[mapg->size + 2] = NULL;
 	while (i < mapg->size + 2)
 	{
-		j = 0;
+		j = -1;
 		new[i] = malloc(mapg->size + 3);
 		if (!new[i])
 			ft_error("allocation failed", NULL);
-		while (j < mapg->size + 2)
+		while (j++ < mapg->size + 2)
 		{
 			if (i == 0 || i == mapg->size + 1 || j == 0 || j == mapg->size + 1)
 				new[i][j] = '1';
 			else
 				new[i][j] = mapg->map[i - 1][j - 1];
-			j++;
 		}
 		new[i++][mapg->size + 2] = 0;
 	}
 	free_2d_array(mapg->map);
 	mapg->map = new;
+	check_floors(mapg);
+}
+
+void	set_entities(char **map, char c)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '0' && (get_random_num(1, 100) % 10) == 0)
+				// if (surroundings(map, i, j, c))
+					map[i][j] = c;
+			j++;
+		}
+		i++;
+	}
 }
 
 int	get_random_num(int from, int to)
@@ -35,4 +55,43 @@ int	get_random_num(int from, int to)
 
 	num = (time(0) * rand() % (to - from + 1)) + from;
 	return (num);
+}
+
+int	is_corridor(char **map, int i, int j)
+{
+	if (map[i][j] == '0')
+	{
+		if (map[i][j + 1] == '1' && map[i][j - 1] == '1')
+			return (1);
+		else if (map[i + 1][j] == '1' && map[i - 1][j] == '1')
+			return (1);
+	}
+	return (0);
+}
+
+int	is_corner(char **map, int i, int j)
+{
+	int	x;
+	int	y;
+	int	corridor_tiles;
+
+	if (map[i][j] == '0')
+	{
+		y = i - 1;
+		corridor_tiles = 0;
+		while (y <= i + 1)
+		{
+			x = j - 1;
+			while (x <= j + 1)
+			{
+				if (map[y][x] == '0')
+					corridor_tiles++;
+				x++;
+			}
+			y++;
+		}
+		if (corridor_tiles <= 2)
+			return (1);
+	}
+	return (0);
 }
