@@ -16,4 +16,7 @@ void	load_png(t_game *game, int pos, char *name, bool enabled);
 /* settings */
 void	init_settings(t_game *game);
 
+/* textures */
+void	init_textures(t_game *game);
+
 #endif

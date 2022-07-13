@@ -33,21 +33,21 @@ static void	graphics(t_game *game, int x, int y)
 static void	fov(t_game *game, int x, int y)
 {
 	if (x >= 1400 && x <= 1427 && y >= 470 && y <= 487)
-		game->menu->settings->fov = 1920;
-	else if (x >= 1428 && x <= 1445 && y >= 470 && y <= 487)
-		game->menu->settings->fov = 960;
-	else if (x >= 1446 && x <= 1473 && y >= 470 && y <= 487)
-		game->menu->settings->fov = 480;
-	else if (x >= 1472 && x <= 1501 && y >= 470 && y <= 487)
-		game->menu->settings->fov = 240;
-	else if (x >= 1502 && x <= 1529 && y >= 470 && y <= 487)
-		game->menu->settings->fov = 120;
-	else if (x >= 1530 && x <= 1557 && y >= 470 && y <= 487)
-		game->menu->settings->fov = 60;
-	else if (x >= 1558 && x <= 1585 && y >= 470 && y <= 487)
-		game->menu->settings->fov = 30;
-	else if (x >= 1586 && x <= 1602 && y >= 470 && y <= 487)
 		game->menu->settings->fov = 15;
+	else if (x >= 1428 && x <= 1445 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 30;
+	else if (x >= 1446 && x <= 1473 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 60;
+	else if (x >= 1472 && x <= 1501 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 120;
+	else if (x >= 1502 && x <= 1529 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 240;
+	else if (x >= 1530 && x <= 1557 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 480;
+	else if (x >= 1558 && x <= 1585 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 960;
+	else if (x >= 1586 && x <= 1602 && y >= 470 && y <= 487)
+		game->menu->settings->fov = 1920;
 }
 
 static void	rotation_speed(t_game *game, int x, int y)

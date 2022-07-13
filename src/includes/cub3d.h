@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/05 15:28:35 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/13 13:14:08 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 
 typedef struct s_ray
 {
+	char		dir;
 	int			color;
 	int			start[2];
 	float		end[2];
@@ -83,15 +84,26 @@ typedef struct s_menu
 	int			back_frame;
 	int			scroll_frame;
 	long		back_seconds;
+	long		music_start;
 	long		scroll_seconds;
 	mlx_image_t	*imgs[67];
 }				t_menu;
+
+typedef struct s_textures
+{
+	u_int32_t	*wall;
+	u_int32_t	*floor;
+	int			wall_size[2];
+	int			floor_size[2];
+	float		offset;
+}				t_textures;
 
 typedef struct s_game
 {
 	t_char		**chars;
 	t_map		*map;
 	t_menu		*menu;
+	t_textures	*textures;
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
 	int			ps;
@@ -128,7 +140,7 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);
 void	draw_chars(t_game *game, char **map);
 void	draw_game(t_ray *ray, t_game *game, float coords[2]);
 void	draw_map(t_game *game, t_map *map);
-void	draw_line(t_ray *ray, mlx_image_t *img, int color, bool minimap);
+void	draw_line(t_ray *ray, mlx_image_t *img);
 void	draw_crosshair(t_game *game, int color, char type);
 void	get_map_textures(t_game *game);
 
