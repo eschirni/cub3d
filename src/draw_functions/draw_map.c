@@ -41,7 +41,8 @@ static void	draw_tile(t_game *game, char **arr, int iterator[2], int coords[2])
 	if (iterator[0] < 0 || iterator[1] < 0 || iterator[0] >= game->map->y
 		|| iterator[1] >= game->map->x || arr[iterator[0]][iterator[1]] == ' ')
 		mlx_image_to_window(game->mlx, game->map->out, coords[0], coords[1]);
-	else if (arr[iterator[0]][iterator[1]] == '0')
+	else if (arr[iterator[0]][iterator[1]] == '0'
+		|| arr[iterator[0]][iterator[1]] == 'C')
 		mlx_image_to_window(game->mlx, game->map->floor, coords[0], coords[1]);
 	else if (arr[iterator[0]][iterator[1]] == '1')
 		mlx_image_to_window(game->mlx, game->map->wall, coords[0], coords[1]);

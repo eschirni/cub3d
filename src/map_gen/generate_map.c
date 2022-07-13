@@ -1,20 +1,5 @@
 #include "../includes/cub3d.h"
 
-static void	print_2d_array(char **array)
-{
-	int	i;
-
-	if (!array)
-		printf("Array empty.\n");
-	i = 0;
-	while (array[i])
-	{
-		printf("%s\n", array[i]);
-		i++;
-	}
-	printf("\n");
-}
-
 static char	**create_array(int size)
 {
 	char	**map;
@@ -150,7 +135,5 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 			tunnels--;
 	}
 	refactor_map(mapg, 0, 0);
-	check_floors(mapg);
-	set_entities(mapg->map, 'C');
 	return (mapg);
 }

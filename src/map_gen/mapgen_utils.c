@@ -11,22 +11,22 @@ void	refactor_map(t_mapgen *mapg, int i, int j)
 	new[mapg->size + 2] = NULL;
 	while (i < mapg->size + 2)
 	{
-		j = 0;
+		j = -1;
 		new[i] = malloc(mapg->size + 3);
 		if (!new[i])
 			ft_error("allocation failed", NULL);
-		while (j < mapg->size + 2)
+		while (j++ < mapg->size + 2)
 		{
 			if (i == 0 || i == mapg->size + 1 || j == 0 || j == mapg->size + 1)
 				new[i][j] = '1';
 			else
 				new[i][j] = mapg->map[i - 1][j - 1];
-			j++;
 		}
 		new[i++][mapg->size + 2] = 0;
 	}
 	free_2d_array(mapg->map);
 	mapg->map = new;
+	check_floors(mapg);
 }
 
 void	set_entities(char **map, char c)
