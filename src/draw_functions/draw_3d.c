@@ -28,6 +28,15 @@ static void	draw_ground(t_game *game, t_ray *ray, float player[2], int tex[2])
 		if (dy * angle < 120)
 			ray->color = 0x000000FF;
 		mlx_put_pixel(game->game_img, ray->start[0], y, ray->color);
+		ray->color = game->textures->top[((int)ty % tex[1]) * tex[1] + ((int)tx % tex[0])];
+		if (dy * angle < 480 && ray->color >= 0x0F0F0FFF)
+			ray->color -= 0x0F0F0F00;
+		if (dy * angle < 240 && ray->color >= 0x0F0F0FFF)
+			ray->color -= 0x0F0F0F00;
+		if (dy * angle < 120)
+			ray->color = 0x000000FF;
+		if (HEIGHT - y > MINIMAP || ray->start[0] > MINIMAP)
+			mlx_put_pixel(game->game_img, ray->start[0], HEIGHT - y, ray->color);
 		y++;
 	}
 }
@@ -42,7 +51,7 @@ static void	draw_env(t_game *game, t_ray *ray)
 		y = MINIMAP;
 	while (y < ray->start[1])
 	{
-		mlx_put_pixel(game->game_img, ray->start[0], y, 0x001100FF);
+		mlx_put_pixel(game->game_img, ray->start[0], y, 0x000000FF);
 		y++;
 	}
 	tex[0] = game->textures->floor_size[0];
