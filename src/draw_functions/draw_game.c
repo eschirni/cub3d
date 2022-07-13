@@ -21,11 +21,11 @@ static void	reset_img(mlx_image_t *img, int width, int height)
 static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 {
 	int		line_x;
-	t_ray	*map;
+	t_ray	*mini;
 
 	line_x = 0;
-	map = malloc(sizeof(t_ray));
-	if (map == NULL)
+	mini = malloc(sizeof(t_ray));
+	if (mini == NULL)
 		ft_error("Allocation error!\n", NULL);
 	while (i < game->menu->settings->fov)
 	{
@@ -33,15 +33,15 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 		if (ray->ra >= (float)M_PI * 2)
 			ray->ra -= (float)M_PI * 2;
 		ray->dist = calc_rays(ray, game->map, coords[0], coords[1]);
-		map->start[0] = ray->start[0] - (game->map->player[0] - 144);
-		map->start[1] = ray->start[1] - (game->map->player[1] - 144);
-		map->end[0] = ray->end[0] - (game->map->player[0] - 144);
-		map->end[1] = ray->end[1] - (game->map->player[1] - 144);
-		draw_line(map, ray->img, 0xbad129, true); //draw ray
+		mini->start[0] = ray->start[0] - (game->map->player[0] - 144);
+		mini->start[1] = ray->start[1] - (game->map->player[1] - 144);
+		mini->end[0] = ray->end[0] - (game->map->player[0] - 144);
+		mini->end[1] = ray->end[1] - (game->map->player[1] - 144);
+		draw_line(mini, ray->img); //draw ray
 		draw_3d(game, ray, 0, &line_x);
 		i++;
 	}
-	free(map);
+	free(mini);
 }
 
 void	draw_game(t_ray *ray, t_game *game, float coords[2])

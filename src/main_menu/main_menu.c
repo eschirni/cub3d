@@ -50,33 +50,6 @@ static void	create_background(t_game *game)
 	}
 }
 
-uint32_t	*get_color(mlx_texture_t *texture)
-{
-	int				i;
-	unsigned int	pos;
-	int				bpp;
-	uint8_t			rgba[4];
-	uint32_t		*colors;
-
-	i = 0;
-	colors = malloc(sizeof(uint32_t) * texture->width * texture->height);
-	if (colors == NULL)
-		ft_error("Allocation error!\n", NULL);
-	bpp = texture->bytes_per_pixel;
-	pos = 0;
-	while (pos < texture->width * texture->height * bpp)
-	{
-		rgba[0] = texture->pixels[pos];
-		rgba[1] = texture->pixels[pos + 1];
-		rgba[2] = texture->pixels[pos + 2];
-		rgba[3] = texture->pixels[pos + 3];
-		colors[i] = (rgba[0] << 24) + (rgba[1] << 16) + (rgba[2] << 8) + rgba[3];
-		pos += bpp;
-		i++;
-	}
-	return (colors);
-}
-
 //continue button when already started the game
 void	main_menu(t_game *game)
 {
@@ -94,17 +67,7 @@ void	main_menu(t_game *game)
 	create_background(game);
 	create_buttons(game);
 	init_settings(game);
-	game->textures = malloc(sizeof(t_textures));
-	mlx_texture_t *txt = mlx_load_png("./sprites/tile_wall64.png");
-	game->textures->wall = get_color(txt);
-	game->textures->wall_size[0] = txt->width;
-	game->textures->wall_size[1] = txt->height;
-	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/tile_floor.png");
-	game->textures->floor = get_color(txt);
-	game->textures->floor_size[0] = txt->width;
-	game->textures->floor_size[1] = txt->height;
-	mlx_delete_texture(txt);
+	init_textures(game);
 	to_menu(game);
 	mlx_loop_hook(game->mlx, &fps, game);
 	mlx_cursor_hook(game->mlx, &hover_buttons, game);
