@@ -19,6 +19,11 @@ void	get_map_textures(t_game *game)
 	mlx_delete_texture(text);
 	if (!mlx_resize_image(game->map->out, 32, 32))
 		ft_error("can't resize image", NULL);
+	text = mlx_load_png("./sprites/door_ver.png");
+	game->map->door = mlx_texture_to_image(game->mlx, text);
+	mlx_delete_texture(text);
+	if (!mlx_resize_image(game->map->door, 32, 32))
+		ft_error("can't resize image", NULL);
 }
 
 static void	create_char(t_game *game, int x, int y)
@@ -46,6 +51,8 @@ static void	draw_tile(t_game *game, char **arr, int iterator[2], int coords[2])
 		mlx_image_to_window(game->mlx, game->map->floor, coords[0], coords[1]);
 	else if (arr[iterator[0]][iterator[1]] == '1')
 		mlx_image_to_window(game->mlx, game->map->wall, coords[0], coords[1]);
+	else if (arr[iterator[0]][iterator[1]] == 'D')
+		mlx_image_to_window(game->mlx, game->map->door, coords[0], coords[1]);
 	else if (is_char_obj(arr[iterator[0]][iterator[1]]) == true)
 		create_char(game, coords[0], coords[1]);
 }

@@ -47,6 +47,7 @@ void	move_map(t_game *game, int addX, int addY)
 	iterate_tiles(game->map->floor, addX, addY);
 	iterate_tiles(game->map->wall, addX, addY);
 	iterate_tiles(game->map->out, addX, addY);
+	iterate_tiles(game->map->door, addX, addY);
 	tmp = 1;
 	while (tmp < game->map->n_chars)
 	{
