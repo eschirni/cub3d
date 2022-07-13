@@ -1,5 +1,20 @@
 #include "../includes/cub3d.h"
 
+static void	print_2d_array(char **array)
+{
+	int	i;
+
+	if (!array)
+		printf("Array empty.\n");
+	i = 0;
+	while (array[i])
+	{
+		printf("%s\n", array[i]);
+		i++;
+	}
+	printf("\n");
+}
+
 static char	**create_array(int size)
 {
 	char	**map;
@@ -89,47 +104,25 @@ static int	carve_tunnel(t_mapgen *mapg, int size, int tunnel_len)
 	return (i);
 }
 
-static int	is_corridor(char **map, int i, int j)
-{
-	int	len;
+// static int	surroundings(char **map, int i, int j, char c)
+// {
+// 	int	x;
+// 	int	y;
 
-	len = 0;
-	while (map[i][j] && map[i][j] == '0' && map[i + 1][j] == '1' && map[i - 1][j] == '1')
-	{
-		len++;
-		j++;
-	}
-	if (len > 1)
-		return (1);
-	len = 0;
-	while (map[i][j] && map[i][j] == '0' && map[i][j + 1] == '1' && map[i][j - 1] == '1')
-	{
-		len++;
-		i++;
-	}
-	if (len > 1)
-		return (2);
-	return (0);
-}
-
-static void	check_floors(t_mapgen *mapg)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while(mapg->map[i])
-	{
-		j = 0;
-		while(mapg->map[i][j])
-		{
-			if (is_corridor(mapg->map, i, j))
-				mapg->map[i][j] = ' ';
-			j++;
-		}
-		i++;
-	}
-}
+// 	y = i - 1;
+// 	while (y <= i + 1)
+// 	{
+// 		x = j - 1;
+// 		while (x <= j + 1)
+// 		{
+// 			if (map[y][x] != '0' && map[y][x] != c)
+// 				return (0);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	return (1);
+// }
 
 t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 {
@@ -158,5 +151,6 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 	}
 	refactor_map(mapg, 0, 0);
 	check_floors(mapg);
+	set_entities(mapg->map, 'C');
 	return (mapg);
 }

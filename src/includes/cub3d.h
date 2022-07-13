@@ -163,5 +163,9 @@ void	to_menu(t_game *game);
 t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len);
 int		get_random_num(int from, int to);
 void	refactor_map(t_mapgen *mapg, int i, int j);
+void	set_entities(char **map, char c);
+int		is_corridor(char **map, int i, int j);
+int		is_corner(char **map, int i, int j);
+void	check_floors(t_mapgen *mapg);
 
 #endif
