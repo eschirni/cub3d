@@ -20,8 +20,13 @@ static void	draw_ground(t_game *game, t_ray *ray, float player[2], int tex[2])
 		angle = cos(angle);
 		tx = player[0] + cos(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
 		ty = player[1] + sin(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
-		ray->color = game->textures->floor[((int)ty % tex[1]) * tex[1]
-			+ ((int)tx % tex[0])];
+		ray->color = game->textures->floor[((int)ty % tex[1]) * tex[1] + ((int)tx % tex[0])];
+		if (dy * angle < 480 && ray->color >= 0x0F0F0FFF)
+			ray->color -= 0x0F0F0F00;
+		if (dy * angle < 240 && ray->color >= 0x0F0F0FFF)
+			ray->color -= 0x0F0F0F00;
+		if (dy * angle < 120)
+			ray->color = 0x000000FF;
 		mlx_put_pixel(game->game_img, ray->start[0], y, ray->color);
 		y++;
 	}
@@ -81,7 +86,15 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 		texture_y = ray_end % game->textures->wall_size[0];
 		ray->color = game->textures->wall[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
 		if (!(ray->start[0] < MINIMAP && ray_start < MINIMAP))
+		{
+			if (ray->dist > 70 && ray->color >= 0x0F0F0FFF)
+				ray->color -= 0x0F0F0F00;
+			if (ray->dist > 30 && ray->color >= 0x0F0F0FFF)
+				ray->color -= 0x0F0F0F00;
+			if (ray->dist > 144)
+				ray->color = 0x000000FF;
 			mlx_put_pixel(game->game_img, ray->start[0], ray_start, ray->color);
+		}
 		ray_start += 1;
 		pos += game->textures->offset;
 	}
