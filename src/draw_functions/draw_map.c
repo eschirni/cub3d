@@ -4,12 +4,12 @@ void	get_map_textures(t_game *game)
 {
 	mlx_texture_t	*text;
 
-	text = mlx_load_png("./sprites/tile_floor.png");
+	text = mlx_load_png("./sprites/floor_moss.png");
 	game->map->floor = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
 	if (!mlx_resize_image(game->map->floor, 32, 32))
 		ft_error("can't resize image", NULL);
-	text = mlx_load_png("./sprites/tile_wall.png");
+	text = mlx_load_png("./sprites/wall_dirty.png");
 	game->map->wall = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
 	if (!mlx_resize_image(game->map->wall, 32, 32))
