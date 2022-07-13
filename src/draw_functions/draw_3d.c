@@ -1,48 +1,50 @@
 #include "../includes/cub3d.h"
 
-static void	draw_ground(t_game *game, t_ray *ray, float player[2], int tex[2])
+static void	get_color(t_game *game, t_ray *ray, u_int32_t *col, float dy)
 {
 	float	angle;
-	float	dy;
 	float	tx;
 	float	ty;
-	int		y;
+	int		tex[2];
 
-	y = ray->end[1] + 1;
-	while (y < HEIGHT)
-	{
-		dy = y - (HEIGHT / 2);
-		angle = game->chars[0]->pa - ray->ra;
-		if (angle >= (float)M_PI * 2)
-			angle -= (float)M_PI * 2;
-		else if (angle < 0)
-			angle += (float)M_PI * 2;
-		angle = cos(angle);
-		tx = player[0] + cos(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
-		ty = player[1] + sin(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
-		ray->color = game->textures->floor[((int)ty % tex[1]) * tex[1]
-			+ ((int)tx % tex[0])];
-		mlx_put_pixel(game->game_img, ray->start[0], y, ray->color);
-		y++;
-	}
+	tex[0] = game->textures->floor_size[0];
+	tex[1] = game->textures->floor_size[1];
+	angle = game->chars[0]->pa - ray->ra;
+	if (angle >= (float)M_PI * 2)
+		angle -= (float)M_PI * 2;
+	else if (angle < 0)
+		angle += (float)M_PI * 2;
+	angle = cos(angle);
+	tx = game->map->player[0] + cos(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
+	ty = game->map->player[1] + sin(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
+	ray->color = col[((int)ty % tex[1]) * tex[1] + ((int)tx % tex[0])];
+	if (dy * angle < 480 && ray->color >= 0x0F0F0FFF)
+		ray->color -= 0x0F0F0F00;
+	if (dy * angle < 240 && ray->color >= 0x0F0F0FFF)
+		ray->color -= 0x0F0F0F00;
+	if (dy * angle < 120)
+		ray->color = 0x000000FF;
 }
 
 static void	draw_env(t_game *game, t_ray *ray)
 {
 	int	y;
-	int	tex[2];
+	int	y_top;
 
-	y = 0;
-	if (ray->start[0] < MINIMAP)
-		y = MINIMAP;
-	while (y < ray->start[1])
+	y = ray->end[1] + 1;
+	while (y < HEIGHT)
 	{
-		mlx_put_pixel(game->game_img, ray->start[0], y, 0x001100FF);
+		get_color(game, ray, game->textures->floor, y - (HEIGHT / 2));
+		if (!(ray->start[0] < MINIMAP && y < MINIMAP))
+			mlx_put_pixel(game->game_img, ray->start[0], y, ray->color);
+		get_color(game, ray, game->textures->top, y - (HEIGHT / 2));
+		if (!(ray->start[0] < MINIMAP && (HEIGHT - y) < MINIMAP))
+		{
+			y_top = HEIGHT - y;
+			mlx_put_pixel(game->game_img, ray->start[0], y_top, ray->color);
+		}
 		y++;
 	}
-	tex[0] = game->textures->floor_size[0];
-	tex[1] = game->textures->floor_size[1];
-	draw_ground(game, ray, game->map->player, tex);
 }
 
 static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
@@ -81,7 +83,15 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 		texture_y = ray_end % game->textures->wall_size[0];
 		ray->color = game->textures->wall[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
 		if (!(ray->start[0] < MINIMAP && ray_start < MINIMAP))
+		{
+			if (ray->dist > 70 && ray->color >= 0x0F0F0FFF)
+				ray->color -= 0x0F0F0F00;
+			if (ray->dist > 30 && ray->color >= 0x0F0F0FFF)
+				ray->color -= 0x0F0F0F00;
+			if (ray->dist > 144)
+				ray->color = 0x000000FF;
 			mlx_put_pixel(game->game_img, ray->start[0], ray_start, ray->color);
+		}
 		ray_start += 1;
 		pos += game->textures->offset;
 	}

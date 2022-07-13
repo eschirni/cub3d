@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/13 13:14:08 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:12:09 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,12 @@ typedef struct s_menu
 
 typedef struct s_textures
 {
-	u_int32_t	*wall;
 	u_int32_t	*floor;
-	int			wall_size[2];
+	u_int32_t	*top;
+	u_int32_t	*wall;
 	int			floor_size[2];
+	int			top_size[2];
+	int			wall_size[2];
 	float		offset;
 }				t_textures;
 

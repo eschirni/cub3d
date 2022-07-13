@@ -40,4 +40,9 @@ void	init_textures(t_game *game)
 	game->textures->floor_size[0] = txt->width;
 	game->textures->floor_size[1] = txt->height;
 	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/top.png");
+	game->textures->top = get_color(txt);
+	game->textures->top_size[0] = txt->width;
+	game->textures->top_size[1] = txt->height;
+	mlx_delete_texture(txt);
 }
