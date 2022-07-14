@@ -39,8 +39,6 @@ static void	check_keys(t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		to_menu(game);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
-		system("say -v Fred I think I should go to the gym more often... &");
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		set_coords(game, game->chars[0]->w[0], game->chars[0]->w[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
@@ -54,9 +52,22 @@ static void	check_keys(t_game *game)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		game->chars[0]->pa += 0.03f * game->menu->settings->rs;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
-		game->ps = 5;
+		game->ps = 4;
 	else
-		game->ps = 3;
+		game->ps = 2;
+}
+
+static void	check_music(t_game *game)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		ft_error("Error while reading the time", NULL);
+	if (time.tv_sec > game->music_start + 135)
+	{
+		game->music_start = time.tv_sec;
+		system("afplay ./music/background.mp3 &");
+	}
 }
 
 void	fps(void *tmp)
@@ -66,7 +77,7 @@ void	fps(void *tmp)
 	game = tmp;
 	if (game->menu->in_menu == true)
 	{
-		animate_menu(game->menu);
+		animate_menu(game);
 		game->game_img->enabled = false;
 	}
 	else
@@ -76,5 +87,7 @@ void	fps(void *tmp)
 		calc_rotate(game, 0.0f, 0);
 		draw_game(game->chars[0]->ray, game, game->map->player);
 		draw_crosshair(game, 0xFFFFFFFF, game->menu->settings->cross_type);
+		if (game->music == true)
+			check_music(game);
 	}
 }

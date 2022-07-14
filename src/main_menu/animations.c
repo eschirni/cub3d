@@ -66,15 +66,18 @@ void	play_music(t_menu *menu, long now)
 	}
 }
 
-void	animate_menu(t_menu *menu)
+void	animate_menu(t_game *game)
 {
 	struct timeval	time;
 	long			now;
 
 	if (gettimeofday(&time, NULL) == -1)
 		ft_error("Error while reading the time", NULL);
+	now = time.tv_sec * 1000 + time.tv_usec / 1000;if (gettimeofday(&time, NULL) == -1)
+		ft_error("Error while reading the time", NULL);
 	now = time.tv_sec * 1000 + time.tv_usec / 1000;
-	play_music(menu, time.tv_sec);
-	animate_bg(menu, now);
-	animate_scroll(menu, now);
+	if (game->music == true)
+		play_music(game->menu, time.tv_sec);
+	animate_bg(game->menu, now);
+	animate_scroll(game->menu, now);
 }

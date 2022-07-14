@@ -28,6 +28,7 @@ static t_game	*init_game(t_map *map)
 	game = alloc_game(map);
 	get_map_textures(game);
 	draw_map(game, game->map);
+	game->music = true;
 	return (game);
 }
 

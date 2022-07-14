@@ -81,6 +81,15 @@ static void	on_mouse_click(t_game *game, int x, int y)
 		system("pkill afplay");
 		mlx_close_window(game->mlx);
 	}
+	else if (x >= 1840 && x <= 1888 && y >= 1000 && y <= 1048)
+	{
+		system("pkill afplay &");
+		game->music = !game->music;
+		if (game->music == true)
+			system("afplay ./music/main_menu.mp3 &");
+		game->menu->imgs[67]->enabled = !game->menu->imgs[67]->enabled;
+		game->menu->imgs[68]->enabled = !game->menu->imgs[68]->enabled;
+	}
 	else if (game->menu->scroll_mode == 'O')
 	{
 		settings_buttons(game, x, y);
