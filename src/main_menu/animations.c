@@ -77,7 +77,7 @@ void	animate_menu(t_game *game)
 	if (gettimeofday(&time, NULL) == -1)
 		ft_error("Error while reading the time", NULL);
 	now = time.tv_sec * 1000 + time.tv_usec / 1000;
-	if (game->music == true)
+	if (game->sounds->sound == true)
 		play_music(game->menu, time.tv_sec);
 	animate_bg(game->menu, now);
 	animate_scroll(game->menu, now);

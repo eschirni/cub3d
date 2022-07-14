@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/14 12:09:01 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:46:58 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,17 +100,23 @@ typedef struct s_textures
 	float		offset;
 }				t_textures;
 
+typedef struct s_sounds
+{
+	long		music_start;
+	long		step;
+	bool		sound;
+}				t_sounds;
+
 typedef struct s_game
 {
 	t_char		**chars;
 	t_map		*map;
 	t_menu		*menu;
+	t_sounds	*sounds;
 	t_textures	*textures;
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
 	int			ps;
-	long		music_start;
-	bool		music;
 }				t_game;
 
 typedef struct s_mapgen

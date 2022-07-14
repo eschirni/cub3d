@@ -1,5 +1,25 @@
 #include "includes/cub3d.h"
 
+static void	check_music(t_game *game, bool moving)
+{
+	struct timeval	time;
+	long			micsec;
+
+	if (gettimeofday(&time, NULL) == -1)
+		ft_error("Error while reading the time", NULL);
+	micsec = time.tv_sec * 1000 + time.tv_usec / 1000;
+	if (time.tv_sec > game->sounds->music_start + 135)
+	{
+		game->sounds->music_start = time.tv_sec;
+		system("afplay -v 0.5 ./music/background.mp3 &");
+	}
+	else if (moving == true && micsec > game->sounds->step + 1400 / game->ps)
+	{
+		game->sounds->step = time.tv_sec * 1000 + time.tv_usec / 1000;
+		system("afplay -v 3 ./music/step.mp3 &");
+	}
+}
+
 static void	set_coords(t_game *game, int addX, int addY)
 {
 	int		pos_x;
@@ -22,6 +42,8 @@ static void	set_coords(t_game *game, int addX, int addY)
 	move_map(game, addX, addY);
 	game->map->player[0] += addX;
 	game->map->player[1] += addY;
+	if (game->sounds->sound == true)
+		check_music(game, true);
 }
 
 static void	mouse_rotate(t_game *game)
@@ -57,19 +79,6 @@ static void	check_keys(t_game *game)
 		game->ps = 2;
 }
 
-static void	check_music(t_game *game)
-{
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
-		ft_error("Error while reading the time", NULL);
-	if (time.tv_sec > game->music_start + 135)
-	{
-		game->music_start = time.tv_sec;
-		system("afplay ./music/background.mp3 &");
-	}
-}
-
 void	fps(void *tmp)
 {
 	t_game	*game;
@@ -87,7 +96,7 @@ void	fps(void *tmp)
 		calc_rotate(game, 0.0f, 0);
 		draw_game(game->chars[0]->ray, game, game->map->player);
 		draw_crosshair(game, 0xFFFFFFFF, game->menu->settings->cross_type);
-		if (game->music == true)
-			check_music(game);
+		if (game->sounds->sound == true)
+			check_music(game, false);
 	}
 }

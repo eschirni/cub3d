@@ -31,8 +31,8 @@ static void	settings_buttons(t_game *game, int x, int y)
 static void	play_music(t_game *game)
 {
 	system("pkill afplay &");
-	game->music = !game->music;
-	if (game->music == true)
+	game->sounds->sound = !game->sounds->sound;
+	if (game->sounds->sound == true)
 		system("afplay ./music/main_menu.mp3 &");
 	game->menu->imgs[67]->enabled = !game->menu->imgs[67]->enabled;
 	game->menu->imgs[68]->enabled = !game->menu->imgs[68]->enabled;
