@@ -117,6 +117,7 @@ typedef struct s_game
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
 	int			ps;
+	int			loot;
 }				t_game;
 
 typedef struct s_mapgen

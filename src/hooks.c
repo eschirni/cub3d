@@ -79,6 +79,30 @@ static void	check_keys(t_game *game)
 		game->ps = 2;
 }
 
+static int	find_instance(t_game *game, int x, int y)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (i < game->map->y)
+	{
+		j = 0;
+		while (j < game->map->x)
+		{
+			if (i == y && j == x)
+				return (count);
+			if (game->map->big_map[i][j] == 'L' || game->map->big_map[i][j] == 'l')
+				count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
+}
+
 static void	check_pos(t_game *game)
 {
 	int	player_x;
@@ -88,6 +112,12 @@ static void	check_pos(t_game *game)
 	player_y = game->map->player[1] / 32;
 	if (game->map->big_map[player_y][player_x] == 'X')
 		mlx_close_window(game->mlx);
+	else if (game->map->big_map[player_y][player_x] == 'L')
+	{
+		game->loot++;
+		game->map->chest->instances[find_instance(game, player_x, player_y)].enabled = false;
+		game->map->big_map[player_y][player_x] = 'l';
+	}
 }
 
 void	fps(void *tmp)
