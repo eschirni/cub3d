@@ -65,6 +65,10 @@ typedef struct s_map
 	mlx_image_t	*floor;
 	mlx_image_t	*out;
 	mlx_image_t	*wall;
+	mlx_image_t	*doorv;
+	mlx_image_t	*doorh;
+	mlx_image_t	*chest;
+	mlx_image_t	*exit;
 }				t_map;
 
 typedef struct s_settings
@@ -94,6 +98,10 @@ typedef struct s_textures
 	u_int32_t	*floor;
 	u_int32_t	*top;
 	u_int32_t	*wall;
+	u_int32_t	*door;
+	u_int32_t	*door_o;
+	u_int32_t	*exit;
+	u_int32_t	*current;
 	int			floor_size[2];
 	int			top_size[2];
 	int			wall_size[2];
@@ -109,6 +117,7 @@ typedef struct s_game
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
 	int			ps;
+	int			loot;
 }				t_game;
 
 typedef struct s_mapgen
@@ -118,6 +127,7 @@ typedef struct s_mapgen
 	int			last_dir[2];
 	int			start[2];
 	int			player_start[2];
+	int			exit[2];
 	int			rand;
 	int			size;
 	char		**map;
@@ -136,6 +146,9 @@ void	ft_error(char *msg, char *arg);
 int		ft_strlen(char *s);
 int		check_file(char *file);
 void	free_2d_array(char **arr);
+void	open_door(t_game *game, int addX, int addY);
+int		find_instance(t_game *game, int x, int y);
+void	check_pos(t_game *game);
 
 /* draw functions */
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);

@@ -34,6 +34,9 @@ void	free_exit(t_map *map, t_game *game)
 	mlx_delete_image(game->mlx, game->map->floor);
 	mlx_delete_image(game->mlx, game->map->wall);
 	mlx_delete_image(game->mlx, game->map->out);
+	mlx_delete_image(game->mlx, game->map->doorv);
+	mlx_delete_image(game->mlx, game->map->doorh);
+	mlx_delete_image(game->mlx, game->map->exit);
 	mlx_delete_image(game->mlx, game->game_img);
 	mlx_terminate(game->mlx);
 	free(game->menu->settings);
@@ -41,6 +44,9 @@ void	free_exit(t_map *map, t_game *game)
 	free(game->textures->wall);
 	free(game->textures->floor);
 	free(game->textures->top);
+	free(game->textures->door);
+	free(game->textures->door_o);
+	free(game->textures->exit);
 	free(game->textures);
 	free(game);
 	free(map->big_map);

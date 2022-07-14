@@ -81,7 +81,7 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 	{
 		texture_x = (int)pos * game->textures->wall_size[1];
 		texture_y = ray_end % game->textures->wall_size[0];
-		ray->color = game->textures->wall[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
+		ray->color = game->textures->current[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
 		if (!(ray->start[0] < MINIMAP && ray_start < MINIMAP))
 		{
 			if (ray->dist > 70 && ray->color >= 0x0F0F0FFF)
@@ -97,7 +97,7 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 	}
 }
 
-void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults with bigger pics, need to calculate with actual image with in player pos over minimap, to avoid image spreading over multiple tiles in 3d
+static void	draw_tex(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults with bigger pics, need to calculate with actual image with in player pos over minimap, to avoid image spreading over multiple tiles in 3d
 {
 	float	line_height;
 	float	line_width;
@@ -120,4 +120,23 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults wit
 		*line_x += 1;
 		count_x++;
 	}
+}
+
+void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
+{
+	int	x;
+	int	y;
+
+	x = (int)ray->end[0] / 32;
+	y = (int)ray->end[1] / 32;
+	if (game->map->big_map[y][x] == '1')
+		game->textures->current = game->textures->wall;
+	else if (game->map->big_map[y][x] == '8'
+		|| game->map->big_map[y][x] == '9')
+		game->textures->current = game->textures->door;
+	else if (game->map->big_map[y][x] == '7')
+		game->textures->current = game->textures->door_o;
+	else if (game->map->big_map[y][x] == 'X')
+		game->textures->current = game->textures->exit;
+	draw_tex(game, ray, count_x, line_x);
 }
