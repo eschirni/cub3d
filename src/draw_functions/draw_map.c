@@ -7,28 +7,18 @@ void	get_map_textures(t_game *game)
 	text = mlx_load_png("./sprites/floor_moss.png");
 	game->map->floor = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->map->floor, 32, 32))
-		ft_error("can't resize image", NULL);
 	text = mlx_load_png("./sprites/wall_dirty.png");
 	game->map->wall = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->map->wall, 32, 32))
-		ft_error("can't resize image", NULL);
 	text = mlx_load_png("./sprites/tile_water.png");
 	game->map->out = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->map->out, 32, 32))
-		ft_error("can't resize image", NULL);
 	text = mlx_load_png("./sprites/door_ver.png");
 	game->map->doorv = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->map->doorv, 32, 32))
-		ft_error("can't resize image", NULL);
 	text = mlx_load_png("./sprites/door_hor.png");
 	game->map->doorh = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->map->doorh, 32, 32))
-		ft_error("can't resize image", NULL);
 }
 
 static void	create_char(t_game *game, int x, int y)
@@ -52,7 +42,8 @@ static void	draw_tile(t_game *game, char **arr, int iterator[2], int coords[2])
 		|| iterator[1] >= game->map->x || arr[iterator[0]][iterator[1]] == ' ')
 		mlx_image_to_window(game->mlx, game->map->out, coords[0], coords[1]);
 	else if (arr[iterator[0]][iterator[1]] == '0'
-		|| arr[iterator[0]][iterator[1]] == 'H' || arr[iterator[0]][iterator[1]] == 'V')
+		|| arr[iterator[0]][iterator[1]] == 'H'
+		|| arr[iterator[0]][iterator[1]] == 'V')
 		mlx_image_to_window(game->mlx, game->map->floor, coords[0], coords[1]);
 	else if (arr[iterator[0]][iterator[1]] == '1')
 		mlx_image_to_window(game->mlx, game->map->wall, coords[0], coords[1]);

@@ -41,15 +41,16 @@ static void	open_door(t_game *game, int addX, int addY)
 {
 	float	x;
 	float	y;
-	int		nextX;
-	int		nextY;
+	int		next_x;
+	int		next_y;
 
 	x = game->map->player[0];
 	y = game->map->player[1];
-	nextX = (x + addX * 16) / 32;
-	nextY = (y + addY * 16) / 32;
-	if (game->map->big_map[nextY][nextX] == '8' || game->map->big_map[nextY][nextX] == '9')
-		game->map->big_map[nextY][nextX] = '7';
+	next_x = (x + addX * 16) / 32;
+	next_y = (y + addY * 16) / 32;
+	if (game->map->big_map[next_y][next_x] == '8'
+		|| game->map->big_map[next_y][next_x] == '9')
+		game->map->big_map[next_y][next_x] = '7';
 }
 
 static void	check_keys(t_game *game)

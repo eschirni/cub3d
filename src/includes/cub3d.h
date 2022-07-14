@@ -98,6 +98,7 @@ typedef struct s_textures
 	u_int32_t	*wall;
 	u_int32_t	*door;
 	u_int32_t	*door_o;
+	u_int32_t	*current;
 	int			floor_size[2];
 	int			top_size[2];
 	int			wall_size[2];

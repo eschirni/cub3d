@@ -38,6 +38,7 @@ static void	set_doors(char **map)
 {
 	int	i;
 	int	j;
+	int	rand;
 
 	i = 0;
 	while (map[i])
@@ -45,7 +46,8 @@ static void	set_doors(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if ((map[i][j] == 'V' || map[i][j] == 'H') && (get_random_num(1, 100) % 30) == 0)
+			rand = get_random_num(1, 100);
+			if ((map[i][j] == 'V' || map[i][j] == 'H') && (rand % 30) == 0)
 			{
 				if (map[i][j] == 'V')
 					map[i][j] = '8';
