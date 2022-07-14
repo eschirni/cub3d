@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/14 17:46:58 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/15 01:32:08 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,14 +149,14 @@ void	set_direction(t_game *game, char direction, int n);
 
 /* utils */
 bool	is_char_obj(char c);
+int		check_file(char *file);
+int		find_instance(t_game *game, int x, int y);
+int		ft_strlen(char *s);
+void	check_pos(t_game *game);
 void	free_exit(t_map *map, t_game *game);
 void	ft_error(char *msg, char *arg);
-int		ft_strlen(char *s);
-int		check_file(char *file);
 void	free_2d_array(char **arr);
 void	open_door(t_game *game, int addX, int addY);
-int		find_instance(t_game *game, int x, int y);
-void	check_pos(t_game *game);
 
 /* draw functions */
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);
@@ -185,10 +185,10 @@ void	to_menu(t_game *game);
 /* map gen */
 t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len);
 int		get_random_num(int from, int to);
+int		is_corner(char **map, int i, int j);
+int		is_corridor(char **map, int i, int j);
 void	refactor_map(t_mapgen *mapg, int i, int j);
 void	set_entities(char **map, char c);
-int		is_corridor(char **map, int i, int j);
-int		is_corner(char **map, int i, int j);
 void	check_floors(t_mapgen *mapg);
 
 #endif
