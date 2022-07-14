@@ -19,6 +19,12 @@ void	get_map_textures(t_game *game)
 	text = mlx_load_png("./sprites/door_hor.png");
 	game->map->doorh = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
+	text = mlx_load_png("./sprites/floor_chest.png");
+	game->map->chest = mlx_texture_to_image(game->mlx, text);
+	mlx_delete_texture(text);
+	text = mlx_load_png("./sprites/exit_map.png");
+	game->map->exit = mlx_texture_to_image(game->mlx, text);
+	mlx_delete_texture(text);
 }
 
 static void	create_char(t_game *game, int x, int y)
@@ -51,6 +57,10 @@ static void	draw_tile(t_game *game, char **arr, int iterator[2], int coords[2])
 		mlx_image_to_window(game->mlx, game->map->doorv, coords[0], coords[1]);
 	else if (arr[iterator[0]][iterator[1]] == '9')
 		mlx_image_to_window(game->mlx, game->map->doorh, coords[0], coords[1]);
+	else if (arr[iterator[0]][iterator[1]] == 'L')
+		mlx_image_to_window(game->mlx, game->map->chest, coords[0], coords[1]);
+	else if (arr[iterator[0]][iterator[1]] == 'X')
+		mlx_image_to_window(game->mlx, game->map->exit, coords[0], coords[1]);
 	else if (is_char_obj(arr[iterator[0]][iterator[1]]) == true)
 		create_char(game, coords[0], coords[1]);
 }

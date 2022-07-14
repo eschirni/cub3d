@@ -136,5 +136,7 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 		game->textures->current = game->textures->door;
 	else if (game->map->big_map[y][x] == '7')
 		game->textures->current = game->textures->door_o;
+	else if (game->map->big_map[y][x] == 'X')
+		game->textures->current = game->textures->exit;
 	draw_tex(game, ray, count_x, line_x);
 }

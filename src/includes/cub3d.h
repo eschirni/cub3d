@@ -67,6 +67,8 @@ typedef struct s_map
 	mlx_image_t	*wall;
 	mlx_image_t	*doorv;
 	mlx_image_t	*doorh;
+	mlx_image_t	*chest;
+	mlx_image_t	*exit;
 }				t_map;
 
 typedef struct s_settings
@@ -98,6 +100,7 @@ typedef struct s_textures
 	u_int32_t	*wall;
 	u_int32_t	*door;
 	u_int32_t	*door_o;
+	u_int32_t	*exit;
 	u_int32_t	*current;
 	int			floor_size[2];
 	int			top_size[2];
@@ -123,6 +126,7 @@ typedef struct s_mapgen
 	int			last_dir[2];
 	int			start[2];
 	int			player_start[2];
+	int			exit[2];
 	int			rand;
 	int			size;
 	char		**map;
