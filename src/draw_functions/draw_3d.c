@@ -31,7 +31,7 @@ static void	draw_env(t_game *game, t_ray *ray)
 	int	y;
 	int	y_top;
 
-	y = ray->end[1] + 1;
+	y = ray->end[1];
 	while (y < HEIGHT)
 	{
 		get_color(game, ray, game->textures->floor, y - (HEIGHT / 2));
