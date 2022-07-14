@@ -79,6 +79,17 @@ static void	check_keys(t_game *game)
 		game->ps = 2;
 }
 
+static void	check_pos(t_game *game)
+{
+	int	player_x;
+	int	player_y;
+
+	player_x = game->map->player[0] / 32;
+	player_y = game->map->player[1] / 32;
+	if (game->map->big_map[player_y][player_x] == 'X')
+		mlx_close_window(game->mlx);
+}
+
 void	fps(void *tmp)
 {
 	t_game	*game;
@@ -94,6 +105,7 @@ void	fps(void *tmp)
 		mouse_rotate(game);
 		check_keys(game);
 		calc_rotate(game, 0.0f, 0);
+		check_pos(game);
 		draw_game(game->chars[0]->ray, game, game->map->player);
 		draw_crosshair(game, 0xFFFFFFFF, game->menu->settings->cross_type);
 	}
