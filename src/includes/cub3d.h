@@ -65,7 +65,8 @@ typedef struct s_map
 	mlx_image_t	*floor;
 	mlx_image_t	*out;
 	mlx_image_t	*wall;
-	mlx_image_t	*door;
+	mlx_image_t	*doorv;
+	mlx_image_t	*doorh;
 }				t_map;
 
 typedef struct s_settings

@@ -64,7 +64,7 @@ int	is_corridor(char **map, int i, int j)
 		if (map[i][j + 1] == '1' && map[i][j - 1] == '1')
 			return (1);
 		else if (map[i + 1][j] == '1' && map[i - 1][j] == '1')
-			return (1);
+			return (2);
 	}
 	return (0);
 }
@@ -84,7 +84,7 @@ int	is_corner(char **map, int i, int j)
 			x = j - 1;
 			while (x <= j + 1)
 			{
-				if (map[y][x] == '0')
+				if (map[x][y] == 'H' || map[x][y] == 'V')
 					corridor_tiles++;
 				x++;
 			}
