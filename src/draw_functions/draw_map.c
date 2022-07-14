@@ -4,21 +4,15 @@ void	get_map_textures(t_game *game)
 {
 	mlx_texture_t	*text;
 
-	text = mlx_load_png("./sprites/floor_moss.png");
+	text = mlx_load_png("./sprites/floor.png");
 	game->map->floor = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->map->floor, 32, 32))
-		ft_error("can't resize image", NULL);
-	text = mlx_load_png("./sprites/wall_dirty.png");
+	text = mlx_load_png("./sprites/wall.png");
 	game->map->wall = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->map->wall, 32, 32))
-		ft_error("can't resize image", NULL);
 	text = mlx_load_png("./sprites/tile_water.png");
 	game->map->out = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	if (!mlx_resize_image(game->map->out, 32, 32))
-		ft_error("can't resize image", NULL);
 }
 
 static void	create_char(t_game *game, int x, int y)

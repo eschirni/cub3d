@@ -54,9 +54,9 @@ static void	check_keys(t_game *game)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		game->chars[0]->pa += 0.03f * game->menu->settings->rs;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
-		game->ps = 4;
+		game->ps = 5;
 	else
-		game->ps = 2;
+		game->ps = 3;
 }
 
 void	fps(void *tmp)
