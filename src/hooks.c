@@ -15,7 +15,9 @@ static void	set_coords(t_game *game, int addX, int addY)
 	{
 		circle_x = (pos_x + 4 * cos(angle));
 		circle_y = (pos_y + 4 * sin(angle));
-		if (game->map->big_map[circle_y / 32][circle_x / 32] == '1')
+		if (game->map->big_map[circle_y / 32][circle_x / 32] == '1'
+			|| game->map->big_map[circle_y / 32][circle_x / 32] == '8'
+			|| game->map->big_map[circle_y / 32][circle_x / 32] == '9')
 			return ;
 		angle += (float)M_PI / 18;
 	}
@@ -33,6 +35,21 @@ static void	mouse_rotate(t_game *game)
 	x -= WIDTH / 2;
 	game->chars[0]->pa += (float)x / 4000 * game->menu->settings->rs;
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
+}
+
+static void	open_door(t_game *game, int addX, int addY)
+{
+	float	x;
+	float	y;
+	int		nextX;
+	int		nextY;
+
+	x = game->map->player[0];
+	y = game->map->player[1];
+	nextX = (x + addX * 16) / 32;
+	nextY = (y + addY * 16) / 32;
+	if (game->map->big_map[nextY][nextX] == '8' || game->map->big_map[nextY][nextX] == '9')
+		game->map->big_map[nextY][nextX] = '7';
 }
 
 static void	check_keys(t_game *game)
@@ -53,6 +70,8 @@ static void	check_keys(t_game *game)
 		game->chars[0]->pa -= 0.03f * game->menu->settings->rs;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		game->chars[0]->pa += 0.03f * game->menu->settings->rs;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_F))
+		open_door(game, game->chars[0]->w[0], game->chars[0]->w[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
 		game->ps = 4;
 	else

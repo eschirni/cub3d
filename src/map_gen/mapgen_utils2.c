@@ -1,19 +1,19 @@
 #include "../includes/cub3d.h"
 
-static void	print_2d_array(char **array)
-{
-	int	i;
+// static void	print_2d_array(char **array)
+// {
+// 	int	i;
 
-	if (!array)
-		printf("Array empty.\n");
-	i = 0;
-	while (array[i])
-	{
-		printf("%s\n", array[i]);
-		i++;
-	}
-	printf("\n");
-}
+// 	if (!array)
+// 		printf("Array empty.\n");
+// 	i = 0;
+// 	while (array[i])
+// 	{
+// 		printf("%s\n", array[i]);
+// 		i++;
+// 	}
+// 	printf("\n");
+// }
 
 // static void	corner_check(t_mapgen *mapg)
 // {
@@ -78,7 +78,7 @@ void	check_floors(t_mapgen *mapg)
 		i++;
 	}
 	// corner_check(mapg);
-	set_entities(mapg->map, 'X');
+	set_entities(mapg->map, 'L');
+	set_entities(mapg->map, 'N');
 	set_doors(mapg->map);
-	print_2d_array(mapg->map);
 }

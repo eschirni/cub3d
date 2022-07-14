@@ -11,7 +11,8 @@ static void	add_until_wall(t_ray *ray, t_map *map, float ray_offset[2])
 		y = ray->end[1] / 32;
 		if (x < 0 || y < 0 || x >= map->x
 			|| y >= map->y || map->big_map[y][x] == '1'
-			|| map->big_map[y][x] == '8' || map->big_map[y][x] == '9')
+			|| map->big_map[y][x] == '8' || map->big_map[y][x] == '9'
+			|| map->big_map[y][x] == '7')
 			break ;
 		ray->end[0] += ray_offset[0];
 		ray->end[1] += ray_offset[1];

@@ -126,6 +126,9 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 {
 	if (game->map->big_map[(int)ray->end[1] / 32][(int)ray->end[0] / 32] == '1')
 		draw_3d_2(game, ray, count_x, line_x, game->textures->wall);
-	else
+	else if (game->map->big_map[(int)ray->end[1] / 32][(int)ray->end[0] / 32] == '8'
+		|| game->map->big_map[(int)ray->end[1] / 32][(int)ray->end[0] / 32] == '9')
 		draw_3d_2(game, ray, count_x, line_x, game->textures->door);
+	else if (game->map->big_map[(int)ray->end[1] / 32][(int)ray->end[0] / 32] == '7')
+		draw_3d_2(game, ray, count_x, line_x, game->textures->door_o);
 }

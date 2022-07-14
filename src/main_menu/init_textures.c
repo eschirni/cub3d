@@ -47,7 +47,8 @@ void	init_textures(t_game *game)
 	mlx_delete_texture(txt);
 	txt = mlx_load_png("./sprites/door_dirty64.png");
 	game->textures->door = get_color(txt);
-	game->textures->door_size[0] = txt->width;
-	game->textures->door_size[1] = txt->height;
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/door_opened64.png");
+	game->textures->door_o = get_color(txt);
 	mlx_delete_texture(txt);
 }
