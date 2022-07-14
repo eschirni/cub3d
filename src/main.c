@@ -29,6 +29,7 @@ static t_game	*init_game(t_map *map)
 	t_game	*game;
 
 	game = alloc_game(map);
+	game->loot = 0;
 	get_map_textures(game);
 	draw_map(game, game->map);
 	game->sounds->sound = true;
