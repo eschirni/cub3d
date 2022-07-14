@@ -146,6 +146,9 @@ void	ft_error(char *msg, char *arg);
 int		ft_strlen(char *s);
 int		check_file(char *file);
 void	free_2d_array(char **arr);
+void	open_door(t_game *game, int addX, int addY);
+int		find_instance(t_game *game, int x, int y);
+void	check_pos(t_game *game);
 
 /* draw functions */
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);

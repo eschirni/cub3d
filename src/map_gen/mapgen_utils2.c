@@ -66,6 +66,9 @@ void	check_floors(t_mapgen *mapg)
 	int	j;
 
 	i = 0;
+	mapg->exit[0] = mapg->start[0];
+	mapg->exit[1] = mapg->start[1];
+	mapg->map[mapg->exit[1]][mapg->exit[0]] = 'X';
 	while (mapg->map[i])
 	{
 		j = 0;
