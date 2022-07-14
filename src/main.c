@@ -12,6 +12,9 @@ static t_game	*alloc_game(t_map *map)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", false);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
+	game->sounds = malloc(sizeof(t_sounds));
+	if (game->sounds == NULL)
+		ft_error("allocation error", NULL);
 	game->map = map;
 	curs_tex = mlx_load_png("./sprites/cursor.png");
 	cursor = mlx_create_cursor(curs_tex);
@@ -29,6 +32,7 @@ static t_game	*init_game(t_map *map)
 	game->loot = 0;
 	get_map_textures(game);
 	draw_map(game, game->map);
+	game->sounds->sound = true;
 	return (game);
 }
 

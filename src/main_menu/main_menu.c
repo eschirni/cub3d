@@ -21,6 +21,8 @@ static void	create_buttons(t_game *game)
 	load_png(game, 12, "./sprites/main/button/exit_hover.png", false);
 	load_png(game, 65, "./sprites/main/button/continue.png", false);
 	load_png(game, 66, "./sprites/main/button/continue_hover.png", false);
+	load_png(game, 67, "./sprites/main/button/unmuted.png", true);
+	load_png(game, 68, "./sprites/main/button/muted.png", false);
 	mlx_image_to_window(game->mlx, game->menu->imgs[6], 100, 40);
 	mlx_image_to_window(game->mlx, game->menu->imgs[7], 120, 250);
 	mlx_image_to_window(game->mlx, game->menu->imgs[8], 120, 250);
@@ -30,6 +32,8 @@ static void	create_buttons(t_game *game)
 	mlx_image_to_window(game->mlx, game->menu->imgs[10], 120, 350);
 	mlx_image_to_window(game->mlx, game->menu->imgs[11], 120, 450);
 	mlx_image_to_window(game->mlx, game->menu->imgs[12], 120, 450);
+	mlx_image_to_window(game->mlx, game->menu->imgs[67], 1840, 1000);
+	mlx_image_to_window(game->mlx, game->menu->imgs[68], 1840, 1000);
 }
 
 static void	create_background(t_game *game)

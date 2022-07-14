@@ -4,10 +4,10 @@ void	get_map_textures(t_game *game)
 {
 	mlx_texture_t	*text;
 
-	text = mlx_load_png("./sprites/floor_moss.png");
+	text = mlx_load_png("./sprites/floor.png");
 	game->map->floor = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
-	text = mlx_load_png("./sprites/wall_dirty.png");
+	text = mlx_load_png("./sprites/wall.png");
 	game->map->wall = mlx_texture_to_image(game->mlx, text);
 	mlx_delete_texture(text);
 	text = mlx_load_png("./sprites/tile_water.png");

@@ -49,7 +49,10 @@ void	check_pos(t_game *game)
 	x = game->map->player[0] / 32;
 	y = game->map->player[1] / 32;
 	if (game->map->big_map[y][x] == 'X')
+	{
+		system("pkill afplay &");
 		mlx_close_window(game->mlx);
+	}
 	else if (game->map->big_map[y][x] == 'L')
 	{
 		game->loot++;

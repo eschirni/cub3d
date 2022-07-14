@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/13 17:12:09 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:46:58 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_menu
 	long		back_seconds;
 	long		music_start;
 	long		scroll_seconds;
-	mlx_image_t	*imgs[67];
+	mlx_image_t	*imgs[69];
 }				t_menu;
 
 typedef struct s_textures
@@ -108,11 +108,19 @@ typedef struct s_textures
 	float		offset;
 }				t_textures;
 
+typedef struct s_sounds
+{
+	long		music_start;
+	long		step;
+	bool		sound;
+}				t_sounds;
+
 typedef struct s_game
 {
 	t_char		**chars;
 	t_map		*map;
 	t_menu		*menu;
+	t_sounds	*sounds;
 	t_textures	*textures;
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
@@ -168,7 +176,7 @@ void	move_map(t_game *game, int addX, int addY);
 float	calc_rays(t_ray *ray, t_map *map, int x, int y);
 
 /* main menu */
-void	animate_menu(t_menu *menu);
+void	animate_menu(t_game *game);
 void	hover_buttons(double x, double y, void *tmp);
 void	main_menu(t_game *game);
 void	to_game(t_game *game);

@@ -33,7 +33,9 @@ void	to_menu(t_game *game)
 	game->menu->back_seconds = time.tv_sec * 1000 + time.tv_usec / 1000;
 	game->menu->scroll_seconds = game->menu->back_seconds;
 	game->menu->music_start = time.tv_sec;
-	system("afplay ./music/main_menu.mp3 &");
+	system("pkill afplay &");
+	if (game->sounds->sound == true)
+		system("afplay ./music/main_menu.mp3 &");
 	disable_game(game);
 	game->menu->back_frame = 1;
 	game->menu->scroll_frame = 13;
@@ -64,6 +66,10 @@ static void	disable_animation(t_game *game)
 
 void	to_game(t_game *game)
 {
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		ft_error("Error while reading the time", NULL);
 	if (game->menu->scroll_mode != 'N')
 	{
 		game->menu->scroll_mode = 'C';
@@ -78,5 +84,9 @@ void	to_game(t_game *game)
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 	game->menu->started_game = true;
 	system("pkill afplay &");
+	game->sounds->music_start = time.tv_sec;
+	game->sounds->step = time.tv_sec * 1000 + time.tv_usec / 1000;
+	if (game->sounds->sound == true)
+		system("afplay -v 0.5 ./music/background.mp3 &");
 	game->menu->in_menu = false;
 }

@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/13 13:26:52 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/14 14:10:40 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(MAIN_MENU_PATH)settings.c $(MAIN_MENU_PATH)animations.c \
 		$(MAIN_MENU_PATH)switch_menu.c $(MAIN_MENU_PATH)menu_sliders.c \
 		$(MAIN_MENU_PATH)animate_scroll_text.c $(MAIN_MENU_PATH)init_textures.c \
+		$(MAIN_MENU_PATH)hover.c \
 		$(MAPGEN_PATH)generate_map.c $(MAPGEN_PATH)mapgen_utils.c \
 		$(MAPGEN_PATH)mapgen_utils2.c \
 

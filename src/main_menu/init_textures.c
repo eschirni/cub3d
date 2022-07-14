@@ -43,12 +43,12 @@ void	init_textures(t_game *game)
 	mlx_texture_t	*txt;
 
 	game->textures = malloc(sizeof(t_textures));
-	txt = mlx_load_png("./sprites/wall_dirty64.png");
+	txt = mlx_load_png("./sprites/wall64.png");
 	game->textures->wall = get_color(txt);
 	game->textures->wall_size[0] = txt->width;
 	game->textures->wall_size[1] = txt->height;
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/floor_moss.png");
+	txt = mlx_load_png("./sprites/floor.png");
 	game->textures->floor = get_color(txt);
 	game->textures->floor_size[0] = txt->width;
 	game->textures->floor_size[1] = txt->height;
