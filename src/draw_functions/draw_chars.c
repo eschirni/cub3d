@@ -5,7 +5,7 @@ static void	draw_char(mlx_t *mlx, t_char *c, int n)
 	mlx_texture_t	*player;
 
 	if (n != 0)
-		player = mlx_load_png("./sprites/tile_red.png");
+		player = mlx_load_png("./sprites/enemy.png");
 	else
 		player = mlx_load_png("./sprites/tile_green.png");
 	if (player == NULL)

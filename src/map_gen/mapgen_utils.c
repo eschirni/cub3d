@@ -49,11 +49,24 @@ void	set_entities(char **map, char c)
 	}
 }
 
+// int	get_random_num(int from, int to)
+// {
+// 	int	num;
+
+// 	num = (time(0) * rand() % (to - from + 1)) + from;
+// 	return (num);
+// }
+
 int	get_random_num(int from, int to)
 {
+	struct timeval t;
 	int	num;
+	int	r;
 
-	num = (time(0) * rand() % (to - from + 1)) + from;
+	gettimeofday(&t, NULL);
+	srand(time(NULL));
+	r = t.tv_usec;
+	num = abs((r * rand() % (to -from + 1)) + from);
 	return (num);
 }
 

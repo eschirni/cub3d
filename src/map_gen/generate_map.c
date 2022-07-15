@@ -109,6 +109,41 @@ static int	carve_tunnel(t_mapgen *mapg, int size, int tunnel_len)
 // 	return (1);
 // }
 
+static void	checker(char **map)
+{
+	int	i;
+	int	j;
+	int	loot;
+	int	exit;
+	int	enemy;
+
+	i = 0;
+	loot = 0;
+	exit = 0;
+	enemy = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'W')
+				enemy++;
+			else if (map[i][j] == 'X')
+				exit++;
+			else if (map[i][j] == 'L' || map[i][j] == 'l')
+				loot++;
+			j++;
+		}
+		i++;
+	}
+	if (!loot)
+		printf("No loot :(\n");
+	if (!enemy)
+		printf("No enemies :(\n");
+	if (!exit)
+		printf("No exit :(\n");
+}
+
 t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 {
 	t_mapgen	*mapg;
@@ -135,5 +170,6 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 			tunnels--;
 	}
 	refactor_map(mapg, 0, 0);
+	checker(mapg->map);
 	return (mapg);
 }

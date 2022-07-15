@@ -84,6 +84,6 @@ void	check_floors(t_mapgen *mapg)
 	}
 	// corner_check(mapg);
 	set_entities(mapg->map, 'L');
-	set_entities(mapg->map, 'N');
+	set_entities(mapg->map, 'W');
 	set_doors(mapg->map);
 }
