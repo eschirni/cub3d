@@ -11,7 +11,7 @@ static void	get_color(t_game *game, t_ray *ray, u_int32_t *col, float dy)
 	dyangle = 540 * 32 / dy / angle;
 	tx = game->map->player[0] + cos(ray->ra) * dyangle;
 	ty = game->map->player[1] + sin(ray->ra) * dyangle;
-	ray->color = col[(ty % game->textures->floor_size[1]) *  game->textures->floor_size[1] + (tx %  game->textures->floor_size[0])];
+	ray->color = col[(ty & 31) * 32 + (tx & 31)];
 	if (dy * angle < 120)
 		ray->color = 0x000000FF;
 	else if (dy * angle  < 240 && ray->color >= 0x0F0F0FFF)
@@ -79,7 +79,7 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 	while (ray_start <= ray->end[1])
 	{
 		texture_x = (int)pos * game->textures->wall_size[1];
-		texture_y = ray_end % game->textures->wall_size[0];
+		texture_y = ray_end & game->textures->wall_size[0] - 1;
 		ray->color = game->textures->current[texture_x + texture_y];
 		if (!(ray->start[0] < MINIMAP && ray_start < MINIMAP))
 		{
@@ -96,18 +96,15 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 	}
 }
 
-static void	draw_tex(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults with bigger pics, need to calculate with actual image with in player pos over minimap, to avoid image spreading over multiple tiles in 3d
+static void	draw_tex(t_game *game, t_ray *ray, int count_x, int *line_x)
 {
 	float	line_height;
 	float	line_width;
 	float	pixel_pos;
 	float	out_of_bounds;
 	long	ray_end;
-	pthread_t	id;
 
 	out_of_bounds = init_vars(game, ray, &line_height, &line_width);
-	// pthread_create(&id, NULL, draw_env, game);
-	// pthread_join(id, NULL);
 	ray_end = ray->end[1] / 32 * game->textures->wall_size[1];
 	if (ray->dir == 'E')
 		ray_end = ray->end[0] / 32 * game->textures->wall_size[0];
@@ -122,7 +119,6 @@ static void	draw_tex(t_game *game, t_ray *ray, int count_x, int *line_x) //segfa
 		*line_x += 1;
 		count_x++;
 	}
-	// pthread_detach(id);
 }
 
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)

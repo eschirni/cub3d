@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/15 22:25:58 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/16 05:38:54 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <math.h>
 # include <stdio.h>	//debug
 # include <sys/time.h>
-# include <pthread.h>
 
 # define RED "\033[31m"
 # define RESET "\033[0m"
