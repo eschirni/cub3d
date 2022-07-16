@@ -26,11 +26,15 @@ static void	get_color(t_game *game, t_ray *ray, u_int32_t *col, float dy)
 		ray->color = 0x000000FF;
 }
 
-static void	draw_env(t_game *game, t_ray *ray)
+static void	*draw_env(void *tmp)
 {
-	int	y;
-	int	y_top;
+	t_game	*game;
+	t_ray	*ray;
+	int		y;
+	int		y_top;
 
+	game = tmp;
+	ray = game->chars[0]->ray;
 	y = ray->end[1];
 	while (y < HEIGHT)
 	{
@@ -45,6 +49,7 @@ static void	draw_env(t_game *game, t_ray *ray)
 		}
 		y++;
 	}
+	return (NULL);
 }
 
 static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
@@ -81,7 +86,7 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 	{
 		texture_x = (int)pos * game->textures->wall_size[1];
 		texture_y = ray_end % game->textures->wall_size[0];
-		ray->color = game->textures->current[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
+		ray->color = game->textures->current[texture_x + texture_y];
 		if (!(ray->start[0] < MINIMAP && ray_start < MINIMAP))
 		{
 			if (ray->dist > 70 && ray->color >= 0x0F0F0FFF)
@@ -104,8 +109,11 @@ static void	draw_tex(t_game *game, t_ray *ray, int count_x, int *line_x) //segfa
 	float	pixel_pos;
 	float	out_of_bounds;
 	long	ray_end;
+	pthread_t	id;
 
 	out_of_bounds = init_vars(game, ray, &line_height, &line_width);
+	// pthread_create(&id, NULL, draw_env, game);
+	// pthread_join(id, NULL);
 	ray_end = ray->end[1] / 32 * game->textures->wall_size[1];
 	if (ray->dir == 'E')
 		ray_end = ray->end[0] / 32 * game->textures->wall_size[0];
@@ -116,10 +124,11 @@ static void	draw_tex(t_game *game, t_ray *ray, int count_x, int *line_x) //segfa
 		ray->end[1] = ray->start[1] + line_height;
 		pixel_pos = out_of_bounds * game->textures->offset;
 		draw_tex_line(game, ray, pixel_pos, ray_end);
-		draw_env(game, ray);
+		draw_env(game);
 		*line_x += 1;
 		count_x++;
 	}
+	// pthread_detach(id);
 }
 
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)

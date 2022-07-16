@@ -21,6 +21,7 @@ static t_game	*alloc_game(t_map *map)
 	mlx_delete_texture(curs_tex);
 	mlx_set_cursor(game->mlx, cursor);
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
 	return (game);
 }
 

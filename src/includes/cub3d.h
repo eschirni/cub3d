@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/14 17:46:58 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/15 22:25:58 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <math.h>
 # include <stdio.h>	//debug
 # include <sys/time.h>
+# include <pthread.h>
 
 # define RED "\033[31m"
 # define RESET "\033[0m"
@@ -161,7 +162,7 @@ void	check_pos(t_game *game);
 /* draw functions */
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);
 void	draw_chars(t_game *game, char **map);
-void	draw_game(t_ray *ray, t_game *game, float coords[2]);
+void	draw_game(t_game *game, t_ray *ray);
 void	draw_map(t_game *game, t_map *map);
 void	draw_line(t_ray *ray, mlx_image_t *img);
 void	draw_crosshair(t_game *game, int color, char type);
