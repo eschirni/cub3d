@@ -30,10 +30,14 @@ static t_game	*init_game(t_map *map)
 	t_game	*game;
 
 	game = alloc_game(map);
+	game->end = malloc(sizeof(t_end));
+	if (game->end == NULL)
+		ft_error("allocation error", NULL);
+	game->sounds->sound = true;
+	game->end->in_end = false;
 	game->loot = 0;
 	get_map_textures(game);
 	draw_map(game, game->map);
-	game->sounds->sound = true;
 	return (game);
 }
 

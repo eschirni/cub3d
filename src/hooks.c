@@ -88,12 +88,12 @@ void	fps(void *tmp)
 	t_game	*game;
 
 	game = tmp;
-	if (game->menu->in_menu == true)
+	if (game->end->in_end == true)
 	{
-		animate_menu(game);
+		animate_end(game->end);
 		game->game_img->enabled = false;
 	}
-	else
+	else if (game->menu->in_menu == false)
 	{
 		mouse_rotate(game);
 		check_keys(game);
@@ -103,5 +103,10 @@ void	fps(void *tmp)
 		draw_crosshair(game, 0xFFFFFFFF, game->menu->settings->cross_type);
 		if (game->sounds->sound == true)
 			check_music(game, false);
+	}
+	else
+	{
+		animate_menu(game);
+		game->game_img->enabled = false;
 	}
 }

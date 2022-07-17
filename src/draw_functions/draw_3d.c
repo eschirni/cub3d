@@ -20,15 +20,11 @@ static void	get_color(t_game *game, t_ray *ray, u_int32_t *col, float dy)
 		ray->color -= 0x0F0F0F00;
 }
 
-static void	*draw_env(void *tmp)
+static void	draw_env(t_game *game, t_ray *ray)
 {
-	t_game	*game;
-	t_ray	*ray;
 	int		y;
 	int		y_top;
 
-	game = tmp;
-	ray = game->chars[0]->ray;
 	y = ray->end[1];
 	while (y < HEIGHT)
 	{
@@ -43,7 +39,6 @@ static void	*draw_env(void *tmp)
 		}
 		y++;
 	}
-	return (NULL);
 }
 
 static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
@@ -115,7 +110,7 @@ static void	draw_tex(t_game *game, t_ray *ray, int count_x, int *line_x)
 		ray->end[1] = ray->start[1] + line_height;
 		pixel_pos = out_of_bounds * game->textures->offset;
 		draw_tex_line(game, ray, pixel_pos, ray_end);
-		draw_env(game);
+		draw_env(game, ray);
 		*line_x += 1;
 		count_x++;
 	}
