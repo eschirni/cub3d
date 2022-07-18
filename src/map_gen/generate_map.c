@@ -3,13 +3,27 @@
 // static void	print_2d_array(char **array)
 // {
 // 	int	i;
+// 	int	j;
 
 // 	if (!array)
 // 		printf("Array empty.\n");
 // 	i = 0;
 // 	while (array[i])
 // 	{
-// 		printf("%s\n", array[i]);
+// 		j = 0;
+// 		while (array[i][j])
+// 		{
+// 			if (array[i][j] == 'L' || array[i][j] == 'W' || array[i][j] == 'X')
+// 			{
+// 				printf("\033[0;31m");
+// 				printf("%c", array[i][j]);
+// 				printf("\033[0m");
+// 			}
+// 			else
+// 				printf("%c", array[i][j]);
+// 			j++;
+// 		}
+// 		printf("\n");
 // 		i++;
 // 	}
 // 	printf("\n");
@@ -83,7 +97,7 @@ static int	carve_tunnel(t_mapgen *mapg, int size, int tunnel_len)
 	int	len;
 
 	i = 0;
-	len = get_random_num(tunnel_len / 2, tunnel_len);
+	len = get_random_num(0, tunnel_len);
 	while (i < len)
 	{
 		if ((mapg->start[0] + mapg->rand_dir[0]) >= 0
@@ -124,7 +138,7 @@ static int	carve_tunnel(t_mapgen *mapg, int size, int tunnel_len)
 // 	return (1);
 // }
 
-static t_mapgen	*checker(t_mapgen *mapg, int tunnels, int tunnel_len, int end_len)
+static t_mapgen	*checker(t_mapgen *mapg)
 {
 	int	i;
 	int	j;
@@ -151,15 +165,22 @@ static t_mapgen	*checker(t_mapgen *mapg, int tunnels, int tunnel_len, int end_le
 		}
 		i++;
 	}
-	if (loot <= 2|| enemy <= 2 || !exit)
-	{
-		printf("test");
-		free_2d_array(mapg->map);
-		free(mapg);
-		return (create_map(mapg->size, tunnels, tunnel_len, end_len));
-	}
-	else
-		return (mapg);
+	if (!loot)
+		printf("No loot.\n");
+	else if (!enemy)
+		printf("No enemies.\n");
+	else if (!exit)
+		printf("No exit.\n");
+	return (mapg);
+	// if (loot <= 2|| enemy <= 2 || !exit)
+	// {
+	// 	printf("test");
+	// 	free_2d_array(mapg->map);
+	// 	free(mapg);
+	// 	return (create_map(mapg->size, tunnels, tunnel_len, end_len));
+	// }
+	// else
+	// 	return (mapg);
 }
 
 t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
@@ -191,7 +212,7 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 	mapg->exit[1] = mapg->start[1];
 	mapg->map[mapg->exit[1]][mapg->exit[0]] = 'X';
 	refactor_map(mapg, 0, 0);
-	mapg = checker(mapg, tunnels, tunnel_len, end_len);
 	// print_2d_array(mapg->map);
+	mapg = checker(mapg);
 	return (mapg);
 }

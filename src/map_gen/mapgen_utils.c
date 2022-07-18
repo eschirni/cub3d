@@ -29,7 +29,7 @@ void	refactor_map(t_mapgen *mapg, int i, int j)
 	check_floors(mapg);
 }
 
-void	set_entities(char **map, char c)
+void	set_entities(char **map, char c, int chance)
 {
 	int	i;
 	int	j;
@@ -40,7 +40,7 @@ void	set_entities(char **map, char c)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '0' && (get_random_num(1, 100) & 9) == 0)
+			if (map[i][j] == '0' && (get_random_num(1, 100) % chance) == 0)
 				// if (surroundings(map, i, j, c))
 					map[i][j] = c;
 			j++;
@@ -62,7 +62,7 @@ int	get_random_num(int from, int to)
 	int	fd;
 	int	num;
 
-	fd = open("/dev/random", O_RDONLY);
+	fd = open("/dev/urandom", O_RDONLY);
 	if (!fd)
 		printf("failed to open file");
 	if (read(fd, &num, sizeof(num)) == -1)

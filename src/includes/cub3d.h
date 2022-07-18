@@ -188,7 +188,7 @@ int		get_random_num(int from, int to);
 int		is_corner(char **map, int i, int j);
 int		is_corridor(char **map, int i, int j);
 void	refactor_map(t_mapgen *mapg, int i, int j);
-void	set_entities(char **map, char c);
+void	set_entities(char **map, char c, int chance);
 void	check_floors(t_mapgen *mapg);
 
 #endif
