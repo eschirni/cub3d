@@ -40,7 +40,7 @@ void	set_entities(char **map, char c, int chance)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '0' && (get_random_num(1, 100) % chance) == 0)
+			if (map[i][j] == '0' && (get_random_num(1, 100) % 100) <= chance)
 				// if (surroundings(map, i, j, c))
 					map[i][j] = c;
 			j++;

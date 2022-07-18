@@ -171,16 +171,8 @@ static t_mapgen	*checker(t_mapgen *mapg)
 		printf("No enemies.\n");
 	else if (!exit)
 		printf("No exit.\n");
+	printf("%d chests\n%d enemies\n", loot, enemy);
 	return (mapg);
-	// if (loot <= 2|| enemy <= 2 || !exit)
-	// {
-	// 	printf("test");
-	// 	free_2d_array(mapg->map);
-	// 	free(mapg);
-	// 	return (create_map(mapg->size, tunnels, tunnel_len, end_len));
-	// }
-	// else
-	// 	return (mapg);
 }
 
 t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
