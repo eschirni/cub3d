@@ -47,7 +47,7 @@ static void	set_doors(char **map)
 		while (map[i][j])
 		{
 			rand = get_random_num(1, 100);
-			if ((map[i][j] == 'V' || map[i][j] == 'H') && (rand % 30) == 0)
+			if ((map[i][j] == 'V' || map[i][j] == 'H') && (rand & 29) == 0)
 			{
 				if (map[i][j] == 'V')
 					map[i][j] = '8';
@@ -66,9 +66,6 @@ void	check_floors(t_mapgen *mapg)
 	int	j;
 
 	i = 0;
-	mapg->exit[0] = mapg->start[0];
-	mapg->exit[1] = mapg->start[1];
-	mapg->map[mapg->exit[1]][mapg->exit[0]] = 'X';
 	while (mapg->map[i])
 	{
 		j = 0;

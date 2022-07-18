@@ -40,7 +40,7 @@ void	set_entities(char **map, char c)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '0' && (get_random_num(1, 100) % 10) == 0)
+			if (map[i][j] == '0' && (get_random_num(1, 100) & 9) == 0)
 				// if (surroundings(map, i, j, c))
 					map[i][j] = c;
 			j++;
@@ -49,11 +49,26 @@ void	set_entities(char **map, char c)
 	}
 }
 
+// int	get_random_num(int from, int to)
+// {
+// 	int	num;
+
+// 	num = (time(0) * rand() % (to - from + 1)) + from;
+// 	return (num);
+// }
+
 int	get_random_num(int from, int to)
 {
+	int	fd;
 	int	num;
 
-	num = (time(0) * rand() % (to - from + 1)) + from;
+	fd = open("/dev/random", O_RDONLY);
+	if (!fd)
+		printf("failed to open file");
+	if (read(fd, &num, sizeof(num)) == -1)
+		printf("failed to read from file");
+	num = abs((num * rand() % (to -from + 1)) + from);
+	close(fd);
 	return (num);
 }
 

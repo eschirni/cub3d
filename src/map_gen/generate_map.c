@@ -1,5 +1,20 @@
 #include "../includes/cub3d.h"
 
+// static void	print_2d_array(char **array)
+// {
+// 	int	i;
+
+// 	if (!array)
+// 		printf("Array empty.\n");
+// 	i = 0;
+// 	while (array[i])
+// 	{
+// 		printf("%s\n", array[i]);
+// 		i++;
+// 	}
+// 	printf("\n");
+// }
+
 static char	**create_array(int size)
 {
 	char	**map;
@@ -136,8 +151,9 @@ static t_mapgen	*checker(t_mapgen *mapg, int tunnels, int tunnel_len, int end_le
 		}
 		i++;
 	}
-	if (!loot || !enemy || !exit)
+	if (loot <= 2|| enemy <= 2 || !exit)
 	{
+		printf("test");
 		free_2d_array(mapg->map);
 		free(mapg);
 		return (create_map(mapg->size, tunnels, tunnel_len, end_len));
@@ -171,7 +187,11 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 		if (end_len)
 			tunnels--;
 	}
+	mapg->exit[0] = mapg->start[0];
+	mapg->exit[1] = mapg->start[1];
+	mapg->map[mapg->exit[1]][mapg->exit[0]] = 'X';
 	refactor_map(mapg, 0, 0);
 	mapg = checker(mapg, tunnels, tunnel_len, end_len);
+	// print_2d_array(mapg->map);
 	return (mapg);
 }
