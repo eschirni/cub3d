@@ -1,10 +1,18 @@
 #include "../includes/cub3d.h"
 
+static void	set_positions(t_mapgen *mapg)
+{
+	mapg->exit[0] = mapg->start[0];
+	mapg->exit[1] = mapg->start[1];
+	mapg->map[mapg->exit[1]][mapg->exit[0]] = 'X';
+	mapg->map[mapg->player_start[1]][mapg->player_start[0]] = 'N';
+}
+
 void	refactor_map(t_mapgen *mapg, int i, int j)
 {
 	char	**new;
 
-	mapg->map[mapg->player_start[1]][mapg->player_start[0]] = 'N';
+	set_positions(mapg);
 	new = malloc(sizeof(char *) * (mapg->size + 3));
 	if (!new)
 		ft_error("allocation failed", NULL);
@@ -40,7 +48,7 @@ void	set_entities(char **map, char c, int chance)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '0' && (get_random_num(1, 100) % 100) <= chance)
+			if (map[i][j] == '0' && (get_random_num(1, 100) < chance))
 				// if (surroundings(map, i, j, c))
 					map[i][j] = c;
 			j++;
@@ -48,14 +56,6 @@ void	set_entities(char **map, char c, int chance)
 		i++;
 	}
 }
-
-// int	get_random_num(int from, int to)
-// {
-// 	int	num;
-
-// 	num = (time(0) * rand() % (to - from + 1)) + from;
-// 	return (num);
-// }
 
 int	get_random_num(int from, int to)
 {
@@ -67,7 +67,7 @@ int	get_random_num(int from, int to)
 		printf("failed to open file");
 	if (read(fd, &num, sizeof(num)) == -1)
 		printf("failed to read from file");
-	num = abs((num * rand() % (to -from + 1)) + from);
+	num = abs((num * rand() % (to - from + 1)) + from);
 	close(fd);
 	return (num);
 }
@@ -80,33 +80,6 @@ int	is_corridor(char **map, int i, int j)
 			return (1);
 		else if (map[i + 1][j] == '1' && map[i - 1][j] == '1')
 			return (2);
-	}
-	return (0);
-}
-
-int	is_corner(char **map, int i, int j)
-{
-	int	x;
-	int	y;
-	int	corridor_tiles;
-
-	if (map[i][j] == '0')
-	{
-		y = i - 1;
-		corridor_tiles = 0;
-		while (y <= i + 1)
-		{
-			x = j - 1;
-			while (x <= j + 1)
-			{
-				if (map[x][y] == 'H' || map[x][y] == 'V')
-					corridor_tiles++;
-				x++;
-			}
-			y++;
-		}
-		if (corridor_tiles <= 2)
-			return (1);
 	}
 	return (0);
 }

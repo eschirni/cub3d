@@ -1,20 +1,5 @@
 #include "../includes/cub3d.h"
 
-// static void	print_2d_array(char **array)
-// {
-// 	int	i;
-
-// 	if (!array)
-// 		printf("Array empty.\n");
-// 	i = 0;
-// 	while (array[i])
-// 	{
-// 		printf("%s\n", array[i]);
-// 		i++;
-// 	}
-// 	printf("\n");
-// }
-
 // static void	corner_check(t_mapgen *mapg)
 // {
 // 	int	i;
@@ -34,6 +19,33 @@
 // 	}
 // }
 
+// int	is_corner(char **map, int i, int j)
+// {
+// 	int	x;
+// 	int	y;
+// 	int	corridor_tiles;
+
+// 	if (map[i][j] == '0')
+// 	{
+// 		y = i - 1;
+// 		corridor_tiles = 0;
+// 		while (y <= i + 1)
+// 		{
+// 			x = j - 1;
+// 			while (x <= j + 1)
+// 			{
+// 				if (map[x][y] == 'H' || map[x][y] == 'V')
+// 					corridor_tiles++;
+// 				x++;
+// 			}
+// 			y++;
+// 		}
+// 		if (corridor_tiles <= 2)
+// 			return (1);
+// 	}
+// 	return (0);
+// }
+
 static void	set_doors(char **map)
 {
 	int	i;
@@ -47,7 +59,7 @@ static void	set_doors(char **map)
 		while (map[i][j])
 		{
 			rand = get_random_num(1, 100);
-			if ((map[i][j] == 'V' || map[i][j] == 'H') && (rand & 29) == 0)
+			if ((map[i][j] == 'V' || map[i][j] == 'H') && rand < 10)
 			{
 				if (map[i][j] == 'V')
 					map[i][j] = '8';
