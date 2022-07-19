@@ -14,7 +14,7 @@ static void	get_color(t_game *game, t_ray *ray, u_int32_t *col, float dy)
 	ray->color = col[(ty & 31) * 32 + (tx & 31)];
 	if (dy * angle < 120)
 		ray->color = 0x000000FF;
-	else if (dy * angle  < 240 && ray->color >= 0x0F0F0FFF)
+	else if (dy * angle < 240 && ray->color >= 0x0F0F0FFF)
 		ray->color -= 0x0F0F0F00;
 	else if (dy * angle < 480 && ray->color >= 0x0F0F0FFF)
 		ray->color -= 0x0F0F0F00;
