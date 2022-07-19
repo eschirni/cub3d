@@ -90,7 +90,7 @@ void	fps(void *tmp)
 	game = tmp;
 	if (game->end->in_end == true)
 	{
-		animate_end(game->end);
+		animate_end(game->mlx, game->end);
 		game->game_img->enabled = false;
 	}
 	else if (game->menu->in_menu == false)

@@ -1,6 +1,6 @@
 #include "includes/cub3d.h"
 
-void	animate_end(t_end *end)
+void	animate_end(mlx_t *mlx, t_end *end)
 {
 	struct timeval	time;
 	int				i;
@@ -23,6 +23,8 @@ void	animate_end(t_end *end)
 		if (end->back_frame > 7)
 			end->back_frame = 0;
 	}
+	else if (time.tv_sec > end->music_start + 63)
+		mlx_close_window(mlx);
 }
 
 static void	load_png(t_game *game, int pos, char *name, bool enabled)
@@ -38,6 +40,9 @@ static void	load_png(t_game *game, int pos, char *name, bool enabled)
 
 static void	init_textures(t_game *game)
 {
+	char	*score;
+	char	*tmp;
+
 	load_png(game, 0, "./sprites/end/end.png", true);
 	load_png(game, 1, "./sprites/end/end1.png", false);
 	load_png(game, 2, "./sprites/end/end2.png", false);
@@ -46,6 +51,12 @@ static void	init_textures(t_game *game)
 	load_png(game, 5, "./sprites/end/end5.png", false);
 	load_png(game, 6, "./sprites/end/end6.png", false);
 	load_png(game, 7, "./sprites/end/end7.png", false);
+	score = ft_strcdup("Score: ", '\0', 0);
+	tmp = ft_itoa(game->loot * 100);
+	score = ft_append(score, tmp);
+	mlx_put_string(game->mlx, score, 900, 100);
+	free(score);
+	free(tmp);
 }
 
 static void	disable_game(t_game *game)
@@ -70,12 +81,20 @@ static void	disable_game(t_game *game)
 
 void	end_game(t_game *game)
 {
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		ft_error("Error while reading the time", NULL);
 	disable_game(game);
 	game->end->back_seconds = 0;
 	game->end->back_frame = 0;
 	init_textures(game);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
 	system("pkill afplay &");
+	if (game->loot > 0)
+		system("afplay music/end.mp3 &");
+	else
+		system("afplay music/sad_end.mp3 &");
+	game->end->music_start = time.tv_sec;
 	game->end->in_end = true;
-	//mlx_close_window(game->mlx);
 }

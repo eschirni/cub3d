@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/17 20:27:36 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:59:19 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define CUB3D_H
 
 # include "../../MLX42/include/MLX42/MLX42.h"
-# include "../../get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
@@ -100,6 +99,7 @@ typedef struct s_end
 	int			back_frame;
 	long		back_seconds;
 	long		score_start;
+	long		music_start;
 }				t_end;
 
 typedef struct s_textures
@@ -167,6 +167,9 @@ bool	is_char_obj(char c);
 int		ft_strlen(char *s);
 int		check_file(char *file);
 int		find_instance(t_game *game, int x, int y);
+char	*ft_append(char *start, char *end);
+char	*ft_itoa(int n);
+char	*ft_strcdup(char *s1, char c, size_t start);
 
 /* draw functions */
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);
@@ -202,7 +205,7 @@ int		is_corner(char **map, int i, int j);
 void	check_floors(t_mapgen *mapg);
 
 /* end game */
-void	animate_end(t_end *end);
+void	animate_end(mlx_t *mlx, t_end *end);
 void	end_game(t_game *game);
 
 #endif

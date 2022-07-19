@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/16 06:56:31 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/19 19:58:54 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ NAME = ./cub3d
 # PATHS
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
-GNL_PATH = get_next_line/
 UTILS_PATH = ./src/utils/
 DRAW_PATH = ./src/draw_functions/
 MAIN_MENU_PATH = ./src/main_menu/
@@ -39,11 +38,11 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(SRC_PATH)ray.c $(SRC_PATH)game_end.c \
 		$(UTILS_PATH)ft_error.c $(UTILS_PATH)utils.c \
 		$(UTILS_PATH)free_exit.c $(UTILS_PATH)hooks_utils.c \
-		$(UTILS_PATH)gameplay_utils.c \
+		$(UTILS_PATH)gameplay_utils.c $(UTILS_PATH)ft_append.c\
+		$(UTILS_PATH)ft_itoa.c $(UTILS_PATH)ft_strcdup.c \
 		$(DRAW_PATH)draw_game.c $(DRAW_PATH)draw_crosshair.c \
 		$(DRAW_PATH)draw_map.c $(DRAW_PATH)draw.c \
 		$(DRAW_PATH)draw_chars.c $(DRAW_PATH)draw_3d.c \
-		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
 		$(MAIN_MENU_PATH)main_menu.c $(MAIN_MENU_PATH)hooks.c \
 		$(MAIN_MENU_PATH)settings.c $(MAIN_MENU_PATH)animations.c \
 		$(MAIN_MENU_PATH)switch_menu.c $(MAIN_MENU_PATH)menu_sliders.c \
