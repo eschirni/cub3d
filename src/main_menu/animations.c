@@ -15,7 +15,7 @@ static void	open_scroll(t_menu *menu, long now)
 		animate_scroll_text(menu);
 }
 
-void	animate_scroll(t_menu *menu, long now)
+static void	animate_scroll(t_menu *menu, long now)
 {
 	if (now > menu->scroll_seconds + 15 && menu->scroll_mode == 'O')
 		open_scroll(menu, now);

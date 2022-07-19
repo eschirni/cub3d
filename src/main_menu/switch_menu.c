@@ -16,6 +16,10 @@ static void	disable_game(t_game *game)
 		game->menu->imgs[7]->enabled = true;
 	game->menu->imgs[9]->enabled = true;
 	game->menu->imgs[11]->enabled = true;
+	if (game->sounds->sound == true)
+		game->menu->imgs[67]->enabled = true;
+	else
+		game->menu->imgs[68]->enabled = true;
 	i = 0;
 	while (i < game->map->n_chars)
 	{
@@ -62,6 +66,8 @@ static void	disable_animation(t_game *game)
 	}
 	game->menu->imgs[65]->enabled = false;
 	game->menu->imgs[66]->enabled = false;
+	game->menu->imgs[67]->enabled = false;
+	game->menu->imgs[68]->enabled = false;
 }
 
 void	to_game(t_game *game)

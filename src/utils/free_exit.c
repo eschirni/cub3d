@@ -1,19 +1,35 @@
 #include "../includes/cub3d.h"
 
-static void	free_arrs(t_game *game)
+static void	free_screens(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	while (game->map->big_map[i] != NULL)
-	{
-		free(game->map->big_map[i]);
-		i++;
-	}
-	i = 0;
 	while (i < 69)
 	{
 		mlx_delete_image(game->mlx, game->menu->imgs[i]);
+		i++;
+	}
+	free(game->menu->settings);
+	free(game->menu);
+	i = 0;
+	while (i < 8)
+	{
+		mlx_delete_image(game->mlx, game->end->imgs[i]);
+		i++;
+	}
+	free(game->end);
+}
+
+static void	free_arrs(t_game *game)
+{
+	int	i;
+
+	free_screens(game);
+	i = 0;
+	while (game->map->big_map[i] != NULL)
+	{
+		free(game->map->big_map[i]);
 		i++;
 	}
 	i = 0;
@@ -38,9 +54,8 @@ void	free_exit(t_map *map, t_game *game)
 	mlx_delete_image(game->mlx, game->map->doorh);
 	mlx_delete_image(game->mlx, game->map->exit);
 	mlx_delete_image(game->mlx, game->game_img);
+	mlx_delete_image(game->mlx, game->torch);
 	mlx_terminate(game->mlx);
-	free(game->menu->settings);
-	free(game->menu);
 	free(game->textures->wall);
 	free(game->textures->floor);
 	free(game->textures->top);

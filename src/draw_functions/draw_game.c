@@ -44,7 +44,7 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 	free(mini);
 }
 
-void	draw_game(t_ray *ray, t_game *game, float coords[2])
+void	draw_game(t_game *game, t_ray *ray)
 {
 	int	i;
 	int	line_x;
@@ -53,14 +53,14 @@ void	draw_game(t_ray *ray, t_game *game, float coords[2])
 	ray->ra = game->chars[0]->pa - 30 * ((float)M_PI / 180);
 	if (ray->ra < 0)
 		ray->ra += (float)M_PI * 2;
-	if (game->game_img)
-		mlx_delete_image(game->mlx, game->game_img);
+	mlx_delete_image(game->mlx, game->game_img);
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	i = 0;
 	line_x = 0;
-	rounded[0] = (int)coords[0];
-	rounded[1] = (int)coords[1];
+	rounded[0] = (int)game->map->player[0];
+	rounded[1] = (int)game->map->player[1];
 	reset_img(ray->img, MINIMAP, MINIMAP);
 	iterate_game(game, ray, 0, rounded);
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
+	game->game_img->instances[0].z = -100;
 }

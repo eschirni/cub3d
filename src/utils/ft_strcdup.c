@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_strcdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/31 16:54:07 by eschirni          #+#    #+#             */
-/*   Updated: 2021/09/06 21:26:36 by eschirni         ###   ########.fr       */
+/*   Created: 2022/07/19 19:57:50 by eschirni          #+#    #+#             */
+/*   Updated: 2022/07/19 20:00:51 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/cub3d.h"
 
-void	*ft_calloc(size_t size)
+static void	*ft_calloc(size_t size)
 {
 	char	*c;
 
@@ -25,16 +25,6 @@ void	*ft_calloc(size_t size)
 		size--;
 	}
 	return (c);
-}
-
-size_t	ft_strclen(const char *s, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != c)
-		i++;
-	return (i);
 }
 
 char	*ft_strcdup(char *s1, char c, size_t start)
@@ -61,23 +51,4 @@ char	*ft_strcdup(char *s1, char c, size_t start)
 		i--;
 	}
 	return (s2);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-
-	if (s == NULL)
-		return (NULL);
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if (c == '\0')
-		return ((char *)&s[i]);
-	else
-		return (NULL);
 }

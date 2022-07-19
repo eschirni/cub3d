@@ -21,6 +21,7 @@ static t_game	*alloc_game(t_map *map)
 	mlx_delete_texture(curs_tex);
 	mlx_set_cursor(game->mlx, cursor);
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
 	return (game);
 }
 
@@ -29,10 +30,15 @@ static t_game	*init_game(t_map *map)
 	t_game	*game;
 
 	game = alloc_game(map);
+	game->end = malloc(sizeof(t_end));
+	if (game->end == NULL)
+		ft_error("allocation error", NULL);
+	game->sounds->sound = true;
+	game->end->in_end = false;
 	game->loot = 0;
+	game->torch_frame = 0;
 	get_map_textures(game);
 	draw_map(game, game->map);
-	game->sounds->sound = true;
 	return (game);
 }
 

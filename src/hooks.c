@@ -86,20 +86,27 @@ void	fps(void *tmp)
 	t_game	*game;
 
 	game = tmp;
-	if (game->menu->in_menu == true)
+	if (game->end->in_end == true)
 	{
-		animate_menu(game);
+		animate_end(game->mlx, game->end);
 		game->game_img->enabled = false;
 	}
-	else
+	else if (game->menu->in_menu == false)
 	{
 		mouse_rotate(game);
 		check_keys(game);
 		calc_rotate(game, 0.0f, 0);
 		check_pos(game);
-		draw_game(game->chars[0]->ray, game, game->map->player);
+		game->game_img->enabled = true;
+		draw_game(game, game->chars[0]->ray);
 		draw_crosshair(game, 0xFFFFFFFF, game->menu->settings->cross_type);
+		draw_torch(game);
 		if (game->sounds->sound == true)
 			check_music(game, false);
+	}
+	else
+	{
+		animate_menu(game);
+		game->game_img->enabled = false;
 	}
 }

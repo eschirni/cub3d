@@ -93,8 +93,35 @@ static void	draw_tiles(t_game *game, char **arr)
 	}
 }
 
+static void	set_z(mlx_image_t *img, int z)
+{
+	int	i;
+
+	i = 0;
+	while (i < img->count)
+	{
+		img->instances[i].z = z;
+		i++;
+	}
+}
+
 void	draw_map(t_game *game, t_map *map) //draw the map with lower z value than the 3d instead of every frame
 {
+	int	i;
+
 	draw_tiles(game, map->big_map);
 	draw_chars(game, map->big_map);
+	set_z(game->map->floor, -200);
+	set_z(game->map->wall, -200);
+	set_z(game->map->out, -200);
+	set_z(game->map->doorv, -200);
+	set_z(game->map->doorh, -200);
+	set_z(game->map->chest, -150);
+	set_z(game->map->exit, -200);
+	i = 0;
+	while (i < game->map->n_chars)
+	{
+		game->chars[i]->img->instances[0].z = -150;
+		i++;
+	}
 }
