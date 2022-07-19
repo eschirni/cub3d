@@ -62,4 +62,5 @@ void	draw_game(t_game *game, t_ray *ray)
 	reset_img(ray->img, MINIMAP, MINIMAP);
 	iterate_game(game, ray, 0, rounded);
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
+	game->game_img->instances[0].z = -100;
 }

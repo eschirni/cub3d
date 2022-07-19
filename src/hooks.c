@@ -99,8 +99,10 @@ void	fps(void *tmp)
 		check_keys(game);
 		calc_rotate(game, 0.0f, 0);
 		check_pos(game);
+		game->game_img->enabled = true;
 		draw_game(game, game->chars[0]->ray);
 		draw_crosshair(game, 0xFFFFFFFF, game->menu->settings->cross_type);
+		draw_torch(game);
 		if (game->sounds->sound == true)
 			check_music(game, false);
 	}

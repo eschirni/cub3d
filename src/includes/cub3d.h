@@ -6,11 +6,9 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/19 19:59:19 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:54:21 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//todo: draw live instead of creating a new image every second
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -134,8 +132,10 @@ typedef struct s_game
 	t_textures	*textures;
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
+	mlx_image_t	*torch;
 	int			ps;
 	int			loot;
+	int			torch_frame;
 }				t_game;
 
 typedef struct s_mapgen
@@ -179,6 +179,7 @@ void	draw_map(t_game *game, t_map *map);
 void	draw_line(t_ray *ray, mlx_image_t *img);
 void	draw_crosshair(t_game *game, int color, char type);
 void	get_map_textures(t_game *game);
+void	draw_torch(t_game *game);
 
 /* hooks */
 void	calc_rotate(t_game *game, float rotation, int n);

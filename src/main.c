@@ -36,6 +36,7 @@ static t_game	*init_game(t_map *map)
 	game->sounds->sound = true;
 	game->end->in_end = false;
 	game->loot = 0;
+	game->torch_frame = 0;
 	get_map_textures(game);
 	draw_map(game, game->map);
 	return (game);
