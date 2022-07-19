@@ -15,8 +15,7 @@ void	open_door(t_game *game, int addX, int addY)
 		|| game->map->big_map[next_y][next_x] == '9')
 	{
 		if (game->sounds->sound == true)
-			system("afplay -v 2 music/wind.mp3 &");
-		usleep(900);
+			system("afplay music/wind.mp3 &");
 		game->map->big_map[next_y][next_x] = '7';
 	}
 }
