@@ -64,4 +64,9 @@ void	check_pos(t_game *game)
 		game->map->chest->instances[find_instance(game, x, y)].enabled = false;
 		game->map->big_map[y][x] = 'l';
 	}
+	// else if (game->map->big_map[y][x] == 'W')
+	// {
+	// 	system("pkill afplay &");
+	// 	mlx_close_window(game->mlx);
+	// }
 }
