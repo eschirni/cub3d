@@ -13,7 +13,12 @@ void	open_door(t_game *game, int addX, int addY)
 	next_y = (y + addY * 16) / 32;
 	if (game->map->big_map[next_y][next_x] == '8'
 		|| game->map->big_map[next_y][next_x] == '9')
+	{
+		if (game->sounds->sound == true)
+			system("afplay -v 2 music/wind.mp3 &");
+		usleep(900);
 		game->map->big_map[next_y][next_x] = '7';
+	}
 }
 
 int	find_instance(t_game *game, int x, int y)
@@ -56,4 +61,9 @@ void	check_pos(t_game *game)
 		game->map->chest->instances[find_instance(game, x, y)].enabled = false;
 		game->map->big_map[y][x] = 'l';
 	}
+	// else if (game->map->big_map[y][x] == 'W')
+	// {
+	// 	system("pkill afplay &");
+	// 	mlx_close_window(game->mlx);
+	// }
 }
