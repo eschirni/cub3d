@@ -58,7 +58,6 @@ void	free_exit(t_map *map, t_game *game)
 	mlx_terminate(game->mlx);
 	free(game->textures->wall);
 	free(game->textures->floor);
-	free(game->textures->top);
 	free(game->textures->door);
 	free(game->textures->door_o);
 	free(game->textures->exit);
@@ -67,4 +66,5 @@ void	free_exit(t_map *map, t_game *game)
 	free(game);
 	free(map->big_map);
 	free(map);
+	system("pkill afplay &");
 }

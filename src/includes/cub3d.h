@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/19 20:54:21 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/19 23:01:10 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,11 @@ typedef struct s_end
 typedef struct s_textures
 {
 	u_int32_t	*floor;
-	u_int32_t	*top;
 	u_int32_t	*wall;
 	u_int32_t	*door;
 	u_int32_t	*door_o;
 	u_int32_t	*exit;
 	u_int32_t	*current;
-	int			floor_size[2];
-	int			top_size[2];
 	int			wall_size[2];
 	float		offset;
 }				t_textures;

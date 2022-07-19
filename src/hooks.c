@@ -5,6 +5,8 @@ static void	check_music(t_game *game, bool moving)
 	struct timeval	time;
 	long			micsec;
 
+	if (gettimeofday(&time, NULL) == -1)
+		ft_error("Error while reading the time", NULL);
 	micsec = time.tv_sec * 1000 + time.tv_usec / 1000;
 	if (time.tv_sec > game->sounds->music_start + 135)
 	{
@@ -13,7 +15,7 @@ static void	check_music(t_game *game, bool moving)
 	}
 	else if (moving == true && micsec > game->sounds->step + 1400 / game->ps)
 	{
-		game->sounds->step = time.tv_sec * 1000 + time.tv_usec / 1000;
+		game->sounds->step = micsec;
 		system("afplay -v 3 ./music/step.mp3 &");
 	}
 }

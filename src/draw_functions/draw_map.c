@@ -116,7 +116,7 @@ void	draw_map(t_game *game, t_map *map) //draw the map with lower z value than t
 	set_z(game->map->out, -200);
 	set_z(game->map->doorv, -200);
 	set_z(game->map->doorh, -200);
-	set_z(game->map->chest, -150);
+	set_z(game->map->chest, -180);
 	set_z(game->map->exit, -200);
 	i = 0;
 	while (i < game->map->n_chars)

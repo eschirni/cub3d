@@ -31,7 +31,6 @@ static void	draw_env(t_game *game, t_ray *ray)
 		get_color(game, ray, game->textures->floor, y - 540);
 		if (!(ray->start[0] < MINIMAP && y < MINIMAP))
 			mlx_put_pixel(game->game_img, ray->start[0], y, ray->color);
-		get_color(game, ray, game->textures->top, y - 540);
 		if (!(ray->start[0] < MINIMAP && (HEIGHT - y) < MINIMAP))
 		{
 			y_top = HEIGHT - y - 1;
