@@ -73,7 +73,7 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 	while (ray_start <= ray->end[1])
 	{
 		texture_x = (int)pos * game->textures->wall_size[1];
-		texture_y = ray_end & game->textures->wall_size[0] - 1;
+		texture_y = ray_end & (game->textures->wall_size[0] - 1);
 		ray->color = game->textures->current[texture_x + texture_y];
 		if (!(ray->start[0] < MINIMAP && ray_start < MINIMAP))
 		{
