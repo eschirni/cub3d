@@ -5,15 +5,15 @@ static void	animate_cat(t_end *end)
 	int	i;
 
 	i = 0;
-	while (i < 21)
+	while (i < 31)
 	{
 		end->cat[i]->enabled = false;
 		i++;
 	}
 	end->cat[end->cat_frame]->enabled = true;
 	end->cat_frame++;
-	if (end->cat_frame > 20)
-		end->cat_frame = 8;
+	if (end->cat_frame > 30)
+		end->cat_frame = 21;
 }
 
 void	animate_end(mlx_t *mlx, t_end *end)
@@ -88,6 +88,16 @@ static void	init_textures(t_game *game)
 	load_png(game->mlx, game->end->cat, 18, "./sprites/end/cat/cat_sitting18.png");
 	load_png(game->mlx, game->end->cat, 19, "./sprites/end/cat/cat_sitting19.png");
 	load_png(game->mlx, game->end->cat, 20, "./sprites/end/cat/cat_sitting20.png");
+	load_png(game->mlx, game->end->cat, 21, "./sprites/end/cat/cat_walk.png");
+	load_png(game->mlx, game->end->cat, 22, "./sprites/end/cat/cat_walk1.png");
+	load_png(game->mlx, game->end->cat, 23, "./sprites/end/cat/cat_walk2.png");
+	load_png(game->mlx, game->end->cat, 24, "./sprites/end/cat/cat_walk3.png");
+	load_png(game->mlx, game->end->cat, 25, "./sprites/end/cat/cat_walk4.png");
+	load_png(game->mlx, game->end->cat, 26, "./sprites/end/cat/cat_walk5.png");
+	load_png(game->mlx, game->end->cat, 27, "./sprites/end/cat/cat_walk6.png");
+	load_png(game->mlx, game->end->cat, 28, "./sprites/end/cat/cat_walk7.png");
+	load_png(game->mlx, game->end->cat, 29, "./sprites/end/cat/cat_walk8.png");
+	load_png(game->mlx, game->end->cat, 30, "./sprites/end/cat/cat_walk9.png");
 	score = ft_strcdup("Score: ", '\0', 0);
 	tmp = ft_itoa(game->loot * 100);
 	score = ft_append(score, tmp);
