@@ -32,6 +32,7 @@ UTILS_PATH = ./src/utils/
 DRAW_PATH = ./src/draw_functions/
 MAIN_MENU_PATH = ./src/main_menu/
 MAPGEN_PATH = ./src/map_gen/
+PARSE_PATH = ./src/parser/
 
 # SOURCES
 SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
@@ -47,7 +48,9 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(MAIN_MENU_PATH)settings.c $(MAIN_MENU_PATH)animations.c \
 		$(MAIN_MENU_PATH)switch_menu.c $(MAIN_MENU_PATH)menu_sliders.c \
 		$(MAIN_MENU_PATH)animate_scroll_text.c $(MAIN_MENU_PATH)init_textures.c \
-    $(MAPGEN_PATH)generate_map.c $(MAPGEN_PATH)mapgen_utils.c \
+		$(MAPGEN_PATH)generate_map.c $(MAPGEN_PATH)mapgen_utils.c \
+		$(PARSE_PATH)parser.c $(PARSE_PATH)split.c \
+		$(PARSE_PATH)parse_utils.c $(PARSE_PATH)get_config.c \
 
 # OBJECTS
 OBJ = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))

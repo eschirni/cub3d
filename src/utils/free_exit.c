@@ -43,5 +43,9 @@ void	free_exit(t_map *map, t_game *game)
 	free(game->textures);
 	free(game);
 	free(map->big_map);
+	free(map->no_tex);
+	free(map->so_tex);
+	free(map->we_tex);
+	free(map->ea_tex);
 	free(map);
 }

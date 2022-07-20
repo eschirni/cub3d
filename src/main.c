@@ -31,14 +31,15 @@ static t_game	*init_game(t_map *map)
 	return (game);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_map		*map;
 	t_game		*game;
-	t_mapgen	*mapg;
 
-	mapg = create_map(20, 60, 8, 0); //1. mapsize, 2. amount of tunnels, 3. max length of tunnels, 4. do not change >:(
-	map = init_map(mapg);
+	if (argc != 2)
+		ft_error("bad arguments", NULL);
+	// mapg = create_map(20, 60, 8, 0); //1. mapsize, 2. amount of tunnels, 3. max length of tunnels, 4. do not change >:(
+	map = init_map(argv[1]);
 	game = init_game(map);
 	main_menu(game);
 	mlx_loop(game->mlx);

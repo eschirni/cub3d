@@ -58,6 +58,15 @@ typedef struct s_char
 typedef struct s_map
 {
 	char		**big_map;
+	char		**file;
+	char		*no_tex;
+	char		*so_tex;
+	char		*we_tex;
+	char		*ea_tex;
+	int			rgb_f[3];
+	int			rgb_c[3];
+	int			color_f;
+	int			color_c;
 	float		player[2];
 	int			x;
 	int			y;
@@ -122,7 +131,15 @@ typedef struct s_mapgen
 }				t_mapgen;
 
 /* map parsing */
-t_map	*init_map(t_mapgen *mapg);
+t_map	*init_map(char *mapfile);
+void	map_checker(t_map *map);
+char	**ft_split(char const *s, char c);
+int		cub_atoi(char *str);
+char	**cut_newlines(char **file);
+int		size_2d(char **s);
+char	*ft_strdup(char *str);
+int		extract_infos(t_map *map, char **file, int f, int c);
+int		ft_strncmp(const char *str1, const char *str2, size_t size);
 
 /* char fuctions */
 void	set_direction(t_game *game, char direction, int n);
