@@ -36,7 +36,7 @@ static char	**create_array(int size)
 	int		j;
 
 	i = 0;
-	map = malloc(sizeof(char *) * size + 1);
+	map = malloc(sizeof(char *) * (size + 1));
 	if (!map)
 		ft_error("allocation failed", NULL);
 	map[size] = NULL;

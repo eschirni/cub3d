@@ -23,11 +23,12 @@ void	refactor_map(t_mapgen *mapg, int i, int j)
 		new[i] = malloc(mapg->size + 3);
 		if (!new[i])
 			ft_error("allocation failed", NULL);
-		while (j++ < mapg->size + 2)
+		while (++j < mapg->size + 2)
 		{
 			if (i == 0 || i == mapg->size + 1 || j == 0 || j == mapg->size + 1)
 				new[i][j] = '1';
 			else
+
 				new[i][j] = mapg->map[i - 1][j - 1];
 		}
 		new[i++][mapg->size + 2] = 0;

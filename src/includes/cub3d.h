@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/19 23:01:10 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/20 01:44:27 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,12 @@ typedef struct s_menu
 
 typedef struct s_end
 {
-	mlx_image_t	*imgs[8];
+	mlx_image_t	*back[8];
+	mlx_image_t	*cat[21];
 	bool		in_end;
 	int			back_frame;
+	int			cat_frame;
 	long		back_seconds;
-	long		score_start;
 	long		music_start;
 }				t_end;
 

@@ -83,7 +83,8 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 				ray->color -= 0x0F0F0F00;
 			else if (ray->dist > 70 && ray->color >= 0x0F0F0FFF)
 				ray->color -= 0x0F0F0F00;
-			mlx_put_pixel(game->game_img, ray->start[0], ray_start, ray->color);
+			if (ray->start[0] < 1920 && ray_start < 1080)
+				mlx_put_pixel(game->game_img, ray->start[0], ray_start, ray->color);
 		}
 		ray_start += 1;
 		pos += game->textures->offset;
