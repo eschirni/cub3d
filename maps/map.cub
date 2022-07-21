@@ -1,15 +1,15 @@
-SO    ./path_to_the_south_texture
-WE ./path_to_the_west_texture
+  WE ./path_to_the_west_texture
 
+SO    ./path_to_the_south_texture
 
 
 C   60,102,150
 
    EA    ./path_to_the_east_texture    
 
-NO ./path_to_the_north_texture
+  NO ./path_to_the_north_texture
 
-F   102,60,150
+F    102,60,150   
 
   
 

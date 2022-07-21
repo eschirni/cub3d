@@ -12,20 +12,6 @@ static size_t	ft_strlen_sl(const char *str)
 	return (len);
 }
 
-static void	check_arg(char *argv)
-{
-	int	count;
-
-	count = 0;
-	while (argv[count])
-	{
-		count++;
-	}
-	argv += (count - 4);
-	if (ft_strncmp(argv, ".cub", 4))
-		ft_error(".cub format required", NULL);
-}
-
 static int	get_size(char *mapfile)
 {
 	int		fd;
@@ -82,7 +68,6 @@ t_map	*init_map(char *mapfile)
 	int		fd;
 	int		i;
 
-	check_arg(mapfile);
 	fd = open(mapfile, O_RDONLY);
 	if (fd == -1 || !check_file(mapfile))
 		ft_error("invalid map: ", mapfile);
