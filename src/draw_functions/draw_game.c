@@ -27,6 +27,7 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 	mini = malloc(sizeof(t_ray));
 	if (mini == NULL)
 		ft_error("Allocation error!\n", NULL);
+	game->rays = malloc(sizeof(float) * 1920);
 	while (i < game->menu->settings->fov)
 	{
 		ray->ra += (float)M_PI / 180 / game->menu->settings->graphics;
@@ -39,6 +40,7 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 		mini->end[1] = ray->end[1] - (game->map->player[1] - 144);
 		draw_line(mini, ray->img); //draw ray
 		draw_3d(game, ray, 0, &line_x);
+		game->rays[i] = ray->dist;
 		i++;
 	}
 	free(mini);
@@ -61,6 +63,8 @@ void	draw_game(t_game *game, t_ray *ray)
 	rounded[1] = (int)game->map->player[1];
 	reset_img(ray->img, MINIMAP, MINIMAP);
 	iterate_game(game, ray, 0, rounded);
+	draw_sprite(game);
+	free(game->rays);
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
 	game->game_img->instances[0].z = -100;
 }

@@ -134,6 +134,7 @@ typedef struct s_game
 	int			ps;
 	int			loot;
 	int			torch_frame;
+	float		*rays;
 }				t_game;
 
 typedef struct s_mapgen
@@ -177,6 +178,7 @@ void	draw_map(t_game *game, t_map *map);
 void	draw_line(t_ray *ray, mlx_image_t *img);
 void	draw_crosshair(t_game *game, int color, char type);
 void	get_map_textures(t_game *game);
+void	draw_sprite(t_game *game);
 void	draw_torch(t_game *game);
 
 /* hooks */
