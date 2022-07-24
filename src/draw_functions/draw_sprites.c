@@ -60,42 +60,44 @@
 
 void	draw_sprite(t_game *game)
 {
-	float	s_pos[2];
-	float	s_vec[2];
-	float	screen_pos[2];
-	float	angle_x;
-	float	fov_left;
+	// float	s_pos[2];
+	// float	s_vec[2];
+	// float	screen_pos[2];
+	// float	angle_x;
+	// float	fov_left;
 
-	s_pos[0] = 48;
-	s_pos[1] = 48;
-	s_vec[0] = s_pos[0] - game->map->player[0];
-	s_vec[1] = s_pos[1] - game->map->player[1];
-	angle_x = atan2f(-s_vec[1], s_vec[0]);
-	if (angle_x < 0)
-		angle_x += (float)M_PI * 2;
-	else if (angle_x >= (float)M_PI * 2)
-		angle_x -= (float)M_PI * 2;
-	fov_left = game->chars[0]->pa + (game->menu->settings->graphics / 2) - angle_x;
-	if ((game->chars[0]->pa >= 0 && game->chars[0]->pa < ((float)M_PI * 2)) && fov_left >= (2 * (float)M_PI / 3))
-		fov_left += (float)M_PI * 2;
-	else if ((fov_left >= 0 && fov_left < ((float)M_PI * 2)) && game->chars[0]->pa >= (2 * (float)M_PI / 3))
-		fov_left -= (float)M_PI * 2;
-	screen_pos[0] = fov_left * (WIDTH / game->menu->settings->graphics);
-	screen_pos[1] = HEIGHT / 2;
-	// printf("%f, %f\n", screen_pos[0], screen_pos[1]);
-	int	i = 0;
-	int	j = 0;
-	while (i < 100)
-	{
-		j = 0;
-		while (j < 100)
-		{
-			if (screen_pos[0] - i < WIDTH && screen_pos[1] - j < HEIGHT && screen_pos[0] - i > 1 && screen_pos[1] - j > 1)
-				mlx_put_pixel(game->game_img, screen_pos[0] - i, screen_pos[1] - j, 0xFF0000FF);
-			j++;
-		}
-		i++;
-	} 
+	// s_pos[0] = 48;
+	// s_pos[1] = 48;
+	// s_vec[0] = s_pos[0] - game->map->player[0];
+	// s_vec[1] = s_pos[1] - game->map->player[1];
+	// angle_x = atan2f(-s_vec[1], s_vec[0]);
+	// if (angle_x < 0)
+	// 	angle_x += (float)M_PI * 2;
+	// else if (angle_x >= (float)M_PI * 2)
+	// 	angle_x -= (float)M_PI * 2;
+	// fov_left = game->chars[0]->pa + (game->menu->settings->graphics / 2) - angle_x;
+	// if ((game->chars[0]->pa >= 0 && game->chars[0]->pa < ((float)M_PI * 2)) && fov_left >= (2 * (float)M_PI / 3))
+	// 	fov_left += (float)M_PI * 2;
+	// else if ((fov_left >= 0 && fov_left < ((float)M_PI * 2)) && game->chars[0]->pa >= (2 * (float)M_PI / 3))
+	// 	fov_left -= (float)M_PI * 2;
+	// screen_pos[0] = fov_left * (WIDTH / game->menu->settings->graphics);
+	// screen_pos[1] = HEIGHT / 2;
+	// // printf("%f, %f\n", screen_pos[0], screen_pos[1]);
+	// int	i = 0;
+	// int	j = 0;
+	// while (i < 100)
+	// {
+	// 	j = 0;
+	// 	while (j < 100)
+	// 	{
+	// 		if (screen_pos[0] - i < WIDTH && screen_pos[1] - j < HEIGHT && screen_pos[0] - i > 1 && screen_pos[1] - j > 1)
+	// 			mlx_put_pixel(game->game_img, screen_pos[0] - i, screen_pos[1] - j, 0xFF0000FF);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	game->loot = game->loot;
+	return ;
 }
 
 

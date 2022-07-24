@@ -142,12 +142,11 @@ static t_mapgen	*checker(t_mapgen *mapg)
 {
 	int	i;
 	int	j;
-	int	loot;
 	int	exit;
 	int	enemy;
 
 	i = 0;
-	loot = 0;
+	mapg->loot = 0;
 	exit = 0;
 	enemy = 0;
 	while (mapg->map[i])
@@ -160,22 +159,22 @@ static t_mapgen	*checker(t_mapgen *mapg)
 			else if (mapg->map[i][j] == 'X')
 				exit++;
 			else if (mapg->map[i][j] == 'L' || mapg->map[i][j] == 'l')
-				loot++;
+				mapg->loot++;
 			j++;
 		}
 		i++;
 	}
-	if (!loot)
+	if (!mapg->loot)
 		printf("No loot.\n");
 	else if (!enemy)
 		printf("No enemies.\n");
 	else if (!exit)
 		printf("No exit.\n");
-	printf("%d chests\n%d enemies\n", loot, enemy);
+	printf("%d chests\n%d enemies\n", mapg->loot, enemy);
 	return (mapg);
 }
 
-t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
+t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len) //end_len unecessary, please refactor all this, so much debug stuff in there too
 {
 	t_mapgen	*mapg;
 
@@ -204,7 +203,6 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 	mapg->exit[1] = mapg->start[1];
 	mapg->map[mapg->exit[1]][mapg->exit[0]] = 'X';
 	refactor_map(mapg, 0, 0);
-	// print_2d_array(mapg->map);
 	mapg = checker(mapg);
 	return (mapg);
 }

@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/20 04:55:40 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/24 07:02:02 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ typedef struct s_map
 {
 	char		**big_map;
 	float		player[2];
+	int			loot;
+	int			n_chars;
 	int			x;
 	int			y;
-	int			n_chars;
 	mlx_image_t	*floor;
 	mlx_image_t	*out;
 	mlx_image_t	*wall;
@@ -99,6 +100,7 @@ typedef struct s_end
 	int			cat_frame;
 	long		back_seconds;
 	long		music_start;
+	float		end_pos;
 }				t_end;
 
 typedef struct s_textures
@@ -147,6 +149,7 @@ typedef struct s_mapgen
 	int			exit[2];
 	int			rand;
 	int			size;
+	int			loot;
 	char		**map;
 }				t_mapgen;
 

@@ -65,9 +65,9 @@ int	get_random_num(int from, int to)
 
 	fd = open("/dev/urandom", O_RDONLY);
 	if (!fd)
-		printf("failed to open file");
+		ft_error("failed to open file", NULL);
 	if (read(fd, &num, sizeof(num)) == -1)
-		printf("failed to read from file");
+		ft_error("failed to read from file", NULL);
 	num = abs((num * rand() % (to - from + 1)) + from);
 	close(fd);
 	return (num);
