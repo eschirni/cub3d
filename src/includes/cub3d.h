@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/24 07:02:02 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/24 13:00:09 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,9 @@ typedef struct s_game
 	mlx_image_t	*game_img;
 	mlx_image_t	*torch;
 	int			ps;
-	int			loot;
 	int			torch_frame;
 	float		*rays;
+	float		loot;
 }				t_game;
 
 typedef struct s_mapgen
@@ -211,5 +211,7 @@ void	check_floors(t_mapgen *mapg);
 /* end game */
 void	animate_end(mlx_t *mlx, t_end *end);
 void	end_game(t_game *game);
+
+void	move_enemies(t_game *game);
 
 #endif

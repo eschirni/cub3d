@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/20 04:36:33 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/24 11:45:01 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ MAPGEN_PATH = ./src/map_gen/
 SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(SRC_PATH)char_direction.c $(SRC_PATH)hooks.c \
 		$(SRC_PATH)ray.c $(SRC_PATH)game_end.c \
+		$(SRC_PATH)enemies.c \
 		$(UTILS_PATH)ft_error.c $(UTILS_PATH)utils.c \
 		$(UTILS_PATH)free_exit.c $(UTILS_PATH)hooks_utils.c \
 		$(UTILS_PATH)gameplay_utils.c $(UTILS_PATH)ft_append.c\

@@ -1,34 +1,5 @@
 #include "../includes/cub3d.h"
 
-// static void	print_2d_array(char **array)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	if (!array)
-// 		printf("Array empty.\n");
-// 	i = 0;
-// 	while (array[i])
-// 	{
-// 		j = 0;
-// 		while (array[i][j])
-// 		{
-// 			if (array[i][j] == 'L' || array[i][j] == 'W' || array[i][j] == 'X')
-// 			{
-// 				printf("\033[0;31m");
-// 				printf("%c", array[i][j]);
-// 				printf("\033[0m");
-// 			}
-// 			else
-// 				printf("%c", array[i][j]);
-// 			j++;
-// 		}
-// 		printf("\n");
-// 		i++;
-// 	}
-// 	printf("\n");
-// }
-
 static char	**create_array(int size)
 {
 	char	**map;
