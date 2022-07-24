@@ -35,7 +35,7 @@ static void	move_cat(t_end *end)
 	i = 0;
 	while (i < 31)
 	{
-		end->cat[i]->instances[0].x++;
+		end->cat[i]->instances[0].x += 2;
 		i++;
 	}
 }
