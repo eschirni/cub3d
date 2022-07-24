@@ -12,8 +12,32 @@ static void	animate_cat(t_end *end)
 	}
 	end->cat[end->cat_frame]->enabled = true;
 	end->cat_frame++;
-	if (end->cat_frame > 30)
-		end->cat_frame = 21;
+	if (end->cat[0]->instances[0].x < end->end_pos || (end->cat_frame > 21 && end->cat_frame != 30))
+	{
+		if (end->cat_frame > 30)
+			end->cat_frame = 21;
+	}
+	else
+	{
+		if (end->cat_frame == 21)
+			end->cat_frame = 9;
+		else if (end->cat_frame > 21)
+			end->cat_frame = 0;
+	}
+}
+
+static void	move_cat(t_end *end)
+{
+	int	i;
+
+	if (end->cat[0]->instances[0].x >= end->end_pos)
+		return ;
+	i = 0;
+	while (i < 31)
+	{
+		end->cat[i]->instances[0].x++;
+		i++;
+	}
 }
 
 void	animate_end(mlx_t *mlx, t_end *end)
@@ -22,6 +46,7 @@ void	animate_end(mlx_t *mlx, t_end *end)
 	int				i;
 	long			now;
 
+	move_cat(end);
 	if (gettimeofday(&time, NULL) == -1)
 		ft_error("Error while reading the time", NULL);
 	now = time.tv_sec * 1000 + time.tv_usec / 1000;
@@ -49,21 +74,18 @@ static void	load_png(t_game *game, int pos, char *name, bool cat)
 	mlx_texture_t	*txt;
 	mlx_image_t		**arr;
 	int				y;
-	int				x;
 
 	arr = game->end->cat;
 	y = 700;
-	x = game->end->end_pos;
 	if (cat == false)
 	{
-		x = 0;
 		y = 0;
 		arr = game->end->back;
 	}
 	txt = mlx_load_png(name);
 	arr[pos] = mlx_texture_to_image(game->mlx, txt);
 	mlx_delete_texture(txt);
-	mlx_image_to_window(game->mlx, arr[pos], x, y);
+	mlx_image_to_window(game->mlx, arr[pos], 0, y);
 }
 
 static void	init_textures(t_game *game)
@@ -147,7 +169,7 @@ void	end_game(t_game *game)
 	disable_game(game);
 	game->end->back_seconds = 0;
 	game->end->back_frame = 0;
-	game->end->cat_frame = 0;
+	game->end->cat_frame = 21;
 	game->end->end_pos = game->loot * 100 / game->map->loot;
 	game->end->end_pos = WIDTH * game->end->end_pos / 100 - 400;
 	if (game->end->end_pos < 0)
