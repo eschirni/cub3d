@@ -18,6 +18,12 @@ static void	free_screens(t_game *game)
 		mlx_delete_image(game->mlx, game->end->back[i]);
 		i++;
 	}
+	i = 0;
+	while (i < 33)
+	{
+		mlx_delete_image(game->mlx, game->end->cat[i]);
+		i++;
+	}
 	free(game->end);
 }
 

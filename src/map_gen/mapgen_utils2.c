@@ -93,6 +93,6 @@ void	check_floors(t_mapgen *mapg)
 	}
 	// corner_check(mapg);
 	set_entities(mapg->map, 'L', 10);
-	// set_entities(mapg->map, 'W', 5);
+	set_entities(mapg->map, 'W', 5);
 	set_doors(mapg->map);
 }
