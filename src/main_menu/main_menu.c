@@ -54,6 +54,15 @@ static void	create_background(t_game *game)
 	}
 }
 
+static void	door_hook(mlx_key_data_t keydata, void *tmp)
+{
+	t_game *game;
+
+	game = tmp;
+	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
+		open_door(game, game->chars[0]->w[0], game->chars[0]->w[1]);
+}
+
 //continue button when already started the game
 void	main_menu(t_game *game)
 {
@@ -76,4 +85,5 @@ void	main_menu(t_game *game)
 	mlx_loop_hook(game->mlx, &fps, game);
 	mlx_cursor_hook(game->mlx, &hover_buttons, game);
 	mlx_mouse_hook(game->mlx, &menu_buttons, game);
+	mlx_key_hook(game->mlx, &door_hook, game);
 }

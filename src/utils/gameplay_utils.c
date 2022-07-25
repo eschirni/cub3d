@@ -18,6 +18,12 @@ void	open_door(t_game *game, int addX, int addY)
 			system("afplay music/wind.mp3 &");
 		game->map->big_map[next_y][next_x] = '7';
 	}
+	else if (game->map->big_map[next_y][next_x] == '7')
+	{
+		if (game->sounds->sound == true)
+			system("afplay music/wind.mp3 &");
+		game->map->big_map[next_y][next_x] = '8';
+	}
 }
 
 int	find_instance(t_game *game, int x, int y)

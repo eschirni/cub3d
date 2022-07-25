@@ -75,8 +75,6 @@ static void	check_keys(t_game *game)
 		game->chars[0]->pa -= 0.03f * game->menu->settings->rs;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		game->chars[0]->pa += 0.03f * game->menu->settings->rs;
-	if (mlx_is_key_down(game->mlx, MLX_KEY_F))
-		open_door(game, game->chars[0]->w[0], game->chars[0]->w[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
 		game->ps = 4;
 	else
