@@ -5,16 +5,16 @@ static void	animate_cat(t_end *end)
 	int	i;
 
 	i = 0;
-	while (i < 31)
+	while (i < 33)
 	{
 		end->cat[i]->enabled = false;
 		i++;
 	}
 	end->cat[end->cat_frame]->enabled = true;
 	end->cat_frame++;
-	if (end->cat[0]->instances[0].x < end->end_pos || (end->cat_frame > 21 && end->cat_frame != 30))
+	if (end->cat[0]->instances[0].x < end->end_pos || (end->cat_frame > 21 && end->cat_frame != 32))
 	{
-		if (end->cat_frame > 30)
+		if (end->cat_frame > 32)
 			end->cat_frame = 21;
 	}
 	else
@@ -33,7 +33,7 @@ static void	move_cat(t_end *end)
 	if (end->cat[0]->instances[0].x >= end->end_pos)
 		return ;
 	i = 0;
-	while (i < 31)
+	while (i < 33)
 	{
 		end->cat[i]->instances[0].x += 2;
 		i++;
@@ -132,6 +132,8 @@ static void	init_textures(t_game *game)
 	load_png(game, 28, "./sprites/end/cat/cat_walk7.png", true);
 	load_png(game, 29, "./sprites/end/cat/cat_walk8.png", true);
 	load_png(game, 30, "./sprites/end/cat/cat_walk9.png", true);
+	load_png(game, 31, "./sprites/end/cat/cat_walk10.png", true);
+	load_png(game, 32, "./sprites/end/cat/cat_walk11.png", true);
 	score = ft_strcdup("Score: ", '\0', 0);
 	tmp = ft_itoa(game->loot * 100);
 	score = ft_append(score, tmp);
