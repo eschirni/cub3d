@@ -5,6 +5,8 @@ static void	calc_pos(t_game *game, t_char *chr) //either check if there is alrea
 	int	x;
 	int	y;
 
+	if (chr->img->instances[0].y >= 0 && chr->img->instances[0].y < MINIMAP && chr->img->instances[0].x >= 0 && chr->img->instances[0].x < MINIMAP && game->ray_tiles[chr->img->instances[0].y + 8][chr->img->instances[0].x + 8] == true)
+		return ;
 	x = game->chars[0]->img->instances[0].x - chr->img->instances[0].x;
 	y = game->chars[0]->img->instances[0].y - chr->img->instances[0].y;
 	if ((game->chars[0]->img->instances[0].y <= chr->img->instances[0].y + 8 && game->chars[0]->img->instances[0].y >= chr->img->instances[0].y - 8) && (game->chars[0]->img->instances[0].x <= chr->img->instances[0].x + 8 && game->chars[0]->img->instances[0].x >= chr->img->instances[0].x - 8))

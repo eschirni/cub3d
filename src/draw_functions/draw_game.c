@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-static void	reset_img(mlx_image_t *img, int width, int height)
+static void	reset_img(t_game *game, mlx_image_t *img, int width, int height)
 {
 	int	x;
 	int	y;
@@ -11,6 +11,7 @@ static void	reset_img(mlx_image_t *img, int width, int height)
 		y = 0;
 		while (y < height)
 		{
+			game->ray_tiles[y][x] = false;
 			mlx_put_pixel(img, x, y, 0x000000);
 			y++;
 		}
@@ -38,7 +39,7 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 		mini->start[1] = ray->start[1] - (game->map->player[1] - 144);
 		mini->end[0] = ray->end[0] - (game->map->player[0] - 144);
 		mini->end[1] = ray->end[1] - (game->map->player[1] - 144);
-		draw_line(mini, ray->img); //draw ray
+		draw_line(game, mini, ray->img); //draw ray
 		draw_3d(game, ray, 0, &line_x);
 		game->rays[i] = ray->dist;
 		i++;
@@ -61,7 +62,7 @@ void	draw_game(t_game *game, t_ray *ray)
 	line_x = 0;
 	rounded[0] = (int)game->map->player[0];
 	rounded[1] = (int)game->map->player[1];
-	reset_img(ray->img, MINIMAP, MINIMAP);
+	reset_img(game, ray->img, MINIMAP, MINIMAP);
 	iterate_game(game, ray, 0, rounded);
 	draw_sprite(game);
 	free(game->rays);

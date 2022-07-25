@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-static void	draw_minimap(t_ray *ray, int direction, mlx_image_t *img)
+static void	draw_minimap(t_game *game, t_ray *ray, int direction, mlx_image_t *img)
 {
 	int		i;
 	float	coords[2];
@@ -23,18 +23,21 @@ static void	draw_minimap(t_ray *ray, int direction, mlx_image_t *img)
 		else
 			coords[1] -= steps[1];
 		i++;
-		if (coords[0] >= 0 && coords[0] <= MINIMAP
-			&& coords[1] >= 0 && coords[1] <= MINIMAP)
-			mlx_put_pixel(img, coords[0], coords[1], 0xbad129);
+		if (coords[0] >= 0 && coords[0] < MINIMAP
+			&& coords[1] >= 0 && coords[1] < MINIMAP)
+			{
+				game->ray_tiles[(int)coords[1]][(int)coords[0]] = true;
+				mlx_put_pixel(img, coords[0], coords[1], 0xbad129);
+			}
 	}
 }
 
-void	draw_line(t_ray *ray, mlx_image_t *img)
+void	draw_line(t_game *game, t_ray *ray, mlx_image_t *img)
 {
 	int	direction;
 
 	direction = fabs(ray->end[0] - ray->start[0]);
 	if (fabs(ray->end[0] - ray->start[0]) < fabs(ray->end[1] - ray->start[1]))
 		direction = fabs(ray->end[1] - ray->start[1]);
-	draw_minimap(ray, direction, img);
+	draw_minimap(game, ray, direction, img);
 }

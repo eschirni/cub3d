@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/24 13:00:09 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:46:50 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef struct s_game
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
 	mlx_image_t	*torch;
+	bool		ray_tiles[MINIMAP][MINIMAP];
 	int			ps;
 	int			torch_frame;
 	float		*rays;
@@ -178,7 +179,7 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);
 void	draw_chars(t_game *game, char **map);
 void	draw_game(t_game *game, t_ray *ray);
 void	draw_map(t_game *game, t_map *map);
-void	draw_line(t_ray *ray, mlx_image_t *img);
+void	draw_line(t_game *game, t_ray *ray, mlx_image_t *img);
 void	draw_crosshair(t_game *game, int color, char type);
 void	get_map_textures(t_game *game);
 void	draw_sprite(t_game *game);
