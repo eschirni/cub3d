@@ -184,7 +184,7 @@ void	draw_map(t_game *game, t_map *map);
 void	draw_line(t_game *game, t_ray *ray, mlx_image_t *img);
 void	draw_crosshair(t_game *game, int color, char type);
 void	get_map_textures(t_game *game);
-void	draw_sprite(t_game *game);
+void	draw_sprite(t_game *game, float sp_x, float sp_y, float sp_z);
 void	draw_torch(t_game *game);
 
 /* hooks */

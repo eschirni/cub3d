@@ -102,7 +102,6 @@ void	fps(void *tmp)
 		draw_crosshair(game, 0xFFFFFFFF, game->menu->settings->cross_type);
 		draw_torch(game);
 		move_enemies(game);
-		draw_sprite(game);
 		if (game->sounds->sound == true)
 			check_music(game, false);
 	}

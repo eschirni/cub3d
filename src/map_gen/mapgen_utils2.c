@@ -72,6 +72,23 @@ static void	set_doors(char **map)
 	}
 }
 
+static void	set_enemy(t_mapgen *mapg)
+{
+	int	i;
+	int	j;
+
+	while (true)
+	{
+		i = get_random_num(0, mapg->size);
+		j = get_random_num(0, mapg->size);
+		if (mapg->map[i][j] == '0')
+		{
+			mapg->map[i][j] = 'W';
+			break ;
+		}
+	}
+}
+
 void	check_floors(t_mapgen *mapg)
 {
 	int	i;
@@ -93,6 +110,7 @@ void	check_floors(t_mapgen *mapg)
 	}
 	// corner_check(mapg);
 	set_entities(mapg->map, 'L', 10);
+	set_enemy(mapg);
 	// set_entities(mapg->map, 'W', 5);
 	set_doors(mapg->map);
 }

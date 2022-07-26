@@ -64,7 +64,8 @@ void	draw_game(t_game *game, t_ray *ray)
 	rounded[1] = (int)game->map->player[1];
 	reset_img(game, ray->img, MINIMAP, MINIMAP);
 	iterate_game(game, ray, 0, rounded);
-	draw_sprite(game);
+	// draw_sprite(game, game->chars[1]->img->instances[0].x - 16, game->chars[1]->img->instances[0].y - 16, HEIGHT / 2);
+	draw_sprite(game, game->map->x * 32 / 2, game->map->y * 32 / 2, HEIGHT / 2);
 	free(game->rays);
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
 	game->game_img->instances[0].z = -100;
