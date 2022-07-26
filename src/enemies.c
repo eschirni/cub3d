@@ -6,7 +6,7 @@ static void	calc_pos(t_game *game, t_char *chr)
 	int	y;
 	static bool	spotted;
 
-	if (chr->img->instances[0].y >= 0 && chr->img->instances[0].y < MINIMAP && chr->img->instances[0].x >= 0 && chr->img->instances[0].x < MINIMAP && game->ray_tiles[chr->img->instances[0].y + 8][chr->img->instances[0].x + 8] == true)
+	if (chr->img->instances[0].y + 8 >= 0 && chr->img->instances[0].y + 8 < MINIMAP && chr->img->instances[0].x >= 0 && chr->img->instances[0].x < MINIMAP && game->ray_tiles[chr->img->instances[0].y + 8][chr->img->instances[0].x + 8] == true)
 	{
 		if (spotted == false && game->sounds->sound == true)
 			system("afplay ./music/spotted.mp3 &");

@@ -33,9 +33,9 @@ void	draw_sprite(t_game *game, float sp_x, float sp_y)
 		y = 0;
 		while (y <size[1])
 		{
-			if (screen_pos[0] - x < WIDTH && screen_pos[1] - y < HEIGHT && screen_pos[0] - x > 1 && screen_pos[1] - y > 1 && tmp[1] < game->rays[(int)screen_pos[0] - (int)x])
+			if (screen_pos[0] - x < WIDTH && screen_pos[1] - y < HEIGHT && screen_pos[0] - x > 1 && screen_pos[1] - y > 1)
 			{
-				int	col = game->textures->luci[game->textures->luci_frame][(int)t_y * game->textures->luci_size[0] - (int)t_x];
+				int	col = game->textures->luci[game->textures->luci_frame][(int)t_y * game->textures->luci_size[0] - (int)t_x]; //overflow
 				if (col != 0x282c3c00 && col != 0x27243100 && col != 0)
 					mlx_put_pixel(game->game_img, screen_pos[0] - x, screen_pos[1] - y, col);
 			}
