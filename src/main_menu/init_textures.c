@@ -36,6 +36,11 @@ static void	init_extras(t_game *game, mlx_texture_t *txt)
 	txt = mlx_load_png("./sprites/exit64.png");
 	game->textures->exit = get_color(txt);
 	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/luci.png");
+	game->textures->luci = get_color(txt);
+	game->textures->luci_size[0] = txt->width;
+	game->textures->luci_size[1] = txt->height;
+	mlx_delete_texture(txt);
 }
 
 void	init_textures(t_game *game)
