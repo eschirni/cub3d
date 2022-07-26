@@ -10,7 +10,7 @@ static void	calc_pos(t_game *game, t_char *chr)
 	{
 		if (spotted == false && game->sounds->sound == true)
 			system("afplay ./music/spotted.mp3 &");
-		draw_sprite(game, game->map->enemy[0], game->map->enemy[1]);
+		draw_sprite(game, game->map->enemy[0], game->map->enemy[1], 'l');
 		spotted = true;
 		return ;
 	}

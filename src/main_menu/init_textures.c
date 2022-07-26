@@ -62,6 +62,11 @@ static void	init_extras(t_game *game, mlx_texture_t *txt)
 	txt = mlx_load_png("./sprites/luci/luci7.png");
 	game->textures->luci[7] = get_color(txt);
 	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/chest_3d.png");
+	game->textures->chest = get_color(txt);
+	game->textures->chest_size[0] = txt->width;
+	game->textures->chest_size[1] = txt->height;
+	mlx_delete_texture(txt);
 }
 
 void	init_textures(t_game *game)

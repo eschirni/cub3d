@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/26 21:31:32 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/26 22:32:08 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_map
 	char		**big_map;
 	float		player[2];
 	float		enemy[2];
+	float		**chests;
 	int			loot;
 	int			n_chars;
 	int			x;
@@ -112,10 +113,14 @@ typedef struct s_textures
 	u_int32_t	*door_o;
 	u_int32_t	*exit;
 	u_int32_t	*luci[8];
+	u_int32_t	*chest;
+	u_int32_t	*chuci;
 	u_int32_t	*current;
 	int			luci_frame;
 	int			wall_size[2];
 	int			luci_size[2];
+	int			chest_size[2];
+	int			chuci_size[2];
 	float		offset;
 }				t_textures;
 
@@ -186,7 +191,7 @@ void	draw_map(t_game *game, t_map *map);
 void	draw_line(t_game *game, t_ray *ray, mlx_image_t *img);
 void	draw_crosshair(t_game *game, int color, char type);
 void	get_map_textures(t_game *game);
-void	draw_sprite(t_game *game, float sp_x, float sp_y);
+void	draw_sprite(t_game *game, float sp_x, float sp_y, char c);
 void	draw_torch(t_game *game);
 
 /* hooks */
