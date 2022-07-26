@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-void	draw_sprite(t_game *game, float sp_x, float sp_y, float sp_z)
+void	draw_sprite(t_game *game, float sp_x, float sp_y)
 {
 	float	screen_pos[3];
 	float	tmp[2];
@@ -8,7 +8,7 @@ void	draw_sprite(t_game *game, float sp_x, float sp_y, float sp_z)
 	// printf("%f, %f\n", sp_x, sp_y);
 	screen_pos[0] = sp_x - game->map->player[0];
 	screen_pos[1] = sp_y - game->map->player[1];
-	screen_pos[2] = sp_z;
+	screen_pos[2] = HEIGHT / 2;
 	// printf("%f\n", game->chars[0]->pa);
 	tmp[0] = screen_pos[1] * -cos(game->chars[0]->pa) + screen_pos[0] * sin(game->chars[0]->pa);
 	tmp[1] = screen_pos[0] * cos(game->chars[0]->pa) + screen_pos[1] * sin(game->chars[0]->pa);
@@ -40,7 +40,7 @@ void	draw_sprite(t_game *game, float sp_x, float sp_y, float sp_z)
 			{
 				int	col = game->textures->luci[(int)t_y * game->textures->luci_size[0] - (int)t_x];
 				// printf("%x\n", col);
-				if (col != 0x282c3c00 && col != 0x27243100)
+				if (col != 0x282c3c00 && col != 0x27243100 && col != 0x282c3c00)
 					mlx_put_pixel(game->game_img, screen_pos[0] - x, screen_pos[1] - y, col);
 			}
 			y++;

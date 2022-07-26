@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/25 17:15:39 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:40:05 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_map
 {
 	char		**big_map;
 	float		player[2];
+	float		enemy[2];
 	int			loot;
 	int			n_chars;
 	int			x;
@@ -184,7 +185,7 @@ void	draw_map(t_game *game, t_map *map);
 void	draw_line(t_game *game, t_ray *ray, mlx_image_t *img);
 void	draw_crosshair(t_game *game, int color, char type);
 void	get_map_textures(t_game *game);
-void	draw_sprite(t_game *game, float sp_x, float sp_y, float sp_z);
+void	draw_sprite(t_game *game, float sp_x, float sp_y);
 void	draw_torch(t_game *game);
 
 /* hooks */
@@ -215,6 +216,7 @@ void	check_floors(t_mapgen *mapg);
 void	animate_end(mlx_t *mlx, t_end *end);
 void	end_game(t_game *game);
 
+/* gameplay */
 void	move_enemies(t_game *game);
 
 #endif

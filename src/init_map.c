@@ -1,6 +1,6 @@
 #include "includes/cub3d.h"
 
-static void	mark_player(t_map *map)
+static void	mark_enteties(t_map *map)
 {
 	int	i;
 	int	j;
@@ -18,6 +18,11 @@ static void	mark_player(t_map *map)
 				{
 					map->player[0] = j * 32 + 16;
 					map->player[1] = i * 32 + 16;
+				}
+				else
+				{
+					map->enemy[0] = j * 32 + 16;
+					map->enemy[1] = i * 32 + 16;
 				}
 				map->n_chars++;
 			}
@@ -40,6 +45,6 @@ t_map	*init_map(t_mapgen *mapg)
 	map->loot = mapg->loot;
 	free(mapg);
 	map->n_chars = 0;
-	mark_player(map);
+	mark_enteties(map);
 	return (map);
 }
