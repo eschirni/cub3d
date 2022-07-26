@@ -5,18 +5,15 @@ void	draw_sprite(t_game *game, float sp_x, float sp_y)
 	float	screen_pos[3];
 	float	tmp[2];
 
-	// printf("%f, %f\n", sp_x, sp_y);
 	screen_pos[0] = sp_x - game->map->player[0];
 	screen_pos[1] = sp_y - game->map->player[1];
 	screen_pos[2] = HEIGHT / 2;
-	// printf("%f\n", game->chars[0]->pa);
 	tmp[0] = screen_pos[1] * -cos(game->chars[0]->pa) + screen_pos[0] * sin(game->chars[0]->pa);
 	tmp[1] = screen_pos[0] * cos(game->chars[0]->pa) + screen_pos[1] * sin(game->chars[0]->pa);
 	screen_pos[0] = tmp[0];
 	screen_pos[1] = tmp[1];
 	screen_pos[0] = (screen_pos[0] * -2000 / screen_pos[1]) + (WIDTH / 2);
 	screen_pos[1] = (screen_pos[2] * 30 / screen_pos[1]) + (HEIGHT / 2);
-	// printf("%f, %f\n", game->map->player[0], game->map->player[1]);
 	int	size[2];
 	size[0] = game->textures->luci_size[0] * 50 / tmp[1];
 	size[1] = game->textures->luci_size[1] * 50 / tmp[1];
@@ -38,9 +35,8 @@ void	draw_sprite(t_game *game, float sp_x, float sp_y)
 		{
 			if (screen_pos[0] - x < WIDTH && screen_pos[1] - y < HEIGHT && screen_pos[0] - x > 1 && screen_pos[1] - y > 1 && tmp[1] < game->rays[(int)screen_pos[0] - (int)x])
 			{
-				int	col = game->textures->luci[(int)t_y * game->textures->luci_size[0] - (int)t_x];
-				// printf("%x\n", col);
-				if (col != 0x282c3c00 && col != 0x27243100 && col != 0x282c3c00)
+				int	col = game->textures->luci[game->textures->luci_frame][(int)t_y * game->textures->luci_size[0] - (int)t_x];
+				if (col != 0x282c3c00 && col != 0x27243100 && col != 0)
 					mlx_put_pixel(game->game_img, screen_pos[0] - x, screen_pos[1] - y, col);
 			}
 			y++;

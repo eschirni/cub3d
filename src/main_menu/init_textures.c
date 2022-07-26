@@ -36,10 +36,31 @@ static void	init_extras(t_game *game, mlx_texture_t *txt)
 	txt = mlx_load_png("./sprites/exit64.png");
 	game->textures->exit = get_color(txt);
 	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/luci.png");
-	game->textures->luci = get_color(txt);
+	txt = mlx_load_png("./sprites/luci/luci.png");
+	game->textures->luci[0] = get_color(txt);
 	game->textures->luci_size[0] = txt->width;
 	game->textures->luci_size[1] = txt->height;
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/luci/luci1.png");
+	game->textures->luci[1] = get_color(txt);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/luci/luci2.png");
+	game->textures->luci[2] = get_color(txt);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/luci/luci3.png");
+	game->textures->luci[3] = get_color(txt);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/luci/luci4.png");
+	game->textures->luci[4] = get_color(txt);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/luci/luci5.png");
+	game->textures->luci[5] = get_color(txt);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/luci/luci6.png");
+	game->textures->luci[6] = get_color(txt);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/luci/luci7.png");
+	game->textures->luci[7] = get_color(txt);
 	mlx_delete_texture(txt);
 }
 
@@ -57,4 +78,5 @@ void	init_textures(t_game *game)
 	game->textures->floor = get_color(txt);
 	mlx_delete_texture(txt);
 	init_extras(game, txt);
+	game->textures->luci_frame = 0;
 }

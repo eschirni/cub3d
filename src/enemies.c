@@ -1,6 +1,6 @@
 #include "includes/cub3d.h"
 
-static void	calc_pos(t_game *game, t_char *chr) //either check if there is already an enemie to avoid fusion or randomize movement
+static void	calc_pos(t_game *game, t_char *chr)
 {
 	int	x;
 	int	y;

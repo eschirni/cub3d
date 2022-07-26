@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/26 19:40:05 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/26 21:31:32 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,9 @@ typedef struct s_textures
 	u_int32_t	*door;
 	u_int32_t	*door_o;
 	u_int32_t	*exit;
-	u_int32_t	*luci;
+	u_int32_t	*luci[8];
 	u_int32_t	*current;
+	int			luci_frame;
 	int			wall_size[2];
 	int			luci_size[2];
 	float		offset;

@@ -67,7 +67,14 @@ void	free_exit(t_map *map, t_game *game)
 	free(game->textures->door);
 	free(game->textures->door_o);
 	free(game->textures->exit);
-	free(game->textures->luci);
+	free(game->textures->luci[0]);
+	free(game->textures->luci[1]);
+	free(game->textures->luci[2]);
+	free(game->textures->luci[3]);
+	free(game->textures->luci[4]);
+	free(game->textures->luci[5]);
+	free(game->textures->luci[6]);
+	free(game->textures->luci[7]);
 	free(game->textures);
 	free(game->sounds);
 	free(game);

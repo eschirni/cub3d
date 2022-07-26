@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:17:30 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/24 08:14:48 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/26 21:37:02 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,8 @@ void	draw_torch(t_game *game)
 	game->torch_frame++;
 	if (game->torch_frame > 5)
 		game->torch_frame = 0;
+	if (game->torch_frame == 5 || game->torch_frame == 2)
+		game->textures->luci_frame++;
+	if (game->textures->luci_frame > 7)
+		game->textures->luci_frame = 0;
 }
