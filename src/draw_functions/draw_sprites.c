@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-void	draw_sprite(t_game *game, float sp_x, float sp_y)
+static void	calc_draw(t_game *game, float sp_x, float sp_y)
 {
 	float	screen_pos[3];
 	float	tmp[2];
@@ -18,29 +18,29 @@ void	draw_sprite(t_game *game, float sp_x, float sp_y)
 	screen_pos[1] = (screen_pos[2] * 30 / screen_pos[1]) + (HEIGHT / 2);
 	// printf("%f, %f\n", game->map->player[0], game->map->player[1]);
 	int	size[2];
-	size[0] = game->textures->luci_size[0] * 50 / tmp[1];
-	size[1] = game->textures->luci_size[1] * 50 / tmp[1];
+	size[0] = game->textures->chuci_size[0] * 50 / tmp[1];
+	size[1] = game->textures->chuci_size[1] * 50 / tmp[1];
 	if (size[0] < 0)
 		size[0] = 0;
 	if (size[1] < 0)
 		size[1] = 0;
 	int		x = 0;//screen_pos[0] - size[0] / 2;
 	int		y = 0;
-	float	t_x = game->textures->luci_size[0];
-	float	t_y = game->textures->luci_size[1];
-	float	x_off = game->textures->luci_size[0] / (float)size[0];
-	float	y_off = game->textures->luci_size[1] / (float)size[1];
+	float	t_x = game->textures->chuci_size[0];
+	float	t_y = game->textures->chuci_size[1];
+	float	x_off = game->textures->chuci_size[0] / (float)size[0];
+	float	y_off = game->textures->chuci_size[1] / (float)size[1];
 	while (x < size[0])
 	{
-		t_y = game->textures->luci_size[1];
+		t_y = game->textures->chuci_size[1];
 		y = 0;
 		while (y <size[1])
 		{
-			if (screen_pos[0] - x < WIDTH && screen_pos[1] - y < HEIGHT && screen_pos[0] - x > 1 && screen_pos[1] - y > 1 && tmp[1] < game->rays[(int)screen_pos[0] - (int)x])
+			if (screen_pos[0] - x < WIDTH && screen_pos[1] - y < HEIGHT && screen_pos[0] - x > 1 && screen_pos[1] - y > 1 && tmp[1] < game->rays[(int)screen_pos[0] - (int)x] && game->map->big_map[(int)sp_y / 32][(int)sp_x / 32] != 'l')
 			{
-				int	col = game->textures->luci[(int)t_y * game->textures->luci_size[0] - (int)t_x];
+				int	col = game->textures->chuci[(int)t_y * game->textures->chuci_size[0] - (int)t_x];
 				// printf("%x\n", col);
-				if (col != 0x282c3c00 && col != 0x27243100 && col != 0x282c3c00)
+				if (col != 0x282c3c00 && col != 0x27243100 && col != 0x282c3c00 && col != 0x433d4900 && col != 0x2b2b2b00 && col != (int)0xe6ece000 && col != (int)0x433d4900 && col)
 					mlx_put_pixel(game->game_img, screen_pos[0] - x, screen_pos[1] - y, col);
 			}
 			y++;
@@ -50,6 +50,23 @@ void	draw_sprite(t_game *game, float sp_x, float sp_y)
 		x++;
 	}
 	// printf("%d, %d\n", x, y);
+}
+
+void	draw_sprite(t_game *game, float sp_x, float sp_y, char c)
+{
+	if (c == 'c')
+	{
+		game->textures->chuci = game->textures->chest;
+		game->textures->chuci_size[0] = game->textures->chest_size[0];
+		game->textures->chuci_size[1] = game->textures->chest_size[1];
+	}
+	else
+	{
+		game->textures->chuci = game->textures->luci;
+		game->textures->chuci_size[0] = game->textures->luci_size[0];
+		game->textures->chuci_size[1] = game->textures->luci_size[1];
+	}
+	calc_draw(game, sp_x, sp_y);
 }
 
 // void	draw_sprite(t_game *game)

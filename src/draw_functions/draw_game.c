@@ -47,6 +47,18 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 	free(mini);
 }
 
+static void	draw_chests(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->map->loot)
+	{
+		draw_sprite(game, game->map->chests[i][0], game->map->chests[i][1], 'c');
+		i++;
+	}
+}
+
 void	draw_game(t_game *game, t_ray *ray)
 {
 	int	i;
@@ -65,6 +77,7 @@ void	draw_game(t_game *game, t_ray *ray)
 	reset_img(game, ray->img, MINIMAP, MINIMAP);
 	iterate_game(game, ray, 0, rounded);
 	free(game->rays);
+	draw_chests(game);
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
 	game->game_img->instances[0].z = -100;
 }

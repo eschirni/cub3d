@@ -50,6 +50,19 @@ static void	free_arrs(t_game *game)
 	free(game->chars);
 }
 
+static void	free_float_array(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->loot)
+	{
+		free(map->chests[i]);
+		i++;
+	}
+	free(map->chests);
+}
+
 void	free_exit(t_map *map, t_game *game)
 {
 	free_arrs(game);
@@ -62,12 +75,14 @@ void	free_exit(t_map *map, t_game *game)
 	mlx_delete_image(game->mlx, game->game_img);
 	mlx_delete_image(game->mlx, game->torch);
 	mlx_terminate(game->mlx);
+	free_float_array(map);
 	free(game->textures->wall);
 	free(game->textures->floor);
 	free(game->textures->door);
 	free(game->textures->door_o);
 	free(game->textures->exit);
 	free(game->textures->luci);
+	free(game->textures->chest);
 	free(game->textures);
 	free(game->sounds);
 	free(game);
