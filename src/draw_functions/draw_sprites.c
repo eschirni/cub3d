@@ -36,11 +36,11 @@ static void	calc_draw(t_game *game, float sp_x, float sp_y)
 		y = 0;
 		while (y <size[1])
 		{
-			if (screen_pos[0] - x < WIDTH && screen_pos[1] - y < HEIGHT && screen_pos[0] - x > 1 && screen_pos[1] - y > 1 && tmp[1] < game->rays[(int)screen_pos[0] - (int)x] && game->map->big_map[(int)sp_y / 32][(int)sp_x / 32] != 'l')
+			if (screen_pos[0] - x < WIDTH && screen_pos[1] - y < HEIGHT && screen_pos[0] - x > 1 && screen_pos[1] - y > 1 && game->map->big_map[(int)sp_y / 32][(int)sp_x / 32] != 'l')
 			{
 				int	col = game->textures->chuci[(int)t_y * game->textures->chuci_size[0] - (int)t_x];
 				// printf("%x\n", col);
-				if (col != 0x282c3c00 && col != 0x27243100 && col != 0x282c3c00 && col != 0x433d4900 && col != 0x2b2b2b00 && col != (int)0xe6ece000 && col != (int)0x433d4900 && col)
+				if (col != 0x282c3c00 && col != 0x27243100 && col != 0x282c3c00 && col != 0x433d4900 && col != 0x2b2b2b00 && col != (int)0xe6ece000 && col != (int)0x433d4900 && col && tmp[1] < game->rays[(int)screen_pos[0] - (int)x])
 					mlx_put_pixel(game->game_img, screen_pos[0] - x, screen_pos[1] - y, col);
 			}
 			y++;
