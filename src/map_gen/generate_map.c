@@ -109,42 +109,6 @@ static int	carve_tunnel(t_mapgen *mapg, int size, int tunnel_len)
 // 	return (1);
 // }
 
-static t_mapgen	*checker(t_mapgen *mapg)
-{
-	int	i;
-	int	j;
-	int	exit;
-	int	enemy;
-
-	i = 0;
-	mapg->loot = 0;
-	exit = 0;
-	enemy = 0;
-	while (mapg->map[i])
-	{
-		j = 0;
-		while (mapg->map[i][j])
-		{
-			if (mapg->map[i][j] == 'W')
-				enemy++;
-			else if (mapg->map[i][j] == 'X')
-				exit++;
-			else if (mapg->map[i][j] == 'L' || mapg->map[i][j] == 'l')
-				mapg->loot++;
-			j++;
-		}
-		i++;
-	}
-	if (!mapg->loot)
-		printf("No loot.\n");
-	else if (!enemy)
-		printf("No enemies.\n");
-	else if (!exit)
-		printf("No exit.\n");
-	printf("%d chests\n%d enemies\n", mapg->loot, enemy);
-	return (mapg);
-}
-
 t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len) //end_len unecessary, please refactor all this, so much debug stuff in there too
 {
 	t_mapgen	*mapg;
@@ -155,16 +119,7 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len) //end_l
 		end_len = carve_tunnel(mapg, size, tunnel_len);
 		while (true)
 		{
-			if ((mapg->rand_dir[0] == mapg->last_dir[0]
-					&& mapg->rand_dir[1] == mapg->last_dir[1])
-				|| (mapg->rand_dir[0] == -mapg->last_dir[0]
-					&& mapg->rand_dir[1] == -mapg->last_dir[1]))
-			{
-				mapg->rand = get_random_num(0, 3);
-				mapg->rand_dir[0] = mapg->dirs[mapg->rand][0];
-				mapg->rand_dir[1] = mapg->dirs[mapg->rand][1];
-			}
-			else
+			if (!set_rnd_direction(mapg))
 				break ;
 		}
 		if (end_len)
@@ -174,6 +129,6 @@ t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len) //end_l
 	mapg->exit[1] = mapg->start[1];
 	mapg->map[mapg->exit[1]][mapg->exit[0]] = 'X';
 	refactor_map(mapg, 0, 0);
-	mapg = checker(mapg);
+	checker(mapg);
 	return (mapg);
 }

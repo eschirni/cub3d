@@ -28,7 +28,6 @@ void	refactor_map(t_mapgen *mapg, int i, int j)
 			if (i == 0 || i == mapg->size + 1 || j == 0 || j == mapg->size + 1)
 				new[i][j] = '1';
 			else
-
 				new[i][j] = mapg->map[i - 1][j - 1];
 		}
 		new[i++][mapg->size + 2] = 0;

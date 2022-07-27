@@ -46,6 +46,51 @@
 // 	return (0);
 // }
 
+int	set_rnd_direction(t_mapgen *mapg)
+{
+	if ((mapg->rand_dir[0] == mapg->last_dir[0]
+			&& mapg->rand_dir[1] == mapg->last_dir[1])
+		|| (mapg->rand_dir[0] == -mapg->last_dir[0]
+			&& mapg->rand_dir[1] == -mapg->last_dir[1]))
+	{
+		mapg->rand = get_random_num(0, 3);
+		mapg->rand_dir[0] = mapg->dirs[mapg->rand][0];
+		mapg->rand_dir[1] = mapg->dirs[mapg->rand][1];
+		return (1);
+	}
+	else
+		return (0);
+}
+
+void	checker(t_mapgen *mapg)
+{
+	int	i;
+	int	j;
+	int	exit;
+	int	enemy;
+
+	i = 0;
+	mapg->loot = 0;
+	exit = 0;
+	enemy = 0;
+	while (mapg->map[i])
+	{
+		j = 0;
+		while (mapg->map[i][j])
+		{
+			if (mapg->map[i][j] == 'W')
+				enemy++;
+			else if (mapg->map[i][j] == 'X')
+				exit++;
+			else if (mapg->map[i][j] == 'L' || mapg->map[i][j] == 'l')
+				mapg->loot++;
+			j++;
+		}
+		i++;
+	}
+	printf("%d chests\n%d enemy\n%d exit\n", mapg->loot, enemy, exit); //delete before eval
+}
+
 static void	set_doors(char **map)
 {
 	int	i;

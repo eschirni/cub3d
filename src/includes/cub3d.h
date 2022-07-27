@@ -232,6 +232,8 @@ int		is_corridor(char **map, int i, int j);
 void	refactor_map(t_mapgen *mapg, int i, int j);
 void	set_entities(char **map, char c, int chance);
 void	check_floors(t_mapgen *mapg);
+void	checker(t_mapgen *mapg);
+int		set_rnd_direction(t_mapgen *mapg);
 
 /* end game */
 void	animate_end(mlx_t *mlx, t_end *end);
