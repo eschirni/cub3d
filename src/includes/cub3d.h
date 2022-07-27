@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/13 13:14:08 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/27 12:15:15 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,18 +118,6 @@ typedef struct s_game
 	int			ps;
 }				t_game;
 
-typedef struct s_mapgen
-{
-	int			dirs[4][2];
-	int			rand_dir[2];
-	int			last_dir[2];
-	int			start[2];
-	int			player_start[2];
-	int			rand;
-	int			size;
-	char		**map;
-}				t_mapgen;
-
 /* map parsing */
 t_map	*init_map(char *mapfile);
 void	map_checker(t_map *map);
@@ -175,10 +163,5 @@ void	hover_buttons(double x, double y, void *tmp);
 void	main_menu(t_game *game);
 void	to_game(t_game *game);
 void	to_menu(t_game *game);
-
-/* map gen */
-t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len);
-int		get_random_num(int from, int to);
-void	refactor_map(t_mapgen *mapg, int i, int j);
 
 #endif

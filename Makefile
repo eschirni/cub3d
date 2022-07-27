@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/13 13:26:52 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/27 12:15:27 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,6 @@ GNL_PATH = get_next_line/
 UTILS_PATH = ./src/utils/
 DRAW_PATH = ./src/draw_functions/
 MAIN_MENU_PATH = ./src/main_menu/
-MAPGEN_PATH = ./src/map_gen/
 PARSE_PATH = ./src/parser/
 
 # SOURCES
@@ -48,7 +47,6 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(MAIN_MENU_PATH)settings.c $(MAIN_MENU_PATH)animations.c \
 		$(MAIN_MENU_PATH)switch_menu.c $(MAIN_MENU_PATH)menu_sliders.c \
 		$(MAIN_MENU_PATH)animate_scroll_text.c $(MAIN_MENU_PATH)init_textures.c \
-		$(MAPGEN_PATH)generate_map.c $(MAPGEN_PATH)mapgen_utils.c \
 		$(PARSE_PATH)parser.c $(PARSE_PATH)split.c \
 		$(PARSE_PATH)parse_utils.c $(PARSE_PATH)get_config.c \
 
