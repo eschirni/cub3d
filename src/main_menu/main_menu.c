@@ -60,7 +60,6 @@ void	main_menu(t_game *game)
 	if (game == NULL)
 		ft_error("allocation error", NULL);
 	game->menu->started_game = false;
-	game->menu->settings->cross_type = 'E';
 	game->menu->settings->rs = 1;
 	game->menu->settings->graphics = 32;
 	game->menu->settings->fov = 1920;

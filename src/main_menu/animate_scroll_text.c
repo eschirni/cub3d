@@ -71,18 +71,6 @@ void	animate_scroll_text(t_menu *menu)
 	menu->imgs[34]->enabled = true;
 	menu->imgs[35]->enabled = true;
 	menu->imgs[36]->enabled = true;
-	if (menu->settings->cross_type == 'C')
-		menu->imgs[38]->enabled = true;
-	else
-		menu->imgs[37]->enabled = true;
-	if (menu->settings->cross_type == 'D')
-		menu->imgs[40]->enabled = true;
-	else
-		menu->imgs[39]->enabled = true;
-	if (menu->settings->cross_type == 'E')
-		menu->imgs[42]->enabled = true;
-	else
-		menu->imgs[41]->enabled = true;
 	disable_all(menu, 43, 65);
 	rotation_speed_slider(menu);
 	fov_slider(menu);

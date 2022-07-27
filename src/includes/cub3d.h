@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/27 12:15:15 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/27 12:30:48 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ typedef struct s_map
 
 typedef struct s_settings
 {
-	char		cross_type;
 	int			fov;
 	int			graphics;
 	float		rs;
@@ -146,7 +145,6 @@ void	draw_chars(t_game *game, char **map);
 void	draw_game(t_ray *ray, t_game *game, float coords[2]);
 void	draw_map(t_game *game, t_map *map);
 void	draw_line(t_ray *ray, mlx_image_t *img);
-void	draw_crosshair(t_game *game, int color, char type);
 void	get_map_textures(t_game *game);
 
 /* hooks */

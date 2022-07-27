@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/27 12:15:27 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/27 12:29:54 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(UTILS_PATH)free_exit.c $(UTILS_PATH)hooks_utils.c \
 		$(SRC_PATH)char_direction.c $(SRC_PATH)hooks.c \
 		$(SRC_PATH)ray.c \
-		$(DRAW_PATH)draw_game.c $(DRAW_PATH)draw_crosshair.c \
+		$(DRAW_PATH)draw_game.c \
 		$(DRAW_PATH)draw_map.c $(DRAW_PATH)draw.c \
 		$(DRAW_PATH)draw_chars.c $(DRAW_PATH)draw_3d.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
@@ -56,17 +56,12 @@ OBJ = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
 # RULES
 all: $(NAME)
 	@echo $(B)
-	@echo "                       _|         _|_|_|     _|_|_|  "
-	@echo "   _|_|_|   _|    _|   _|_|_|           _|   _|    _|"
-	@echo " _|         _|    _|   _|    _|     _|_|     _|    _|"
-	@echo " _|         _|    _|   _|    _|         _|   _|    _|"
-	@echo "   _|_|_|     _|_|_|   _|_|_|     _|_|_|     _|_|_|  "
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh- yeah" -r 120 -a 0 &
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh- yeah" -r 120 -a 0 &
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a 0 &
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a 0 &
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a 0 &
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a 0 &
+	@echo "███████╗██╗   ██╗ ██████╗██╗  ██╗███████╗"
+	@echo "██╔════╝██║   ██║██╔════╝██║ ██╔╝██╔════╝"
+	@echo "███████╗██║   ██║██║     █████╔╝ ███████╗"
+	@echo "╚════██║██║   ██║██║     ██╔═██╗ ╚════██║"
+	@echo "███████║╚██████╔╝╚██████╗██║  ██╗███████║"
+	@echo "╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝"
 	@echo $(X)
 
 $(OBJ_PATH)%.o :$(SRC_PATH)%.c
