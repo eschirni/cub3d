@@ -23,13 +23,9 @@ static void	free_arrs(t_game *game)
 void	free_exit(t_map *map, t_game *game)
 {
 	free_arrs(game);
-	mlx_delete_image(game->mlx, game->map->floor);
-	mlx_delete_image(game->mlx, game->map->wall);
-	mlx_delete_image(game->mlx, game->map->out);
 	mlx_delete_image(game->mlx, game->game_img);
 	mlx_terminate(game->mlx);
 	free(game->textures->wall);
-	free(game->textures->floor);
 	free(game->textures);
 	free(game);
 	free(map->big_map);

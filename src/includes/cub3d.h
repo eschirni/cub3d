@@ -6,11 +6,9 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/27 20:35:01 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/27 20:45:18 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//todo: draw live instead of creating a new image every second
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -66,17 +64,12 @@ typedef struct s_map
 	int			x;
 	int			y;
 	int			n_chars;
-	mlx_image_t	*floor;
-	mlx_image_t	*out;
-	mlx_image_t	*wall;
 }				t_map;
 
 typedef struct s_textures
 {
 	u_int32_t	*wall;
-	u_int32_t	*floor;
 	int			wall_size[2];
-	int			floor_size[2];
 	float		offset;
 }				t_textures;
 
@@ -117,7 +110,6 @@ void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);
 void	draw_chars(t_game *game, char **map);
 void	draw_game(t_ray *ray, t_game *game, float coords[2]);
 void	draw_map(t_game *game, t_map *map);
-void	get_map_textures(t_game *game);
 
 /* hooks */
 void	calc_rotate(t_game *game, float rotation, int n);

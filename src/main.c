@@ -20,7 +20,6 @@ static t_game	*init_game(t_map *map)
 	t_game	*game;
 
 	game = alloc_game(map);
-	get_map_textures(game);
 	draw_map(game, game->map);
 	return (game);
 }
