@@ -163,6 +163,17 @@ typedef struct s_mapgen
 	char		**map;
 }				t_mapgen;
 
+typedef struct s_sprite_vars
+{
+	int		x;
+	int		y;
+	int		size[2];
+	float	t_pos[2];
+	float	offset[2];
+	float	s_pos[3];
+	float	tmp[2];
+}			t_sprite_vars;
+
 /* map parsing */
 t_map	*init_map(t_mapgen *mapg);
 

@@ -25,10 +25,10 @@ static void	draw_minimap(t_game *game, t_ray *ray, int direction, mlx_image_t *i
 		i++;
 		if (coords[0] >= 0 && coords[0] < MINIMAP
 			&& coords[1] >= 0 && coords[1] < MINIMAP)
-			{
-				game->ray_tiles[(int)coords[1]][(int)coords[0]] = true;
-				mlx_put_pixel(img, coords[0], coords[1], 0xbad129);
-			}
+		{
+			game->ray_tiles[(int)coords[1]][(int)coords[0]] = true;
+			mlx_put_pixel(img, coords[0], coords[1], 0xbad129);
+		}
 	}
 }
 
