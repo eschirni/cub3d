@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/27 20:20:41 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/27 20:35:01 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,6 @@ typedef struct s_map
 	mlx_image_t	*wall;
 }				t_map;
 
-typedef struct s_menu
-{
-	bool		in_menu;
-	char		scroll_mode;
-	int			back_frame;
-	int			scroll_frame;
-	long		back_seconds;
-	long		music_start;
-	long		scroll_seconds;
-}				t_menu;
-
 typedef struct s_textures
 {
 	u_int32_t	*wall;
@@ -95,7 +84,6 @@ typedef struct s_game
 {
 	t_char		**chars;
 	t_map		*map;
-	t_menu		*menu;
 	t_textures	*textures;
 	mlx_t		*mlx;
 	mlx_image_t	*game_img;
@@ -138,8 +126,7 @@ void	fps(void *tmp);
 /* rays */
 float	calc_rays(t_ray *ray, t_map *map, int x, int y);
 
-/* main menu */
-void	main_menu(t_game *game);
-void	to_game(t_game *game);
+/* textures */
+void	init_textures(t_game *game);
 
 #endif

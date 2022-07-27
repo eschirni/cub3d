@@ -32,10 +32,12 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_error("bad arguments", NULL);
-	// mapg = create_map(20, 60, 8, 0); //1. mapsize, 2. amount of tunnels, 3. max length of tunnels, 4. do not change >:(
 	map = init_map(argv[1]);
 	game = init_game(map);
-	main_menu(game);
+	init_textures(game);
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
+	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
+	mlx_loop_hook(game->mlx, &fps, game);
 	mlx_loop(game->mlx);
 	free_exit(map, game);
 	system("leaks cub3D");

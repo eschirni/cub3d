@@ -1,4 +1,4 @@
-#include "../includes/main_menu.h"
+#include "includes/cub3d.h"
 
 static uint32_t	*get_color(mlx_texture_t *texture)
 {

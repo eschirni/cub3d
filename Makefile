@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/27 20:18:03 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/27 20:36:48 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ OBJ_PATH = ./obj/
 GNL_PATH = get_next_line/
 UTILS_PATH = ./src/utils/
 DRAW_PATH = ./src/draw_functions/
-MAIN_MENU_PATH = ./src/main_menu/
 PARSE_PATH = ./src/parser/
 
 # SOURCES
@@ -38,14 +37,11 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(UTILS_PATH)ft_error.c $(UTILS_PATH)utils.c \
 		$(UTILS_PATH)free_exit.c $(UTILS_PATH)hooks_utils.c \
 		$(SRC_PATH)char_direction.c $(SRC_PATH)hooks.c \
-		$(SRC_PATH)ray.c \
+		$(SRC_PATH)ray.c $(SRC_PATH)init_textures.c \
 		$(DRAW_PATH)draw_game.c \
 		$(DRAW_PATH)draw_map.c \
 		$(DRAW_PATH)draw_chars.c $(DRAW_PATH)draw_3d.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
-		$(MAIN_MENU_PATH)main_menu.c \
-		$(MAIN_MENU_PATH)switch_menu.c \
-		$(MAIN_MENU_PATH)init_textures.c \
 		$(PARSE_PATH)parser.c $(PARSE_PATH)split.c \
 		$(PARSE_PATH)parse_utils.c $(PARSE_PATH)get_config.c \
 
