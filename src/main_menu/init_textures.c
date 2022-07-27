@@ -25,22 +25,8 @@ static uint32_t	*get_color(mlx_texture_t *texture)
 	return (colors);
 }
 
-static void	init_extras(t_game *game, mlx_texture_t *txt)
+static void	init_luci(t_game *game, mlx_texture_t *txt)
 {
-	txt = mlx_load_png("./sprites/door_dirty64.png");
-	game->textures->door = get_color(txt);
-	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/door_opened64.png");
-	game->textures->door_o = get_color(txt);
-	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/exit64.png");
-	game->textures->exit = get_color(txt);
-	mlx_delete_texture(txt);
-	txt = mlx_load_png("./sprites/luci/luci.png");
-	game->textures->luci[0] = get_color(txt);
-	game->textures->luci_size[0] = txt->width;
-	game->textures->luci_size[1] = txt->height;
-	mlx_delete_texture(txt);
 	txt = mlx_load_png("./sprites/luci/luci1.png");
 	game->textures->luci[1] = get_color(txt);
 	mlx_delete_texture(txt);
@@ -62,11 +48,30 @@ static void	init_extras(t_game *game, mlx_texture_t *txt)
 	txt = mlx_load_png("./sprites/luci/luci7.png");
 	game->textures->luci[7] = get_color(txt);
 	mlx_delete_texture(txt);
+}
+
+static void	init_extras(t_game *game, mlx_texture_t *txt)
+{
+	txt = mlx_load_png("./sprites/door_dirty64.png");
+	game->textures->door = get_color(txt);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/door_opened64.png");
+	game->textures->door_o = get_color(txt);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/exit64.png");
+	game->textures->exit = get_color(txt);
+	mlx_delete_texture(txt);
 	txt = mlx_load_png("./sprites/chest_3d.png");
 	game->textures->chest = get_color(txt);
 	game->textures->chest_size[0] = txt->width;
 	game->textures->chest_size[1] = txt->height;
 	mlx_delete_texture(txt);
+	txt = mlx_load_png("./sprites/luci/luci.png");
+	game->textures->luci[0] = get_color(txt);
+	game->textures->luci_size[0] = txt->width;
+	game->textures->luci_size[1] = txt->height;
+	mlx_delete_texture(txt);
+	init_luci(game, txt);
 }
 
 void	init_textures(t_game *game)

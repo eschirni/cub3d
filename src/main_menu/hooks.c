@@ -74,6 +74,7 @@ void	menu_buttons(mouse_key_t k, action_t act, modifier_key_t mod, void *tmp)
 	act = 0;
 	mod = 0;
 	mlx_get_mouse_pos(game->mlx, &x, &y);
-	if (mlx_is_mouse_down(game->mlx, MLX_MOUSE_BUTTON_LEFT) && game->end->in_end == false)
+	if (mlx_is_mouse_down(game->mlx, MLX_MOUSE_BUTTON_LEFT)
+		&& game->end->in_end == false)
 		on_mouse_click(game, x, y);
 }

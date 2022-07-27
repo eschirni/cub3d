@@ -56,7 +56,7 @@ static void	create_background(t_game *game)
 
 static void	door_hook(mlx_key_data_t keydata, void *tmp)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = tmp;
 	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
@@ -70,7 +70,7 @@ void	main_menu(t_game *game)
 	if (game->menu == NULL)
 		ft_error("Malloc error!", NULL);
 	game->menu->settings = malloc(sizeof(t_settings));
-	if (game == NULL)
+	if (game->menu->settings == NULL)
 		ft_error("allocation error", NULL);
 	game->menu->started_game = false;
 	game->menu->settings->cross_type = 'E';
