@@ -204,9 +204,10 @@ void	draw_crosshair(t_game *game, int color, char type);
 void	get_map_textures(t_game *game);
 void	draw_sprite(t_game *game, float sp_x, float sp_y, char c);
 void	draw_torch(t_game *game);
-float	calc_dist(float player[2], float chest[2]);
 void	sort_chests(t_game *game);
 void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end);
+void	set_z(mlx_image_t *img, int z);
+float	calc_dist(float player[2], float chest[2]);
 
 /* hooks */
 void	calc_rotate(t_game *game, float rotation, int n);

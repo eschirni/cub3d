@@ -1,5 +1,17 @@
 #include "../includes/cub3d.h"
 
+void	set_z(mlx_image_t *img, int z)
+{
+	int	i;
+
+	i = 0;
+	while (i < img->count)
+	{
+		img->instances[i].z = z;
+		i++;
+	}
+}
+
 void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 {
 	int		texture_x;

@@ -31,7 +31,7 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 	game->rays = malloc(sizeof(float) * 1920);
 	if (!game->rays)
 		ft_error("failed to allocate memory", NULL);
-	while (i < game->menu->settings->fov)
+	while (++i < game->menu->settings->fov)
 	{
 		ray->ra += (float)M_PI / 180 / game->menu->settings->graphics;
 		if (ray->ra >= (float)M_PI * 2)
@@ -44,21 +44,23 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 		draw_line(game, mini, ray->img); //draw ray
 		draw_3d(game, ray, 0, &line_x);
 		game->rays[i] = ray->dist;
-		i++;
 	}
 	free(mini);
 }
 
 static void	draw_chests(t_game *game)
 {
-	int	i;
+	int		i;
+	float	chests[2];
 
 	i = 0;
 	sort_chests(game);
 	while (i < game->map->loot)
 	{
+		chests[0] = game->map->chests[i][0];
+		chests[1] = game->map->chests[i][1];
 		if (calc_dist(game->map->player, game->map->chests[i]) < 130)
-			draw_sprite(game, game->map->chests[i][0], game->map->chests[i][1], 'c');
+			draw_sprite(game, chests[0], chests[1], 'c');
 		i++;
 	}
 }
@@ -79,7 +81,7 @@ void	draw_game(t_game *game, t_ray *ray)
 	rounded[0] = (int)game->map->player[0];
 	rounded[1] = (int)game->map->player[1];
 	reset_img(game, ray->img, MINIMAP, MINIMAP);
-	iterate_game(game, ray, 0, rounded);
+	iterate_game(game, ray, -1, rounded);
 	draw_chests(game);
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
 	game->game_img->instances[0].z = -100;

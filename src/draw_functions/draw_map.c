@@ -93,18 +93,6 @@ static void	draw_tiles(t_game *game, char **arr)
 	}
 }
 
-static void	set_z(mlx_image_t *img, int z)
-{
-	int	i;
-
-	i = 0;
-	while (i < img->count)
-	{
-		img->instances[i].z = z;
-		i++;
-	}
-}
-
 void	draw_map(t_game *game, t_map *map) //draw the map with lower z value than the 3d instead of every frame
 {
 	int	i;

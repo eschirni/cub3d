@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-static void	draw_minimap(t_game *game, t_ray *ray, int direction, mlx_image_t *img)
+static void	draw_minimap(t_game *game, t_ray *ray, int dir, mlx_image_t *img)
 {
 	int		i;
 	float	coords[2];
@@ -9,10 +9,10 @@ static void	draw_minimap(t_game *game, t_ray *ray, int direction, mlx_image_t *i
 	i = 0;
 	coords[0] = ray->start[0];
 	coords[1] = ray->start[1];
-	steps[0] = fabs(ray->end[0] - ray->start[0]) / (float)direction;
-	steps[1] = fabs(ray->end[1] - ray->start[1]) / (float)direction;
+	steps[0] = fabs(ray->end[0] - ray->start[0]) / (float)dir;
+	steps[1] = fabs(ray->end[1] - ray->start[1]) / (float)dir;
 	mlx_put_pixel(img, ray->start[0], ray->start[1], 0xbad129);
-	while (i < direction)
+	while (i < dir)
 	{
 		if (ray->start[0] <= ray->end[0])
 			coords[0] += steps[0];
