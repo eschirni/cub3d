@@ -73,17 +73,19 @@ t_map	*init_map(char *mapfile)
 		ft_error("invalid map: ", mapfile);
 	map = malloc(sizeof(t_map));
 	map->y = get_size(mapfile);
-	map->file = malloc(sizeof(char *) * map->y + 1);
+	map->file = malloc(sizeof(char *) * (map->y + 1));
 	if (!map->file)
 		ft_error("malloc failed", NULL);
 	map->file[0] = get_next_line(fd);
-	i = 0;
-	while (map->file[i])
+	i = 1;
+	while (true)
 	{
-		i++;
 		map->file[i] = get_next_line(fd);
+		if (map->file[i] == NULL)
+			break ;
+		i++;
 	}
-	close (fd);
+	close(fd);
 	map_checker(map);
 	map->x = ft_strlen_sl(map->big_map[0]);
 	map->n_chars = 0;

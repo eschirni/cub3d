@@ -6,12 +6,12 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/27 12:48:41 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/27 19:35:18 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # FLAGS
-CFLAGS = -Wall -Wextra -Werror -O3
+CFLAGS = -Wall -Wextra -Werror
 MLX = -lglfw -L $$HOME/.brew/Cellar/glfw/3.3.7/lib MLX42/libmlx42.a
 
 # COLORS
@@ -43,9 +43,9 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(DRAW_PATH)draw_map.c $(DRAW_PATH)draw.c \
 		$(DRAW_PATH)draw_chars.c $(DRAW_PATH)draw_3d.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
-		$(MAIN_MENU_PATH)main_menu.c $(MAIN_MENU_PATH)hooks.c \
-		$(MAIN_MENU_PATH)settings.c $(MAIN_MENU_PATH)animations.c \
-		$(MAIN_MENU_PATH)switch_menu.c $(MAIN_MENU_PATH)menu_sliders.c \
+		$(MAIN_MENU_PATH)main_menu.c \
+		$(MAIN_MENU_PATH)settings.c \
+		$(MAIN_MENU_PATH)switch_menu.c \
 		$(MAIN_MENU_PATH)animate_scroll_text.c $(MAIN_MENU_PATH)init_textures.c \
 		$(PARSE_PATH)parser.c $(PARSE_PATH)split.c \
 		$(PARSE_PATH)parse_utils.c $(PARSE_PATH)get_config.c \

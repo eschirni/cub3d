@@ -80,7 +80,7 @@ static char	**get_map(t_map *map, char **file, int start)
 	size = get_map_size(file);
 	if (!size)
 		ft_error("map empty", NULL);
-	new_map = malloc(sizeof(char *) * size + 1);
+	new_map = malloc(sizeof(char *) * (size + 1));
 	if (!new_map)
 		ft_error("failed to allocate memory", NULL);
 	i = 0;

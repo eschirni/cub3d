@@ -8,7 +8,7 @@ static uint32_t	*get_color(mlx_texture_t *texture)
 	uint32_t		*colors;
 
 	i = 0;
-	colors = malloc(sizeof(uint32_t) * texture->width * texture->height);
+	colors = malloc(sizeof(uint32_t) * (texture->width + 1) * (texture->height + 1));
 	if (colors == NULL)
 		ft_error("Allocation error!\n", NULL);
 	pos = 0;
