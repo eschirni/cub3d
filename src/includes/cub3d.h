@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/27 19:54:44 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/27 20:11:26 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,11 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>	//debug
-# include <sys/time.h>
 
 # define RED "\033[31m"
 # define RESET "\033[0m"
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MINIMAP 288
 
 typedef struct s_ray
 {
@@ -83,7 +81,6 @@ typedef struct s_menu
 	long		back_seconds;
 	long		music_start;
 	long		scroll_seconds;
-	mlx_image_t	*imgs[67];
 }				t_menu;
 
 typedef struct s_textures
