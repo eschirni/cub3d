@@ -67,7 +67,7 @@ void	main_menu(t_game *game)
 	create_buttons(game);
 	init_settings(game);
 	init_textures(game);
-	to_menu(game);
+	to_game(game);
 	mlx_loop_hook(game->mlx, &fps, game);
 	mlx_cursor_hook(game->mlx, &hover_buttons, game);
 	mlx_mouse_hook(game->mlx, &menu_buttons, game);

@@ -38,7 +38,7 @@ static void	mouse_rotate(t_game *game)
 static void	check_keys(t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-		to_menu(game);
+		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
 		system("say -v Fred I think I should go to the gym more often... &");
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))

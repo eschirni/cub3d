@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/27 12:29:54 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/27 12:48:41 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ B = "\033[36m"
 X = "\033[0m"
 
 # EXECUTABLE
-NAME = ./cub3d
+NAME = ./cub3D
 
 # PATHS
 SRC_PATH = ./src/

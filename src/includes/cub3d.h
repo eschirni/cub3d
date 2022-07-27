@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/27 12:30:48 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/27 12:44:00 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,5 @@ void	animate_menu(t_menu *menu);
 void	hover_buttons(double x, double y, void *tmp);
 void	main_menu(t_game *game);
 void	to_game(t_game *game);
-void	to_menu(t_game *game);
 
 #endif
