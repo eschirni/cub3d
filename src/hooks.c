@@ -100,6 +100,7 @@ void	fps(void *tmp)
 		game->game_img->enabled = true;
 		draw_game(game, game->chars[0]->ray);
 		move_enemies(game);
+		free(game->rays);
 		draw_crosshair(game, 0xFFFFFFFF, game->menu->settings->cross_type);
 		draw_torch(game);
 		if (game->sounds->sound == true)

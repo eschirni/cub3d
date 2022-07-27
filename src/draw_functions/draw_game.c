@@ -29,6 +29,8 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 	if (mini == NULL)
 		ft_error("Allocation error!\n", NULL);
 	game->rays = malloc(sizeof(float) * 1920);
+	if (!game->rays)
+		ft_error("failed to allocate memory", NULL);
 	while (i < game->menu->settings->fov)
 	{
 		ray->ra += (float)M_PI / 180 / game->menu->settings->graphics;
@@ -76,7 +78,6 @@ void	draw_game(t_game *game, t_ray *ray)
 	rounded[1] = (int)game->map->player[1];
 	reset_img(game, ray->img, MINIMAP, MINIMAP);
 	iterate_game(game, ray, 0, rounded);
-	free(game->rays);
 	draw_chests(game);
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
 	game->game_img->instances[0].z = -100;

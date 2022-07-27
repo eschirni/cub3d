@@ -31,7 +31,7 @@ static void	calc_draw(t_game *game, float sp_x, float sp_y)
 	{
 		t_y = game->textures->chuci_size[1];
 		y = 0;
-		while (y <size[1])
+		while (y <size[1] && ((int)t_y * game->textures->chuci_size[0] - (int)t_x) >= 0)
 		{
 			if (screen_pos[0] - x < WIDTH && screen_pos[1] - y < HEIGHT && screen_pos[0] - x > 1 && screen_pos[1] - y > 1 && game->map->big_map[(int)sp_y / 32][(int)sp_x / 32] != 'l')
 			{
