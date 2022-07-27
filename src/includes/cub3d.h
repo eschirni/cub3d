@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/27 12:44:00 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/27 18:38:16 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,9 @@ typedef struct s_map
 	mlx_image_t	*wall;
 }				t_map;
 
-typedef struct s_settings
-{
-	int			fov;
-	int			graphics;
-	float		rs;
-}				t_settings;
-
 typedef struct s_menu
 {
-	t_settings	*settings;
 	bool		in_menu;
-	bool		started_game;
 	char		scroll_mode;
 	int			back_frame;
 	int			scroll_frame;

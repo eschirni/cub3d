@@ -1,32 +1,5 @@
 #include "../includes/cub3d.h"
 
-// static void	draw_ground(t_game *game, t_ray *ray, float player[2], int tex[2])
-// {
-// 	float	angle;
-// 	float	dy;
-// 	float	tx;
-// 	float	ty;
-// 	int		y;
-
-// 	y = ray->end[1] + 1;
-// 	while (y < HEIGHT)
-// 	{
-// 		dy = y - (HEIGHT / 2);
-// 		angle = game->chars[0]->pa - ray->ra;
-// 		if (angle >= (float)M_PI * 2)
-// 			angle -= (float)M_PI * 2;
-// 		else if (angle < 0)
-// 			angle += (float)M_PI * 2;
-// 		angle = cos(angle);
-// 		tx = player[0] + cos(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
-// 		ty = player[1] + sin(ray->ra) * (HEIGHT / 2) * 32 / dy / angle;
-// 		ray->color = game->textures->floor[((int)ty % tex[1]) * tex[1]
-// 			+ ((int)tx % tex[0])];
-// 		mlx_put_pixel(game->game_img, ray->start[0], y, ray->color);
-// 		y++;
-// 	}
-// }
-
 static void	draw_env(t_game *game, t_ray *ray)
 {
 	int	y;
@@ -46,9 +19,6 @@ static void	draw_env(t_game *game, t_ray *ray)
 		mlx_put_pixel(game->game_img, ray->start[0], y, game->map->color_f);
 		y++;
 	}
-	// tex[0] = game->textures->floor_size[0];
-	// tex[1] = game->textures->floor_size[1];
-	// draw_ground(game, ray, game->map->player, tex);
 }
 
 static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
@@ -70,7 +40,7 @@ static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
 		out_of_bounds = (*lh - HEIGHT - 1) / 2;
 		*lh = HEIGHT - 1;
 	}
-	*lw = WIDTH / game->menu->settings->fov;
+	*lw = 1;
 	return (out_of_bounds);
 }
 

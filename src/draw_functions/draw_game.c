@@ -27,9 +27,9 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 	mini = malloc(sizeof(t_ray));
 	if (mini == NULL)
 		ft_error("Allocation error!\n", NULL);
-	while (i < game->menu->settings->fov)
+	while (i < 1920)
 	{
-		ray->ra += (float)M_PI / 180 / game->menu->settings->graphics;
+		ray->ra += (float)M_PI / 180 / 32;
 		if (ray->ra >= (float)M_PI * 2)
 			ray->ra -= (float)M_PI * 2;
 		ray->dist = calc_rays(ray, game->map, coords[0], coords[1]);

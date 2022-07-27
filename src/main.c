@@ -3,8 +3,6 @@
 static t_game	*alloc_game(t_map *map)
 {
 	t_game			*game;
-	mlx_texture_t	*curs_tex;
-	void			*cursor;
 
 	game = malloc(sizeof(t_game));
 	if (game == NULL)
@@ -13,10 +11,6 @@ static t_game	*alloc_game(t_map *map)
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
 	game->map = map;
-	curs_tex = mlx_load_png("./sprites/cursor.png");
-	cursor = mlx_create_cursor(curs_tex);
-	mlx_delete_texture(curs_tex);
-	mlx_set_cursor(game->mlx, cursor);
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	return (game);
 }
@@ -44,6 +38,6 @@ int	main(int argc, char **argv)
 	main_menu(game);
 	mlx_loop(game->mlx);
 	free_exit(map, game);
-	system("leaks cub3d");
+	system("leaks cub3D");
 	return (EXIT_SUCCESS);
 }
