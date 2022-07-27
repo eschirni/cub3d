@@ -6,8 +6,6 @@ static void	draw_env(t_game *game, t_ray *ray)
 	// int	tex[2];
 
 	y = 0;
-	if (ray->start[0] < MINIMAP)
-		y = MINIMAP;
 	while (y < ray->start[1])
 	{
 		mlx_put_pixel(game->game_img, ray->start[0], y, game->map->color_c);
@@ -46,18 +44,19 @@ static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
 
 static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 {
-	int		texture_x;
-	int		texture_y;
-	int		ray_start;
+	int	texture_x;
+	int	texture_y;
+	int	ray_start;
+	int	color;
 
 	ray_start = ray->start[1];
 	while (ray_start <= ray->end[1])
 	{
 		texture_x = (int)pos * game->textures->wall_size[1];
 		texture_y = ray_end % game->textures->wall_size[0];
-		ray->color = game->textures->wall[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
+		color = game->textures->wall[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
 		if (ray->start[0] < 1920 && ray_start < 1080)
-			mlx_put_pixel(game->game_img, ray->start[0], ray_start, ray->color);
+			mlx_put_pixel(game->game_img, ray->start[0], ray_start, color);
 		ray_start += 1;
 		pos += game->textures->offset;
 	}

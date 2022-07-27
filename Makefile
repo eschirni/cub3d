@@ -6,12 +6,12 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/27 19:35:18 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/27 19:58:23 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # FLAGS
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 MLX = -lglfw -L $$HOME/.brew/Cellar/glfw/3.3.7/lib MLX42/libmlx42.a
 
 # COLORS
@@ -40,7 +40,7 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(SRC_PATH)char_direction.c $(SRC_PATH)hooks.c \
 		$(SRC_PATH)ray.c \
 		$(DRAW_PATH)draw_game.c \
-		$(DRAW_PATH)draw_map.c $(DRAW_PATH)draw.c \
+		$(DRAW_PATH)draw_map.c \
 		$(DRAW_PATH)draw_chars.c $(DRAW_PATH)draw_3d.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
 		$(MAIN_MENU_PATH)main_menu.c \

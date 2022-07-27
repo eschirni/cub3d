@@ -1,23 +1,5 @@
 #include "../includes/cub3d.h"
 
-static void	reset_img(mlx_image_t *img, int width, int height)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < width)
-	{
-		y = 0;
-		while (y < height)
-		{
-			mlx_put_pixel(img, x, y, 0x000000);
-			y++;
-		}
-		x++;
-	}
-}
-
 static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 {
 	int		line_x;
@@ -37,7 +19,6 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 		mini->start[1] = ray->start[1] - (game->map->player[1] - 144);
 		mini->end[0] = ray->end[0] - (game->map->player[0] - 144);
 		mini->end[1] = ray->end[1] - (game->map->player[1] - 144);
-		draw_line(mini, ray->img); //draw ray
 		draw_3d(game, ray, 0, &line_x);
 		i++;
 	}
@@ -60,7 +41,6 @@ void	draw_game(t_ray *ray, t_game *game, float coords[2])
 	line_x = 0;
 	rounded[0] = (int)coords[0];
 	rounded[1] = (int)coords[1];
-	reset_img(ray->img, MINIMAP, MINIMAP);
 	iterate_game(game, ray, 0, rounded);
 	mlx_image_to_window(game->mlx, game->game_img, 0, 0);
 }
