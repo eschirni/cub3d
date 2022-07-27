@@ -45,6 +45,7 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(DRAW_PATH)draw_map.c $(DRAW_PATH)draw.c \
 		$(DRAW_PATH)draw_chars.c $(DRAW_PATH)draw_3d.c \
 		$(DRAW_PATH)torch.c $(DRAW_PATH)draw_sprites.c \
+		$(DRAW_PATH)draw_utils.c \
 		$(MAIN_MENU_PATH)main_menu.c $(MAIN_MENU_PATH)hooks.c \
 		$(MAIN_MENU_PATH)settings.c $(MAIN_MENU_PATH)animations.c \
 		$(MAIN_MENU_PATH)switch_menu.c $(MAIN_MENU_PATH)menu_sliders.c \

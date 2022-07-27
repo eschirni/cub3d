@@ -49,49 +49,6 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 	free(mini);
 }
 
-static float	calc_dist(float player[2], float chest[2])
-{
-	float	dist;
-	float	vec[2];
-
-	vec[0] = chest[0] - player[0];
-	vec[1] = chest[1] - player[1];
-	dist = sqrtf(vec[0] * vec[0] + vec[1] * vec[1]);
-	return (dist);
-}
-
-static void	sort_chests(t_game *game)
-{
-	int		i;
-	int		j;
-	float	tmp[2];
-	float	pl[2];
-
-	i = 0;
-	pl[0] = game->map->player[0];
-	pl[1] = game->map->player[1];
-	while (i < game->map->loot)
-	{
-		j = i;
-		while (j < game->map->loot)
-		{
-			float dist_i = calc_dist(pl, game->map->chests[i]);
-			float dist_j = calc_dist(pl, game->map->chests[j]);
-			if (dist_i < dist_j)
-			{
-				tmp[0] = game->map->chests[i][0];
-				tmp[1] = game->map->chests[i][1];
-				game->map->chests[i][0] = game->map->chests[j][0];
-				game->map->chests[i][1] = game->map->chests[j][1];
-				game->map->chests[j][0] = tmp[0];
-				game->map->chests[j][1] = tmp[1];
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
 static void	draw_chests(t_game *game)
 {
 	int	i;
