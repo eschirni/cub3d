@@ -19,7 +19,6 @@ static void	set_coords(t_game *game, int addX, int addY)
 			return ;
 		angle += (float)M_PI / 18;
 	}
-	move_map(game, addX, addY);
 	game->map->player[0] += addX;
 	game->map->player[1] += addY;
 }

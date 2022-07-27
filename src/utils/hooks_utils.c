@@ -26,32 +26,3 @@ void	calc_rotate(t_game *game, float rotation, int n)
 		game->chars[n]->pa -= (float)M_PI * 2;
 	get_move(game, game->chars[n]);
 }
-
-static void	iterate_tiles(mlx_image_t *img, int addX, int addY)
-{
-	int	i;
-
-	i = 0;
-	while (i < img->count)
-	{
-		img->instances[i].x -= addX;
-		img->instances[i].y -= addY;
-		i++;
-	}
-}
-
-void	move_map(t_game *game, int addX, int addY)
-{
-	int	tmp;
-
-	iterate_tiles(game->map->floor, addX, addY);
-	iterate_tiles(game->map->wall, addX, addY);
-	iterate_tiles(game->map->out, addX, addY);
-	tmp = 1;
-	while (tmp < game->map->n_chars)
-	{
-		game->chars[tmp]->img->instances[0].x -= addX;
-		game->chars[tmp]->img->instances[0].y -= addY;
-		tmp++;
-	}
-}
