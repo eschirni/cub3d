@@ -193,6 +193,7 @@ int		find_instance(t_game *game, int x, int y);
 char	*ft_append(char *start, char *end);
 char	*ft_itoa(int n);
 char	*ft_strcdup(char *s1, char c, size_t start);
+void	init_end_textures(t_game *game);
 
 /* draw functions */
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);

@@ -81,4 +81,5 @@ void	animate_menu(t_game *game)
 		play_music(game->menu, time.tv_sec);
 	animate_bg(game->menu, now);
 	animate_scroll(game->menu, now);
+	game->game_img->enabled = false;
 }

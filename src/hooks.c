@@ -107,8 +107,5 @@ void	fps(void *tmp)
 			check_music(game, false);
 	}
 	else
-	{
 		animate_menu(game);
-		game->game_img->enabled = false;
-	}
 }

@@ -41,6 +41,7 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(UTILS_PATH)free_exit.c $(UTILS_PATH)hooks_utils.c \
 		$(UTILS_PATH)gameplay_utils.c $(UTILS_PATH)ft_append.c\
 		$(UTILS_PATH)ft_itoa.c $(UTILS_PATH)ft_strcdup.c \
+		$(UTILS_PATH)end_utils.c \
 		$(DRAW_PATH)draw_game.c $(DRAW_PATH)draw_crosshair.c \
 		$(DRAW_PATH)draw_map.c $(DRAW_PATH)draw.c \
 		$(DRAW_PATH)draw_chars.c $(DRAW_PATH)draw_3d.c \
