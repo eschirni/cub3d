@@ -1,5 +1,17 @@
 #include "../includes/cub3d.h"
 
+static void	set_coords(t_ray *ray, float coords[2], float steps[2])
+{
+	if (ray->start[0] <= ray->end[0])
+		coords[0] += steps[0];
+	else
+		coords[0] -= steps[0];
+	if (ray->start[1] <= ray->end[1])
+		coords[1] += steps[1];
+	else
+		coords[1] -= steps[1];
+}
+
 static void	draw_minimap(t_game *game, t_ray *ray, int dir, mlx_image_t *img)
 {
 	int		i;
@@ -14,14 +26,7 @@ static void	draw_minimap(t_game *game, t_ray *ray, int dir, mlx_image_t *img)
 	mlx_put_pixel(img, ray->start[0], ray->start[1], 0xbad129);
 	while (i < dir)
 	{
-		if (ray->start[0] <= ray->end[0])
-			coords[0] += steps[0];
-		else
-			coords[0] -= steps[0];
-		if (ray->start[1] <= ray->end[1])
-			coords[1] += steps[1];
-		else
-			coords[1] -= steps[1];
+		set_coords(ray, coords, steps);
 		i++;
 		if (coords[0] >= 0 && coords[0] < MINIMAP
 			&& coords[1] >= 0 && coords[1] < MINIMAP)

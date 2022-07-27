@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void	draw_torch(t_game *game)
+static mlx_texture_t	*set_textures(t_game *game)
 {
 	mlx_texture_t	*txt;
 
@@ -28,6 +28,14 @@ void	draw_torch(t_game *game)
 		txt = mlx_load_png("./sprites/torch/torch4.png");
 	else
 		txt = mlx_load_png("./sprites/torch/torch5.png");
+	return (txt);
+}
+
+void	draw_torch(t_game *game)
+{
+	mlx_texture_t	*txt;
+
+	txt = set_textures(game);
 	if (game->torch != NULL)
 		mlx_delete_image(game->mlx, game->torch);
 	game->torch = mlx_texture_to_image(game->mlx, txt);
