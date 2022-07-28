@@ -6,23 +6,30 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:59:19 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/28 17:58:13 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:07:59 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+static bool	ground(char c)
+{
+	if (is_char_obj(c) || c == '0')
+		return (true);
+	return (false);
+}
+
 static bool	check_space(t_map *map, int x, int y)
 {
-	if (map->big_map[y + 1][x] == '0' || map->big_map[y - 1][x] == '0')
+	if (ground(map->big_map[y + 1][x]) || ground(map->big_map[y - 1][x]))
 		return (false);
-	else if (map->big_map[y][x - 1] == '0' || map->big_map[y][x + 1] == '0')
+	else if (ground(map->big_map[y][x - 1]) || ground(map->big_map[y][x + 1]))
 		return (false);
-	else if (map->big_map[y - 1][x - 1] == '0'
-		|| map->big_map[y + 1][x - 1] == '0')
+	else if (ground(map->big_map[y - 1][x - 1])
+		|| ground(map->big_map[y + 1][x - 1]))
 		return (false);
-	else if (map->big_map[y - 1][x + 1] == '0'
-		|| map->big_map[y + 1][x + 1] == '0')
+	else if (ground(map->big_map[y - 1][x + 1])
+		|| ground(map->big_map[y + 1][x + 1]))
 		return (false);
 	return (true);
 }
