@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:06:31 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/28 15:17:30 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 20:41:56 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static uint32_t	*mirror_texture(uint32_t *texture, int size[2])
 	uint32_t	*mir;
 
 	mir = malloc(sizeof(uint32_t) * (size[0] + 1) * (size[1] + 1));
-	if (!mir)	
+	if (mir == NULL)
 		ft_error("failed to allocate memory", NULL);
 	i = 0;
 	j = size[0] - 1;
@@ -65,39 +65,51 @@ static uint32_t	*mirror_texture(uint32_t *texture, int size[2])
 	return (mir);
 }
 
-void	init_textures(t_game *game)
+static void	init_ne(t_map *map, t_textures *text)
 {
 	mlx_texture_t	*txt;
 
+	txt = mlx_load_png(map->no_tex);
+	if (txt == NULL || txt->height != 32 || txt->width != 32)
+		ft_error("non accepted texture", NULL);
+	text->north = get_color(txt);
+	text->north_size[0] = txt->width;
+	text->north_size[1] = txt->height;
+	mlx_delete_texture(txt);
+	txt = mlx_load_png(map->ea_tex);
+	if (txt == NULL || txt->height != 32 || txt->width != 32)
+		ft_error("non accepted texture", NULL);
+	text->east = get_color(txt);
+	text->east_size[0] = txt->width;
+	text->east_size[1] = txt->height;
+	mlx_delete_texture(txt);
+}
+
+static void	init_sw(t_map *map, t_textures *text)
+{
+	mlx_texture_t	*txt;
+
+	txt = mlx_load_png(map->so_tex);
+	if (txt == NULL || txt->height != 32 || txt->width != 32)
+		ft_error("non accepted texture", NULL);
+	text->south = get_color(txt);
+	text->south_size[0] = txt->width;
+	text->south_size[1] = txt->height;
+	text->south = mirror_texture(text->south, text->south_size);
+	mlx_delete_texture(txt);
+	txt = mlx_load_png(map->we_tex);
+	if (txt == NULL || txt->height != 32 || txt->width != 32)
+		ft_error("non accepted texture", NULL);
+	text->west = get_color(txt);
+	text->west_size[0] = txt->width;
+	text->west_size[1] = txt->height;
+	text->west = mirror_texture(text->west, text->west_size);
+	mlx_delete_texture(txt);
+}
+
+void	init_textures(t_game *game)
+{
 	game->textures = malloc(sizeof(t_textures));
-	txt = mlx_load_png(game->map->no_tex);
-	if (txt == NULL || txt->height != 32 || txt->width != 32)
-		ft_error("non accepted texture", NULL);
-	game->textures->north = get_color(txt);
-	game->textures->north_size[0] = txt->width;
-	game->textures->north_size[1] = txt->height;
-	mlx_delete_texture(txt);
-	txt = mlx_load_png(game->map->ea_tex);
-	if (txt == NULL || txt->height != 32 || txt->width != 32)
-		ft_error("non accepted texture", NULL);
-	game->textures->east = get_color(txt);
-	game->textures->east_size[0] = txt->width;
-	game->textures->east_size[1] = txt->height;
-	mlx_delete_texture(txt);
-	txt = mlx_load_png(game->map->so_tex);
-	if (txt == NULL || txt->height != 32 || txt->width != 32)
-		ft_error("non accepted texture", NULL);
-	game->textures->south = get_color(txt);
-	game->textures->south_size[0] = txt->width;
-	game->textures->south_size[1] = txt->height;
-	game->textures->south = mirror_texture(game->textures->south, game->textures->south_size);
-	mlx_delete_texture(txt);
-	txt = mlx_load_png(game->map->we_tex);
-	if (txt == NULL || txt->height != 32 || txt->width != 32)
-		ft_error("non accepted texture", NULL);
-	game->textures->west = get_color(txt);
-	game->textures->west_size[0] = txt->width;
-	game->textures->west_size[1] = txt->height;
-	game->textures->west = mirror_texture(game->textures->west, game->textures->west_size);
-	mlx_delete_texture(txt);
+	init_ne(game->map, game->textures);
+	init_sw(game->map, game->textures);
 }
