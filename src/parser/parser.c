@@ -19,8 +19,8 @@ static void	check_start_pos(char **map)
 		}
 		i++;
 	}
-	if (!players)
-		ft_error("please set a starting position", NULL);
+	if (players != 1)
+		ft_error("please set 1 starting position", NULL);
 }
 
 static int	get_map_size(char **file)
@@ -42,27 +42,82 @@ static int	get_map_size(char **file)
 	return (count);
 }
 
+static void	print_2d_array(char **array)
+{
+	int	i;
+
+	if (!array)
+		printf("Array empty.\n");
+	i = 0;
+	while (array[i])
+	{
+		printf("%s\n", array[i]);
+		i++;
+	}
+	printf("\n");
+}
+
+static int	get_x(char **file, int start)
+{
+	int	len;
+	int	tmp;
+
+	len = 0;
+	while (file[start])
+	{
+		tmp = ft_strlen(file[start]);
+		if (tmp > len)
+			len = tmp;
+		start++;
+	}
+	return (len);
+}
+
+static int	fill_with_whitespace(char *line, int j, int end)
+{
+	while (j < end)
+	{
+		line[j] = ' ';
+		j++;
+	}
+	line[end] = '\0';
+	return (end);
+}
+
 static char	**get_map(t_map *map, char **file, int start)
 {
 	int		i;
+	int		j;
 	char	**new_map;
 	int		size;
 
 	size = get_map_size(file);
 	if (!size)
 		ft_error("map empty", NULL);
-	new_map = malloc(sizeof(char *) * (size + 1));
+	new_map = malloc(sizeof(char *) * (size + 2));
 	if (!new_map)
 		ft_error("failed to allocate memory", NULL);
+	map->x = get_x(file, start);
 	i = 0;
 	while (file[start])
 	{
-		new_map[i] = ft_strdup(file[start]);
+		new_map[i] = malloc(sizeof(char) * map->x + 1);
+		if (!new_map[i])
+			ft_error("failed to allocate memory", NULL);
+		j = 0;
+		while (j < map->x)
+		{
+			new_map[i][j] = file[start][j];
+			j++;
+			if (!file[start][j])
+				j = fill_with_whitespace(new_map[i], j, map->x);
+		}
 		start++;
 		i++;
 	}
 	map->y = i;
 	new_map[i] = NULL;
+	print_2d_array(new_map);
 	return (new_map);
 }
 

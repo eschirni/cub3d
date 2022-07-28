@@ -12,17 +12,17 @@
 
 #include "includes/cub3d.h"
 
-static size_t	ft_strlen_sl(const char *str)
-{
-	size_t	len;
+// static size_t	ft_strlen_sl(const char *str)
+// {
+// 	size_t	len;
 
-	len = 0;
-	if (!str)
-		return (0);
-	while (str[len] != '\0' && str[len] != '\n')
-		len++;
-	return (len);
-}
+// 	len = 0;
+// 	if (!str)
+// 		return (0);
+// 	while (str[len] != '\0' && str[len] != '\n')
+// 		len++;
+// 	return (len);
+// }
 
 static int	get_size(char *mapfile)
 {
@@ -96,7 +96,6 @@ void	init_map(t_game *game, char *mapfile)
 	}
 	close(fd);
 	map_checker(map);
-	map->x = ft_strlen_sl(map->big_map[0]);
 	mark_player(game, map);
 	check_map_closed(map);
 	game->map = map;
