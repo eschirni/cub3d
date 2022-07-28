@@ -115,6 +115,8 @@ int	extract_infos(t_map *map, char **file, int f, int c)
 		}
 		i++;
 	}
+	if (!no || !so || !ea || !we)
+		ft_error("missing texture", NULL);
 	map->color_f = (map->rgb_f[0] << 24) + (map->rgb_f[1] << 16) + (map->rgb_f[2] << 8) + 255;
 	map->color_c = (map->rgb_c[0] << 24) + (map->rgb_c[1] << 16) + (map->rgb_c[2] << 8) + 255;
 	return (i);
