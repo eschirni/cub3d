@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:59:19 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/28 18:55:51 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 19:57:18 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,23 @@ static bool	check_border(t_map *map, int x, int y)
 	return (false);
 }
 
+static void remove_lines(t_map *map)
+{
+	int		i;
+
+	i = map->y - 1;
+	while (map->big_map[i][0] == '\0')
+		i--;
+	map->y -= abs(i - (map->y - 1));
+}
+
 void	check_map_closed(t_map *map)
 {
 	int		x;
 	int		y;
 	bool	closed;
 
+	remove_lines(map);
 	y = 0;
 	while (y < map->y)
 	{
