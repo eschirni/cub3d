@@ -63,6 +63,44 @@ static void	set_tex_colors(t_map *map, char *line, char c)
 	free_2d_array(split_rgb);
 }
 
+static int	is_map(char *line)
+{
+	int	i;
+	int	tile;
+
+	i = 0;
+	tile = 0;
+	while (line[i])
+	{
+		if (line[i] == '0' || line[i] == '1')
+		{
+			i++;
+			tile++;
+		}
+		else if (line[i] == ' ')
+			i++;
+		else
+			return (0);
+	}
+	if (tile == 0)
+		return (0);
+	return (1);
+}
+
+static int	check_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+	{
+		if (line[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	extract_infos(t_map *map, char **file, int f, int c)
 {
 	int	i;
@@ -76,7 +114,7 @@ int	extract_infos(t_map *map, char **file, int f, int c)
 	so = 0;
 	we = 0;
 	ea = 0;
-	while (file[i] && file[i][0] != '1')
+	while (file[i] && !is_map(file[i]))
 	{
 		if (!ft_strncmp(file[i], "NO ", 3) && !no)
 		{
@@ -110,12 +148,12 @@ int	extract_infos(t_map *map, char **file, int f, int c)
 		}
 		else
 		{
-			if (file[i][0] && file[i][0] != ' ')
+			if (!check_line(file[i]))
 				ft_error("config syntax error", NULL);
 		}
 		i++;
 	}
-	if (!no || !so || !ea || !we)
+	if (!no || !so || !ea || !we || !c || !f)
 		ft_error("missing texture", NULL);
 	map->color_f = (map->rgb_f[0] << 24) + (map->rgb_f[1] << 16) + (map->rgb_f[2] << 8) + 255;
 	map->color_c = (map->rgb_c[0] << 24) + (map->rgb_c[1] << 16) + (map->rgb_c[2] << 8) + 255;
