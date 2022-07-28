@@ -31,7 +31,7 @@ void	draw_game(t_ray *ray, t_game *game, float coords[2])
 	int	line_x;
 	int	rounded[2];
 
-	ray->ra = game->chars[0]->pa - 30 * ((float)M_PI / 180);
+	ray->ra = game->chr->pa - 30 * ((float)M_PI / 180);
 	if (ray->ra < 0)
 		ray->ra += (float)M_PI * 2;
 	if (game->game_img)

@@ -24,7 +24,7 @@ static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
 	float	angle_distance;
 	float	out_of_bounds;
 
-	angle_distance = game->chars[0]->pa - ray->ra;
+	angle_distance = game->chr->pa - ray->ra;
 	if (angle_distance < 0)
 		angle_distance += (float)M_PI * 2;
 	else if (angle_distance >= (float) M_PI * 2)

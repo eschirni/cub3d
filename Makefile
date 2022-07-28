@@ -6,12 +6,12 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/27 20:36:48 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/28 10:01:36 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # FLAGS
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -Ofast			
 MLX = -lglfw -L $$HOME/.brew/Cellar/glfw/3.3.7/lib MLX42/libmlx42.a
 
 # COLORS
@@ -34,13 +34,11 @@ PARSE_PATH = ./src/parser/
 
 # SOURCES
 SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
-		$(UTILS_PATH)ft_error.c $(UTILS_PATH)utils.c \
-		$(UTILS_PATH)free_exit.c $(UTILS_PATH)hooks_utils.c \
 		$(SRC_PATH)char_direction.c $(SRC_PATH)hooks.c \
 		$(SRC_PATH)ray.c $(SRC_PATH)init_textures.c \
-		$(DRAW_PATH)draw_game.c \
-		$(DRAW_PATH)draw_map.c \
-		$(DRAW_PATH)draw_chars.c $(DRAW_PATH)draw_3d.c \
+		$(UTILS_PATH)ft_error.c $(UTILS_PATH)utils.c \
+		$(UTILS_PATH)free_exit.c $(UTILS_PATH)hooks_utils.c \
+		$(DRAW_PATH)draw_game.c $(DRAW_PATH)draw_3d.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
 		$(PARSE_PATH)parser.c $(PARSE_PATH)split.c \
 		$(PARSE_PATH)parse_utils.c $(PARSE_PATH)get_config.c \

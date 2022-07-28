@@ -11,13 +11,8 @@ static void	free_arrs(t_game *game)
 		i++;
 	}
 	i = 0;
-	free(game->chars[0]->ray);
-	while (i < game->map->n_chars)
-	{
-		free(game->chars[i]);
-		i++;
-	}
-	free(game->chars);
+	free(game->chr->ray);
+	free(game->chr);
 }
 
 void	free_exit(t_map *map, t_game *game)

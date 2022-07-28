@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/27 20:45:18 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 09:59:40 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ typedef struct s_char
 	float		s[2];
 	float		d[2];
 	float		pa;
-	float		x;
-	float		y;
 }				t_char;
 
 typedef struct s_map
@@ -63,7 +61,6 @@ typedef struct s_map
 	float		player[2];
 	int			x;
 	int			y;
-	int			n_chars;
 }				t_map;
 
 typedef struct s_textures
@@ -75,7 +72,7 @@ typedef struct s_textures
 
 typedef struct s_game
 {
-	t_char		**chars;
+	t_char		*chr;
 	t_map		*map;
 	t_textures	*textures;
 	mlx_t		*mlx;
@@ -84,7 +81,7 @@ typedef struct s_game
 }				t_game;
 
 /* map parsing */
-t_map	*init_map(char *mapfile);
+void	init_map(t_game *game, char *mapfile);
 void	map_checker(t_map *map);
 char	**ft_split(char const *s, char c);
 int		cub_atoi(char *str);
@@ -95,7 +92,7 @@ int		extract_infos(t_map *map, char **file, int f, int c);
 int		ft_strncmp(const char *str1, const char *str2, size_t size);
 
 /* char fuctions */
-void	set_direction(t_game *game, char direction, int n);
+void	set_direction(t_game *game, char direction);
 
 /* utils */
 bool	is_char_obj(char c);
@@ -112,7 +109,7 @@ void	draw_game(t_ray *ray, t_game *game, float coords[2]);
 void	draw_map(t_game *game, t_map *map);
 
 /* hooks */
-void	calc_rotate(t_game *game, float rotation, int n);
+void	calc_rotate(t_game *game, float rotation);
 void	fps(void *tmp);
 
 /* rays */

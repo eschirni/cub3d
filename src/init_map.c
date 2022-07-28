@@ -35,7 +35,7 @@ static int	get_size(char *mapfile)
 	return (count);
 }
 
-static void	mark_player(t_map *map)
+static void	mark_player(t_game *game, t_map *map)
 {
 	int	i;
 	int	j;
@@ -53,8 +53,11 @@ static void	mark_player(t_map *map)
 				{
 					map->player[0] = j * 32 + 16;
 					map->player[1] = i * 32 + 16;
+					game->chr = malloc(sizeof(t_char));
+					if (game->chr == NULL)
+						ft_error("allocation error", NULL);
+					set_direction(game, map->big_map[i][j]);
 				}
-				map->n_chars++;
 			}
 			j--;
 		}
@@ -62,7 +65,7 @@ static void	mark_player(t_map *map)
 	}
 }
 
-t_map	*init_map(char *mapfile)
+void	init_map(t_game *game, char *mapfile)
 {
 	t_map	*map;
 	int		fd;
@@ -88,23 +91,6 @@ t_map	*init_map(char *mapfile)
 	close(fd);
 	map_checker(map);
 	map->x = ft_strlen_sl(map->big_map[0]);
-	map->n_chars = 0;
-	mark_player(map);
-	return (map);
+	mark_player(game, map);
+	game->map = map;
 }
-
-// t_map	*init_map(t_mapgen *mapg)
-// {
-// 	t_map	*map;
-
-// 	map = malloc(sizeof(t_map));
-// 	if (!map)
-// 		ft_error("allocation failed", NULL);
-// 	map->x = mapg->size + 2;
-// 	map->y = mapg->size + 2;
-// 	map->big_map = mapg->map;
-// 	free(mapg);
-// 	map->n_chars = 0;
-// 	mark_player(map);
-// 	return (map);
-// }

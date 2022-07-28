@@ -12,17 +12,17 @@ static void	get_move(t_game *game, t_char *chr)
 	chr->a[1] = chr->d[1] * -1;
 }
 
-void	calc_rotate(t_game *game, float rotation, int n)
+void	calc_rotate(t_game *game, float rotation)
 {
 	float		x;
 	float		y;
 
 	x = game->map->player[0];
 	y = game->map->player[1];
-	game->chars[n]->pa += rotation;
-	if (game->chars[n]->pa < 0)
-		game->chars[n]->pa += (float)M_PI * 2;
-	else if (game->chars[n]->pa >= (float)M_PI * 2)
-		game->chars[n]->pa -= (float)M_PI * 2;
-	get_move(game, game->chars[n]);
+	game->chr->pa += rotation;
+	if (game->chr->pa < 0)
+		game->chr->pa += (float)M_PI * 2;
+	else if (game->chr->pa >= (float)M_PI * 2)
+		game->chr->pa -= (float)M_PI * 2;
+	get_move(game, game->chr);
 }

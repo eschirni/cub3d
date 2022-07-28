@@ -1,21 +1,19 @@
 #include "includes/cub3d.h"
 
-static void	init_dir(t_game *game, int n, float pi)
+static void	init_dir(t_game *game, float pi)
 {
-	if (n != 0)
-		return ;
-	game->chars[n]->ray = malloc(sizeof(t_ray));
-	game->chars[n]->pa = pi;
+	game->chr->ray = malloc(sizeof(t_ray));
+	game->chr->pa = pi;
 }
 
-void	set_direction(t_game *game, char direction, int n)
+void	set_direction(t_game *game, char direction)
 {
 	if (direction == 'N')
-		init_dir(game, n, (float)M_PI_2 + (float)M_PI);
+		init_dir(game, (float)M_PI_2 + (float)M_PI);
 	else if (direction == 'E')
-		init_dir(game, n, (float)M_PI * 2);
+		init_dir(game, (float)M_PI * 2);
 	else if (direction == 'S')
-		init_dir(game, n, (float)M_PI_2);
+		init_dir(game, (float)M_PI_2);
 	else if (direction == 'W')
-		init_dir(game, n, (float)M_PI);
+		init_dir(game, (float)M_PI);
 }

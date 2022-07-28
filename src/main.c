@@ -1,6 +1,6 @@
 #include "includes/cub3d.h"
 
-static t_game	*alloc_game(t_map *map)
+static t_game	*alloc_game(void)
 {
 	t_game			*game;
 
@@ -10,35 +10,24 @@ static t_game	*alloc_game(t_map *map)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", false);
 	if (!game->mlx)
 		ft_error("mlx allocation failed", NULL);
-	game->map = map;
 	game->game_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	return (game);
-}
-
-static t_game	*init_game(t_map *map)
-{
-	t_game	*game;
-
-	game = alloc_game(map);
-	draw_map(game, game->map);
 	return (game);
 }
 
 int	main(int argc, char **argv)
 {
-	t_map		*map;
 	t_game		*game;
 
 	if (argc != 2)
 		ft_error("bad arguments", NULL);
-	map = init_map(argv[1]);
-	game = init_game(map);
+	game = alloc_game();
+	init_map(game, argv[1]);
 	init_textures(game);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 	mlx_loop_hook(game->mlx, &fps, game);
 	mlx_loop(game->mlx);
-	free_exit(map, game);
+	free_exit(game->map, game);
 	system("leaks cub3D");
 	return (EXIT_SUCCESS);
 }
