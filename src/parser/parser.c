@@ -19,8 +19,8 @@ static void	check_start_pos(char **map)
 		}
 		i++;
 	}
-	if (!players)
-		ft_error("please set a starting position", NULL);
+	if (players != 1)
+		ft_error("please set 1 starting position", NULL);
 }
 
 static int	get_map_size(char **file)
