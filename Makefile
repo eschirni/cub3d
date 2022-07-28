@@ -6,12 +6,12 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/28 11:55:01 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/28 12:40:51 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # FLAGS
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address		
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 MLX = -lglfw -L $$HOME/.brew/Cellar/glfw/3.3.7/lib MLX42/libmlx42.a
 
 # COLORS
@@ -42,6 +42,7 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
 		$(PARSE_PATH)parser.c $(PARSE_PATH)split.c \
 		$(PARSE_PATH)parse_utils.c $(PARSE_PATH)get_config.c \
+		$(PARSE_PATH)check_map_closed.c \
 
 # OBJECTS
 OBJ = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))

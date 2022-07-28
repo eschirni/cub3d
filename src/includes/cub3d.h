@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/28 10:17:01 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:45:41 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <limits.h>
 # include <fcntl.h>
 # include <math.h>
+# include <printf.h>
 
 # define RED "\033[31m"
 # define RESET "\033[0m"
@@ -80,6 +81,7 @@ typedef struct s_game
 }				t_game;
 
 /* map parsing */
+void	check_map_closed(t_map *map);
 void	init_map(t_game *game, char *mapfile);
 void	map_checker(t_map *map);
 char	**ft_split(char const *s, char c);

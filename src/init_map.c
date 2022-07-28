@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:06:24 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/28 10:12:33 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:42:10 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void	init_map(t_game *game, char *mapfile)
 	map_checker(map);
 	map->x = ft_strlen_sl(map->big_map[0]);
 	mark_player(game, map);
+	check_map_closed(map);
 	game->map = map;
 }
