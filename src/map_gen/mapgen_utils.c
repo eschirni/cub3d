@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mapgen_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:06:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/28 10:06:27 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/28 10:48:05 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	set_positions(t_mapgen *mapg)
+static void	set_positions(t_mg *mapg)
 {
 	mapg->exit[0] = mapg->start[0];
 	mapg->exit[1] = mapg->start[1];
@@ -20,7 +20,7 @@ static void	set_positions(t_mapgen *mapg)
 	mapg->map[mapg->player_start[1]][mapg->player_start[0]] = 'N';
 }
 
-void	refactor_map(t_mapgen *mapg, int i, int j)
+void	refactor_map(t_mg *mapg, int i, int j)
 {
 	char	**new;
 

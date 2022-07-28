@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:05:35 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/28 10:05:36 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/28 10:47:51 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	**create_array(int size)
 	return (map);
 }
 
-static void	init_directions(t_mapgen *mapg)
+static void	init_directions(t_mg *mapg)
 {
 	mapg->dirs[0][0] = -1;
 	mapg->dirs[0][1] = 0;
@@ -50,15 +50,15 @@ static void	init_directions(t_mapgen *mapg)
 	mapg->dirs[3][1] = 1;
 }
 
-static t_mapgen	*init_mapg(int size, int tunnel_len)
+static t_mg	*init_mapg(int size, int tunnel_len)
 {
-	t_mapgen	*mapg;
+	t_mg	*mapg;
 
 	if (size <= 4)
 		ft_error("map too small", NULL);
 	else if (tunnel_len == 0)
 		ft_error("tunnel length should never be 0", NULL);
-	mapg = malloc(sizeof(t_mapgen));
+	mapg = malloc(sizeof(t_mg));
 	if (!mapg)
 		ft_error("allocation failed", NULL);
 	mapg->map = create_array(size);
@@ -74,7 +74,7 @@ static t_mapgen	*init_mapg(int size, int tunnel_len)
 	return (mapg);
 }
 
-static int	carve_tunnel(t_mapgen *mapg, int size, int tunnel_len)
+static int	carve_tunnel(t_mg *mapg, int size, int tunnel_len)
 {
 	int	i;
 	int	len;
@@ -101,9 +101,9 @@ static int	carve_tunnel(t_mapgen *mapg, int size, int tunnel_len)
 	return (i);
 }
 
-t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len)
+t_mg	*create_map(int size, int tunnels, int tunnel_len, int end_len)
 {
-	t_mapgen	*mapg;
+	t_mg	*mapg;
 
 	mapg = init_mapg(size, tunnel_len);
 	while (tunnels)

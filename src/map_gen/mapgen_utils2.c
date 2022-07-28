@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mapgen_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:06:38 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/28 10:06:59 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/28 10:48:23 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	set_rnd_direction(t_mapgen *mapg)
+int	set_rnd_direction(t_mg *mapg)
 {
 	if ((mapg->rand_dir[0] == mapg->last_dir[0]
 			&& mapg->rand_dir[1] == mapg->last_dir[1])
@@ -28,7 +28,7 @@ int	set_rnd_direction(t_mapgen *mapg)
 		return (0);
 }
 
-void	checker(t_mapgen *mapg)
+void	checker(t_mg *mapg)
 {
 	int	i;
 	int	j;
@@ -82,7 +82,7 @@ static void	set_doors(char **map)
 	}
 }
 
-static void	set_enemy(t_mapgen *mapg)
+static void	set_enemy(t_mg *mapg)
 {
 	int	i;
 	int	j;
@@ -99,7 +99,7 @@ static void	set_enemy(t_mapgen *mapg)
 	}
 }
 
-void	check_floors(t_mapgen *mapg)
+void	check_floors(t_mg *mapg)
 {
 	int	i;
 	int	j;

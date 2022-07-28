@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/28 10:14:40 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/28 10:46:34 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ typedef struct s_mapgen
 	int			size;
 	int			loot;
 	char		**map;
-}				t_mapgen;
+}				t_mg;
 
 typedef struct s_sprite_vars
 {
@@ -175,7 +175,7 @@ typedef struct s_sprite_vars
 }			t_sprite_vars;
 
 /* map parsing */
-t_map	*init_map(t_mapgen *mapg);
+t_map	*init_map(t_mg *mapg);
 
 /* char fuctions */
 void	set_direction(t_game *game, char direction, int n);
@@ -226,15 +226,15 @@ void	to_game(t_game *game);
 void	to_menu(t_game *game);
 
 /* map gen */
-t_mapgen	*create_map(int size, int tunnels, int tunnel_len, int end_len);
+t_mg	*create_map(int size, int tunnels, int tunnel_len, int end_len);
 int		get_random_num(int from, int to);
 int		is_corner(char **map, int i, int j);
 int		is_corridor(char **map, int i, int j);
-void	refactor_map(t_mapgen *mapg, int i, int j);
+void	refactor_map(t_mg *mapg, int i, int j);
 void	set_entities(char **map, char c, int chance);
-void	check_floors(t_mapgen *mapg);
-void	checker(t_mapgen *mapg);
-int		set_rnd_direction(t_mapgen *mapg);
+void	check_floors(t_mg *mapg);
+void	checker(t_mg *mapg);
+int		set_rnd_direction(t_mg *mapg);
 
 /* end game */
 void	animate_end(mlx_t *mlx, t_end *end);

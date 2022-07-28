@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:45:52 by eschirni          #+#    #+#             */
+/*   Updated: 2022/07/28 10:49:46 by eschirni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/cub3d.h"
 
 static t_game	*alloc_game(t_map *map)
@@ -44,9 +56,9 @@ static t_game	*init_game(t_map *map)
 
 int	main(void)
 {
-	t_map		*map;
-	t_game		*game;
-	t_mapgen	*mapg;
+	t_map	*map;
+	t_game	*game;
+	t_mg	*mapg;
 
 	mapg = create_map(30, 110, 15, 0);
 	map = init_map(mapg);
@@ -54,6 +66,5 @@ int	main(void)
 	main_menu(game);
 	mlx_loop(game->mlx);
 	free_exit(map, game);
-	system("leaks cub3d");
 	return (EXIT_SUCCESS);
 }

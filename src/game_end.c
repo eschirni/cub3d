@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_end.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:42:25 by eschirni          #+#    #+#             */
+/*   Updated: 2022/07/28 10:42:27 by eschirni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/cub3d.h"
 
 static void	animate_cat(t_end *end)
@@ -62,11 +74,11 @@ void	animate_end(mlx_t *mlx, t_end *end)
 			i++;
 		}
 		end->back[end->back_frame]->enabled = true;
-		end->back_frame++;
-		if (end->back_frame > 7)
+		if (++end->back_frame > 7)
 			end->back_frame = 0;
 	}
-	else if (time.tv_sec > end->music_start + 63)
+	else if (time.tv_sec > end->music_start + 63
+		|| mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
 }
 

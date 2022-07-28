@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:08:44 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/28 10:08:45 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/28 10:46:34 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	mark_chests(t_map *map)
 	}
 }
 
-t_map	*init_map(t_mapgen *mapg)
+t_map	*init_map(t_mg *mapg)
 {
 	t_map	*map;
 
