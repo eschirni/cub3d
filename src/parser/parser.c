@@ -15,6 +15,8 @@ static void	check_start_pos(char **map)
 		{
 			if (is_char_obj(map[i][j]))
 				players++;
+			else if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' ')
+				ft_error("forbidden character in map", NULL);
 			j++;
 		}
 		i++;
@@ -23,16 +25,12 @@ static void	check_start_pos(char **map)
 		ft_error("please set 1 starting position", NULL);
 }
 
-static int	get_map_size(char **file)
+static int	get_map_size(char **file, int start)
 {
 	int	i;
 	int	count;
 
-	i = 0;
-	while (file [i] && file[i][0] != '1')
-	{
-		i++;
-	}
+	i = start;
 	count = 0;
 	while (file[i])
 	{
@@ -91,10 +89,10 @@ static char	**get_map(t_map *map, char **file, int start)
 	char	**new_map;
 	int		size;
 
-	size = get_map_size(file);
+	size = get_map_size(file, start);
 	if (!size)
 		ft_error("map empty", NULL);
-	new_map = malloc(sizeof(char *) * (size + 2));
+	new_map = malloc(sizeof(char *) * (size + 1));
 	if (!new_map)
 		ft_error("failed to allocate memory", NULL);
 	map->x = get_x(file, start);
@@ -117,7 +115,6 @@ static char	**get_map(t_map *map, char **file, int start)
 	}
 	map->y = i;
 	new_map[i] = NULL;
-	print_2d_array(new_map);
 	return (new_map);
 }
 
@@ -130,4 +127,5 @@ void	map_checker(t_map *map)
 	map->big_map = get_map(map, map->file, start_map);
 	free_2d_array(map->file);
 	check_start_pos(map->big_map);
+	print_2d_array(map->big_map);
 }
