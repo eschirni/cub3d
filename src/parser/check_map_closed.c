@@ -6,11 +6,26 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:59:19 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/28 13:54:25 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:58:13 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static bool	check_space(t_map *map, int x, int y)
+{
+	if (map->big_map[y + 1][x] == '0' || map->big_map[y - 1][x] == '0')
+		return (false);
+	else if (map->big_map[y][x - 1] == '0' || map->big_map[y][x + 1] == '0')
+		return (false);
+	else if (map->big_map[y - 1][x - 1] == '0'
+		|| map->big_map[y + 1][x - 1] == '0')
+		return (false);
+	else if (map->big_map[y - 1][x + 1] == '0'
+		|| map->big_map[y + 1][x + 1] == '0')
+		return (false);
+	return (true);
+}
 
 static bool	check_border(t_map *map, int x, int y)
 {
@@ -33,6 +48,8 @@ void	check_map_closed(t_map *map)
 		{
 			if (x == 0 || x == map->x -1 || y == 0 || y == map->y - 1)
 				closed = check_border(map, x, y);
+			else if (map->big_map[y][x] == ' ')
+				closed = check_space(map, x, y);
 			if (closed == false)
 				ft_error("map not closed!", NULL);
 			x++;
