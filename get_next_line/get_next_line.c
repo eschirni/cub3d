@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 21:16:35 by eschirni          #+#    #+#             */
-/*   Updated: 2021/09/07 14:34:18 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:47:36 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,20 +96,3 @@ char	*get_next_line(int fd)
 	}
 	return (ret);
 }
-// #include <stdio.h>
-// #include <fcntl.h>
-// int main()
-// {
-//     int 	fd;
-//     char	*str;
-
-//     fd = open("abc.txt",O_RDONLY);
-//     while ((str = get_next_line(fd)))
-//     {
-//         printf("%s",str);
-// 		free(str);
-//     }
-// 	free(str);
-// 	printf("\n");
-//     system("leaks a.out");
-// }
