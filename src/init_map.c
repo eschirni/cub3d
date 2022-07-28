@@ -1,5 +1,11 @@
 #include "includes/cub3d.h"
 
+static void	set_entity_pos(float entity[2], int i, int j)
+{
+	entity[0] = j * 32 + 16;
+	entity[1] = i * 32 + 16;
+}
+
 static void	mark_enteties(t_map *map)
 {
 	int	i;
@@ -15,21 +21,24 @@ static void	mark_enteties(t_map *map)
 			if (is_char_obj(map->big_map[i][j]))
 			{
 				if (map->player[0] == -1)
-				{
-					map->player[0] = j * 32 + 16;
-					map->player[1] = i * 32 + 16;
-				}
+					set_entity_pos(map->player, i, j);
 				else
-				{
-					map->enemy[0] = j * 32 + 16;
-					map->enemy[1] = i * 32 + 16;
-				}
+					set_entity_pos(map->enemy, i, j);
 				map->n_chars++;
 			}
 			j--;
 		}
 		i--;
 	}
+}
+
+static void	set_chest_pos(t_map *map, int count, int i, int j)
+{
+	map->chests[count] = malloc(sizeof(float) * 2);
+	if (!map->chests[count])
+		ft_error("allocation failed", NULL);
+	map->chests[count][0] = j * 32 + 16;
+	map->chests[count][1] = i * 32 + 16;
 }
 
 static void	mark_chests(t_map *map)
@@ -50,11 +59,7 @@ static void	mark_chests(t_map *map)
 		{
 			if (map->big_map[i][j] == 'L' || map->big_map[i][j] == 'l')
 			{
-				map->chests[count] = malloc(sizeof(float) * 2);
-				if (!map->chests[count])
-					ft_error("allocation failed", NULL);
-				map->chests[count][0] = j * 32 + 16;
-				map->chests[count][1] = i * 32 + 16;
+				set_chest_pos(map, count, i, j);
 				count++;
 			}
 			j++;
