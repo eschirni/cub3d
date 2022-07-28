@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:05:51 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/28 10:05:53 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:00:13 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ void	free_exit(t_map *map, t_game *game)
 	free_arrs(game);
 	mlx_delete_image(game->mlx, game->game_img);
 	mlx_terminate(game->mlx);
-	free(game->textures->wall);
+	free(game->textures->north);
+	free(game->textures->east);
+	free(game->textures->south);
+	free(game->textures->west);
 	free(game->textures);
 	free(game);
 	free(map->big_map);

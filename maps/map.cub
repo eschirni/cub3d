@@ -1,13 +1,13 @@
-  WE ./path_to_the_west_texture
+  WE ./sprites/dude.png
 
-SO    ./path_to_the_south_texture
+SO    ./sprites/tile_floor.png
 
 
 C   60,102,150
 
-   EA    ./path_to_the_east_texture    
+   EA    ./sprites/tile_wall.png    
 
-  NO ./path_to_the_north_texture
+  NO ./sprites/tile_water.png
 
 F    102,60,150   
 
@@ -21,5 +21,5 @@ F    102,60,150
 10010000001
 10000100001
 10000111001
-1000000W001
+1000000N001
 11111111111

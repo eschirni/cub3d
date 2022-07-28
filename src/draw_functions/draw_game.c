@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:05:11 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/28 10:05:13 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:04:36 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static void	check_direction(t_game *game, t_ray *ray)
+{
+	if (ray->dir == 'E' && ray->ra > 0 && ray->ra < (float)M_PI)
+	{
+		
+		game->textures->wall = game->textures->south;
+		game->textures->wall_size[0] = game->textures->south_size[0];
+		game->textures->wall_size[1] = game->textures->south_size[1];
+	}
+	else if (ray->dir == 'E')
+	{
+		game->textures->wall = game->textures->north;
+		game->textures->wall_size[0] = game->textures->north_size[0];
+		game->textures->wall_size[1] = game->textures->north_size[1];
+	}
+	else if (ray->dir == 'N' && ray->ra > ((float)M_PI / 2) && ray->ra < (3 * (float)M_PI / 2))
+	{
+		game->textures->wall = game->textures->west;
+		game->textures->wall_size[0] = game->textures->west_size[0];
+		game->textures->wall_size[1] = game->textures->west_size[1];
+	}
+	else
+	{
+		game->textures->wall = game->textures->east;
+		game->textures->wall_size[0] = game->textures->east_size[0];
+		game->textures->wall_size[1] = game->textures->east_size[1];
+	}
+}
 
 static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 {
@@ -26,6 +55,7 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 		ray->ra += (float)M_PI / 180 / 32;
 		if (ray->ra >= (float)M_PI * 2)
 			ray->ra -= (float)M_PI * 2;
+		check_direction(game, ray);
 		ray->dist = calc_rays(ray, game->map, coords[0], coords[1]);
 		mini->start[0] = ray->start[0] - (game->map->player[0] - 144);
 		mini->start[1] = ray->start[1] - (game->map->player[1] - 144);

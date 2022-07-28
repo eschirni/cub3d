@@ -20,7 +20,7 @@
 # include <limits.h>
 # include <fcntl.h>
 # include <math.h>
-# include <printf.h>
+# include <printf.h> //remove
 
 # define RED "\033[31m"
 # define RESET "\033[0m"
@@ -67,6 +67,14 @@ typedef struct s_textures
 {
 	u_int32_t	*wall;
 	int			wall_size[2];
+	u_int32_t	*north;
+	int			north_size[2];
+	u_int32_t	*east;
+	int			east_size[2];
+	u_int32_t	*south;
+	int			south_size[2];
+	u_int32_t	*west;
+	int			west_size[2];
 	float		offset;
 }				t_textures;
 
