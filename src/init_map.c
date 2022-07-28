@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:06:24 by eschirni          #+#    #+#             */
+/*   Updated: 2022/07/28 10:12:33 by eschirni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/cub3d.h"
 
 static size_t	ft_strlen_sl(const char *str)
@@ -41,7 +53,6 @@ static void	mark_player(t_game *game, t_map *map)
 	int	j;
 
 	i = map->y - 1;
-	map->player[0] = -1;
 	while (i >= 0)
 	{
 		j = map->x - 1;
@@ -49,15 +60,12 @@ static void	mark_player(t_game *game, t_map *map)
 		{
 			if (is_char_obj(map->big_map[i][j]))
 			{
-				if (map->player[0] == -1)
-				{
-					map->player[0] = j * 32 + 16;
-					map->player[1] = i * 32 + 16;
-					game->chr = malloc(sizeof(t_char));
-					if (game->chr == NULL)
-						ft_error("allocation error", NULL);
-					set_direction(game, map->big_map[i][j]);
-				}
+				map->player[0] = j * 32 + 16;
+				map->player[1] = i * 32 + 16;
+				game->chr = malloc(sizeof(t_char));
+				if (game->chr == NULL)
+					ft_error("allocation error", NULL);
+				set_direction(game, map->big_map[i][j]);
 			}
 			j--;
 		}
@@ -80,13 +88,11 @@ void	init_map(t_game *game, char *mapfile)
 	if (!map->file)
 		ft_error("malloc failed", NULL);
 	map->file[0] = get_next_line(fd);
-	i = 1;
-	while (true)
+	i = 0;
+	while (map->file[i] != NULL)
 	{
-		map->file[i] = get_next_line(fd);
-		if (map->file[i] == NULL)
-			break ;
 		i++;
+		map->file[i] = get_next_line(fd);
 	}
 	close(fd);
 	map_checker(map);

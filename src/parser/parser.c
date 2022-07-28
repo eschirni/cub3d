@@ -1,34 +1,5 @@
 #include "../includes/cub3d.h"
 
-void	print_2d_array(char **array)
-{
-	int	i;
-	int	j;
-
-	if (!array)
-		printf("Array empty.\n");
-	i = 0;
-	while (array[i])
-	{
-		j = 0;
-		while (array[i][j])
-		{
-			if (array[i][j] == 'L' || array[i][j] == 'W' || array[i][j] == 'X')
-			{
-				printf("\033[0;31m");
-				printf("%c", array[i][j]);
-				printf("\033[0m");
-			}
-			else
-				printf("%c", array[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	printf("\n");
-}
-
 static void	check_start_pos(char **map)
 {
 	int	i;
@@ -84,7 +55,7 @@ static char	**get_map(t_map *map, char **file, int start)
 	if (!new_map)
 		ft_error("failed to allocate memory", NULL);
 	i = 0;
-	while(file[start])
+	while (file[start])
 	{
 		new_map[i] = ft_strdup(file[start]);
 		start++;
@@ -103,12 +74,5 @@ void	map_checker(t_map *map)
 	start_map = extract_infos(map, map->file, 0, 0);
 	map->big_map = get_map(map, map->file, start_map);
 	free_2d_array(map->file);
-	// print_2d_array(map->big_map);
 	check_start_pos(map->big_map);
-	printf("%s\n", map->no_tex);
-	printf("%s\n", map->so_tex);
-	printf("%s\n", map->we_tex);
-	printf("%s\n", map->ea_tex);
-	// printf("%d, %d, %d\n", map->rgb_f[0], map->rgb_f[1], map->rgb_f[2]);
-	// printf("%d, %d, %d\n", map->rgb_c[0], map->rgb_c[1], map->rgb_c[2]);
 }

@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_3d.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:05:04 by eschirni          #+#    #+#             */
+/*   Updated: 2022/07/28 10:05:06 by eschirni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void	draw_env(t_game *game, t_ray *ray)
 {
 	int	y;
-	// int	tex[2];
 
 	y = 0;
 	while (y < ray->start[1])
@@ -54,7 +65,7 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 	{
 		texture_x = (int)pos * game->textures->wall_size[1];
 		texture_y = ray_end % game->textures->wall_size[0];
-		color = game->textures->wall[texture_x + texture_y]; //numbers besides 32 in with won't scale bec our tile size is 32
+		color = game->textures->wall[texture_x + texture_y];
 		if (ray->start[0] < 1920 && ray_start < 1080)
 			mlx_put_pixel(game->game_img, ray->start[0], ray_start, color);
 		ray_start += 1;
@@ -62,7 +73,7 @@ static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
 	}
 }
 
-void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x) //segfaults with bigger pics, need to calculate with actual image with in player pos over minimap, to avoid image spreading over multiple tiles in 3d
+void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x)
 {
 	float	line_height;
 	float	line_width;

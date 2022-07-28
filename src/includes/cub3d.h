@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/28 09:59:40 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 10:07:12 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <limits.h>
 # include <fcntl.h>
 # include <math.h>
-# include <stdio.h>	//debug
 
 # define RED "\033[31m"
 # define RESET "\033[0m"
@@ -39,7 +38,7 @@ typedef struct s_ray
 typedef struct s_char
 {
 	t_ray		*ray;
-	float		w[2]; //x, y
+	float		w[2];
 	float		a[2];
 	float		s[2];
 	float		d[2];

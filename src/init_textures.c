@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_textures.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:06:31 by eschirni          #+#    #+#             */
+/*   Updated: 2022/07/28 10:09:13 by eschirni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/cub3d.h"
 
 static uint32_t	*get_color(mlx_texture_t *texture)
@@ -5,11 +17,11 @@ static uint32_t	*get_color(mlx_texture_t *texture)
 	int				i;
 	unsigned int	pos;
 	uint8_t			rgb[4];
-	uint32_t		*colors;
+	uint32_t		*c;
 
 	i = 0;
-	colors = malloc(sizeof(uint32_t) * (texture->width + 1) * (texture->height + 1));
-	if (colors == NULL)
+	c = malloc(sizeof(uint32_t) * (texture->width + 1) * (texture->height + 1));
+	if (c == NULL)
 		ft_error("Allocation error!\n", NULL);
 	pos = 0;
 	while (pos < texture->width * texture->height * texture->bytes_per_pixel)
@@ -18,11 +30,11 @@ static uint32_t	*get_color(mlx_texture_t *texture)
 		rgb[1] = texture->pixels[pos + 1];
 		rgb[2] = texture->pixels[pos + 2];
 		rgb[3] = texture->pixels[pos + 3];
-		colors[i] = (rgb[0] << 24) + (rgb[1] << 16) + (rgb[2] << 8) + rgb[3];
+		c[i] = (rgb[0] << 24) + (rgb[1] << 16) + (rgb[2] << 8) + rgb[3];
 		pos += texture->bytes_per_pixel;
 		i++;
 	}
-	return (colors);
+	return (c);
 }
 
 void	init_textures(t_game *game)
