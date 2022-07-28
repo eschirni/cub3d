@@ -7,7 +7,7 @@ C   60,102,150
 
    EA    ./sprites/tile_wall.png    
 
-  NO ./sprites/tile_water.png
+  NO ../../Downloads/tile_floor.png
 
 F    102,60,150   
 

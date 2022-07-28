@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:06:31 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/28 11:50:34 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:17:30 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,30 @@ void	init_textures(t_game *game)
 
 	game->textures = malloc(sizeof(t_textures));
 	txt = mlx_load_png(game->map->no_tex);
+	if (txt == NULL || txt->height != 32 || txt->width != 32)
+		ft_error("non accepted texture", NULL);
 	game->textures->north = get_color(txt);
 	game->textures->north_size[0] = txt->width;
 	game->textures->north_size[1] = txt->height;
 	mlx_delete_texture(txt);
 	txt = mlx_load_png(game->map->ea_tex);
+	if (txt == NULL || txt->height != 32 || txt->width != 32)
+		ft_error("non accepted texture", NULL);
 	game->textures->east = get_color(txt);
 	game->textures->east_size[0] = txt->width;
 	game->textures->east_size[1] = txt->height;
 	mlx_delete_texture(txt);
 	txt = mlx_load_png(game->map->so_tex);
+	if (txt == NULL || txt->height != 32 || txt->width != 32)
+		ft_error("non accepted texture", NULL);
 	game->textures->south = get_color(txt);
 	game->textures->south_size[0] = txt->width;
 	game->textures->south_size[1] = txt->height;
 	game->textures->south = mirror_texture(game->textures->south, game->textures->south_size);
 	mlx_delete_texture(txt);
 	txt = mlx_load_png(game->map->we_tex);
+	if (txt == NULL || txt->height != 32 || txt->width != 32)
+		ft_error("non accepted texture", NULL);
 	game->textures->west = get_color(txt);
 	game->textures->west_size[0] = txt->width;
 	game->textures->west_size[1] = txt->height;
