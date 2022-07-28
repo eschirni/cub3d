@@ -34,7 +34,7 @@ static bool	check_border(t_map *map, int x, int y)
 	return (false);
 }
 
-static void remove_lines(t_map *map)
+static void	remove_lines(t_map *map)
 {
 	int		i;
 

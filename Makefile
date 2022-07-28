@@ -42,7 +42,7 @@ SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c \
 		$(PARSE_PATH)parser.c $(PARSE_PATH)split.c \
 		$(PARSE_PATH)parse_utils.c $(PARSE_PATH)get_config.c \
-		$(PARSE_PATH)check_map_closed.c \
+		$(PARSE_PATH)check_map_closed.c $(PARSE_PATH)parse_utils2.c \
 
 # OBJECTS
 OBJ = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))

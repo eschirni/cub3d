@@ -98,7 +98,11 @@ char	**cut_newlines(char **file);
 int		size_2d(char **s);
 char	*ft_strdup(char *str);
 int		extract_infos(t_map *map, char **file, int f, int c);
-int		ft_strncmp(const char *str1, const char *str2, size_t size);
+int		get_map_size(char **file, int start);
+int		get_x(char **file, int start);
+void	check_line(char *line);
+int		is_map(char *line);
+void	count_del(char *s);
 
 /* char fuctions */
 void	set_direction(t_game *game, char direction);
@@ -109,6 +113,7 @@ void	free_exit(t_map *map, t_game *game);
 void	ft_error(char *msg, char *arg);
 int		ft_strlen(char *s);
 int		check_file(char *file);
+int		ft_strncmp(const char *str1, const char *str2, size_t size);
 void	free_2d_array(char **arr);
 
 /* draw functions */

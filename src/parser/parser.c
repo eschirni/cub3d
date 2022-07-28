@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 20:38:41 by btenzlin          #+#    #+#             */
+/*   Updated: 2022/07/28 20:38:42 by btenzlin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void	check_start_pos(char **map)
@@ -28,52 +40,6 @@ static void	check_start_pos(char **map)
 		ft_error("please set 1 starting position", NULL);
 }
 
-static int	get_map_size(char **file, int start)
-{
-	int	i;
-	int	count;
-
-	i = start;
-	count = 0;
-	while (file[i])
-	{
-		i++;
-		count++;
-	}
-	return (count);
-}
-
-static void	print_2d_array(char **array)
-{
-	int	i;
-
-	if (!array)
-		printf("Array empty.\n");
-	i = 0;
-	while (array[i])
-	{
-		printf("%s\n", array[i]);
-		i++;
-	}
-	printf("\n");
-}
-
-static int	get_x(char **file, int start)
-{
-	int	len;
-	int	tmp;
-
-	len = 0;
-	while (file[start])
-	{
-		tmp = ft_strlen(file[start]);
-		if (tmp > len)
-			len = tmp;
-		start++;
-	}
-	return (len);
-}
-
 static int	fill_with_whitespace(char *line, int j, int end)
 {
 	while (j < end)
@@ -85,10 +51,28 @@ static int	fill_with_whitespace(char *line, int j, int end)
 	return (end);
 }
 
+static char	*get_line(t_map *map, char **file, int start)
+{
+	int		j;
+	char	*s;
+
+	s = malloc(sizeof(char) * map->x + 1);
+	if (!s)
+		ft_error("failed to allocate memory", NULL);
+	j = 0;
+	while (j < map->x)
+	{
+		s[j] = file[start][j];
+		j++;
+		if (!file[start][j])
+			j = fill_with_whitespace(s, j, map->x);
+	}
+	return (s);
+}
+
 static char	**get_map(t_map *map, char **file, int start)
 {
 	int		i;
-	int		j;
 	char	**new_map;
 	int		size;
 
@@ -102,17 +86,7 @@ static char	**get_map(t_map *map, char **file, int start)
 	i = 0;
 	while (file[start])
 	{
-		new_map[i] = malloc(sizeof(char) * map->x + 1);
-		if (!new_map[i])
-			ft_error("failed to allocate memory", NULL);
-		j = 0;
-		while (j < map->x)
-		{
-			new_map[i][j] = file[start][j];
-			j++;
-			if (!file[start][j])
-				j = fill_with_whitespace(new_map[i], j, map->x);
-		}
+		new_map[i] = get_line(map, file, start);
 		start++;
 		i++;
 	}
@@ -130,5 +104,4 @@ void	map_checker(t_map *map)
 	map->big_map = get_map(map, map->file, start_map);
 	free_2d_array(map->file);
 	check_start_pos(map->big_map);
-	print_2d_array(map->big_map);
 }

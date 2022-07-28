@@ -12,6 +12,31 @@
 
 #include "../includes/cub3d.h"
 
+int	ft_strncmp(const char *str1, const char *str2, size_t size)
+{
+	unsigned char	*s1;
+	unsigned char	*s2;
+
+	s1 = (unsigned char *)str1;
+	s2 = (unsigned char *)str2;
+	while (*s1 == ' ')
+		s1++;
+	while (size > 0 && (*s1 != '\0' || *s2 != '\0'))
+	{
+		if (*s1 == *s2)
+		{
+			s1++;
+			s2++;
+			size--;
+		}
+		else
+		{
+			return (*s1 - *s2);
+		}
+	}
+	return (0);
+}
+
 int	ft_strlen(char *s)
 {
 	int	i;
