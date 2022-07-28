@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_sprites.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:03:43 by btenzlin          #+#    #+#             */
+/*   Updated: 2022/07/28 10:04:34 by btenzlin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static int	check_s_pos(float s_pos[2], int x, int y)
@@ -21,7 +33,7 @@ static void	draw_tex_pixel(t_game *game, t_sprite_vars *sp, int sp_x, int sp_y)
 	if (check_s_pos(sp->s_pos, sp->x, sp->y)
 		&& game->map->big_map[(int)sp_y / 32][(int)sp_x / 32] != 'l')
 	{
-		col = tex[(int)sp->t_pos[1] * t_size - (int)sp->t_pos[0]]; //overflow (-fsanitize=address)
+		col = tex[(int)sp->t_pos[1] * t_size - (int)sp->t_pos[0]];
 		if (col != 0x433d4900 && col
 			&& sp->tmp[1] < game->rays[(int)sp->s_pos[0] - sp->x])
 			mlx_put_pixel(img, sp->s_pos[0] - sp->x, sp->s_pos[1] - sp->y, col);
@@ -75,7 +87,7 @@ static void	calc_draw(t_game *game, float sp_x, float sp_y)
 	draw_pixels(game, sp_x, sp_y, sp);
 }
 
-void	draw_sprite(t_game *game, float sp_x, float sp_y, char c) //segfault in here (lldb for reference)
+void	draw_sprite(t_game *game, float sp_x, float sp_y, char c)
 {
 	game->textures->chuci = game->textures->luci[game->textures->luci_frame];
 	game->textures->chuci_size[0] = game->textures->luci_size[0];

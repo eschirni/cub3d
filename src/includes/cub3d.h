@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/26 22:32:08 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 10:14:40 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <limits.h>
 # include <fcntl.h>
 # include <math.h>
-# include <stdio.h>	//debug
+# include <stdio.h>
 # include <sys/time.h>
 
 # define RED "\033[31m"
@@ -43,7 +43,7 @@ typedef struct s_char
 {
 	t_ray		*ray;
 	mlx_image_t	*img;
-	float		w[2]; //x, y
+	float		w[2];
 	float		a[2];
 	float		s[2];
 	float		d[2];

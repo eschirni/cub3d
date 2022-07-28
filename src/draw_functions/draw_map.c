@@ -77,7 +77,7 @@ static void	draw_tiles(t_game *game, char **arr)
 	if (game->chars == NULL)
 		ft_error("no char could be allocated", NULL);
 	iterator[0] = -4;
-	coords[1] = abs((int)game->map->player[1] / 32 * 32) * -1; //it works without calculating offset bec the mapsize centers at 5 so 4 and 4 = 0. -1 because always start drawing up left
+	coords[1] = abs((int)game->map->player[1] / 32 * 32) * -1;
 	while (iterator[0] < game->map->y + 4)
 	{
 		iterator[1] = -4;
@@ -93,7 +93,7 @@ static void	draw_tiles(t_game *game, char **arr)
 	}
 }
 
-void	draw_map(t_game *game, t_map *map) //draw the map with lower z value than the 3d instead of every frame
+void	draw_map(t_game *game, t_map *map)
 {
 	int	i;
 

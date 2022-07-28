@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_exit.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:13:06 by btenzlin          #+#    #+#             */
+/*   Updated: 2022/07/28 10:13:07 by btenzlin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void	free_screens(t_game *game)
@@ -63,6 +75,18 @@ static void	free_float_array(t_map *map)
 	free(map->chests);
 }
 
+static void	free_luci(t_game *game)
+{
+	free(game->textures->luci[0]);
+	free(game->textures->luci[1]);
+	free(game->textures->luci[2]);
+	free(game->textures->luci[3]);
+	free(game->textures->luci[4]);
+	free(game->textures->luci[5]);
+	free(game->textures->luci[6]);
+	free(game->textures->luci[7]);
+}
+
 void	free_exit(t_map *map, t_game *game)
 {
 	free_arrs(game);
@@ -81,14 +105,7 @@ void	free_exit(t_map *map, t_game *game)
 	free(game->textures->door);
 	free(game->textures->door_o);
 	free(game->textures->exit);
-	free(game->textures->luci[0]);
-	free(game->textures->luci[1]);
-	free(game->textures->luci[2]);
-	free(game->textures->luci[3]);
-	free(game->textures->luci[4]);
-	free(game->textures->luci[5]);
-	free(game->textures->luci[6]);
-	free(game->textures->luci[7]);
+	free_luci(game);
 	free(game->textures->chest);
 	free(game->textures);
 	free(game->sounds);

@@ -25,13 +25,13 @@ static float	calc_horizontal(t_ray *ray, t_map *map, int x, int y)
 	float	ray_offset[2];
 
 	tan_v = -1 / tan(ray->ra);
-	if (ray->ra < (float)M_PI && ray->ra > 0) //looking down
+	if (ray->ra < (float)M_PI && ray->ra > 0)
 	{
 		ray->end[1] = y / 32 * 32 + 32;
 		ray->end[0] = (y - ray->end[1]) * tan_v + x;
 		ray_offset[1] = 32;
 	}
-	else if (ray->ra > (float)M_PI && ray->ra != (float)M_PI * 2) //looking up
+	else if (ray->ra > (float)M_PI && ray->ra != (float)M_PI * 2)
 	{
 		ray->end[1] = y / 32 * 32 - 0.0001f;
 		ray->end[0] = (y - ray->end[1]) * tan_v + x;
@@ -54,12 +54,12 @@ static float	calc_vertical(t_ray *ray, t_map *map, int x, int y)
 	float	ray_offset[2];
 
 	tan_v = -tan(ray->ra);
-	if (ray->ra > (float)M_PI_2 && ray->ra < (3 * (float)M_PI_2)) //looking left
+	if (ray->ra > (float)M_PI_2 && ray->ra < (3 * (float)M_PI_2))
 	{
 		ray->end[0] = x / 32 * 32 - 0.0001f;
 		ray_offset[0] = -32;
 	}
-	else if (ray->ra < (float)M_PI_2 || ray->ra > (3 * (float)M_PI_2)) //looking right
+	else if (ray->ra < (float)M_PI_2 || ray->ra > (3 * (float)M_PI_2))
 	{
 		ray->end[0] = x / 32 * 32 + 32;
 		ray_offset[0] = 32;

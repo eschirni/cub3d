@@ -41,7 +41,7 @@ static void	iterate_game(t_game *game, t_ray *ray, int i, int coords[2])
 		mini->start[1] = ray->start[1] - (game->map->player[1] - 144);
 		mini->end[0] = ray->end[0] - (game->map->player[0] - 144);
 		mini->end[1] = ray->end[1] - (game->map->player[1] - 144);
-		draw_line(game, mini, ray->img); //draw ray
+		draw_line(game, mini, ray->img);
 		draw_3d(game, ray, 0, &line_x);
 		game->rays[i] = ray->dist;
 	}

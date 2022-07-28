@@ -1,50 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mapgen_utils2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:06:38 by btenzlin          #+#    #+#             */
+/*   Updated: 2022/07/28 10:06:59 by btenzlin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
-
-// static void	corner_check(t_mapgen *mapg)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (mapg->map[i])
-// 	{
-// 		j = 0;
-// 		while (mapg->map[i][j])
-// 		{
-// 			if (is_corner(mapg->map, i, j))
-// 				mapg->map[i][j] = 'C';
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
-// int	is_corner(char **map, int i, int j)
-// {
-// 	int	x;
-// 	int	y;
-// 	int	corridor_tiles;
-
-// 	if (map[i][j] == '0')
-// 	{
-// 		y = i - 1;
-// 		corridor_tiles = 0;
-// 		while (y <= i + 1)
-// 		{
-// 			x = j - 1;
-// 			while (x <= j + 1)
-// 			{
-// 				if (map[x][y] == 'H' || map[x][y] == 'V')
-// 					corridor_tiles++;
-// 				x++;
-// 			}
-// 			y++;
-// 		}
-// 		if (corridor_tiles <= 2)
-// 			return (1);
-// 	}
-// 	return (0);
-// }
 
 int	set_rnd_direction(t_mapgen *mapg)
 {
@@ -88,7 +54,6 @@ void	checker(t_mapgen *mapg)
 		}
 		i++;
 	}
-	printf("%d chests\n%d enemy\n%d exit\n", mapg->loot, enemy, exit); //delete before eval
 }
 
 static void	set_doors(char **map)
@@ -153,9 +118,7 @@ void	check_floors(t_mapgen *mapg)
 		}
 		i++;
 	}
-	// corner_check(mapg);
 	set_entities(mapg->map, 'L', 10);
 	set_enemy(mapg);
-	// set_entities(mapg->map, 'W', 5);
 	set_doors(mapg->map);
 }
