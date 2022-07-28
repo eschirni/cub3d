@@ -6,7 +6,7 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/28 10:07:12 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 10:17:01 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,7 @@ void	free_2d_array(char **arr);
 
 /* draw functions */
 void	draw_3d(t_game *game, t_ray *ray, int count_x, int *line_x);
-void	draw_chars(t_game *game, char **map);
 void	draw_game(t_ray *ray, t_game *game, float coords[2]);
-void	draw_map(t_game *game, t_map *map);
 
 /* hooks */
 void	calc_rotate(t_game *game, float rotation);
