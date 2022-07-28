@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+         #
+#    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/28 10:21:18 by btenzlin         ###   ########.fr        #
+#    Updated: 2022/07/28 10:26:26 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ $(OBJ_PATH)%.o :$(SRC_PATH)%.c
 $(NAME): $(OBJ)
 	@echo $(Y)Compiling [$(SRC)]
 	@echo into [$(NAME)]...$(X)
+	@cd MLX42 && make
 	@gcc $(CFLAGS) $(MLX) $(OBJ) -o $(NAME)
 	@echo $(G)Finished [$(NAME)]$(X)
 
@@ -92,6 +93,7 @@ clean:
 			echo $(R)Cleaning" "[$(OBJ) $(OBJ_PATH)]...$(X); else \
 			echo "No objects to remove."; \
 	fi;
+	@cd MLX42 && make clean
 
 fclean: clean
 	@if [ -f "$(NAME)" ]; then \
