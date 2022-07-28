@@ -6,7 +6,7 @@
 /*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:38:26 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/28 20:38:27 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/28 21:09:19 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ static int	set_texture(t_map *map, char *line, char c)
 	return (1);
 }
 
-static void	get_colors(t_map *map, int dirs[4], int c, int f)
+static void	get_colors(t_map *map, int dirs[6])
 {
-	if (!dirs[0] || !dirs[1] || !dirs[2] || !dirs[3] || !c || !f)
+	if (!dirs[0] || !dirs[1] || !dirs[2] || !dirs[3] || !dirs[3] || !dirs[3])
 		ft_error("missing texture", NULL);
 	map->color_f = (map->rgb_f[0] << 24)
 		+ (map->rgb_f[1] << 16) + (map->rgb_f[2] << 8) + 255;
@@ -78,10 +78,9 @@ static void	get_colors(t_map *map, int dirs[4], int c, int f)
 		+ (map->rgb_c[1] << 16) + (map->rgb_c[2] << 8) + 255;
 }
 
-int	extract_infos(t_map *map, char **file, int f, int c)
+int	extract_infos(t_map *map, char **file, int dirs[6])
 {
-	int	i;
-	int	dirs[4];
+	int			i;
 
 	i = 0;
 	while (file[i] && !is_map(file[i]))
@@ -94,14 +93,14 @@ int	extract_infos(t_map *map, char **file, int f, int c)
 			dirs[2] = set_texture(map, file[i], 'w');
 		else if (!ft_strncmp(file[i], "EA ", 3) && !dirs[3])
 			dirs[3] = set_texture(map, file[i], 'e');
-		else if (!ft_strncmp(file[i], "F ", 2) && !f)
-			f = set_texture(map, file[i], 'f');
-		else if (!ft_strncmp(file[i], "C ", 2) && !c)
-			c = set_texture(map, file[i], 'c');
+		else if (!ft_strncmp(file[i], "F ", 2) && !dirs[4])
+			dirs[4] = set_texture(map, file[i], 'f');
+		else if (!ft_strncmp(file[i], "C ", 2) && !dirs[5])
+			dirs[5] = set_texture(map, file[i], 'c');
 		else
 			check_line(file[i]);
 		i++;
 	}
-	get_colors(map, dirs, c, f);
+	get_colors(map, dirs);
 	return (i);
 }

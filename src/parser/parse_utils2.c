@@ -6,7 +6,7 @@
 /*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:38:36 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/28 20:38:37 by btenzlin         ###   ########.fr       */
+/*   Updated: 2022/07/28 21:03:09 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_line(char *line)
 	int	i;
 
 	i = 0;
-	while (line[i] && line[i] != '\n')
+	while (line[i])
 	{
 		if (line[i] != ' ')
 			ft_error("config syntax error", NULL);

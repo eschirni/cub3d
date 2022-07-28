@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:06:37 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/28 10:06:40 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 21:11:02 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(game->mlx, &fps, game);
 	mlx_loop(game->mlx);
 	free_exit(game->map, game);
-	system("leaks cub3D");
 	return (EXIT_SUCCESS);
 }

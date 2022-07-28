@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:04:01 by btenzlin          #+#    #+#             */
-/*   Updated: 2022/07/28 12:45:41 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 21:10:10 by btenzlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <limits.h>
 # include <fcntl.h>
 # include <math.h>
-# include <printf.h> //remove
 
 # define RED "\033[31m"
 # define RESET "\033[0m"
@@ -97,7 +96,7 @@ int		cub_atoi(char *str);
 char	**cut_newlines(char **file);
 int		size_2d(char **s);
 char	*ft_strdup(char *str);
-int		extract_infos(t_map *map, char **file, int f, int c);
+int		extract_infos(t_map *map, char **file, int dirs[6]);
 int		get_map_size(char **file, int start);
 int		get_x(char **file, int start);
 void	check_line(char *line);
