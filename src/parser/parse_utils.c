@@ -21,8 +21,6 @@ int	cub_atoi(char *str)
 	result = 0;
 	if (str[count] == '-')
 		ft_error("not an rgb value: ", str);
-	else if (str[count] == '+')
-		count++;
 	while (str[count] != '\0' && str[count] != ' ')
 	{
 		if (!ft_isdigit(str[count]))
