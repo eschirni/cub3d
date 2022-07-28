@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/28 10:14:01 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/28 11:55:01 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ $(OBJ_PATH)%.o :$(SRC_PATH)%.c
 $(NAME): $(OBJ)
 	@echo $(Y)Compiling [$(SRC)]
 	@echo into [$(NAME)]...$(X)
+	@cd MLX42 && make
 	@gcc $(CFLAGS) $(MLX) $(OBJ) -o $(NAME)
 	@echo $(G)Finished [$(NAME)]$(X)
 
@@ -82,6 +83,7 @@ fclean: clean
 			echo $(R)Cleaning" "[$(NAME)]...$(X);else \
 			echo "No executable to remove."; \
 	fi;
+	@cd MLX42 && make clean
 
 re: fclean all
 
