@@ -16,7 +16,10 @@ static void	check_start_pos(char **map)
 			if (is_char_obj(map[i][j]))
 				players++;
 			else if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' ')
+			{
+				printf("%c\n", map[i][j]);
 				ft_error("forbidden character in map", NULL);
+			}
 			j++;
 		}
 		i++;

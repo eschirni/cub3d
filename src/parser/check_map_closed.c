@@ -6,30 +6,23 @@
 /*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:59:19 by eschirni          #+#    #+#             */
-/*   Updated: 2022/07/28 18:07:59 by eschirni         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:55:51 by eschirni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static bool	ground(char c)
+static bool	zero(t_map *map, int x, int y)
 {
-	if (is_char_obj(c) || c == '0')
-		return (true);
-	return (false);
-}
-
-static bool	check_space(t_map *map, int x, int y)
-{
-	if (ground(map->big_map[y + 1][x]) || ground(map->big_map[y - 1][x]))
+	if (map->big_map[y + 1][x] == ' ' || map->big_map[y - 1][x] == ' ')
 		return (false);
-	else if (ground(map->big_map[y][x - 1]) || ground(map->big_map[y][x + 1]))
+	else if (map->big_map[y][x - 1] == ' ' || map->big_map[y][x + 1] == ' ')
 		return (false);
-	else if (ground(map->big_map[y - 1][x - 1])
-		|| ground(map->big_map[y + 1][x - 1]))
+	else if (map->big_map[y - 1][x - 1] == ' '
+		|| map->big_map[y + 1][x - 1] == ' ')
 		return (false);
-	else if (ground(map->big_map[y - 1][x + 1])
-		|| ground(map->big_map[y + 1][x + 1]))
+	else if (map->big_map[y - 1][x + 1] == ' '
+		|| map->big_map[y + 1][x + 1] == ' ')
 		return (false);
 	return (true);
 }
@@ -55,8 +48,9 @@ void	check_map_closed(t_map *map)
 		{
 			if (x == 0 || x == map->x -1 || y == 0 || y == map->y - 1)
 				closed = check_border(map, x, y);
-			else if (map->big_map[y][x] == ' ')
-				closed = check_space(map, x, y);
+			else if (map->big_map[y][x] == '0' ||
+				is_char_obj(map->big_map[y][x]))
+				closed = zero(map, x, y);
 			if (closed == false)
 				ft_error("map not closed!", NULL);
 			x++;

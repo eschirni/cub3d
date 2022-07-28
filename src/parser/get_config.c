@@ -40,6 +40,23 @@ static char	*get_texture(char *line)
 	return (tex);
 }
 
+static void	count_del(char *s)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == ',')
+			count++;
+		i++;
+	}
+	if (count != 2)
+		ft_error("too much rgb delimiters", NULL);
+}
+
 static void	set_tex_colors(t_map *map, char *line, char c)
 {
 	char	**split_rgb;
@@ -47,6 +64,7 @@ static void	set_tex_colors(t_map *map, char *line, char c)
 	int		i;
 
 	rgb_line = get_texture(line);
+	count_del(rgb_line);
 	split_rgb = ft_split(rgb_line, ',');
 	if (size_2d(split_rgb) != 3)
 		ft_error("usage error", NULL);
