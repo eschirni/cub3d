@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_menu.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:44:57 by eschirni          #+#    #+#             */
+/*   Updated: 2022/07/28 10:44:58 by eschirni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/main_menu.h"
 
 void	load_png(t_game *game, int pos, char *name, bool enabled)
@@ -54,6 +66,15 @@ static void	create_background(t_game *game)
 	}
 }
 
+static void	door_hook(mlx_key_data_t keydata, void *tmp)
+{
+	t_game	*game;
+
+	game = tmp;
+	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
+		open_door(game, game->chars[0]->w[0], game->chars[0]->w[1]);
+}
+
 //continue button when already started the game
 void	main_menu(t_game *game)
 {
@@ -61,7 +82,7 @@ void	main_menu(t_game *game)
 	if (game->menu == NULL)
 		ft_error("Malloc error!", NULL);
 	game->menu->settings = malloc(sizeof(t_settings));
-	if (game == NULL)
+	if (game->menu->settings == NULL)
 		ft_error("allocation error", NULL);
 	game->menu->started_game = false;
 	game->menu->settings->cross_type = 'E';
@@ -76,4 +97,5 @@ void	main_menu(t_game *game)
 	mlx_loop_hook(game->mlx, &fps, game);
 	mlx_cursor_hook(game->mlx, &hover_buttons, game);
 	mlx_mouse_hook(game->mlx, &menu_buttons, game);
+	mlx_key_hook(game->mlx, &door_hook, game);
 }

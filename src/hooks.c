@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:45:45 by eschirni          #+#    #+#             */
+/*   Updated: 2022/07/28 10:45:46 by eschirni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/cub3d.h"
 
 static void	check_music(t_game *game, bool moving)
@@ -75,8 +87,6 @@ static void	check_keys(t_game *game)
 		game->chars[0]->pa -= 0.03f * game->menu->settings->rs;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		game->chars[0]->pa += 0.03f * game->menu->settings->rs;
-	if (mlx_is_key_down(game->mlx, MLX_KEY_F))
-		open_door(game, game->chars[0]->w[0], game->chars[0]->w[1]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
 		game->ps = 4;
 	else
@@ -101,14 +111,13 @@ void	fps(void *tmp)
 		check_pos(game);
 		game->game_img->enabled = true;
 		draw_game(game, game->chars[0]->ray);
+		move_enemies(game);
+		free(game->rays);
 		draw_crosshair(game, 0xFFFFFFFF, game->menu->settings->cross_type);
 		draw_torch(game);
 		if (game->sounds->sound == true)
 			check_music(game, false);
 	}
 	else
-	{
 		animate_menu(game);
-		game->game_img->enabled = false;
-	}
 }

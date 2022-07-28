@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gameplay_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: btenzlin <btenzlin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:07:49 by btenzlin          #+#    #+#             */
+/*   Updated: 2022/07/28 10:11:10 by btenzlin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	open_door(t_game *game, int addX, int addY)
@@ -17,6 +29,12 @@ void	open_door(t_game *game, int addX, int addY)
 		if (game->sounds->sound == true)
 			system("afplay music/wind.mp3 &");
 		game->map->big_map[next_y][next_x] = '7';
+	}
+	else if (game->map->big_map[next_y][next_x] == '7')
+	{
+		if (game->sounds->sound == true)
+			system("afplay music/wind.mp3 &");
+		game->map->big_map[next_y][next_x] = '8';
 	}
 }
 
@@ -60,9 +78,4 @@ void	check_pos(t_game *game)
 		game->map->chest->instances[find_instance(game, x, y)].enabled = false;
 		game->map->big_map[y][x] = 'l';
 	}
-	// else if (game->map->big_map[y][x] == 'W')
-	// {
-	// 	system("pkill afplay &");
-	// 	mlx_close_window(game->mlx);
-	// }
 }

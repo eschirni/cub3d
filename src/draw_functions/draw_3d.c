@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_3d.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:42:46 by eschirni          #+#    #+#             */
+/*   Updated: 2022/07/28 10:42:48 by eschirni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void	get_color(t_game *game, t_ray *ray, u_int32_t *col, float dy)
@@ -61,34 +73,6 @@ static float	init_vars(t_game *game, t_ray *ray, float *lh, float *lw)
 	}
 	*lw = WIDTH / game->menu->settings->fov;
 	return (out_of_bounds);
-}
-
-static void	draw_tex_line(t_game *game, t_ray *ray, float pos, long ray_end)
-{
-	int		texture_x;
-	int		texture_y;
-	int		ray_start;
-
-	ray_start = ray->start[1];
-	while (ray_start <= ray->end[1])
-	{
-		texture_x = (int)pos * game->textures->wall_size[1];
-		texture_y = ray_end & (game->textures->wall_size[0] - 1);
-		ray->color = game->textures->current[texture_x + texture_y];
-		if (!(ray->start[0] < MINIMAP && ray_start < MINIMAP))
-		{
-			if (ray->dist > 144)
-				ray->color = 0x000000FF;
-			else if (ray->dist > 30 && ray->color >= 0x0F0F0FFF)
-				ray->color -= 0x0F0F0F00;
-			else if (ray->dist > 70 && ray->color >= 0x0F0F0FFF)
-				ray->color -= 0x0F0F0F00;
-			if (ray->start[0] < 1920 && ray_start < 1080)
-				mlx_put_pixel(game->game_img, ray->start[0], ray_start, ray->color);
-		}
-		ray_start += 1;
-		pos += game->textures->offset;
-	}
 }
 
 static void	draw_tex(t_game *game, t_ray *ray, int count_x, int *line_x)

@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/20 04:36:33 by eschirni         ###   ########.fr        #
+#    Updated: 2022/07/28 10:56:49 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ B = "\033[36m"
 X = "\033[0m"
 
 # EXECUTABLE
-NAME = ./cub3d
+NAME = ./cub3D
 
 # PATHS
 SRC_PATH = ./src/
@@ -36,14 +36,17 @@ MAPGEN_PATH = ./src/map_gen/
 SRC =	$(SRC_PATH)main.c $(SRC_PATH)init_map.c \
 		$(SRC_PATH)char_direction.c $(SRC_PATH)hooks.c \
 		$(SRC_PATH)ray.c $(SRC_PATH)game_end.c \
+		$(SRC_PATH)enemies.c \
 		$(UTILS_PATH)ft_error.c $(UTILS_PATH)utils.c \
 		$(UTILS_PATH)free_exit.c $(UTILS_PATH)hooks_utils.c \
 		$(UTILS_PATH)gameplay_utils.c $(UTILS_PATH)ft_append.c\
 		$(UTILS_PATH)ft_itoa.c $(UTILS_PATH)ft_strcdup.c \
+		$(UTILS_PATH)end_utils.c \
 		$(DRAW_PATH)draw_game.c $(DRAW_PATH)draw_crosshair.c \
 		$(DRAW_PATH)draw_map.c $(DRAW_PATH)draw.c \
 		$(DRAW_PATH)draw_chars.c $(DRAW_PATH)draw_3d.c \
-		$(DRAW_PATH)torch.c \
+		$(DRAW_PATH)torch.c $(DRAW_PATH)draw_sprites.c \
+		$(DRAW_PATH)draw_utils.c \
 		$(MAIN_MENU_PATH)main_menu.c $(MAIN_MENU_PATH)hooks.c \
 		$(MAIN_MENU_PATH)settings.c $(MAIN_MENU_PATH)animations.c \
 		$(MAIN_MENU_PATH)switch_menu.c $(MAIN_MENU_PATH)menu_sliders.c \
@@ -80,6 +83,7 @@ $(OBJ_PATH)%.o :$(SRC_PATH)%.c
 $(NAME): $(OBJ)
 	@echo $(Y)Compiling [$(SRC)]
 	@echo into [$(NAME)]...$(X)
+	@cd MLX42 && make
 	@gcc $(CFLAGS) $(MLX) $(OBJ) -o $(NAME)
 	@echo $(G)Finished [$(NAME)]$(X)
 
@@ -89,6 +93,7 @@ clean:
 			echo $(R)Cleaning" "[$(OBJ) $(OBJ_PATH)]...$(X); else \
 			echo "No objects to remove."; \
 	fi;
+	@cd MLX42 && make clean
 
 fclean: clean
 	@if [ -f "$(NAME)" ]; then \

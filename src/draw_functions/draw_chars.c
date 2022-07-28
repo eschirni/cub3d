@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_chars.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:42:53 by eschirni          #+#    #+#             */
+/*   Updated: 2022/07/28 10:42:55 by eschirni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void	draw_char(mlx_t *mlx, t_char *c, int n)
@@ -5,14 +17,12 @@ static void	draw_char(mlx_t *mlx, t_char *c, int n)
 	mlx_texture_t	*player;
 
 	if (n != 0)
-		player = mlx_load_png("./sprites/luci_map.png");
+		player = mlx_load_png("./sprites/luci/luci_map.png");
 	else
 		player = mlx_load_png("./sprites/player.png");
 	if (player == NULL)
 		ft_error("can't load image", NULL);
 	c->img = mlx_texture_to_image(mlx, player);
-	// if (!mlx_resize_image(c->img, 16, 16))
-	// 	ft_error("can't resize image", NULL);
 	if (c->img == NULL)
 		ft_error("char image allocation failed", NULL);
 	mlx_delete_texture(player);

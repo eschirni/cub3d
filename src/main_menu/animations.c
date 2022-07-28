@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   animations.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:44:36 by eschirni          #+#    #+#             */
+/*   Updated: 2022/07/28 10:44:38 by eschirni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/main_menu.h"
 
 static void	open_scroll(t_menu *menu, long now)
@@ -81,4 +93,5 @@ void	animate_menu(t_game *game)
 		play_music(game->menu, time.tv_sec);
 	animate_bg(game->menu, now);
 	animate_scroll(game->menu, now);
+	game->game_img->enabled = false;
 }

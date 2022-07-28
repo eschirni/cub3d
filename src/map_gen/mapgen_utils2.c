@@ -1,50 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mapgen_utils2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 10:06:38 by btenzlin          #+#    #+#             */
+/*   Updated: 2022/07/28 10:48:23 by eschirni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
-// static void	corner_check(t_mapgen *mapg)
-// {
-// 	int	i;
-// 	int	j;
+int	set_rnd_direction(t_mg *mapg)
+{
+	if ((mapg->rand_dir[0] == mapg->last_dir[0]
+			&& mapg->rand_dir[1] == mapg->last_dir[1])
+		|| (mapg->rand_dir[0] == -mapg->last_dir[0]
+			&& mapg->rand_dir[1] == -mapg->last_dir[1]))
+	{
+		mapg->rand = get_random_num(0, 3);
+		mapg->rand_dir[0] = mapg->dirs[mapg->rand][0];
+		mapg->rand_dir[1] = mapg->dirs[mapg->rand][1];
+		return (1);
+	}
+	else
+		return (0);
+}
 
-// 	i = 0;
-// 	while (mapg->map[i])
-// 	{
-// 		j = 0;
-// 		while (mapg->map[i][j])
-// 		{
-// 			if (is_corner(mapg->map, i, j))
-// 				mapg->map[i][j] = 'C';
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
+void	checker(t_mg *mapg)
+{
+	int	i;
+	int	j;
+	int	exit;
+	int	enemy;
 
-// int	is_corner(char **map, int i, int j)
-// {
-// 	int	x;
-// 	int	y;
-// 	int	corridor_tiles;
-
-// 	if (map[i][j] == '0')
-// 	{
-// 		y = i - 1;
-// 		corridor_tiles = 0;
-// 		while (y <= i + 1)
-// 		{
-// 			x = j - 1;
-// 			while (x <= j + 1)
-// 			{
-// 				if (map[x][y] == 'H' || map[x][y] == 'V')
-// 					corridor_tiles++;
-// 				x++;
-// 			}
-// 			y++;
-// 		}
-// 		if (corridor_tiles <= 2)
-// 			return (1);
-// 	}
-// 	return (0);
-// }
+	i = 0;
+	mapg->loot = 0;
+	exit = 0;
+	enemy = 0;
+	while (mapg->map[i])
+	{
+		j = 0;
+		while (mapg->map[i][j])
+		{
+			if (mapg->map[i][j] == 'W')
+				enemy++;
+			else if (mapg->map[i][j] == 'X')
+				exit++;
+			else if (mapg->map[i][j] == 'L' || mapg->map[i][j] == 'l')
+				mapg->loot++;
+			j++;
+		}
+		i++;
+	}
+}
 
 static void	set_doors(char **map)
 {
@@ -72,7 +82,24 @@ static void	set_doors(char **map)
 	}
 }
 
-void	check_floors(t_mapgen *mapg)
+static void	set_enemy(t_mg *mapg)
+{
+	int	i;
+	int	j;
+
+	while (true)
+	{
+		i = get_random_num(0, mapg->size);
+		j = get_random_num(0, mapg->size);
+		if (mapg->map[i][j] == '0')
+		{
+			mapg->map[i][j] = 'W';
+			break ;
+		}
+	}
+}
+
+void	check_floors(t_mg *mapg)
 {
 	int	i;
 	int	j;
@@ -91,8 +118,7 @@ void	check_floors(t_mapgen *mapg)
 		}
 		i++;
 	}
-	// corner_check(mapg);
 	set_entities(mapg->map, 'L', 10);
-	set_entities(mapg->map, 'W', 5);
+	set_enemy(mapg);
 	set_doors(mapg->map);
 }
