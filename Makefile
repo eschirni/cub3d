@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
+#    By: yogun <yogun@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/07/28 10:56:49 by eschirni         ###   ########.fr        #
+#    Updated: 2022/09/04 14:12:22 by yogun            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# Current version is 3.3.8. In case of update, the line down below should be changed.
 # FLAGS
 CFLAGS = -Wall -Wextra -Werror -Ofast
-MLX = -lglfw -L $$HOME/.brew/Cellar/glfw/3.3.7/lib MLX42/libmlx42.a
+MLX = -lglfw -L $$HOME/.brew/Cellar/glfw/3.3.8/lib MLX42/libmlx42.a
 
 # COLORS
 Y = "\033[33m"
