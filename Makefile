@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yogun <yogun@student.42heilbronn.de>       +#+  +:+       +#+         #
+#    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/09/04 14:12:22 by yogun            ###   ########.fr        #
+#    Updated: 2022/09/05 20:49:41 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Current version is 3.3.8. In case of update, the line down below should be changed.
 # FLAGS
+VERSION = $(shell ls ~/.brew/Cellar/glfw/)
 CFLAGS = -Wall -Wextra -Werror -Ofast
-MLX = -lglfw -L $$HOME/.brew/Cellar/glfw/3.3.8/lib MLX42/libmlx42.a
+MLX = -lglfw -L $$HOME/.brew/Cellar/glfw/$(VERSION)/lib MLX42/libmlx42.a
 
 # COLORS
 Y = "\033[33m"
@@ -67,12 +67,6 @@ all: $(NAME)
 	@echo " _|         _|    _|   _|    _|     _|_|     _|    _|"
 	@echo " _|         _|    _|   _|    _|         _|   _|    _|"
 	@echo "   _|_|_|     _|_|_|   _|_|_|     _|_|_|     _|_|_|  "
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh- yeah" -r 120 -a 0 &
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh- yeah" -r 120 -a 0 &
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a 0 &
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a 0 &
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a 0 &
-	#@osascript -e "set volume 3" && say "cub3d. ooooooooooh" -r 120 -a 0 &
 	@echo $(X)
 
 $(OBJ_PATH)%.o :$(SRC_PATH)%.c
