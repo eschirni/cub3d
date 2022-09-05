@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/09/05 20:49:41 by eschirni         ###   ########.fr        #
+#    Updated: 2022/09/05 23:55:34 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,16 @@ all: $(NAME)
 	@echo $(X)
 
 $(OBJ_PATH)%.o :$(SRC_PATH)%.c
+	@if ! [ -d $$HOME/.brew/ ]; then \
+		echo $(R)"brew not found!"; \
+		echo $(Y)"installing brew"; \
+		git clone --depth=1 https://github.com/Homebrew/brew $$HOME/.brew && echo 'export PATH=$$HOME/.brew/bin:$$PATH' >> $$HOME/.zshrc && source $$HOME/.zshrc && brew update; \
+	fi;
+	@if [ -z $(VERSION) ]; then \
+		echo $(R)"glfw not found!"; \
+		echo $(Y)"installing glfw"; \
+		brew install glfw; \
+	fi;
 	@echo $(Y)Compiling [$@]...$(X)
 	@mkdir -p $(dir $@)
 	@gcc $(CFLAGS) -c -o $@ $<
@@ -84,7 +94,7 @@ $(NAME): $(OBJ)
 
 clean:
 	@if [ -d "$(OBJ_PATH)" ]; then \
-			rm -f -r $(OBJ_PATH); \
+			rm -rf $(OBJ_PATH); \
 			echo $(R)Cleaning" "[$(OBJ) $(OBJ_PATH)]...$(X); else \
 			echo "No objects to remove."; \
 	fi;
@@ -99,11 +109,4 @@ fclean: clean
 
 re: fclean all
 
-# ADDITIONAL RULES
-
-norm:
-	@echo $(G)Checking Norminette...$(X)
-	@norminette src/* get_next_line/* | grep Error | egrep --color '.*Error!|$$' || true
-	@echo $(G)Done$(X)
-
-.PHONY: all, clean, fclean, re, norm
+.PHONY: all, clean, fclean, re
