@@ -6,7 +6,7 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/09/05 23:55:34 by eschirni         ###   ########.fr        #
+#    Updated: 2022/09/06 19:07:23 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ all: $(NAME)
 	@echo $(X)
 
 $(OBJ_PATH)%.o :$(SRC_PATH)%.c
-	@if ! [ -d $$HOME/.brew/ ]; then \
+	@if ! [ -d $$HOME/.brew/ ] && ! [ -d $$HOME/goinfre/.brew/ ]; then \
 		echo $(R)"brew not found!"; \
 		echo $(Y)"installing brew"; \
 		git clone --depth=1 https://github.com/Homebrew/brew $$HOME/.brew && echo 'export PATH=$$HOME/.brew/bin:$$PATH' >> $$HOME/.zshrc && source $$HOME/.zshrc && brew update; \
