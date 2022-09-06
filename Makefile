@@ -6,14 +6,15 @@
 #    By: eschirni <eschirni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/10 15:43:54 by eschirni          #+#    #+#              #
-#    Updated: 2022/09/06 19:07:23 by eschirni         ###   ########.fr        #
+#    Updated: 2022/09/06 19:23:11 by eschirni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # FLAGS
-VERSION = $(shell ls ~/.brew/Cellar/glfw/)
+BREW = "$$HOME/.brew/Cellar/glfw/"
+VERSION = $(shell ls $(BREW))
 CFLAGS = -Wall -Wextra -Werror -Ofast
-MLX = -lglfw -L $$HOME/.brew/Cellar/glfw/$(VERSION)/lib MLX42/libmlx42.a
+MLX = -lglfw -L $(BREW)$(VERSION)/lib MLX42/libmlx42.a
 
 # COLORS
 Y = "\033[33m"
@@ -74,6 +75,12 @@ $(OBJ_PATH)%.o :$(SRC_PATH)%.c
 		echo $(R)"brew not found!"; \
 		echo $(Y)"installing brew"; \
 		git clone --depth=1 https://github.com/Homebrew/brew $$HOME/.brew && echo 'export PATH=$$HOME/.brew/bin:$$PATH' >> $$HOME/.zshrc && source $$HOME/.zshrc && brew update; \
+	else \
+		if [ -d $$HOME/.brew/ ]; then \
+			BREW="$$HOME/.brew/Cellar/glfw/"; \
+		else \
+			BREW="$$HOME/goinfre/.brew/Cellar/glfw/"; \
+		fi; \
 	fi;
 	@if [ -z $(VERSION) ]; then \
 		echo $(R)"glfw not found!"; \
